@@ -1,15 +1,25 @@
 import { Box, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import Logo from "../../assets/logo/logo.svg";
-import HeaderButton from "../../components/ui/Button";
+import HeaderButton from "../../components/ui/HeaderButton";
 
 const Header = () => {
+  const [menuActive, setMenuActive] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onClickNav = (id) => {
+    navigate(`${id}`)
+  }
+  const MenuClick = () => {
+    setMenuActive(prev => !prev)
+  }
   return (
     <Block>
-      <Grid container spacing={2}>
-        <Grid item md={4}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item md={4} xs={9}>
           <Stack direction="row" alignItems="center">
             <Box sx={{ width: "30px", height: "30px", marginRight: "5px" }}>
               <Img src={Logo} alt="logo" />
@@ -19,19 +29,30 @@ const Header = () => {
             </LogoText>
           </Stack>
         </Grid>
-        <Grid item md={8}>
-          <Stack direction="row" justifyContent="flex-end" alignItems="center">
-            <Stack sx={{ paddingRight: "100px" }} direction="row" spacing={2}>
-              <HeaderButton variant="headerBtn" active>О нас</HeaderButton>
-              <HeaderButton variant="headerBtn">
-                Статические данные
-              </HeaderButton>
+        <Grid item md={8} xs={3}>
+          <MenuMobile>
+            <Stack direction="row" alignItems="center">
+              <button className={`hamburger hamburger--collapse ${menuActive && `is-active`}`} type="button" onClick={MenuClick}>
+                <span className="hamburger-box">
+                  <span className="hamburger-inner"></span>
+                </span>
+              </button>
             </Stack>
-            <Stack direction="row" spacing={2}>
-              <HeaderButton secondary active>Кырг</HeaderButton>
-              <HeaderButton secondary>Рус</HeaderButton>
+          </MenuMobile>
+          <Menu>
+            <Stack direction="row" justifyContent="flex-end" alignItems="center">
+              <Stack sx={{ paddingRight: "100px" }} direction="row" spacing={2}>
+                <HeaderButton variant="headerBtn" active={location.pathname === '/about'} onClick={() => onClickNav('about')}>О нас</HeaderButton>
+                <HeaderButton variant="headerBtn" active={location.pathname === '/'} onClick={() => onClickNav('/')}>
+                  Статистические данные
+                </HeaderButton>
+              </Stack>
+              <Stack direction="row" spacing={2}>
+                <HeaderButton secondary active>Кырг</HeaderButton>
+                <HeaderButton secondary>Рус</HeaderButton>
+              </Stack>
             </Stack>
-          </Stack>
+          </Menu>
         </Grid>
       </Grid>
     </Block>
@@ -39,6 +60,22 @@ const Header = () => {
 };
 
 export default Header;
+
+const MenuMobile = styled('div')`
+  display: none;
+  padding: 0;
+  /* border: 1px solid red; */
+  @media screen and (max-width: 600px){
+    display: block;
+  }
+`
+
+const Menu = styled('div')`
+  display: block;
+  @media screen and (max-width: 600px){
+    display: none;
+  }
+`
 
 const LogoText = styled("p")`
   /* border: 1px solid red; */

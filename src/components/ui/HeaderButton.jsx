@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
-function HeaderButton({ children, active, secondary }) {
-  return <Button primary={active} secondary={secondary}>{children}</Button>
+function HeaderButton({ children, active, secondary, footer, ...props }) {
+  return <Button primary={active} secondary={secondary} footer={footer} {...props}>{children}</Button>
 }
 
 export default HeaderButton;
@@ -24,5 +24,19 @@ const Button = styled('button')`
   `}
   ${props => props.secondary && css`
     padding: 4px 8px;
+  `}
+  ${props => props.footer && css`
+    border: 1px solid #fff;
+    color: #fff;
+    /* &:hover{
+      color: #000;
+      background: #fff;
+      font-weight: 600;
+    } */
+  `}
+  ${props => props.footer && props.primary && css`
+      color: #000;
+      background: #fff;
+      font-weight: 600;
   `}
 `

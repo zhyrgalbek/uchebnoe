@@ -1,46 +1,138 @@
-import { Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import card1 from '../../assets/logo/EU logobox.png'
+import card2 from '../../assets/logo/ESTDEV logobox.png'
+import card3 from '../../assets/logo/Leader logobox.jpg'
+import HeaderButton from "../../components/ui/HeaderButton";
+import { useLocation, useNavigate } from "react-router";
 
+const data = [
+    {
+        text: 'Приемная министра',
+        contact: '+996(312) 66-24-42',
+    },
+    {
+        text: 'Телефон доверия',
+        contact: '+996(312) 66-24-42',
+    },
+    {
+        text: 'Горячая линия',
+        contact: '1222',
+    },
+    {
+        text: 'Общественная приемная',
+        contact: '+996(312) 62-05-19'
+    },
+    {
+        text: 'Факс',
+        contact: '+996(312) 62-15-20'
+    },
+    {
+        text: 'Почтовый адрес',
+        contact: 'minedukg@gmail.com'
+    },
+    {
+        text: 'Адрес',
+        contact: 'Кыргызская Республика, г. Бишкек 720040, Тыныстанова у., 257'
+    }
+]
 
 function Footer() {
+    const navigate = useNavigate()
+    const location = useLocation()
+    const onClickNav = (id) => {
+        navigate(`${id}`)
+    }
     return <FooterBlock>
-        <Grid container spacing="86px">
-            <Grid item md={4}>
-                <Box >
-                    <ErrorBlock>
-                        <ErrorText>Если нашли где-то ошибку, то напишите нам на</ErrorText>
-                        <ErrorGmail>supportaddress@email.com</ErrorGmail>
-                    </ErrorBlock>
-                    <ErrorBottom>
-                        <ErrorBottomText>Веб-сайт создан при содействии и финансовой поддержке Европейского Союза и партнеров:</ErrorBottomText>
-                        <Stack direction="row" alignItems="center" spacing="10px">
-                            <Box>
-                                <Img src={card1} alt="" />
-                            </Box>
-                            <Box>
-                                <Img src={card1} alt="" />
-                            </Box>
-                            <Box>
-                                <Img src={card1} alt="" />
-                            </Box>
+        <Container maxWidth="lg">
+            <Grid container spacing="86px">
+                <Grid item md={4} xs={12}>
+                    <Box sx={{ marginBottom: '50px' }}>
+                        <ErrorBlock>
+                            <ErrorText>Если нашли где-то ошибку, то напишите нам на</ErrorText>
+                            <ErrorGmail>supportaddress@email.com</ErrorGmail>
+                        </ErrorBlock>
+                        <ErrorBottom>
+                            <ErrorBottomText>Веб-сайт создан при содействии и финансовой поддержке Европейского Союза и партнеров:</ErrorBottomText>
+                            <Stack direction="row" alignItems="center" spacing="10px">
+                                <Box>
+                                    <Img src={card1} alt="" />
+                                </Box>
+                                <Box>
+                                    <Img src={card2} alt="" />
+                                </Box>
+                                <Box>
+                                    <Img src={card3} alt="" />
+                                </Box>
+                            </Stack>
+                            <ErrorBottomText>Содержание сайта не обязательно отражает их точку зрения, программ и проектов.</ErrorBottomText>
+                        </ErrorBottom>
+                    </Box>
+                </Grid>
+                <Grid item md={4} xs={12}>
+                    <Box>
+                        <Stack direction="row" spacing="20px">
+                            <HeaderButton footer active={location.pathname === '/about'} onClick={() => onClickNav('/about')}>О нас</HeaderButton>
+                            <HeaderButton footer active={location.pathname === '/'} onClick={() => onClickNav('/')}>Cтатистические данные</HeaderButton>
                         </Stack>
-                        <ErrorBottomText>Содержание сайта не обязательно отражает их точку зрения, программ и проектов.</ErrorBottomText>
-                    </ErrorBottom>
-                </Box>
+                    </Box>
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                    <Box >
+                        <Ul>
+                            {
+                                data.map((elem, index) => {
+                                    return <Li key={index}>
+                                        <Stack direction="row" spacing="10px">
+                                            <Span primary>{elem.text}</Span>
+                                            <Span>{elem.contact}</Span>
+                                        </Stack>
+                                    </Li>
+                                })
+                            }
+                        </Ul>
+                    </Box>
+                </Grid>
+                <Grid item xs={12}>
+                    <Stack direction="row" justifyContent="center">
+                        <ErrorBottomText>© 2023. Министерство образования и науки Кыргызской Республики.</ErrorBottomText>
+                    </Stack>
+                </Grid>
             </Grid>
-            <Grid item md={4}>
-                <Box sx={{ border: '1px solid red', width: '100%', height: '100px' }}></Box>
-            </Grid>
-            <Grid item md={4}>
-                <Box sx={{ border: '1px solid red', width: '100%', height: '100px' }}></Box>
-            </Grid>
-        </Grid>
-    </FooterBlock>
+        </Container>
+    </FooterBlock >
 }
 
 export default Footer;
+
+const Span = styled('span')`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 130%;
+    color: #fff;
+    width: 150px;
+    display: block;
+    ${props => props.primary && css`
+        font-weight: 500;
+    `}
+    @media screen and (max-width: 720px){
+        width: 100%;
+    }
+`
+
+const Li = styled('li')`
+    /* border: 1px solid red; */
+    margin-bottom: 17px;
+`
+
+const Ul = styled('ul')`
+    margin: 0;
+    padding: 0;
+    list-style: none;
+`
 
 const Img = styled('img')`
     width: 100%;
@@ -90,7 +182,7 @@ const ErrorBlock = styled(Box)`
     margin-bottom: 50px;
 `
 const FooterBlock = styled(Box)`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 70px 0;
     background: #6A8AFF;
 

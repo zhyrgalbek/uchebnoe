@@ -1,10 +1,10 @@
 import "./App.css";
-import { ClientLayout } from "./layouts/ClientLayout";
+import Router from "./routes/Router";
 
 function App() {
   return (
     <div className="App">
-      <ClientLayout />
+      <Router />
     </div>
   );
 }
