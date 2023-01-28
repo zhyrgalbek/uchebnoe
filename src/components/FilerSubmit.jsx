@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-export const FilterSubmit = ({ icon }) => {
+export const FilterSubmit = ({ icon, children }) => {
     return <Submit>
         <Img src={icon} alt="#" />
         <Span>
-            Найти
+            {children}
         </Span>
     </Submit>
 }
@@ -31,6 +31,8 @@ const Submit = styled('button')`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
+    cursor: pointer;
     @media screen and (max-width: 600px){
         width: 100%;
     }

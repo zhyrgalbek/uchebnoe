@@ -60,7 +60,7 @@ export const StaticPage = () => {
         <MapHeader>Тепловая карта Кыргызстана</MapHeader>
         <MapFilterHeader>Классификация учебных заведений</MapFilterHeader>
         <Mobile>
-            <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения"/>
+            <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения" />
         </Mobile>
         <Desctop>
             <Stack direction="row" flexWrap="wrap" justifyContent="flex-start" alignItems="flex-start">
@@ -127,6 +127,10 @@ const MapFilterHeader = styled('h4')`
     font-size: 20px;
     line-height: 130%;
     margin-bottom: 30px;
+    @media screen and (max-width: 600px){
+        font-size: 16px;
+        color: #5A5A5A;
+    }
 `
 
 const MapHeader = styled('h3')`
@@ -136,6 +140,9 @@ const MapHeader = styled('h3')`
     font-size: 24px;
     line-height: 130%;
     margin-bottom: 40px;
+    @media screen and (max-width: 600px){
+        font-size: 18px;
+    }
 `
 
 const StaticHeader = styled('h2')`
@@ -148,6 +155,9 @@ const StaticHeader = styled('h2')`
     text-transform: uppercase;
     margin-bottom: 70px;
     margin-top: 70px;
+    @media screen and (max-width: 600px){
+        font-size: 22px;
+    }
 `
 const StaticBlock = styled('div')`
     /* border: 1px solid red; */
