@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styled, { css } from "styled-components"
+import frame from '../assets/Filter/Frame.svg'
+import framewhite from '../assets/Filter/Framewhite.svg'
 
-export const FilterButton = ({ children, icon, icon2, left, ...props }) => {
+export const FilterButton = ({ children, icon, icon2, left, mobile, toggle, active, ...props }) => {
     const [hover, setHover] = useState(false);
     const onHover = () => {
         setHover(true)
@@ -9,12 +11,27 @@ export const FilterButton = ({ children, icon, icon2, left, ...props }) => {
     const offHover = () => {
         setHover(false)
     }
-    return <Block onMouseOver={onHover} onMouseOut={offHover} left={left} {...props}><Img src={hover ? icon : icon2} alt="#" /> <Span>{children}</Span></Block>
+    return <Block onMouseOver={onHover} onMouseOut={offHover} left={left} {...props} mobile={mobile}>
+        <Img src={hover ? icon : icon2} alt="#" />
+        <Span>{children}</Span>
+        {
+            toggle && <Div>
+                <Img src={hover ? framewhite : frame} active={active} />
+            </Div>
+        }
+    </Block>
 }
 
+const Div = styled('div')`
+    /* border: 1px solid red; */
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+`
 const Img = styled('img')`
-    /* background:  */
-    fill: #ff0000;
+    ${props => props.active && css`
+        transform: rotateX(180deg);
+    `}
 `
 const Span = styled('span')`
     margin-left: 10px;
@@ -44,7 +61,11 @@ const Block = styled('button')`
         color: #fff;
         font-weight: 300;
     }
-    ${props => props.left && css`
-        
+    ${props => props.mobile && css`
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        border: 1px solid transparent;
+        padding: 14px 15px;
     `}
 `

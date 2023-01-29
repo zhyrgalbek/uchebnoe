@@ -1,6 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
-import styled from 'styled-components'
-const position = [51.505, -0.09]
+
+const position = [51.505, -0.09];
+
 export const MapLeaflet = () => {
     return <MapContainer center={position} zoom={13}>
         <TileLayer

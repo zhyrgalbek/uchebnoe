@@ -12,3 +12,191 @@
   height: 100%;
   width: 100%;
 }
+
+.hamburger {
+  position: relative;
+  z-index: 10000;
+}
+
+* {
+  font-family: 'Inter';
+  font-style: normal;
+}
+
+.logo__text {
+  font-weight: 500;
+  font-size: 12px !important;
+  line-height: 14px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.text__all {
+  font-weight: 400;
+  font-size: 14px !important;
+  line-height: 140%;
+}
+
+.title__text {
+  font-weight: 500;
+  font-size: clamp(1rem, 0.75rem + 1.3333333333333333vw, 2.25rem);
+  line-height: 130%;
+  /* or 47px */
+
+  text-transform: uppercase;
+}
+
+.devider {
+  margin-top: 100px;
+}
+
+.second_texts .second__title__text {
+  margin-top: 70px;
+  font-weight: 600;
+  font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.5rem);
+  line-height: 130%;
+}
+
+.third__title__text {
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: clamp(1rem, 0.95rem + 0.26666666666666666vw, 1.25rem);
+  line-height: 130%;
+}
+
+.btn-icon {
+  padding: 10px !important;
+  height: 60px !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 140% !important;
+}
+
+.btn-icon p {
+  padding: 0;
+}
+
+
+
+.btn__custom__filters {
+  background-color: #6A8AFF !important;
+}
+
+
+.map__page {
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+}
+
+.svg-color-change {
+  filter: contrast(1%) !important;
+}
+
+.map__page iframe {
+  height: clamp(22.5rem, 16.32142857142857rem + 24.714285714285715vw, 44.125rem);
+}
+
+footer {
+  margin-top: 69px;
+}
+
+footer .text__found {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 130%;
+}
+
+
+
+.padding__button__custom {
+  padding-left: 12px !important;
+}
+
+.rounded__only__top__custom {
+  border-radius: 7px 7px 0 0 !important;
+}
+
+.text-center img {
+  vertical-align: middle;
+}
+
+
+.contact__text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 130%;
+}
+
+.charts__texts {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+
+
+  /* Основной цвет шрифтов */
+
+  color: #292D32;
+}
+
+.icon__info__custom {
+  width: 80px;
+  height: 34px;
+}
+
+
+#headingThree>.accordion-button::after {
+  margin-left: 12px !important;
+}
+
+#acc_bg__custom>.accordion {
+  --bs-accordion-btn-bg: #6A8AFF !important;
+}
+
+#headingThree>.accordion-button:not(.collapsed) {
+  color: #ffffff !important;
+  background-color: #6A8AFF !important;
+}
+
+.footer__logo__text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 120%;
+  vertical-align: middle;
+}
+
+
+.about__us__text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  /* or 24px */
+
+  display: flex;
+  align-items: center;
+
+  /* Основной цвет шрифтов */
+
+  color: #292D32;
+
+}
+
+.buttons__text {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 130%;
+}
+
+.bg__abouts__us__features {
+  background: #EBF0FF;
+  border-radius: 6px;
+}
+
+.nav-link {
+  color: #000000 !important;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}

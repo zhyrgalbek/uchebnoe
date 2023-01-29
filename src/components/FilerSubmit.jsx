@@ -1,11 +1,19 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-export const FilterSubmit = ({ icon, children }) => {
-    return <Submit>
-        <Img src={icon} alt="#" />
+export const FilterSubmit = ({ icon, children, variant, active, info, ...props }) => {
+    return <Submit {...props} variant={variant} active={active}>
+        {
+            variant === 'like' && info
+        }
+        {
+            variant !== 'more' && variant !== 'like' && <Img src={icon} alt="#" />
+        }
         <Span>
             {children}
         </Span>
+        {
+            variant === 'more' && <Img src={icon} alt="#" active={active} />
+        }
     </Submit>
 }
 
@@ -16,10 +24,15 @@ const Span = styled('span')`
     font-size: 14px;
     line-height: 130%;
     color: #fff;
+    display: inline-block;
+    margin-right: 10px;
 `
 
 const Img = styled('img')`
     margin-right: 10px;
+    ${props => props.active && css`
+        transform: rotateX(180deg);
+    `}
 `
 
 const Submit = styled('button')`
@@ -31,8 +44,23 @@ const Submit = styled('button')`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
     cursor: pointer;
+    margin-bottom: 0;
+    transition: 0.5s ease;
+    ${props => props.active && css`
+        background: #3763FF;
+        margin-bottom: 20px;
+        transition: 0.2s ease;
+     `}
+    ${props => props.variant === 'more' && css`
+        width: 100%;
+    `}
+    ${props => props.variant === 'more' && props.active && css`
+        margin-bottom: 30px;
+    `}
+    ${props => props.variant === 'like' && css`
+        width: 280px;
+    `}
     @media screen and (max-width: 600px){
         width: 100%;
     }

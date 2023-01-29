@@ -18,6 +18,10 @@ import { Stack } from "@mui/system"
 import { MapLeaflet } from "../components/MapLeaflet"
 import { Filter } from "../components/Filter"
 import { FilterDropdown } from "../components/ui/FilterDropdown"
+import { AccordionFilter } from "../components/ui/AccordionFilter"
+import { useState } from "react"
+import AnalizeCompoent from "../components/AnalizeComponent"
+import SchoolComponent from "../components/SchoolComponent"
 
 const data = [
     {
@@ -53,6 +57,10 @@ const data = [
 ]
 
 export const StaticPage = () => {
+    const [accordionOpen, setAccordionOpen] = useState(false);
+    const onChangeAccordion = () => {
+        setAccordionOpen(prev => !prev)
+    }
     return <StaticBlock>
         <StaticHeader>
             Статистические данные по учебным заведениям кыргызской республики
@@ -60,7 +68,15 @@ export const StaticPage = () => {
         <MapHeader>Тепловая карта Кыргызстана</MapHeader>
         <MapFilterHeader>Классификация учебных заведений</MapFilterHeader>
         <Mobile>
-            <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения" />
+            <AccordionFilter onClick={onChangeAccordion} header={<FilterButton mobile icon={all} icon2={allblue} toggle active={accordionOpen}>Все учреждения</FilterButton>}>
+                <FilterButton mobile icon2={children} icon={childrenswhite}>Дошкольное образование</FilterButton>
+                <FilterButton mobile icon2={general_education} icon={general_educationwhite}>Общеобразовательные</FilterButton>
+                <FilterButton mobile icon2={Group} icon={Groupwhite}>Начально-профессиональные</FilterButton>
+                <FilterButton mobile icon2={average} icon={averagewhite}>Средне-профессиональные</FilterButton>
+                <FilterButton mobile icon2={higher} icon={higherwhite}>Высшее профессиональное</FilterButton>
+                <FilterButton mobile icon2={other} icon={otherwhite}>Другие учреждения</FilterButton>
+            </AccordionFilter>
+            {/* <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения" /> */}
         </Mobile>
         <Desctop>
             <Stack direction="row" flexWrap="wrap" justifyContent="flex-start" alignItems="flex-start">
@@ -79,6 +95,7 @@ export const StaticPage = () => {
             </MapCont>
         </Map>
         <Filter />
+        <SchoolComponent />
     </StaticBlock>
 }
 

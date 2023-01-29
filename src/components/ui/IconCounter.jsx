@@ -1,0 +1,36 @@
+import styled, { css } from "styled-components"
+
+export const IconCounter = ({ icon, children, like }) => {
+    return <IconCounterBlock like={like}>
+        <Icon src={icon} alt="#" />
+        <Number>{children}</Number>
+    </IconCounterBlock>
+}
+
+const Number = styled('span')`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+`
+
+const Icon = styled('img')`
+    margin-right: 5px;
+`
+
+const IconCounterBlock = styled('div')` 
+    border: 1px solid #3763FF;
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    ${props => props.like && css`
+        border: none;
+        padding: 0;
+        color: #fff;
+        font-size: 600;
+        margin-right: 10px;
+    `}
+`

@@ -1,72 +1,104 @@
-import { Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
+import { useRef, useState } from "react";
 import styled, { css } from "styled-components"
 import frame from '../../assets/Filter/Frame.svg'
-import { FilterButton } from "../FilterButton";
 
 export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, ...props }) => {
-    const [show, setShow] = useState(false)
-    const handleClick = () => {
-        setShow(prev => !prev)
+    const [choiseText, setChoiseText] = useState(text);
+    const [open, setOpen] = useState(false);
+    const anchorRef = useRef(null);
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+    const handleClose = (event) => {
+        if (
+            anchorRef.current &&
+            anchorRef.current.contains(event.target)
+        ) {
+            return;
+        }
+
+        setOpen(false);
+    };
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        } else if (event.key === 'Escape') {
+            setOpen(false);
+        }
     }
     return <DropdownContainer>
         <DropdownHeader>{header}</DropdownHeader>
-        {
-            mobile ? <MobileDrop onClick={handleClick} icon={icon} icon2={icon2}>{text}</MobileDrop> :
-                <FilterDropdownButton
-                    onClick={handleClick}>
-                    <Span>{text}</Span>
-                    <Img src={frame} alt="#" />
-                </FilterDropdownButton>
-        }
-        <MenuDrop show={show}>
-            {
-                arr?.map((elem, index) => {
-                    return <MenuDropItem key={index} icon={elem.icon} icon2={elem.icon2} {...props}>{elem.text}</MenuDropItem>
-                })
-            }
-        </MenuDrop>
+        <FilterDropdownButton onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'composition-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            aria-haspopup="true">
+            <Span>{choiseText}</Span>
+            <Img src={frame} alt="#" active={open} />
+        </FilterDropdownButton>
+        <MenuBlock
+            open={open}
+            anchorEl={anchorRef.current}
+            role={undefined}
+            placement="bottom-start"
+            transition
+            disablePortal
+            sx={{ zIndex: '100' }}
+        >
+            {({ TransitionProps, placement }) => (
+                <Grow
+                    {...TransitionProps}
+                    style={{
+                        transformOrigin:
+                            placement === 'bottom-start' ? 'left top' : 'left bottom',
+                    }}
+                >
+                    <Paper>
+                        <ClickAwayListener onClickAway={handleClose}>
+                            <MenuList
+                                autoFocusItem={open}
+                                id="composition-menu"
+                                aria-labelledby="composition-button"
+                                onKeyDown={handleListKeyDown}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </MenuList>
+                        </ClickAwayListener>
+                    </Paper>
+                </Grow>
+            )}
+        </MenuBlock>
     </DropdownContainer>
 }
 
-const MobileDrop = styled(FilterButton)`
-    width: 100%;
-`
-
-const MenuDropItem = styled(FilterButton)`
-    border: 1px solid transparent;
-    width: 100%;
-    margin-bottom: 0;
-    border-radius: 0;
-    padding: 14px 15px;
-    &:hover{
-        background: #3763FF;
-        color: #fff;
+const MenuBlock = styled(Popper)`
+    min-width: 100%;
+    & div{
+        margin-top: -6px;
+        /* margin-left: -1px; */
+        box-shadow: none;
+        min-width: 100%;
     }
-`
-
-const MenuDrop = styled('div')`
-    border-top: 0;
-    margin-top: -25px;
-    height: 0;
-    overflow: hidden;
-    border: none;
-    /* transition: all 0.5s ease; */
-    ${props => props.show && css`
-        height: 100%;
+    & ul {
         border: 1px solid #3763FF;
         border-top: 1px solid transparent;
-        background: #fff;
         border-bottom-left-radius: 6px;
         border-bottom-right-radius: 6px;
-    `}
+        overflow: hidden;
+        /* min-width: 100%; */
+    }
+    & li {
+        /* min-width: 318px; */
+        /* min-width: 100%; */
+    }
 `
 
 const DropdownContainer = styled('div')`
     position: relative;
     width: 320px;
     margin-right: 30px;
-    margin-bottom: 53px;
     @media screen and (max-width: 600px){
         width: 100%;
         margin-right: 0;
@@ -90,7 +122,10 @@ const Span = styled('span')`
     color: #5A5A5A;
 `
 const Img = styled('img')`
-    
+    transition: 0.2s ease;
+    ${props => props.active && css`
+        transform: rotateX(180deg);
+    `}
 `
 const FilterDropdownButton = styled('button')`
     border: 1px solid #3763FF;
@@ -100,6 +135,6 @@ const FilterDropdownButton = styled('button')`
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    margin-bottom: 53px;
     width: 100%;
+    margin-bottom: 30px;
 `
