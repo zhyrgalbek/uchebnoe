@@ -11,6 +11,8 @@ import togglewhite from '../assets/Filter/Framewhite.svg'
 import count from '../assets/IconCounter/count.svg'
 import share from '../assets/IconCounter/share.svg'
 import like from '../assets/IconCounter/like.svg'
+import SchoolIcon from '../assets/shcoolIcon.svg'
+import image from '../assets/image.svg'
 
 import { FilterSubmit } from "./FilerSubmit"
 import { AccordionFilter } from "./ui/AccordionFilter"
@@ -18,7 +20,7 @@ import { useState } from "react"
 import { FilterButton } from "./FilterButton"
 
 
-export default function SchoolComponent() {
+export default function SchoolComponent({ imageSchool }) {
     const [openMore, setOpenMore] = useState(false);
     const onClickMore = () => {
         setOpenMore(prev => !prev)
@@ -88,7 +90,11 @@ export default function SchoolComponent() {
             </Grid>
             <Grid item md={6}>
                 <BoxCard>
-                    <Img src="" alt="#" />
+                    <ImgBlock>
+                        {
+                            imageSchool && <Img src={imageSchool} alt="#" />
+                        }
+                    </ImgBlock>
                 </BoxCard>
                 <BoxCard>
                     <Stack direction="column">
@@ -107,11 +113,21 @@ export default function SchoolComponent() {
     </SchoolContainer>
 }
 
-const Img = styled('div')`
-    border: 1px solid blue;
+const ImgBlock = styled('div')`
+    /* border: 1px solid blue; */
     width: 100%;
     height: 310px;
     border-radius: 6px;
+    overflow: hidden;
+    background-image: url(${image}), url(${SchoolIcon});
+    background-repeat: no-repeat, no-repeat;
+    background-position: center center, center center;
+`
+
+const Img = styled('img')`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `
 
 const BoxCard = styled(Box)`

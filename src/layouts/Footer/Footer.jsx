@@ -47,7 +47,7 @@ function Footer() {
     return <FooterBlock>
         <Container maxWidth="lg">
             <Grid container spacing="86px">
-                <Grid item md={4} xs={12}>
+                <Grid item xs={12} md={4}>
                     <Box sx={{ marginBottom: '50px' }}>
                         <ErrorBlock>
                             <ErrorText>Если нашли где-то ошибку, то напишите нам на</ErrorText>
@@ -70,7 +70,7 @@ function Footer() {
                         </ErrorBottom>
                     </Box>
                 </Grid>
-                <Grid item md={4} xs={12}>
+                <Grid item xs={12} md={4}>
                     <Box>
                         <Stack direction="row" spacing="20px">
                             <HeaderButton footer active={location.pathname === '/about'} onClick={() => onClickNav('/about')}>О нас</HeaderButton>
@@ -78,8 +78,8 @@ function Footer() {
                         </Stack>
                     </Box>
                 </Grid>
-                <Grid item sm={4} xs={12}>
-                    <Box >
+                <Grid item xs={12} md={4}>
+                    <Box>
                         <Ul>
                             {
                                 data.map((elem, index) => {
@@ -94,8 +94,10 @@ function Footer() {
                         </Ul>
                     </Box>
                 </Grid>
+            </Grid>
+            <Grid container>
                 <Grid item xs={12}>
-                    <Stack direction="row" justifyContent="center">
+                    <Stack direction="row" justifyContent="center" sx={{ marginTop: '50px' }}>
                         <ErrorBottomText>© 2023. Министерство образования и науки Кыргызской Республики.</ErrorBottomText>
                     </Stack>
                 </Grid>
@@ -113,14 +115,14 @@ const Span = styled('span')`
     font-size: 14px;
     line-height: 130%;
     color: #fff;
-    width: 150px;
+    width: 500px;
     display: block;
     ${props => props.primary && css`
         font-weight: 500;
     `}
-    @media screen and (max-width: 720px){
+    /* @media screen and (max-width: 720px){
         width: 100%;
-    }
+    } */
 `
 
 const Li = styled('li')`
@@ -144,15 +146,16 @@ const ErrorBottomText = styled('p')`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 130%;
     color: #fff;
+    margin-top: 50px;
     margin-bottom: 15px;
     margin-top: 15px;
 `
 
 const ErrorBottom = styled(Box)`
-    // border: 1px solid red;
+    /* // border: 1px solid red; */
 `
 
 const ErrorGmail = styled('a')`

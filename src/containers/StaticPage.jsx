@@ -17,7 +17,6 @@ import otherwhite from '../assets/FilterMap/otherwhite.svg'
 import { Stack } from "@mui/system"
 import { MapLeaflet } from "../components/MapLeaflet"
 import { Filter } from "../components/Filter"
-import { FilterDropdown } from "../components/ui/FilterDropdown"
 import { AccordionFilter } from "../components/ui/AccordionFilter"
 import { useState } from "react"
 import AnalizeCompoent from "../components/AnalizeComponent"
@@ -96,6 +95,7 @@ export const StaticPage = () => {
         </Map>
         <Filter />
         <SchoolComponent />
+        <AnalizeCompoent />
     </StaticBlock>
 }
 

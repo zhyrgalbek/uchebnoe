@@ -6,7 +6,7 @@ export const FilterSubmit = ({ icon, children, variant, active, info, ...props }
             variant === 'like' && info
         }
         {
-            variant !== 'more' && variant !== 'like' && <Img src={icon} alt="#" />
+            variant !== 'more' && variant !== 'like' && icon && <Img src={icon} alt="#" />
         }
         <Span>
             {children}

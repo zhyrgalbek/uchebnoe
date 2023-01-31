@@ -20,9 +20,9 @@ const Icon = styled('img')`
 `
 
 const IconCounterBlock = styled('div')` 
-    border: 1px solid #3763FF;
+    border: 1px solid #A2B6FF;
     border-radius: 6px;
-    padding: 8px 10px;
+    padding: 8px 12px;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
