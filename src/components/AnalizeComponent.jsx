@@ -219,4 +219,5 @@ const AnalizeContainer = styled('div')`
     border-radius: 6px;
     padding: 30px;
     margin-bottom: 86px;
+    margin-top: 70px;
 `

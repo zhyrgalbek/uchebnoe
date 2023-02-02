@@ -21,6 +21,7 @@ import { AccordionFilter } from "../components/ui/AccordionFilter"
 import { useState } from "react"
 import AnalizeCompoent from "../components/AnalizeComponent"
 import SchoolComponent from "../components/SchoolComponent"
+import { ButtonFilter } from "../components/ButtonFilter"
 // import schoolImage from '../assets/empty-classNameroom_elementary-school-middle-school-high-school.webp'
 
 const data = [
@@ -79,46 +80,25 @@ export const StaticPage = () => {
                     <div className="buttons__category">
                         <div className="row row-cols-1 row-cols-lg-3 g-4 d-none d-lg-flex">
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-primary btn-icon text-start">
-                                    <img src="" className="svg-color-change " alt="" />
-                                    Все учреждения
-                                </button>
+                                <ButtonFilter icon={all} icon2={allblue} text="Все учреждения" />
                             </div>
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-outline-primary btn-icon text-start">
-                                    <img src="" alt="" />
-                                    Дошкольное образование
-                                </button>
+                                <ButtonFilter icon={childrenswhite} icon2={children} text="Дошкольное образование" />
                             </div>
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-outline-primary btn-icon text-start">
-                                    <img src="" alt="" />
-                                    Общеобразовательные
-                                </button>
+                                <ButtonFilter icon={general_educationwhite} icon2={general_education} text="Общеобразовательные" />
                             </div>
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-outline-primary btn-icon text-start">
-                                    <img src="" alt="" />
-                                    Начально-профессиональные
-                                </button>
+                                <ButtonFilter icon={Groupwhite} icon2={Group} text="Начально-профессиональные" />
                             </div>
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-outline-primary btn-icon text-start">
-                                    <img src="" alt="" />
-                                    Средне-профессиональные
-                                </button>
+                                <ButtonFilter icon={averagewhite} icon2={average} text="Средне-профессиональные" />
                             </div>
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-outline-primary btn-icon text-start">
-                                    <img src="" alt="" />
-                                    Высшее профессиональное
-                                </button>
+                                <ButtonFilter icon={higherwhite} icon2={higher} text="Высшее профессиональное" />
                             </div>
                             <div className="col-lg-3">
-                                <button className="btn w-100 btn-outline-primary btn-icon text-start">
-                                    <img src="" alt="" />
-                                    Другие учреждения
-                                </button>
+                                <ButtonFilter icon={otherwhite} icon2={other} text="Другие учреждения" />
                             </div>
                         </div>
                         <div className="row d-block d-lg-none">
@@ -170,10 +150,8 @@ export const StaticPage = () => {
                             </div>
                         </div>
 
-
-
-
                         <div className="map__page">
+                            <MapLeaflet />
                         </div>
                     </div>
                 </div>
@@ -240,7 +218,7 @@ export const StaticPage = () => {
                             <div className="col-12 col-lg-4">
                                 <label className="form-label"></label>
                                 <button className="btn btn-primary text-center w-100"><img src="images/icons/search_icon.svg"
-                                    alt=""/>Найти</button>
+                                    alt="" />Найти</button>
                             </div>
                         </div>
 
@@ -253,8 +231,8 @@ export const StaticPage = () => {
                                             className="w-100 btn__custom__filters btn rounded__only__top__custom p-3 padding__button__custom text-center btn border-primary w-100"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
                                             aria-controls="collapseTwo">
-                                            <img src="images/icons/filters.svg" alt=""/>
-                                                <span className="ms-3 text-white">Открыть фильтр</span>
+                                            <img src="images/icons/filters.svg" alt="" />
+                                            <span className="ms-3 text-white">Открыть фильтр</span>
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
@@ -311,7 +289,7 @@ export const StaticPage = () => {
                                             </div>
                                             <div className="col-12 w-100">
                                                 <button className="btn btn-primary text-center w-100"><img src="images/icons/search_icon.svg"
-                                                    alt=""/><span className="buttons__text">Найти</span></button>
+                                                    alt="" /><span className="buttons__text">Найти</span></button>
                                             </div>
                                         </div>
                                     </div>
@@ -328,236 +306,164 @@ export const StaticPage = () => {
                             <p className="pt-0 mt-0 third__title__text">Профессиональный лицей №16</p>
                             <img
                                 src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classNameroom_elementary-school-middle-school-high-school.jpg"
-                                className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none" alt=""/>
-                                <p className="charts__texts">
-                                    Тип учреждения:
+                                className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none" alt="" />
+                            <p className="charts__texts">
+                                Тип учреждения:
+                            </p>
+                            <p>
+                                Государственный
+                            </p>
+                            <div className="box d-flex align-items-center mb-1 my-md-4">
+                                <p className="mb-0 charts__texts pb-0">
+                                    Общая вместимость:
+                                    <div
+                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                        <img src="images/icons/man.svg" alt="example image" />
+                                        150
+                                    </div>
+                                    <div
+                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                        <img src="images/icons/woman.svg" alt="example image" />
+                                        35
+                                    </div>
                                 </p>
-                                <p>
-                                    Государственный
+                            </div>
+                            <div
+                                className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none  justify-content-around align-items-center">
+                                <img src="images/icons/people_twice.svg" alt="" />150
+                            </div>
+                            <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
+                                <p className="mb-0 charts__texts">
+                                    Количество свободных мест:
+                                    <div
+                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                        <img src="images/icons/free_spaces_2.svg" alt="example image" />
+                                        41
+                                    </div>
+                                    <div
+                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                        <img src="images/icons/free_spaces.svg" alt="example image" />
+                                        35
+                                    </div>
                                 </p>
-                                <div className="box d-flex align-items-center mb-1 my-md-4">
-                                    <p className="mb-0 charts__texts pb-0">
-                                        Общая вместимость:
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/man.svg" alt="example image"/>
-                                                150
-                                        </div>
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/woman.svg" alt="example image"/>
-                                                35
-                                        </div>
-                                    </p>
-                                </div>
-                                <div
-                                    className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none  justify-content-around align-items-center">
-                                    <img src="images/icons/people_twice.svg" alt=""/>150
-                                </div>
-                                <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
-                                    <p className="mb-0 charts__texts">
-                                        Количество свободных мест:
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/free_spaces_2.svg" alt="example image"/>
-                                                41
-                                        </div>
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/free_spaces.svg" alt="example image"/>
-                                                35
-                                        </div>
-                                    </p>
-                                </div>
-                                <div
-                                    className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none mb-3 justify-content-around align-items-center">
-                                    <img src="images/icons/people_twice.svg" alt=""/>150
-                                </div>
-                                <div className="row" id="acc_bg__custom">
-                                    <div className="accordion accordion-flush" id="accordionExample3">
-                                        <div className="accordion-item rounded-3">
-                                            <h2 className="accordion-header text-center py-0" id="headingThree">
-                                                <button
-                                                    className="text-center btn btn-sm py-2 rounded-2 text-white btn-primary justify-content-center accordion-button border-primary"
-                                                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true"
-                                                    aria-controls="collapseThree">
-                                                    Подробнее
-                                                </button>
-                                            </h2>
-                                            <div id="collapseThree" className="mt-4 accordion-collapse collapse show" aria-labelledby="headingThree"
-                                                data-bs-parent="#accordionExample3">
-                                                <div className="accordion-body p-0">
-                                                    <ul className="w-100 rounded-0 p-0 m-0 list-unstyled">
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <div className="d-md-block d-none">
-                                                                <p className="mb-0 mt-4 charts__texts">
-                                                                    Контактные данные:</p>
-                                                                <p>+996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта litsey16@bk.ru</p>
+                            </div>
+                            <div
+                                className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none mb-3 justify-content-around align-items-center">
+                                <img src="images/icons/people_twice.svg" alt="" />150
+                            </div>
+                            <div className="row" id="acc_bg__custom">
+                                <div className="accordion accordion-flush" id="accordionExample3">
+                                    <div className="accordion-item rounded-3">
+                                        <h2 className="accordion-header text-center py-0" id="headingThree">
+                                            <button
+                                                className="text-center btn btn-sm py-2 rounded-2 text-white btn-primary justify-content-center accordion-button border-primary"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true"
+                                                aria-controls="collapseThree">
+                                                Подробнее
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" className="mt-4 accordion-collapse collapse show" aria-labelledby="headingThree"
+                                            data-bs-parent="#accordionExample3">
+                                            <div className="accordion-body p-0">
+                                                <ul className="w-100 rounded-0 p-0 m-0 list-unstyled">
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <div className="d-md-block d-none">
+                                                            <p className="mb-0 mt-4 charts__texts">
+                                                                Контактные данные:</p>
+                                                            <p>+996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта litsey16@bk.ru</p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Местоположение:</p>
+
+                                                        <p>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</p>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Время работы:</p>
+
+                                                        <p>9:00 - 17:30</p>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            ФИО Директора/Руководителя</p>
+
+                                                        <p>Баланчаев Баланча Баланчаевич</p>
+                                                    </li>
+                                                    <li>
+                                                        <div className="box  my-4">
+                                                            <p className="mb-0 charts__texts">
+                                                                Количество преподавателей:
+                                                            </p>
+                                                            <div
+                                                                className="icon__info__custom border border-1 border-primary rounded-2 d-flex  justify-content-around align-items-center">
+                                                                <img src="images/icons/teachers.svg" alt="example image" />
+                                                                40
                                                             </div>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Местоположение:</p>
-
-                                                            <p>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</p>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Время работы:</p>
-
-                                                            <p>9:00 - 17:30</p>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                ФИО Директора/Руководителя</p>
-
-                                                            <p>Баланчаев Баланча Баланчаевич</p>
-                                                        </li>
-                                                        <li>
-                                                            <div className="box  my-4">
-                                                                <p className="mb-0 charts__texts">
-                                                                    Количество преподавателей:
-                                                                </p>
-                                                                <div
-                                                                    className="icon__info__custom border border-1 border-primary rounded-2 d-flex  justify-content-around align-items-center">
-                                                                    <img src="images/icons/teachers.svg" alt="example image"/>
-                                                                        40
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Наличие столовой:</p>
-                                                            <p>Имеется</p>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Наличие спортивного зала:</p>
-                                                            <p>Имеется</p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                        </div>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Наличие столовой:</p>
+                                                        <p>Имеется</p>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Наличие спортивного зала:</p>
+                                                        <p>Имеется</p>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                         <div className="col">
                             <img
                                 src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classNameroom_elementary-school-middle-school-high-school.jpg"
-                                className="img-thumbnail border-0 pt-0 mt-0 d-none d-md-block" alt=""/>
-                                <div className="d-md-block d-none">
-                                    <p className="mb-0 mt-4 charts__texts">
-                                        Контактные данные:</p>
-                                    <p>+996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта litsey16@bk.ru</p>
-                                </div>
-                                <div className="d-none d-md-flex flex-column">
-                                    <button className="btn btn-primary text-white text-center mb-4 w-50">
-                                        <img src="images/icons/like.svg" alt="image"/>
-                                            <span>490</span>
-                                            <span>Поставить лайк</span>
-                                    </button>
-                                    <button className="btn btn-primary text-white text-center px-5 w-50">
-                                        <img src="images/icons/share.svg" alt="image"/>
-                                            <span>Поделиться</span>
-                                    </button>
-                                </div>
-                                <div className="d-flex d-md-none flex-column mt-4">
-                                    <button className="btn btn-primary text-white text-center mb-4 w-100">
-                                        <img src="images/icons/like.svg" alt="image"/>
-                                            <span>490</span>
-                                            <span>Поставить лайк</span>
-                                    </button>
-                                    <button className="btn btn-primary text-white text-center px-5 w-100">
-                                        <img src="images/icons/share.svg" alt="image"/>
-                                            <span>Поделиться</span>
-                                    </button>
-                                </div>
+                                className="img-thumbnail border-0 pt-0 mt-0 d-none d-md-block" alt="" />
+                            <div className="d-md-block d-none">
+                                <p className="mb-0 mt-4 charts__texts">
+                                    Контактные данные:</p>
+                                <p>+996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта litsey16@bk.ru</p>
+                            </div>
+                            <div className="d-none d-md-flex flex-column">
+                                <button className="btn btn-primary text-white text-center mb-4 w-50">
+                                    <img src="images/icons/like.svg" alt="image" />
+                                    <span>490</span>
+                                    <span>Поставить лайк</span>
+                                </button>
+                                <button className="btn btn-primary text-white text-center px-5 w-50">
+                                    <img src="images/icons/share.svg" alt="image" />
+                                    <span>Поделиться</span>
+                                </button>
+                            </div>
+                            <div className="d-flex d-md-none flex-column mt-4">
+                                <button className="btn btn-primary text-white text-center mb-4 w-100">
+                                    <img src="images/icons/like.svg" alt="image" />
+                                    <span>490</span>
+                                    <span>Поставить лайк</span>
+                                </button>
+                                <button className="btn btn-primary text-white text-center px-5 w-100">
+                                    <img src="images/icons/share.svg" alt="image" />
+                                    <span>Поделиться</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </section>
+            <section>
+                <div className="container">
+                    <AnalizeCompoent />
                 </div>
             </section>
         </>
     )
 }
 
-const Desctop = styled('div')`
-    display: block;
-    @media screen and (max-width: 600px){
-        display: none;
-    }
-`
-
-const Mobile = styled('div')`
-    display: none;
-    @media screen and (max-width: 600px){
-        display: block;
-    }
-`
-
-const MapCont = styled('div')`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    @media screen and (max-width: 600px){
-        left: -18px;
-        right: -18px;
-    }
-`
-
-const Map = styled('div')`
-    /* border: 1px solid red; */
-    position: relative;
-    /* display: block; */
-    width: 100%;
-    height: 706px;
-    margin: 40px 0;
-    @media screen and (max-width: 600px){
-        height: 360px;
-    }
-`
-
-const MapFilterHeader = styled('h4')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 130%;
-    margin-bottom: 30px;
-    @media screen and (max-width: 600px){
-        font-size: 16px;
-        color: #5A5A5A;
-    }
-`
-
-const MapHeader = styled('h3')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 130%;
-    margin-bottom: 40px;
-    @media screen and (max-width: 600px){
-        font-size: 18px;
-    }
-`
-
-const StaticHeader = styled('h2')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 130%;
-    color: #000;
-    text-transform: uppercase;
-    margin-bottom: 70px;
-    margin-top: 70px;
-    @media screen and (max-width: 600px){
-        font-size: 22px;
-    }
-`
-const StaticBlock = styled('div')`
-    /* border: 1px solid red; */
+const Icon = styled('div')`
+    border: 1px solid red;
 `

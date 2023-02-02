@@ -37,6 +37,14 @@ const data = [
 ]
 
 function Footer() {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const onClickNav = (e, id) => {
+        e.preventDefault()
+        navigate(`${id}`)
+    }
+    const active = 'btn-light text-black';
+    const noActive = 'btn-outline-light';
     return <footer className="bg-primary text-white ">
         <div className="container py-5">
             <div className="row row-cols-1 row-cols-lg-3">
@@ -91,9 +99,9 @@ function Footer() {
                 </div>
                 <div className="container">
                     <div className="d-flex justify-content-around row row-cols-2 mb-2 mb-lg-0">
-                        <a className="btn w-auto btn-light text-black mx-sm-3" aria-current="page" href="about_us.html">О
+                        <a className={`btn w-auto mx-sm-3 ${location.pathname === '/about' ? active : noActive}`} aria-current="page" href="about_us.html" onClick={(e) => onClickNav(e, '/about')}>О
                             нас</a>
-                        <a className="btn w-auto btn-outline-light" href="index.html">Статистические данные</a>
+                        <a className={`btn w-auto ${location.pathname === '/' ? active : noActive}`} href="index.html" onClick={(e) => onClickNav(e, '/')}>Статистические данные</a>
                     </div>
                 </div>
 
