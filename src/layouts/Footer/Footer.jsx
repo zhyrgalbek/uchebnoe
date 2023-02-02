@@ -1,6 +1,3 @@
-import { Container, Grid } from "@mui/material";
-import { Box, Stack } from "@mui/system";
-import styled, { css } from "styled-components";
 import card1 from '../../assets/logo/EU logobox.png'
 import card2 from '../../assets/logo/ESTDEV logobox.png'
 import card3 from '../../assets/logo/Leader logobox.jpg'
@@ -40,169 +37,137 @@ const data = [
 ]
 
 function Footer() {
-    const navigate = useNavigate()
-    const location = useLocation()
-    const onClickNav = (id) => {
-        navigate(`${id}`)
-    }
-    return <FooterBlock>
-        <Container maxWidth="lg">
-            <Grid container spacing="86px">
-                <Grid item xs={12} md={4}>
-                    <LogoType />
-                    <Box sx={{ marginBottom: '50px' }}>
-                        <ErrorBlock>
-                            <ErrorText>Если нашли где-то ошибку, то напишите нам на</ErrorText>
-                            <ErrorGmail>supportaddress@email.com</ErrorGmail>
-                        </ErrorBlock>
-                        <ErrorBottom>
-                            <ErrorBottomText>Веб-сайт создан при содействии и финансовой поддержке Европейского Союза и партнеров:</ErrorBottomText>
-                            <Stack direction="row" alignItems="center" spacing="10px">
-                                <Box>
-                                    <Img src={card1} alt="" />
-                                </Box>
-                                <Box>
-                                    <Img src={card2} alt="" />
-                                </Box>
-                                <Box>
-                                    <Img src={card3} alt="" />
-                                </Box>
-                            </Stack>
-                            <ErrorBottomText>Содержание сайта не обязательно отражает их точку зрения, программ и проектов.</ErrorBottomText>
-                        </ErrorBottom>
-                    </Box>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Box>
-                        <Stack direction="row" spacing="20px">
-                            <HeaderButton footer active={location.pathname === '/about'} onClick={() => onClickNav('/about')}>О нас</HeaderButton>
-                            <HeaderButton footer active={location.pathname === '/'} onClick={() => onClickNav('/')}>Cтатистические данные</HeaderButton>
-                        </Stack>
-                    </Box>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <Box>
-                        <Ul>
-                            <UlHeader>Наши контакты</UlHeader>
-                            {
-                                data.map((elem, index) => {
-                                    return <Li key={index}>
-                                        <Stack direction="row" spacing="10px">
-                                            <Span primary>{elem.text}</Span>
-                                            <Span>{elem.contact}</Span>
-                                        </Stack>
-                                    </Li>
-                                })
-                            }
-                        </Ul>
-                    </Box>
-                </Grid>
-            </Grid>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Stack direction="row" justifyContent="center" sx={{ marginTop: '50px' }}>
-                        <ErrorBottomText>© 2023. Министерство образования и науки Кыргызской Республики.</ErrorBottomText>
-                    </Stack>
-                </Grid>
-            </Grid>
-        </Container>
-    </FooterBlock >
+    return <footer className="bg-primary text-white ">
+        <div className="container py-5">
+            <div className="row row-cols-1 row-cols-lg-3">
+                <div className="d-none d-md-block">
+                    <div className=" bg-primary border-white text-white card p-5">
+                        <p className="p-0 mb-2">Если нашли где-то ошибку, то напишите нам на</p>
+                        <a className="text-white text-decoration-none"
+                            href="mailto:supportaddress@email.com">supportaddress@email.com</a>
+                    </div>
+                    <div className="">
+                        <p className="mt-lg-5 mt-4 text__found">Веб-сайт создан при содействии и финансовой поддержке
+                            Европейского
+                            Союза и
+                            партнеров:</p>
+                        <div className="row d-flex justify-content-around text-black">
+                            <div className="col-3 px-0 bg-white border-rounded rounded-2">
+                                <div className="row p-2">
+                                    <div className="col text-center">
+                                        <img className="w-100 img__footer__fund" src="images/logos/funded_eu.svg" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-3 px-0 bg-white border-rounded rounded-2">
+                                <div className="row p-2">
+                                    <div className="col text-center">
+                                        <img className="w-100 img__footer__fund" src="images/logos/funded_estdev.svg"
+                                            alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-3 px-0 bg-white border-rounded rounded-2">
+                                <div className="row p-2">
+                                    <div className="col text-center">
+                                        <img className="w-100 img__footer__fund" src="images/logos/funded_leader.svg"
+                                            alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p className="mt-3 text__found">Содержание сайта не обязательно отражает их точку зрения, программ и
+                        проектов.</p>
+                </div>
+                <div className="mb-4 d-block d-md-none">
+                    <a className="navbar-brand d-flex mb-3  text-wrap" href="index.html">
+                        <img src="images/logos/main_logo.svg" width="32" height="30" />
+                        <p className="ms-3 footer__logo__text">Министерство образования и науки Кыргызской республики</p>
+                    </a>
+                    <p className="mb-0">Если нашли на сайте ошибку, то напишите нам на:</p>
+                    <a className="pt-0 text-white text-decoration-none"
+                        href="mailto:supportaddress@email.com">supportaddress@email.com</a>
+                </div>
+                <div className="container">
+                    <div className="d-flex justify-content-around row row-cols-2 mb-2 mb-lg-0">
+                        <a className="btn w-auto btn-light text-black mx-sm-3" aria-current="page" href="about_us.html">О
+                            нас</a>
+                        <a className="btn w-auto btn-outline-light" href="index.html">Статистические данные</a>
+                    </div>
+                </div>
+
+                <div className="text-white">
+                    <p className="d-block d-md-none mt-3 mt-lg-0 contact__text">Наши контакты</p>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 pb-2">Приемная министра</li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 pb-2">+996(312) 66-24-42</li>
+                    </ul>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Телефон доверия</li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">+996(312) 66-24-42</li>
+                    </ul>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Горячая линия</li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">1222</li>
+                    </ul>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Общественная приемная
+                        </li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">+996(312) 62-05-19</li>
+                    </ul>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Факс</li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">+996(312) 62-15-20</li>
+                    </ul>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Почтовый адрес</li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">minedukg@gmail.com</li>
+                    </ul>
+                    <ul className="list-group list-group-flush list-group-horizontal">
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Адрес</li>
+                        <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">Кыргызская Республика,
+                            г. Бишкек
+                            720040, Тыныстанова у., 257</li>
+                    </ul>
+                </div>
+                <div className="d-block d-md-none">
+                    <p className="mt-lg-5 mt-4 text__found">Веб-сайт создан при содействии и финансовой поддержке
+                        Европейского
+                        Союза и
+                        партнеров:</p>
+                    <div className="row d-flex justify-content-around text-black">
+                        <div className="col-3 px-0 bg-white border-rounded rounded-2">
+                            <div className="row p-2">
+                                <div className="col text-center">
+                                    <img className="w-100 img__footer__fund" src="images/logos/funded_eu.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-3 px-0 bg-white border-rounded rounded-2">
+                            <div className="row p-2">
+                                <div className="col text-center">
+                                    <img className="w-100 img__footer__fund" src="images/logos/funded_estdev.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-3 px-0 bg-white border-rounded rounded-2">
+                            <div className="row p-2">
+                                <div className="col text-center">
+                                    <img className="w-100 img__footer__fund" src="images/logos/funded_leader.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p className="mt-3 text__found">Содержание сайта не обязательно отражает их точку зрения, программ и
+                        проектов.</p>
+                </div>
+            </div>
+            <p className="text-start text-md-center mt-4 ">
+                © 2023. Министерство образования и науки Кыргызской Республики.
+            </p>
+        </div>
+    </footer>
 }
 
 export default Footer;
-
-const UlHeader = styled('h3')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 130%;
-    color: #FFFFFF;
-    margin-bottom: 16px;
-`
-
-const Span = styled('span')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 130%;
-    color: #fff;
-    width: 500px;
-    display: block;
-    ${props => props.primary && css`
-        font-weight: 500;
-    `}
-    /* @media screen and (max-width: 720px){
-        width: 100%;
-    } */
-`
-
-const Li = styled('li')`
-    /* border: 1px solid red; */
-    margin-bottom: 17px;
-`
-
-const Ul = styled('ul')`
-    margin: 0;
-    padding: 0;
-    list-style: none;
-`
-
-const Img = styled('img')`
-    width: 100%;
-    height: 100%;
-    Object-fit: cover;
-`
-
-const ErrorBottomText = styled('p')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 130%;
-    color: #fff;
-    margin-top: 50px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    @media screen and (max-width: 600px){
-        font-size: 12px;
-    }
-`
-
-const ErrorBottom = styled(Box)`
-    /* // border: 1px solid red; */
-`
-
-const ErrorGmail = styled('a')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 16px;
-    color: #fff;
-    cursor: pointer;
-`
-
-const ErrorText = styled('p')`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 150%;
-    color: #fff;
-    margin-bottom: 15px;
-`
-
-const ErrorBlock = styled(Box)`
-    border: 1px solid #fff;
-    padding: 50px;
-    border-radius: 10px;
-    margin-bottom: 50px;
-`
-const FooterBlock = styled(Box)`
-    /* border: 1px solid red; */
-    padding: 70px 0;
-    background: #6A8AFF;
-
-`

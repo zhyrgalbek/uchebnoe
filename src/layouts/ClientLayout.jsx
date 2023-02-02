@@ -7,10 +7,10 @@ import Header from "./Header/Header";
 export const ClientLayout = () => {
   return (
     <>
-      <Container sx={{ minHeight: "100vh" }} maxWidth="lg">
-        <Header />
-        <Outlet />
-      </Container>
+      {/* <Container sx={{ minHeight: "100vh" }} maxWidth="lg"> */}
+      <Header />
+      <Outlet />
+      {/* </Container> */}
       <Footer />
     </>
   );
