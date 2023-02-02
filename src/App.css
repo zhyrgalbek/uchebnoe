@@ -87,7 +87,7 @@
 }
 
 .devider {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .second_texts .second__title__text {
@@ -95,6 +95,9 @@
   font-weight: 600;
   font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.5rem);
   line-height: 130%;
+}
+.select__item__box{
+  border: 1px solid palevioletred !important;
 }
 
 .third__title__text {

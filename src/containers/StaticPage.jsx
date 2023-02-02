@@ -8,6 +8,16 @@ import children from '../assets/FilterMap/childrens.svg'
 import childrenswhite from '../assets/FilterMap/childrenswhite.svg'
 import general_education from '../assets/FilterMap/general_education.svg'
 import general_educationwhite from '../assets/FilterMap/general_educationwhite.svg'
+import man from '../assets/IconCounter/man.svg'
+import woman from '../assets/IconCounter/woman.svg'
+import boy from '../assets/IconCounter/boy.svg'
+import people_twice from '../assets/IconCounter/people_twice.svg'
+import girl from '../assets/IconCounter/girl.svg'
+import count from '../assets/IconCounter/count.svg'
+import search from '../assets/Filter/search.svg'
+import like from '../assets/IconCounter/like.svg'
+import share from '../assets/IconCounter/share.svg'
+import filter from '../assets/IconCounter/filter.svg'
 import Group from '../assets/FilterMap/Group.svg'
 import Groupwhite from '../assets/FilterMap/Groupwhite.svg'
 import higher from '../assets/FilterMap/higher.svg'
@@ -76,6 +86,7 @@ export const StaticPage = () => {
                             Классификация учебных заведений
                         </h3>
                     </div>
+                    
                     <div className="buttons__category">
                         <div className="row row-cols-1 row-cols-lg-3 g-4 d-none d-lg-flex">
                             <div className="col-lg-3">
@@ -129,7 +140,7 @@ export const StaticPage = () => {
                                             className="w-100 btn rounded__only__top__custom accordion-button padding__button__custom text-start btn border-primary w-100"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                                             aria-controls="collapseOne">
-                                            <img src="" alt="" />
+                                            <img src="" alt=""/>
                                             <span className="ms-3">Все учреждения</span>
                                         </button>
                                     </h2>
@@ -184,12 +195,17 @@ export const StaticPage = () => {
             <section>
                 <div className="container">
                     <h4 className="third__title__text">Фильтр для точечного поиска учреждения</h4>
-                    <form>
-                        <div className="row row-cols-1 row-cols-lg-3 gy-4 d-none d-lg-flex">
+                    <form className="form form-cotrol">
+                        <div className="row row-cols-1 row-cols-lg-3 gy-4 d-none d-md-flex">
                             <div className="col-12 col-lg-4">
-                                <label className="form-label">Область</label>
+                                <label className="form form-label">Обалсть</label>
                                 <select className="form-select">
                                     <option selected disabled>Выберите область</option>
+                                    <option value="1">One</option>
+                                    <option value="1">One</option>
+                                    <option value="1">One</option>
+                                    <option value="1">One</option>
+                                    <option value="1">One</option>
                                     <option value="1">One</option>
                                 </select>
                             </div>
@@ -239,7 +255,7 @@ export const StaticPage = () => {
                         <div className="row row-cols-1 row-cols-lg-3 gy-5 d-none d-lg-block">
                             <div className="col-12 col-lg-4">
                                 <label className="form-label"></label>
-                                <button className="btn btn-primary text-center w-100"><img src="images/icons/search_icon.svg"
+                                <button className="btn btn-primary text-center w-100"><img src={search}
                                     alt=""/>Найти</button>
                             </div>
                         </div>
@@ -253,7 +269,7 @@ export const StaticPage = () => {
                                             className="w-100 btn__custom__filters btn rounded__only__top__custom p-3 padding__button__custom text-center btn border-primary w-100"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
                                             aria-controls="collapseTwo">
-                                            <img src="images/icons/filters.svg" alt=""/>
+                                            <img src={filter} alt=""/>
                                                 <span className="ms-3 text-white">Открыть фильтр</span>
                                         </button>
                                     </h2>
@@ -262,7 +278,7 @@ export const StaticPage = () => {
                                         <div className="accordion-body gy-4 row">
                                             <div className="col-12">
                                                 <label className="form-label">Область</label>
-                                                <select className="form-select">
+                                                <select className="form-select multiple">
                                                     <option selected disabled>Выберите область</option>
                                                     <option value="1">One</option>
                                                 </select>
@@ -340,38 +356,38 @@ export const StaticPage = () => {
                                         Общая вместимость:
                                         <div
                                             className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/man.svg" alt="example image"/>
+                                                <img src={man} alt="example image"/>
                                                 150
                                         </div>
                                         <div
                                             className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/woman.svg" alt="example image"/>
+                                            <img src={woman} alt="example image"/>
                                                 35
                                         </div>
                                     </p>
                                 </div>
                                 <div
                                     className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none  justify-content-around align-items-center">
-                                    <img src="images/icons/people_twice.svg" alt=""/>150
+                                    <img src={people_twice} alt=""/>150
                                 </div>
                                 <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
                                     <p className="mb-0 charts__texts">
                                         Количество свободных мест:
                                         <div
                                             className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/free_spaces_2.svg" alt="example image"/>
+                                            <img src={boy} alt="example image"/>
                                                 41
                                         </div>
                                         <div
                                             className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src="images/icons/free_spaces.svg" alt="example image"/>
+                                            <img src={girl} alt="example image"/>
                                                 35
                                         </div>
                                     </p>
                                 </div>
                                 <div
                                     className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none mb-3 justify-content-around align-items-center">
-                                    <img src="images/icons/people_twice.svg" alt=""/>150
+                                    <img src={count} alt=""/>150
                                 </div>
                                 <div className="row" id="acc_bg__custom">
                                     <div className="accordion accordion-flush" id="accordionExample3">
@@ -420,7 +436,7 @@ export const StaticPage = () => {
                                                                 </p>
                                                                 <div
                                                                     className="icon__info__custom border border-1 border-primary rounded-2 d-flex  justify-content-around align-items-center">
-                                                                    <img src="images/icons/teachers.svg" alt="example image"/>
+                                                                    <img src={count} alt="example image"/>
                                                                         40
                                                                 </div>
                                                             </div>
@@ -453,23 +469,23 @@ export const StaticPage = () => {
                                 </div>
                                 <div className="d-none d-md-flex flex-column">
                                     <button className="btn btn-primary text-white text-center mb-4 w-50">
-                                        <img src="images/icons/like.svg" alt="image"/>
+                                        <img src={like} alt="image"/>
                                             <span>490</span>
                                             <span>Поставить лайк</span>
                                     </button>
                                     <button className="btn btn-primary text-white text-center px-5 w-50">
-                                        <img src="images/icons/share.svg" alt="image"/>
+                                        <img src={share} alt="image"/>
                                             <span>Поделиться</span>
                                     </button>
                                 </div>
                                 <div className="d-flex d-md-none flex-column mt-4">
                                     <button className="btn btn-primary text-white text-center mb-4 w-100">
-                                        <img src="images/icons/like.svg" alt="image"/>
+                                        <img src={like}/>
                                             <span>490</span>
                                             <span>Поставить лайк</span>
                                     </button>
                                     <button className="btn btn-primary text-white text-center px-5 w-100">
-                                        <img src="images/icons/share.svg" alt="image"/>
+                                        <img src={share}/>
                                             <span>Поделиться</span>
                                     </button>
                                 </div>
