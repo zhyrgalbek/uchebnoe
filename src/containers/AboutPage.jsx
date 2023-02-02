@@ -57,7 +57,7 @@ export const AboutPage = () => {
                         <div className="feature col">
                             <div
                                 className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-2 rounded-pill bg-gradient fs-2 mb-3">
-                                <img src="" alt="" srcset="" />
+                                <img src="" alt="" />
                             </div>
                             <h3 className="second__title__text">Featured title</h3>
                             <p className="about__us__text">It is a long established fact that a reader will be distracted by the
@@ -66,7 +66,7 @@ export const AboutPage = () => {
                         <div className="feature col">
                             <div
                                 className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-2 rounded-pill bg-gradient fs-2 mb-3">
-                                <img src="" alt="" srcset="" />
+                                <img src="" alt="" />
                             </div>
                             <h3 className="second__title__text">Featured title</h3>
                             <p className="about__us__text">It is a long established fact that a reader will be distracted by the
@@ -75,7 +75,7 @@ export const AboutPage = () => {
                         <div className="feature col">
                             <div
                                 className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-2 rounded-pill bg-gradient fs-2 mb-3">
-                                <img src="" alt="" srcset="" />
+                                <img src="" alt="" />
                             </div>
                             <h3 className="second__title__text">Featured title</h3>
                             <p className="about__us__text">It is a long established fact that a reader will be distracted by the

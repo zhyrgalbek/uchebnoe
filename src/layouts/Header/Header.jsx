@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 
 const Header = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const onClickNav = (e, id) => {
     e.preventDefault()
     navigate(`${id}`)
   }
+  const active = 'btn-primary text-white';
+  const noActive = 'btn-outline-primary';
   return (
     <nav className="navbar container navbar-expand-lg navbar-light ">
       <div className="container-fluid">
@@ -25,11 +28,11 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link btn btn-primary text-white" aria-current="page" href="#" onClick={(e) => onClickNav(e, '/about')}>О
+              <a className={`nav-link btn ${location.pathname === '/about' ? active : noActive}`} aria-current="page" href="#" onClick={(e) => onClickNav(e, '/about')}>О
                 нас</a>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link btn btn-outline-primary" href="#" onClick={(e) => onClickNav(e, '/')}> Статистические данные</a>
+              <a className={`nav-link btn ${location.pathname === '/' ? active : noActive}`} href="#" onClick={(e) => onClickNav(e, '/')}> Статистические данные</a>
             </li>
             <li className="nav-item ms-4 my-auto">
               <a className="nav-link btn btn-outline-primary btn-sm py-0" href="#">Кырг</a>
