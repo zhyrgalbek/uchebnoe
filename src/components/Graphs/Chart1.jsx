@@ -16,7 +16,8 @@ const options = {
             show: false,
         },
         type: 'bar',
-        height: 178
+        height: 178,
+        width: "100%"
     },
     plotOptions: {
         bar: {
@@ -71,5 +72,5 @@ const series = [
 
 
 export const Chart1 = () => {
-    return <Chart options={options} series={series} type="bar" width="350" />
+    return <Chart options={options} series={series} type="bar"/>
 }

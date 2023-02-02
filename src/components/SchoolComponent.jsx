@@ -34,14 +34,14 @@ export default function SchoolComponent({ imageSchool }) {
                     <Td>Государственный</Td>
                 </BoxCard>
                 <BoxCard>
-                    <Stack direction="row" alignItems="center" spacing={2}>
+                    <Stack direction="row" alignItems="center" justifyContent="flex-start" flexWrap="wrap">
                         <Th>Общая вместимость:</Th>
                         <Td><IconCounter icon={man}>150</IconCounter></Td>
                         <Td><IconCounter icon={woman}>150</IconCounter></Td>
                     </Stack>
                 </BoxCard>
                 <BoxCard>
-                    <Stack direction="row" alignItems="center" spacing={2}>
+                    <Stack direction="row" alignItems="center" justifyContent="flex-start" flexWrap="wrap">
                         <Th>Количество свободных мест:</Th>
                         <Td><IconCounter icon={boy}>41</IconCounter></Td>
                         <Td><IconCounter icon={girl}>35</IconCounter></Td>
@@ -148,7 +148,8 @@ const Th = styled('div')`
     font-weight: 600;
     font-size: 16px;
     line-height: 140%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
 `
 
 const SchoolHeader = styled('h2')`

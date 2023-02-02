@@ -101,7 +101,7 @@ export default function AnalizeCompoent() {
         <Box sx={{ marginBottom: '45px' }}>
             <Stack>
                 <ChartHeader>Количество учебных заведений:</ChartHeader>
-                <Stack direction="row" spacing="15px">
+                <Stack direction="row" justifyContent="flex-start" flexWrap="wrap">
                     <IconCounter icon={child} >25</IconCounter>
                     <IconCounter icon={general_education} >20</IconCounter>
                     <IconCounter icon={Group} >30</IconCounter>
@@ -120,8 +120,8 @@ export default function AnalizeCompoent() {
         </Box>
         <Box sx={{ marginBottom: '45px' }}>
             <ChartHeader>Общая статистика по области:</ChartHeader>
-            <Grid container alignItems="center" spaing="0">
-                <Grid item md={4}>
+            <Grid container alignItems="center" justifyContent="center" just spaing="0">
+                <Grid item xs={12} md={4}>
                     <Box>
                         <Stack direction="row">
                             <Box>
@@ -130,17 +130,17 @@ export default function AnalizeCompoent() {
                         </Stack>
                     </Box>
                 </Grid>
-                <Grid item md={4}>
-                    <Grid container>
-                        <Grid item md={6}>
-                            <Chart2 />
+                <Grid item xs={12} md={4}>
+                    <Grid container direction="row" justifyContent="flex-start">
+                        <Grid item xs={12} md={6}>
+                            <Chart2 strokeWidth="0" height="90%" />
                         </Grid>
-                        <Grid item md={6}>
-                            <Chart2 />
+                        <Grid item xs={12} md={6}>
+                            <Chart2 strokeWidth="3" height="90%" />
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item md={4}>
+                <Grid item xs={12} md={4}>
                     <Stack direction="row">
                         <Chart3 />
                     </Stack>
@@ -148,9 +148,10 @@ export default function AnalizeCompoent() {
             </Grid>
         </Box>
         <Box sx={{ marginBottom: '45px' }}>
+            <P>Статистика</P>
             <ChartHeader>Динамика</ChartHeader>
-            <Grid container>
-                <Grid item md={4}>
+            <Grid container justifyContent="flex-start">
+                <Grid item xs={12} md={4}>
                     <Chart4 />
                 </Grid>
             </Grid>
@@ -158,9 +159,21 @@ export default function AnalizeCompoent() {
     </AnalizeContainer>
 }
 
+const P = styled('p')`
+    /* border: 1px solid red; */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    color: #5A5A5A;
+    margin-left: 20px;
+`
+
+
 const GraphickLine = styled('div')`
     height: 10px;
-    width: 315px;
+    max-width: 315px;
     background-color: #F0F1F1;
     position: relative;
     border-radius: 6px;
@@ -184,6 +197,8 @@ const ChartHeader = styled('h4')`
     line-height: 140%;
     margin-bottom: 24px;
     color: #292D32;
+    /* margin-left: 18px; */
+    /* margin-bottom: -10px; */
     ${props => props.primary && css`
         margin-bottom: 6px;
     `}

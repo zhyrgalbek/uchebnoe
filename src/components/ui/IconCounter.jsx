@@ -26,11 +26,14 @@ const IconCounterBlock = styled('div')`
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
+    margin-right: 10px;
     ${props => props.like && css`
         border: none;
         padding: 0;
         color: #fff;
         font-size: 600;
         margin-right: 10px;
+        margin-bottom: 0;
     `}
 `

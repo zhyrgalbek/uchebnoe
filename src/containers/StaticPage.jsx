@@ -21,6 +21,7 @@ import { AccordionFilter } from "../components/ui/AccordionFilter"
 import { useState } from "react"
 import AnalizeCompoent from "../components/AnalizeComponent"
 import SchoolComponent from "../components/SchoolComponent"
+import schoolImage from '../assets/empty-classroom_elementary-school-middle-school-high-school.webp'
 
 const data = [
     {
@@ -94,7 +95,7 @@ export const StaticPage = () => {
             </MapCont>
         </Map>
         <Filter />
-        <SchoolComponent />
+        <SchoolComponent imageSchool={schoolImage} />
         <AnalizeCompoent />
     </StaticBlock>
 }

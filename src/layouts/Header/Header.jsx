@@ -3,8 +3,9 @@ import { Stack } from "@mui/system";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import styled from "styled-components";
-import Logo from "../../assets/logo/logo.svg";
+
 import { Filter } from "../../components/Filter";
+import { LogoType } from "../../components/LogoType";
 import HeaderButton from "../../components/ui/HeaderButton";
 
 const style = {
@@ -39,14 +40,7 @@ const Header = () => {
     <Block>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={4} xs={9}>
-          <Stack direction="row" alignItems="center">
-            <Box sx={{ width: "30px", height: "30px", marginRight: "5px" }}>
-              <Img src={Logo} alt="logo" />
-            </Box>
-            <LogoText>
-              Министерство образования и науки Кыргызской республики
-            </LogoText>
-          </Stack>
+          <LogoType />
         </Grid>
         <Grid item md={8} xs={3}>
           <MenuMobile>
@@ -139,24 +133,6 @@ const Menu = styled('div')`
     display: none;
   }
 `
-
-const LogoText = styled("p")`
-  /* border: 1px solid red; */
-  text-transform: uppercase;
-  width: 250px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 120%;
-`;
-
-const Img = styled("img")`
-  /* border: 1px solid red; */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
 
 const Block = styled(Box)`
   /* border: 1px solid red; */

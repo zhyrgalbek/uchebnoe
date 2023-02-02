@@ -6,6 +6,7 @@ import card2 from '../../assets/logo/ESTDEV logobox.png'
 import card3 from '../../assets/logo/Leader logobox.jpg'
 import HeaderButton from "../../components/ui/HeaderButton";
 import { useLocation, useNavigate } from "react-router";
+import { LogoType } from "../../components/LogoType";
 
 const data = [
     {
@@ -48,6 +49,7 @@ function Footer() {
         <Container maxWidth="lg">
             <Grid container spacing="86px">
                 <Grid item xs={12} md={4}>
+                    <LogoType />
                     <Box sx={{ marginBottom: '50px' }}>
                         <ErrorBlock>
                             <ErrorText>Если нашли где-то ошибку, то напишите нам на</ErrorText>
@@ -81,6 +83,7 @@ function Footer() {
                 <Grid item xs={12} md={4}>
                     <Box>
                         <Ul>
+                            <UlHeader>Наши контакты</UlHeader>
                             {
                                 data.map((elem, index) => {
                                     return <Li key={index}>
@@ -107,6 +110,16 @@ function Footer() {
 }
 
 export default Footer;
+
+const UlHeader = styled('h3')`
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+`
 
 const Span = styled('span')`
     font-family: 'Inter';
@@ -152,6 +165,9 @@ const ErrorBottomText = styled('p')`
     margin-top: 50px;
     margin-bottom: 15px;
     margin-top: 15px;
+    @media screen and (max-width: 600px){
+        font-size: 12px;
+    }
 `
 
 const ErrorBottom = styled(Box)`

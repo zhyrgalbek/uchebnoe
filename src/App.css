@@ -18,6 +18,36 @@
   z-index: 10000;
 }
 
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  width: 120px;
+  display: flex;
+  margin-left: 30px;
+  margin-top: 30px;
+  border: none;
+}
+
+.leaflet-touch .leaflet-bar a:first-child {
+  border-radius: 50%;
+  font-family: 'Inter';
+  font-style: normal;
+  color: #3763FF;
+  font-weight: 400;
+  line-height: none;
+  border: 1px solid #3763FF;
+  margin-right: 10px;
+}
+
+.leaflet-touch .leaflet-bar a:last-child {
+  border-radius: 50%;
+  font-family: 'Inter';
+  font-style: normal;
+  color: #3763FF;
+  font-weight: 400;
+  line-height: none;
+  border: 1px solid #3763FF;
+}
+
 * {
   font-family: 'Inter';
   font-style: normal;

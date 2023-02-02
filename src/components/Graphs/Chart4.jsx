@@ -15,7 +15,7 @@ var options = {
         categories: [1, 2, 3, 4, 5, 6],
     },
     chart: {
-        height: 218,
+        height: 240,
         width: "100%",
         type: "line",
         stacked: true,
@@ -90,7 +90,7 @@ var options = {
         radius: 200,
     },
     yaxis: {
-        max: 600,
+        max: 500,
     }
 };
 
