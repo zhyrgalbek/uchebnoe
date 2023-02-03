@@ -60,11 +60,11 @@ export const Filter = ({ header }) => {
 
 const Desctop = styled('div')`
     display: block;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         display: none;
     }
     ${props => props.header && css`
-        @media screen and (max-width: 600px){
+        @media screen and (max-width: 780px){
             display: block;
         }
     `}
@@ -72,11 +72,11 @@ const Desctop = styled('div')`
 
 const Mobile = styled('div')`
     display: none;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         display: block;
     }
     ${props => props.header && css`
-        @media screen and (max-width: 600px){
+        @media screen and (max-width: 780px){
             display: none;
         }
     `}
@@ -90,11 +90,11 @@ const FilterHeader = styled('h2')`
     line-height: 130%;
     color: #000;
     margin-bottom: 53px;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         display: none;
     }
     ${props => props.header && css`
-        @media screen and (max-width: 600px){
+        @media screen and (max-width: 780px){
             display: block;
             font-size: 16px;
             margin-bottom: 15px;

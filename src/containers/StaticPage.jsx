@@ -102,8 +102,8 @@ export const StaticPage = () => {
       </section>
       <section className="mt-5">
         <div className="container">
-          <div className="row row-cols-1 row-cols-md-2  p-4 border rounded border-primary">
-            <div className="col">
+          <div className="row row-cols-1 row-cols-md-2  p-4 border rounded blue">
+            <div className="col licei">
               <p className="pt-0 mt-0 third__title__text">
                 Профессиональный лицей №16
               </p>
@@ -150,7 +150,7 @@ export const StaticPage = () => {
               </div>
               <div className="row" id="acc_bg__custom">
                 <div
-                  className="accordion accordion-flush"
+                  className="accordion accordion-flush col-12 col-md-10"
                   id="accordionExample3"
                 >
                   <div className="accordion-item rounded-3">
@@ -212,7 +212,7 @@ export const StaticPage = () => {
                           </li>
                           <li>
                             <div className="box my-4">
-                              <p className="mb-0 charts__texts">
+                              <p className="mb-2 charts__texts">
                                 Количество преподавателей:
                               </p>
                               <div className="icon__info__custom border border-1 border-primary rounded-2 d-flex  justify-content-around align-items-center">
@@ -253,13 +253,13 @@ export const StaticPage = () => {
                   <a href="mailto: litsey16@bk.ru">litsey16@bk.ru</a>
                 </p>
               </div>
-              <div className="d-none d-md-flex flex-column col-12 col-md-7">
-                <button className="btn btn-primary text-white text-center mb-4 w-100">
+              <div className="d-none d-md-flex flex-column col-12 col-md-9 col-lg-7">
+                <button className="btn btn-primary text-white text-center mb-4 w-100 like">
                   <img src={like} alt="image" />
                   <span className="ms-1">490</span>
                   <span className="ms-3">Поставить лайк</span>
                 </button>
-                <button className="btn btn-primary text-white text-center px-5 w-100">
+                <button className="btn btn-primary text-white text-center px-5 w-100 like">
                   <img src={share} alt="image" />
                   <span className="ms-3">Поделиться</span>
                 </button>

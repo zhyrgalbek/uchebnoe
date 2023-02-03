@@ -9,7 +9,7 @@ const options = {
         enabled: true
     },
     legend: {
-        show: true
+        show: false
     },
     chart: {
         toolbar: {
@@ -73,5 +73,5 @@ const series = [
 
 
 export const Chart1 = () => {
-    return <Chart options={options} series={series} type="bar" width="100%" style={{ flexGrow: 1 }} />
+    return <Chart options={options} series={series} type="bar" height="290" width="100%" style={{ flexGrow: 1 }} />
 }

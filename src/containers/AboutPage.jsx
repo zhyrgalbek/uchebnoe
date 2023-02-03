@@ -16,12 +16,12 @@ export const AboutPage = () => {
       <main className="devider">
         <div className="container">
           <div className="title__text">
-            <h1>О нас</h1>
+            <h1>О проекте </h1>
           </div>
           <div className="container">
-            <div className="row py-0  border rounded-3 border-primary">
+            <div className="row py-0 border rounded-3 border-primary blue">
               <div className="col-12 col-lg-7 px-5 py-5">
-                <p className="pt-0 mt-0 title__text">
+                <p className="pt-0 mt-0 title__text mb-4">
                   Мы помогаем гражданам получить точную информацию
                 </p>
                 <p className="about__us__text">
@@ -56,7 +56,7 @@ export const AboutPage = () => {
         <div className="container">
           <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-2 rounded-pill bg-gradient fs-2 mb-3">
+              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient fs-2 mb-4">
                 <img src={flag} />
               </div>
               <h3 className="second__title__text">Featured title</h3>
@@ -66,20 +66,20 @@ export const AboutPage = () => {
               </p>
             </div>
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-2 rounded-pill bg-gradient fs-2 mb-3">
+              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient fs-2 mb-4">
                 <img src={doc} />
               </div>
-              <h3 className="second__title__text">Featured title</h3>
+              <h3 className="second__title__text">50M montly enrichments</h3>
               <p className="about__us__text">
                 It is a long established fact that a reader will be distracted
                 by the readable content of a page when looking at its layout.{" "}
               </p>
             </div>
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-2 rounded-pill bg-gradient fs-2 mb-3">
+              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient fs-2 mb-4">
                 <img src={collaborate} />
               </div>
-              <h3 className="second__title__text">Featured title</h3>
+              <h3 className="second__title__text">400k User</h3>
               <p className="about__us__text">
                 It is a long established fact that a reader will be distracted
                 by the readable content of a page when looking at its layout.{" "}
@@ -90,10 +90,10 @@ export const AboutPage = () => {
       </section>
       <section>
         <div className="container">
-          <div className="row row-cols-1 row-cols-md-2">
-            <div className="box">
-              <h2>Наша миссия</h2>
-              <p>
+          <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center">
+            <div className="box pe-0 pe-md-5 ">
+              <h2 className="pb-2">Наша миссия</h2>
+              <p className="pb-3">
                 It is a long established fact that a reader will be distracted
                 by the readable content of a page when looking at its layout.
                 The point of using Lorem Ipsum.In the first place we have
@@ -113,40 +113,40 @@ export const AboutPage = () => {
               </p>
             </div>
             <div className="box">
-              <div className="row g-4 py-5 row-cols-1 row-cols-lg-1">
-                <div className="col bg__abouts__us__features d-flex align-items-start">
+              <div className="row g-5 row-cols-1 row-cols-lg-1">
+                <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
                   <div className="mx-auto my-auto icon-square d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                     <img src={comand} />
                   </div>
                   <div>
-                    <h3 className="fs-2">Команда</h3>
-                    <p>
+                    <h3 className="fs-2 about_header">Команда</h3>
+                    <p className="about_text">
                       It is a long established fact that a reader will be
                       distracted by the readable content of a page when looking
                       at its layout.{" "}
                     </p>
                   </div>
                 </div>
-                <div className="col bg__abouts__us__features d-flex align-items-start">
+                <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
                   <div className="mx-auto my-auto icon-square  d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                     <img src={people} />
                   </div>
                   <div>
-                    <h3 className="fs-2">Совет</h3>
-                    <p>
+                    <h3 className="fs-2 about_header">Совет</h3>
+                    <p className="about_text">
                       It is a long established fact that a reader will be
                       distracted by the readable content of a page when looking
                       at its layout.{" "}
                     </p>
                   </div>
                 </div>
-                <div className="col bg__abouts__us__features d-flex align-items-start">
+                <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
                   <div className="mx-auto my-auto icon-square d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
                     <img src={gmail} />
                   </div>
                   <div>
-                    <h3 className="fs-2">Пресс-служба</h3>
-                    <p>
+                    <h3 className="fs-2 about_header">Пресс-служба</h3>
+                    <p className="about_text">
                       It is a long established fact that a reader will be
                       distracted by the readable content of a page when looking
                       at its layout.{" "}

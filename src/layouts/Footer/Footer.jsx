@@ -122,9 +122,8 @@ function Footer() {
           <div className="container">
             <div className="d-flex justify-content-around row row-cols-2 mb-2 mb-lg-0">
               <a
-                className={`btn w-auto mx-sm-3 ${
-                  location.pathname === "/about" ? active : noActive
-                }`}
+                className={`btn w-auto mx-sm-3 hover ${location.pathname === "/about" ? active : noActive
+                  }`}
                 aria-current="page"
                 href="about_us.html"
                 onClick={(e) => onClickNav(e, "/about")}
@@ -132,9 +131,8 @@ function Footer() {
                 О нас
               </a>
               <a
-                className={`btn w-auto ${
-                  location.pathname === "/" ? active : noActive
-                }`}
+                className={`btn w-auto hover ${location.pathname === "/" ? active : noActive
+                  }`}
                 href="index.html"
                 onClick={(e) => onClickNav(e, "/")}
               >

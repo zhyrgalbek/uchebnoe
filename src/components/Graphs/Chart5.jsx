@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts';
 const options = {
     grid: {
         borderColor: 'rgba(218, 226, 255, 1)',
-        strokeDashArray: 2,
+        strokeDashArray: 4,
     },
     dataLabels: {
         enabled: false
@@ -78,5 +78,5 @@ const series = [
 
 
 export const Chart5 = () => {
-    return <Chart options={options} series={series} type="bar" width="100%" style={{ flexGrow: 1 }} />
+    return <Chart options={options} series={series} type="bar" height="290" width="100%" style={{ flexGrow: 1 }} />
 }

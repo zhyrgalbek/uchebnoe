@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts'
 var options = {
     grid: {
         borderColor: 'rgba(218, 226, 255, 1)',
-        strokeDashArray: 5,
+        strokeDashArray: 4,
     },
     dataLabels: {
         enabled: false
@@ -90,43 +90,10 @@ var options = {
         radius: 200,
     },
     yaxis: {
-        max: 500,
+        max: 400,
     }
 };
 
-const series = [
-    {
-        name: "Series 3",
-        type: 'line',
-        data: [250, 210, 350, 220, 221, 200]
-    },
-    {
-        name: "bar 1",
-        type: 'bar',
-        data: [100, 100, 100, 100, 100, 100]
-    },
-    {
-        name: "bar 2",
-        type: 'bar',
-        data: [100, 100, 100, 100, 100, 100]
-    },
-    {
-        name: "bar 3",
-        type: 'bar',
-        data: [100, 100, 100, 100, 100, 100]
-    },
-    {
-        name: "bar 4",
-        type: 'bar',
-        data: [100, 0, 100, 0, 0, 0]
-    },
-    {
-        name: "bar 5",
-        type: 'bar',
-        data: [0, 0, 100, 0, 0, 0]
-    },
-];
-
 export const Chart4 = () => {
-    return <Chart options={options} series={series} type="line" />
+    return <Chart options={options} series={options.series} height="290" type="line" />
 }

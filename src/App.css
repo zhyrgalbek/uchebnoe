@@ -90,8 +90,17 @@
   text-transform: uppercase;
 }
 
+.title__text>h1 {
+  margin-bottom: 50px;
+}
+
 .devider {
   margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.second__title__text {
+  margin-bottom: 24px;
 }
 
 .second_texts .second__title__text {
@@ -146,7 +155,7 @@
 .map__page {
   margin-top: 40px;
   margin-bottom: 40px;
-  height: 706px;
+  height: 600px;
 }
 
 .border-primary {
@@ -247,13 +256,17 @@ footer .text__found {
   /* Основной цвет шрифтов */
 
   color: #292D32;
-
+  margin-bottom: 46px;
 }
 
 .buttons__text {
   font-weight: 600;
   font-size: 14px;
   line-height: 130%;
+}
+
+.text-bg-primary {
+  background-color: #6A8AFF !important;
 }
 
 .bg__abouts__us__features {
@@ -288,6 +301,47 @@ footer .text__found {
 .accordion-button:not(.collapsed)::after {
   background-image: url("assets/Filter/Framewhite.svg");
 }
+
 .accordion-button:focus {
   box-shadow: none !important;
 }
+
+.nav-link:hover {
+  border: 1px solid #6A8AFF;
+}
+
+.hover:hover {
+  background-color: #fff !important;
+  color: #292D32;
+}
+
+.blue {
+  border: 1px solid rgba(106, 138, 255, 0.4) !important;
+}
+
+.about_header {
+  font-size: 24px !important;
+}
+
+.about_text {
+  font-size: 16px !important;
+  color: #777777;
+}
+
+@media screen and (max-width: 992px) {
+  .like {
+    width: 100% !important;
+  }
+}
+
+
+/* .licei {
+  padding-right: 128px;
+
+}
+
+@media screen and (max-width: 790px) {
+  .licei {
+    padding-right: 10px;
+  }
+} */

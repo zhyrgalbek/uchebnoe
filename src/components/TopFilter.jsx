@@ -85,14 +85,14 @@ export const TopFilter = () => {
 
 const Desctop = styled('div')`
     display: block;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         display: none;
     }
 `
 
 const Mobile = styled('div')`
     display: none;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         display: block;
     }
 `

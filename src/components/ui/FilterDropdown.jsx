@@ -10,7 +10,10 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, ...prop
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-    const handleClose = (event) => {
+    const handleClose = (event, text) => {
+        if (text) {
+            setChoiseText(text)
+        }
         if (
             anchorRef.current &&
             anchorRef.current.contains(event.target)
@@ -61,9 +64,10 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, ...prop
                                 aria-labelledby="composition-button"
                                 onKeyDown={handleListKeyDown}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                <MenuItem onClick={(e) => handleClose(e, text)}>no</MenuItem>
+                                <MenuItem onClick={(e) => handleClose(e, 'profile')}>Profile</MenuItem>
+                                <MenuItem onClick={(e) => handleClose(e, 'My acoount')}>My account</MenuItem>
+                                <MenuItem onClick={(e) => handleClose(e, 'Logout')}>Logout</MenuItem>
                             </MenuList>
                         </ClickAwayListener>
                     </Paper>
@@ -97,9 +101,9 @@ const MenuBlock = styled(Popper)`
 
 const DropdownContainer = styled('div')`
     position: relative;
-    width: 320px;
+    width: clamp(13.75rem, 12.5rem + 6.25vw, 20rem);
     margin-right: 30px;
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         width: 100%;
         /* margin-right: 30px; */
         /* margin-left: 30px; */

@@ -57,5 +57,5 @@ export const Chart2 = ({ strokeWidth, height, size }) => {
             show: false,
         },
     })
-    return <Chart options={options} series={options.series} type={options.chart.type} height={height} width="110%" style={{ marginLeft: '-20px', flexGrow: 1 }} />
+    return <Chart options={options} series={options.series} type={options.chart.type} height="" width="110%" style={{ marginLeft: '-20px', flexGrow: 1 }} />
 }

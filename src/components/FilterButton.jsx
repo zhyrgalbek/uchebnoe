@@ -38,7 +38,7 @@ const Span = styled('span')`
 `
 const Block = styled('button')`
     border: 1px solid #6A8AFF;
-    width: 301px;
+    width: clamp(15.625rem, 14.9875rem + 3.1875vw, 18.8125rem);
     padding: 20px 15px;
     text-align: left;
     font-weight: 400;
@@ -53,9 +53,6 @@ const Block = styled('button')`
     margin-bottom: 30px;
     margin-right: 30px;
     cursor: pointer;
-    &:nth-child(4n){
-        margin-right: 0;
-    }
     &:hover{
         background: #6A8AFF;
         color: #fff;

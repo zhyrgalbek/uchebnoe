@@ -61,7 +61,7 @@ const Submit = styled('button')`
     ${props => props.variant === 'like' && css`
         width: 280px;
     `}
-    @media screen and (max-width: 600px){
+    @media screen and (max-width: 780px){
         width: 100%;
     }
 `
