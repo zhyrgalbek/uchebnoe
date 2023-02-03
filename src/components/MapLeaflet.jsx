@@ -1,4 +1,4 @@
-import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, WMSTileLayer } from 'react-leaflet'
+import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer } from 'react-leaflet'
 import states from '../utils/Constants/json/states2.json'
 import statesJson from '../utils/Constants/json/statesJson.json'
 import styled from 'styled-components'
@@ -39,13 +39,26 @@ function MapPlaceholder() {
     )
 }
 
+function MyComponent() {
+    const map = useMapEvents({
+        click: () => {
+            map.locate()
+        },
+        locationfound: (location) => {
+            console.log('location found:', location)
+        },
+    })
+    return null
+}
+
 const marker = [42.857254, 74.600725];
 
 export const MapLeaflet = () => {
     const animateRef = useRef(true)
     console.log(statesJson)
     return <>
-        <Map center={position} zoom={7} placeholder={<MapPlaceholder />}>
+        <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
+            <MyComponent />
             <Marker position={marker}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.

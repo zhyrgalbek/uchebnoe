@@ -76,17 +76,17 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, ...prop
 const MenuBlock = styled(Popper)`
     min-width: 100%;
     & div{
-        margin-top: -6px;
+        /* margin-top: -6px; */
         /* margin-left: -1px; */
-        box-shadow: none;
+        /* box-shadow: none; */
         min-width: 100%;
     }
     & ul {
-        border: 1px solid #3763FF;
-        border-top: 1px solid transparent;
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-        overflow: hidden;
+        /* border: 1px solid #3763FF; */
+        /* border-top: 1px solid transparent; */
+        /* border-bottom-left-radius: 6px; */
+        /* border-bottom-right-radius: 6px; */
+        /* overflow: hidden; */
         /* min-width: 100%; */
     }
     & li {
@@ -101,7 +101,8 @@ const DropdownContainer = styled('div')`
     margin-right: 30px;
     @media screen and (max-width: 600px){
         width: 100%;
-        margin-right: 0;
+        /* margin-right: 30px; */
+        /* margin-left: 30px; */
     }
 `
 const DropdownHeader = styled('h3')`

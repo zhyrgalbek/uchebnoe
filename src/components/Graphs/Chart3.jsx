@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts'
 var options = {
     grid: {
         borderColor: 'rgba(218, 226, 255, 1)',
-        strokeDashArray: 5,
+        strokeDashArray: 2,
     },
     dataLabels: {
         enabled: false
@@ -36,7 +36,8 @@ var options = {
     xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
     },
-    colors: ['rgba(97, 184, 255, 0.5)', 'rgba(55, 99, 255, 0.5)'],
+    colors: ['#61B8FF', '#3763FF', '#FD9588'
+    ],
 
 };
 
@@ -49,5 +50,5 @@ const series = [
 ];
 
 export const Chart3 = () => {
-    return <Chart options={options} series={series} type="area" />
+    return <Chart options={options} series={series} type="area" width="100%" style={{ flexGrow: 1 }} />
 }
