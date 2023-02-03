@@ -215,9 +215,10 @@ const AnalizeHeader = styled('h3')`
 `
 
 const AnalizeContainer = styled('div')` 
-    border: 1px solid #3763FF;
+    border: 1px solid #DAE2FF;
     border-radius: 6px;
     padding: 30px;
+    margin: 0;
     margin-bottom: 86px;
     margin-top: 70px;
 `
