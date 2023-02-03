@@ -351,8 +351,7 @@ export const StaticPage = () => {
                     id="collapseTwo"
                     className="accordion-collapse collapse"
                     aria-labelledby="headingTwo"
-                    data-bs-parent="#accordion2"
-                  >
+                    data-bs-parent="#accordion2">
                     <div className="accordion-body gy-4 row">
                       <div className="col-12">
                         <label className="form-label">Область</label>
@@ -439,7 +438,7 @@ export const StaticPage = () => {
       </section>
       <section className="mt-5">
         <div className="container">
-          <div className="row row-cols-1 row-cols-md-2 px-3 py-5 border">
+          <div className="row row-cols-1 row-cols-md-2  p-4 border rounded border-primary">
             <div className="col">
               <p className="pt-0 mt-0 third__title__text">
                 Профессиональный лицей №16
@@ -604,12 +603,12 @@ export const StaticPage = () => {
               <div className="d-flex d-md-none flex-column mt-4">
                 <button className="btn btn-primary text-white text-center mb-4 w-100">
                   <img src={like} alt="image" />
-                  <span>490</span>
-                  <span>Поставить лайк</span>
+                  <span className="ms-1">490</span>
+                  <span className="ms-3">Поставить лайк</span>
                 </button>
                 <button className="btn btn-primary text-white text-center px-5 w-100">
                   <img src={share} alt="image" />
-                  <span>Поделиться</span>
+                  <span className="ms-3">Поделиться</span>
                 </button>
               </div>
             </div>

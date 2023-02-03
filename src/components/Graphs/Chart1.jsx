@@ -6,18 +6,17 @@ const options = {
         strokeDashArray: 5,
     },
     dataLabels: {
-        enabled: false
+        enabled: true
     },
     legend: {
-        show: false
+        show: true
     },
     chart: {
         toolbar: {
             show: false,
         },
+        height: 350,
         type: 'bar',
-        height: 178,
-        width: "100%"
     },
     plotOptions: {
         bar: {
@@ -44,7 +43,7 @@ const options = {
         categories: ['AAA', 'BBB', 'CCC', 'DDD', 'EEE'],
     },
     yaxis: {
-        title: false,
+        title: true,
     },
     fill: {
         colors: ['#61B8FF', '#3763FF'],
@@ -72,5 +71,5 @@ const series = [
 
 
 export const Chart1 = () => {
-    return <Chart options={options} series={series} type="bar"/>
+    return <Chart options={options} series={series} type="bar" width={350} height={212}/>
 }

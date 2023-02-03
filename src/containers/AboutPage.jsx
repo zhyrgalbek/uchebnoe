@@ -88,7 +88,6 @@ export const AboutPage = () => {
           </div>
         </div>
       </section>
-
       <section>
         <div className="container">
           <div className="row row-cols-1 row-cols-md-2">

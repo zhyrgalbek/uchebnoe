@@ -133,10 +133,10 @@ export default function AnalizeCompoent() {
                 <Grid item xs={12} md={4}>
                     <Grid container direction="row" justifyContent="flex-start">
                         <Grid item xs={12} md={6}>
-                            <Chart2 strokeWidth="0" height="90%" />
+                            <Chart2 strokeWidth="0" />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Chart2 strokeWidth="3" height="90%" />
+                            <Chart2 strokeWidth="3" />
                         </Grid>
                     </Grid>
                 </Grid>
