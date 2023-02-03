@@ -162,7 +162,7 @@ const SchoolHeader = styled('h2')`
 `
 
 const SchoolContainer = styled('div')`
-    border: 1px solid #3763FF;
+    border: 1px solid rgba(55, 99, 255, 0.1);
     padding: 30px;
     border-radius: 6px;
     margin-bottom: 70px;

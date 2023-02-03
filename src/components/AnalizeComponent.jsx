@@ -215,7 +215,7 @@ const AnalizeHeader = styled('h3')`
 `
 
 const AnalizeContainer = styled('div')` 
-    border: 1px solid #3763FF;
+    border: 1px solid rgba(55, 99, 255, 0.1);
     border-radius: 6px;
     padding: 30px;
     margin-bottom: 86px;

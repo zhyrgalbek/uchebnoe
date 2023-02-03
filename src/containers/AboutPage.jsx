@@ -260,7 +260,7 @@ const HelpHeader = styled('h2')`
 `
 
 const HelpComponent = styled('div')`
-    border: 1px solid #3763FF;
+    border: 1px solid rgba(55, 99, 255, 0.1);
     border-radius: 6px;
     margin-bottom: 70px;
 `
