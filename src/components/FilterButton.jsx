@@ -38,7 +38,7 @@ const Span = styled('span')`
 `
 const Block = styled('button')`
     border: 1px solid #6A8AFF;
-    width: 280px;
+    width: 301px;
     padding: 20px 15px;
     text-align: left;
     font-weight: 400;
@@ -50,8 +50,8 @@ const Block = styled('button')`
     display: flex;
     align-items: center;
     background: #fff;
-    margin-bottom: 20px;
-    margin-right: 10px;
+    margin-bottom: 30px;
+    margin-right: 30px;
     cursor: pointer;
     &:nth-child(4n){
         margin-right: 0;

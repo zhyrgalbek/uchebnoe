@@ -33,6 +33,7 @@ import AnalizeCompoent from "../components/AnalizeComponent"
 import SchoolComponent from "../components/SchoolComponent"
 import { ButtonFilter } from "../components/ButtonFilter"
 import { Container, Grid } from "@mui/material"
+import { TopFilter } from "../components/TopFilter"
 // import schoolImage from '../assets/empty-classNameroom_elementary-school-middle-school-high-school.webp'
 
 const data = [
@@ -89,80 +90,8 @@ export const StaticPage = () => {
                         </h3>
                     </div>
 
-                    <div className="buttons__category">
-                        <div className="row row-cols-1 row-cols-lg-3 g-4 d-none d-lg-flex">
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={all} icon2={allblue} text="Все учреждения" />
-                            </div>
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={childrenswhite} icon2={children} text="Дошкольное образование" />
-                            </div>
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={general_educationwhite} icon2={general_education} text="Общеобразовательные" />
-                            </div>
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={Groupwhite} icon2={Group} text="Начально-профессиональные" />
-                            </div>
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={averagewhite} icon2={average} text="Средне-профессиональные" />
-                            </div>
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={higherwhite} icon2={higher} text="Высшее профессиональное" />
-                            </div>
-                            <div className="col-lg-3">
-                                <ButtonFilter icon={otherwhite} icon2={other} text="Другие учреждения" />
-                            </div>
-                        </div>
-                        <div className="row d-block d-lg-none">
-                            <div className="accordion" id="accordionExample">
-                                <div className="accordion-item rounded-3">
-                                    <h2 className="accordion-header" id="headingOne">
-                                        <button
-                                            className="w-100 btn rounded__only__top__custom accordion-button padding__button__custom text-start btn border-primary w-100"
-                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            <img src="" alt="" />
-                                            <span className="ms-3">Все учреждения</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordionExample">
-                                        <div className="accordion-body p-0">
-                                            <ul className="w-100 rounded-0 p-0 m-0">
-                                                <li className="btn btn-primary text-white w-100 rounded-0 px-0"><button type="button"
-                                                    className="w-100 text-start btn">
-                                                    <img src="" alt="" />
-                                                    <span className="ms-2 text-white">Дошкольное образование</span>
-                                                </button></li>
-                                                <li className="btn w-100 rounded-0 px-0"><button type="button" className="w-100 text-start btn">
-                                                    <img src="" alt="" />
-                                                    <span className="ms-2">Общеобразовательные</span>
-                                                </button></li>
-                                                <li className="btn w-100 rounded-0 px-0"><button type="button" className="w-100 text-start btn">
-                                                    <img src="" alt="" />
-                                                    <span className="ms-2">Начально-профессиональные</span>
-                                                </button></li>
-                                                <li className="btn w-100 rounded-0 px-0"><button type="button" className="w-100 text-start btn">
-                                                    <img src="" alt="" />
-                                                    <span className="ms-2">Средне-профессиональные</span>
-                                                </button></li>
-                                                <li className="btn w-100 rounded-0 px-0"><button type="button" className="w-100 text-start btn">
-                                                    <img src="" alt="" />
-                                                    <span className="ms-2">Высшее профессиональное</span>
-                                                </button></li>
-                                                <li className="btn w-100 rounded-0 px-0"><button type="button" className="w-100 text-start btn">
-                                                    <img src="DD" alt="" />
-                                                    <span className="ms-2">
-                                                        Другие учреждения</span>
-                                                </button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    <TopFilter />
+
                     <div className="map__page">
                         <MapLeaflet />
                     </div>

@@ -2,7 +2,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
 import styled from "styled-components"
 
 export const AccordionFilter = ({ children, header, ...props }) => {
-    return <AccordionContainer sx={{ boxShadow: 'none' }}>
+    return <AccordionContainer sx={{ overflow: 'hidden' }}>
         <AccordionSummary
             aria-controls="panel1a-content"
             id="panel1a-header"
@@ -10,7 +10,7 @@ export const AccordionFilter = ({ children, header, ...props }) => {
         >
             {header}
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails>  
             {children}
         </AccordionDetails>
     </AccordionContainer>

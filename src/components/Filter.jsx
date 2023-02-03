@@ -1,4 +1,5 @@
 import { Stack } from "@mui/system"
+import { Box } from "@mui/material"
 import styled, { css } from "styled-components"
 import { FilterSubmit } from "./FilerSubmit"
 import { FilterDropdown } from "./ui/FilterDropdown"
@@ -16,14 +17,30 @@ export const Filter = ({ header }) => {
         <FilterHeader header={header}>Фильтр для точечного поиска учреждения</FilterHeader>
         <Mobile header={header}>
             <AccordionFilter onClick={onChangeFilter} header={<FilterSubmit icon={open} active={openState}>{!openState ? 'Открыть фильтр' : 'Закрыть фильтр'}</FilterSubmit>}>
-                <FilterDropdown header="Область" text="Выберите область" />
-                <FilterDropdown header="Регион, район" text="Выберите район" />
-                <FilterDropdown header="Административный округ (аймак)" text="Выберите округ" />
-                <FilterDropdown header="Тип учреждения" text="Выберите тип" />
-                <FilterDropdown header="Вид учреждения" text="Выберите вид учреждения" />
-                <FilterDropdown header="Цветовая шкала заполненности" text="Все уровни" />
-                <FilterDropdown header="Класс, курс (в зависимости от учреждения)" text="Государственный" />
-                <FilterSubmit icon={search}>Найти</FilterSubmit>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Область" text="Выберите область" />
+                </Box>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Регион, район" text="Выберите район" />
+                </Box>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Административный округ (аймак)" text="Выберите округ" />
+                </Box>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Тип учреждения" text="Выберите тип" />
+                </Box>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Вид учреждения" text="Выберите вид учреждения" />
+                </Box>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Цветовая шкала заполненности" text="Все уровни" />
+                </Box>
+                <Box sx={{ padding: '0 20px' }}>
+                    <FilterDropdown header="Класс, курс (в зависимости от учреждения)" text="Государственный" />
+                </Box>
+                <Box sx={{ padding: '0 20px', paddingBottom: '20px' }}>
+                    <FilterSubmit icon={search}>Найти</FilterSubmit>
+                </Box>
             </AccordionFilter>
         </Mobile>
         <Desctop header={header}>
