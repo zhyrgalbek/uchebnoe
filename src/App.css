@@ -249,6 +249,10 @@ footer .text__found {
   color: #292D32;
 
 }
+.w__button__md__custom{
+  width: 54px;
+  height: 24px;
+}
 
 .buttons__text {
   font-weight: 600;

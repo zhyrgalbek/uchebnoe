@@ -61,8 +61,7 @@ export const AboutPage = () => {
               </div>
               <h3 className="second__title__text">Featured title</h3>
               <p className="about__us__text">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+              Повышение навыков цифровой грамотности и кибергигиены{" "}
               </p>
             </div>
             <div className="feature col">
@@ -71,8 +70,7 @@ export const AboutPage = () => {
               </div>
               <h3 className="second__title__text">Featured title</h3>
               <p className="about__us__text">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+              Содействие вовлечению в общественные дела{" "}
               </p>
             </div>
             <div className="feature col">
@@ -81,8 +79,7 @@ export const AboutPage = () => {
               </div>
               <h3 className="second__title__text">Featured title</h3>
               <p className="about__us__text">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+              Усиление образования и обучение цифровому предпринимательству{" "}
               </p>
             </div>
           </div>
@@ -90,26 +87,18 @@ export const AboutPage = () => {
       </section>
       <section>
         <div className="container">
-          <div className="row row-cols-1 row-cols-md-2">
+          <div className="row row-cols-1 row-cols-md-2 ">
             <div className="box">
               <h2>Наша миссия</h2>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum.In the first place we have
-                granted to God, and by this our present charter confirmed for us
-                and our heirs forever that the English Church shall be free, and
-                shall have her rights entire, and her liberties inviolate; and
-                we will that it be thus observed; which is apparent from
+              Статистическая тепловая карта разработана в рамках проекта «DigiКоnush - Построение прозрачного будущего для сельских сообществ через цифровизацию».
+              </p>
+              <p>Проект Европейского Союза «DigiКоnush - Построение прозрачного будущего для сельских сообществ через цифровизацию» реализуется Эстонским Центром Международного Развития совместно с Центром гражданских инициатив «Лидер». </p>
+              <p>
+              По сравнению со своими сверстниками в городских районах, сельская молодежь и женщины, как правило, находятся в невыгодном положении из-за множества факторов, в том числе цифрового разрыва, низкой доступности государственных услуг и отсутствия перспектив качественного образования и достойного труда. 
               </p>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum.In the first place we have
-                granted to God, and by this our present charter confirmed for us
-                and our heirs forever that the English Church shall be free, and
-                shall have her rights entire, and her liberties inviolate; and
-                we will that it be thus observed; which is apparent from
+              Деятельность проекта направлена на продвижение использования цифровых технологий, вовлечение молодежи, женщин, органов местного самоуправления, организаций гражданского общества, сельского бизнеса в процесс цифровой трансформации, а также повышение потенциала образовательных организаций. 
               </p>
             </div>
             <div className="box">
