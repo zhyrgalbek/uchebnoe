@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import logo from '../../assets/IconCounter/logo.png';
+
 
 const Header = () => {
   const location = useLocation();
@@ -11,10 +13,10 @@ const Header = () => {
   const active = 'btn-primary text-white';
   const noActive = 'btn-outline-primary';
   return (
-    <nav className="navbar container navbar-expand-lg navbar-light ">
+    <nav className="navbar container mt-3 navbar-expand-lg navbar-light ">
       <div className="container-fluid">
         <a className="navbar-brand d-flex my-auto logo__text" href="index.html">
-          <img src="" width="32" height="30" />
+          <img src={logo} width="32" height="30" />
           <div className="d-flex flex-column">
             <div>Министерство образования и</div>
             <div>науки Кыргызской республики</div>
@@ -44,7 +46,7 @@ const Header = () => {
           </ul>
         </div>
       </div>
-    </nav >
+    </nav>
   );
 };
 

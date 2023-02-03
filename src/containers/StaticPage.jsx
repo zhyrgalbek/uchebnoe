@@ -38,213 +38,64 @@ import { TopFilter } from "../components/TopFilter"
 
 const data = [
     {
-        text: 'Дошкольное образование',
+        text: "Дошкольное образование",
         icon: childrenswhite,
-        icon2: children
+        icon2: children,
     },
     {
-        text: 'Общеобразовательные',
+        text: "Общеобразовательные",
         icon: general_educationwhite,
-        icon2: general_education
+        icon2: general_education,
     },
     {
-        text: 'Начально-профессиональные',
+        text: "Начально-профессиональные",
         icon: Groupwhite,
-        icon2: Group
+        icon2: Group,
     },
     {
-        text: 'Средне-профессиональные',
+        text: "Средне-профессиональные",
         icon: averagewhite,
-        icon2: average
+        icon2: average,
     },
     {
-        text: 'Высшее профессиональное',
+        text: "Высшее профессиональное",
         icon: higherwhite,
-        icon2: higher
+        icon2: higher,
     },
     {
-        text: 'Другие учреждения',
+        text: "Другие учреждения",
         icon: otherwhite,
-        icon2: other
+        icon2: other,
     },
-]
+];
 
 export const StaticPage = () => {
     const [accordionOpen, setAccordionOpen] = useState(false);
     const onChangeAccordion = () => {
-        setAccordionOpen(prev => !prev)
-    }
+        setAccordionOpen((prev) => !prev);
+    };
     return (
         <>
             <main className="devider">
                 <div className="container">
                     <div className="title__text">
-                        <h1>Статистические данные по учебным заведениям кыргызской республики</h1>
+                        <h1>
+                            Статистические данные по учебным заведениям кыргызской республики
+                        </h1>
                     </div>
                     <div className="second_texts">
-                        <h2 className="second__title__text">
-                            Тепловая карта Кыргызстана
-                        </h2>
+                        <h2 className="second__title__text">Тепловая карта Кыргызстана</h2>
                         <h3 className="third__title__text">
                             Классификация учебных заведений
                         </h3>
                     </div>
-
                     <TopFilter />
-
                     <div className="map__page">
                         <MapLeaflet />
                     </div>
                 </div>
             </main>
 
-
-
-            {/* <section>
-                <div className="container">
-                    <h4 className="third__title__text">Фильтр для точечного поиска учреждения</h4>
-                    <form className="form form-cotrol">
-                        <div className="row row-cols-1 row-cols-lg-3 gy-4 d-none d-md-flex">
-                            <div className="col-12 col-lg-4">
-                                <label className="form form-label">Обалсть</label>
-                                <select className="form-select">
-                                    <option selected disabled>Выберите область</option>
-                                    <option value="1">One</option>
-                                    <option value="1">One</option>
-                                    <option value="1">One</option>
-                                    <option value="1">One</option>
-                                    <option value="1">One</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label">Регион, район</label>
-                                <select className="form-select">
-                                    <option selected disabled>Выберите район</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label">Административный округ (аймак)</label>
-                                <select className="form-select">
-                                    <option selected disabled>Выберите округ</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label">Тип учреждения</label>
-                                <select className="form-select">
-                                    <option selected disabled>Выберите тип</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label">Вид учреждения</label>
-                                <select className="form-select">
-                                    <option selected disabled>Выберите вид учреждения</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label">Цветовая шкала заполненности</label>
-                                <select className="form-select">
-                                    <option selected disabled>Все уровни</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label">Класс, курс (в зависимости от учреждения)</label>
-                                <select className="form-select">
-                                    <option selected disabled>Государственный</option>
-                                    <option value="1">One</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="row row-cols-1 row-cols-lg-3 gy-5 d-none d-lg-block">
-                            <div className="col-12 col-lg-4">
-                                <label className="form-label"></label>
-                                <button className="btn btn-primary text-center w-100"><img src={search}
-                                    alt="" />Найти</button>
-                            </div>
-                        </div>
-
-
-                        <div className="row row-cols-1 d-block d-lg-none">
-                            <div className="accordion" id="accordion2">
-                                <div className="accordion-item rounded-3">
-                                    <h2 className="accordion-header" id="headingTwo">
-                                        <button
-                                            className="w-100 btn__custom__filters btn rounded__only__top__custom p-3 padding__button__custom text-center btn border-primary w-100"
-                                            type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
-                                            aria-controls="collapseTwo">
-                                            <img src={filter} alt="" />
-                                            <span className="ms-3 text-white">Открыть фильтр</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                        data-bs-parent="#accordion2">
-                                        <div className="accordion-body gy-4 row">
-                                            <div className="col-12">
-                                                <label className="form-label">Область</label>
-                                                <select className="form-select multiple">
-                                                    <option selected disabled>Выберите область</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12">
-                                                <label className="form-label">Регион, район</label>
-                                                <select className="form-select">
-                                                    <option selected disabled>Выберите район</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12">
-                                                <label className="form-label">Административный округ (аймак)</label>
-                                                <select className="form-select">
-                                                    <option selected disabled>Выберите округ</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12">
-                                                <label className="form-label">Тип учреждения</label>
-                                                <select className="form-select">
-                                                    <option selected disabled>Выберите тип</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12">
-                                                <label className="form-label">Вид учреждения</label>
-                                                <select className="form-select">
-                                                    <option selected disabled>Выберите вид учреждения</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12">
-                                                <label className="form-label">Цветовая шкала заполненности</label>
-                                                <select className="form-select">
-                                                    <option selected disabled>Все уровни</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12">
-                                                <label className="form-label">Класс, курс (в зависимости от учреждения)</label>
-                                                <select className="form-select">
-                                                    <option selected disabled>Государственный</option>
-                                                    <option value="1">One</option>
-                                                </select>
-                                            </div>
-                                            <div className="col-12 w-100">
-                                                <button className="btn btn-primary text-center w-100"><img src="images/icons/search_icon.svg"
-                                                    alt="" /><span className="buttons__text">Найти</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </section> */}
             <section>
                 <div className="container">
                     <Filter />
@@ -254,151 +105,136 @@ export const StaticPage = () => {
                 <div className="container">
                     <div className="row row-cols-1 row-cols-md-2 px-3 py-5 border">
                         <div className="col">
-                            <p className="pt-0 mt-0 third__title__text">Профессиональный лицей №16</p>
+                            <p className="pt-0 mt-0 third__title__text">
+                                Профессиональный лицей №16
+                            </p>
                             <img
-                                src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classNameroom_elementary-school-middle-school-high-school.jpg"
-                                className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none" alt="" />
-                            <p className="charts__texts">
-                                Тип учреждения:
-                            </p>
-                            <p>
-                                Государственный
-                            </p>
+                                src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"
+                                className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none"
+                                alt=""
+                            />
+                            <p className="charts__texts">Тип учреждения:</p>
+                            <p>Государственный</p>
                             <div className="box d-flex align-items-center mb-1 my-md-4">
-                                <p className="mb-0 charts__texts pb-0">
+                                <p className="mb-0 d-flex charts__texts align-items-center pb-0">
                                     Общая вместимость:
-                                    <div
-                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                    <div className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
                                         <img src={man} alt="example image" />
                                         150
                                     </div>
-                                    <div
-                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                    <div className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
                                         <img src={woman} alt="example image" />
                                         35
                                     </div>
                                 </p>
                             </div>
-                            <div
-                                className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none  justify-content-around align-items-center">
-                                <img src="images/icons/people_twice.svg" alt="" />150
+                            <div className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none  justify-content-around align-items-center">
+                                <img src={people_twice} alt="" />
+                                150
                             </div>
                             <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
-                                <p className="mb-0 charts__texts">
+                                <p className="mb-0 d-flex charts__texts align-items-center pb-0">
                                     Количество свободных мест:
-                                    <div
-                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                        <img src="images/icons/free_spaces_2.svg" alt="example image" />
+                                    <div className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                        <img src={boy} alt="example image" />
                                         41
                                     </div>
-                                    <div
-                                        className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                        <img src="images/icons/free_spaces.svg" alt="example image" />
+                                    <div className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
+                                        <img src={girl} alt="example image" />
                                         35
                                     </div>
                                 </p>
-                                <div className="box d-flex align-items-center mb-1 my-md-4">
-                                    <p className="mb-0 charts__texts pb-0">
-                                        Общая вместимость:
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src={man} alt="example image" />
-                                            150
-                                        </div>
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src={woman} alt="example image" />
-                                            35
-                                        </div>
-                                    </p>
-                                </div>
+                            </div>
+                            <div className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none mb-3 justify-content-around align-items-center">
+                                <img src={people_twice} alt="" />
+                                150
+                            </div>
+                            <div className="row" id="acc_bg__custom">
                                 <div
-                                    className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none  justify-content-around align-items-center">
-                                    <img src={people_twice} alt="" />150
-                                </div>
-                                <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
-                                    <p className="mb-0 charts__texts">
-                                        Количество свободных мест:
+                                    className="accordion accordion-flush"
+                                    id="accordionExample3"
+                                >
+                                    <div className="accordion-item rounded-3">
+                                        <h2
+                                            className="accordion-header text-center py-0"
+                                            id="headingThree"
+                                        >
+                                            <button
+                                                className="text-center btn btn-sm py-2 rounded-2 text-white btn-primary justify-content-center accordion-button border-primary"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapseThree"
+                                                aria-expanded="true"
+                                                aria-controls="collapseThree"
+                                            >
+                                                Подробнее
+                                            </button>
+                                        </h2>
                                         <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src={boy} alt="example image" />
-                                            41
-                                        </div>
-                                        <div
-                                            className="mx-3 icon__info__custom border border-1 border-primary rounded-2 d-none d-md-flex  justify-content-around align-items-center">
-                                            <img src={girl} alt="example image" />
-                                            35
-                                        </div>
-                                    </p>
-                                </div>
-                                <div
-                                    className="icon__info__custom border border-1 border-primary rounded-2 d-flex d-md-none mb-3 justify-content-around align-items-center">
-                                    <img src={count} alt="" />150
-                                </div>
-                                <div className="row" id="acc_bg__custom">
-                                    <div className="accordion accordion-flush" id="accordionExample3">
-                                        <div className="accordion-item rounded-3">
-                                            <h2 className="accordion-header text-center py-0" id="headingThree">
-                                                <button
-                                                    className="text-center btn btn-sm py-2 rounded-2 text-white btn-primary justify-content-center accordion-button border-primary"
-                                                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true"
-                                                    aria-controls="collapseThree">
-                                                    Подробнее
-                                                </button>
-                                            </h2>
-                                            <div id="collapseThree" className="mt-4 accordion-collapse collapse show" aria-labelledby="headingThree"
-                                                data-bs-parent="#accordionExample3">
-                                                <div className="accordion-body p-0">
-                                                    <ul className="w-100 rounded-0 p-0 m-0 list-unstyled">
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <div className="d-md-block d-none">
-                                                                <p className="mb-0 mt-4 charts__texts">
-                                                                    Контактные данные:</p>
-                                                                <p>+996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта litsey16@bk.ru</p>
+                                            id="collapseThree"
+                                            className="mt-4 accordion-collapse collapse show"
+                                            aria-labelledby="headingThree"
+                                            data-bs-parent="#accordionExample3"
+                                        >
+                                            <div className="accordion-body p-0">
+                                                <ul className="w-100 rounded-0 p-0 m-0 list-unstyled">
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <div className="d-md-block d-none">
+                                                            <p className="mb-0 mt-4 charts__texts">
+                                                                Контактные данные:
+                                                            </p>
+                                                            <p>
+                                                                +996 312 00 80 00, +996 700 00 80 00 (WhatsApp),
+                                                                почта litsey16@bk.ru
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Местоположение:
+                                                        </p>
+
+                                                        <p>
+                                                            Чуйская область, Аламудунский район, село
+                                                            Жайылган, ул Аманова 22
+                                                        </p>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">Время работы:</p>
+
+                                                        <p>9:00 - 17:30</p>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            ФИО Директора/Руководителя
+                                                        </p>
+
+                                                        <p>Баланчаев Баланча Баланчаевич</p>
+                                                    </li>
+                                                    <li>
+                                                        <div className="box my-4">
+                                                            <p className="mb-0 charts__texts">
+                                                                Количество преподавателей:
+                                                            </p>
+                                                            <div className="icon__info__custom border border-1 border-primary rounded-2 d-flex  justify-content-around align-items-center">
+                                                                <img src={count} alt="example image" />
+                                                                40
                                                             </div>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Местоположение:</p>
-
-                                                            <p>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</p>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Время работы:</p>
-
-                                                            <p>9:00 - 17:30</p>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                ФИО Директора/Руководителя</p>
-
-                                                            <p>Баланчаев Баланча Баланчаевич</p>
-                                                        </li>
-                                                        <li>
-                                                            <div className="box  my-4">
-                                                                <p className="mb-0 charts__texts">
-                                                                    Количество преподавателей:
-                                                                </p>
-                                                                <div
-                                                                    className="icon__info__custom border border-1 border-primary rounded-2 d-flex  justify-content-around align-items-center">
-                                                                    <img src={count} alt="example image" />
-                                                                    40
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Наличие столовой:</p>
-                                                            <p>Имеется</p>
-                                                        </li>
-                                                        <li className="w-100 rounded-0 px-0">
-                                                            <p className="mb-0 charts__texts">
-                                                                Наличие спортивного зала:</p>
-                                                            <p>Имеется</p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                        </div>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Наличие столовой:
+                                                        </p>
+                                                        <p>Имеется</p>
+                                                    </li>
+                                                    <li className="w-100 rounded-0 px-0">
+                                                        <p className="mb-0 charts__texts">
+                                                            Наличие спортивного зала:
+                                                        </p>
+                                                        <p>Имеется</p>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -407,32 +243,36 @@ export const StaticPage = () => {
                         </div>
                         <div className="col">
                             <img
-                                src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classNameroom_elementary-school-middle-school-high-school.jpg"
-                                className="img-thumbnail border-0 pt-0 mt-0 d-none d-md-block" alt="" />
+                                src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"
+                                className="img-thumbnail border-0 pt-0 mt-0 d-none d-md-block"
+                                alt=""
+                            />
                             <div className="d-md-block d-none">
-                                <p className="mb-0 mt-4 charts__texts">
-                                    Контактные данные:</p>
-                                <p>+996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта litsey16@bk.ru</p>
+                                <p className="mb-0 mt-4 charts__texts">Контактные данные:</p>
+                                <p>
+                                    +996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта{" "}
+                                    <a href="mailto: litsey16@bk.ru">litsey16@bk.ru</a>
+                                </p>
                             </div>
-                            <div className="d-none d-md-flex flex-column">
-                                <button className="btn btn-primary text-white text-center mb-4 w-50">
+                            <div className="d-none d-md-flex flex-column col-12 col-md-7">
+                                <button className="btn btn-primary text-white text-center mb-4 w-100">
                                     <img src={like} alt="image" />
-                                    <span>490</span>
-                                    <span>Поставить лайк</span>
+                                    <span className="ms-1">490</span>
+                                    <span className="ms-3">Поставить лайк</span>
                                 </button>
-                                <button className="btn btn-primary text-white text-center px-5 w-50">
+                                <button className="btn btn-primary text-white text-center px-5 w-100">
                                     <img src={share} alt="image" />
-                                    <span>Поделиться</span>
+                                    <span className="ms-3">Поделиться</span>
                                 </button>
                             </div>
                             <div className="d-flex d-md-none flex-column mt-4">
                                 <button className="btn btn-primary text-white text-center mb-4 w-100">
-                                    <img src={like} />
+                                    <img src={like} alt="image" />
                                     <span>490</span>
                                     <span>Поставить лайк</span>
                                 </button>
                                 <button className="btn btn-primary text-white text-center px-5 w-100">
-                                    <img src={share} />
+                                    <img src={share} alt="image" />
                                     <span>Поделиться</span>
                                 </button>
                             </div>
@@ -446,9 +286,9 @@ export const StaticPage = () => {
                 </div>
             </section>
         </>
-    )
-}
+    );
+};
 
-const Icon = styled('div')`
-    border: 1px solid red;
-`
+const Icon = styled("div")`
+  border: 1px solid red;
+`;
