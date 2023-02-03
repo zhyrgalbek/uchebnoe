@@ -9,7 +9,12 @@ const options = {
         enabled: false
     },
     legend: {
-        show: false
+        show: true,
+        position: 'top',
+        offsetX: '40px',
+        tooltipHoverFormatter: function (val, opts) {
+            return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+        }
     },
     chart: {
         toolbar: {
@@ -17,7 +22,8 @@ const options = {
         },
         type: 'bar',
         height: 178,
-        width: "100px"
+        width: "100px",
+        stacked: false
     },
     plotOptions: {
         bar: {
@@ -47,7 +53,7 @@ const options = {
         title: false,
     },
     fill: {
-        colors: ['#61B8FF', '#3763FF'],
+        colors: ['#3763FF', '#FD9588'],
         opacity: 1
     },
     tooltip: {
@@ -56,7 +62,7 @@ const options = {
                 return "$ " + val + " thousands"
             }
         }
-    }
+    },
 }
 
 const series = [
@@ -71,6 +77,6 @@ const series = [
 ]
 
 
-export const Chart1 = () => {
+export const Chart5 = () => {
     return <Chart options={options} series={series} type="bar" width="100%" style={{ flexGrow: 1 }} />
 }

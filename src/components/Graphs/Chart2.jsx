@@ -3,12 +3,14 @@ import Chart from 'react-apexcharts'
 
 
 
-export const Chart2 = ({strokeWidth, height}) => {
+export const Chart2 = ({ strokeWidth, height, size }) => {
     const [options, setOptions] = useState({
         grid: {
             borderColor: 'rgba(218, 226, 255, 1)',
             strokeDashArray: 5,
         },
+        colors: ['#3763FF', '#61B8FF', '#FD9588'
+        ],
 
         series: [68, 40, 20],
 
@@ -17,7 +19,7 @@ export const Chart2 = ({strokeWidth, height}) => {
             toolbar: {
                 show: false,
             },
-            width:'100%',
+            width: '100%',
             type: 'donut',
         },
         chartOptions: {
@@ -27,7 +29,7 @@ export const Chart2 = ({strokeWidth, height}) => {
             pie: {
                 customScale: 1,
                 donut: {
-                    size: "85%",
+                    size: size,
                     labels: {
                         show: true,
                         total: {
@@ -40,9 +42,9 @@ export const Chart2 = ({strokeWidth, height}) => {
                             color: '#373d3f',
                             formatter: function (w) {
                                 return w.globals.seriesTotals.reduce((a, b) => {
-                                  return a + b
+                                    return a + b
                                 }, 0)
-                              }
+                            }
                         }
                     }
                 }
@@ -55,5 +57,5 @@ export const Chart2 = ({strokeWidth, height}) => {
             show: false,
         },
     })
-    return <Chart options={options} series={options.series} type={options.chart.type} height={height} />
+    return <Chart options={options} series={options.series} type={options.chart.type} height={height} width="110%" style={{ marginLeft: '-20px', flexGrow: 1 }} />
 }

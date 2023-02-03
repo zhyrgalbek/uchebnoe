@@ -23,6 +23,7 @@ import { Chart1 } from './Graphs/Chart1';
 import { Chart2 } from './Graphs/Chart2';
 import { Chart3 } from './Graphs/Chart3';
 import { Chart4 } from './Graphs/Chart4';
+import { Chart5 } from './Graphs/Chart5';
 // import faker from 'faker';
 
 // ChartJS.register(
@@ -120,43 +121,46 @@ export default function AnalizeCompoent() {
         </Box>
         <Box sx={{ marginBottom: '45px' }}>
             <ChartHeader>Общая статистика по области:</ChartHeader>
-            <Grid container alignItems="center" justifyContent="center" just spaing="0">
-                <Grid item xs={12} md={4}>
-                    <Box>
+            <Grid container alignItems="center" justifyContent="center" just spaing="0" >
+                <Grid item xs={12} md={4} >
+                    <Box >
                         <Stack direction="row">
-                            <Box>
-                                <Chart1 />
-                            </Box>
+                            <Chart1 />
                         </Stack>
                     </Box>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <Grid container direction="row" justifyContent="flex-start">
-                        <Grid item xs={12} md={6}>
-                            <Chart2 strokeWidth="0" height="90%" />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Chart2 strokeWidth="3" height="90%" />
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={4} >
                     <Stack direction="row">
+                        <Box sx={{ width: '50%', display: 'flex', direction: "row" }}>
+                            <Chart2 strokeWidth="0" size="85%" />
+                        </Box>
+                        <Box sx={{ width: '50%', display: 'flex', direction: "row" }}>
+                            <Chart2 strokeWidth="3" size="82" />
+                        </Box>
+                    </Stack>
+                </Grid>
+                <Grid item xs={12} md={4} >
+                    <Stack direction="row" >
                         <Chart3 />
                     </Stack>
                 </Grid>
             </Grid>
         </Box>
         <Box sx={{ marginBottom: '45px' }}>
-            <P>Статистика</P>
-            <ChartHeader>Динамика</ChartHeader>
-            <Grid container justifyContent="flex-start">
+            <Grid container justifyContent="flex-start" spacing={6}>
                 <Grid item xs={12} md={4}>
+                    <P>Статистика</P>
+                    <ChartHeader>Демография</ChartHeader>
+                    <Chart5 />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <P>Статистика</P>
+                    <ChartHeader>Демография</ChartHeader>
                     <Chart4 />
                 </Grid>
             </Grid>
         </Box>
-    </AnalizeContainer>
+    </AnalizeContainer >
 }
 
 const P = styled('p')`
@@ -167,7 +171,8 @@ const P = styled('p')`
     font-size: 12px;
     line-height: 12px;
     color: #5A5A5A;
-    margin-left: 20px;
+    margin-left: 0px;
+    margin-bottom: 4px;
 `
 
 
