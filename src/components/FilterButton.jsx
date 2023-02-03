@@ -38,7 +38,7 @@ const Span = styled('span')`
 `
 const Block = styled('button')`
     border: 1px solid #6A8AFF;
-    width: clamp(15.625rem, 14.9875rem + 3.1875vw, 18.8125rem);
+    width: clamp(16.875rem, 16.59059633027523rem + 1.4220183486238533vw, 18.8125rem);
     padding: 20px 15px;
     text-align: left;
     font-weight: 400;
@@ -50,8 +50,8 @@ const Block = styled('button')`
     display: flex;
     align-items: center;
     background: #fff;
-    margin-bottom: 30px;
-    margin-right: 30px;
+    margin-bottom: clamp(0.9375rem, 0.75rem + 0.9375vw, 1.875rem);
+    margin-right: clamp(0.9375rem, 0.75rem + 0.9375vw, 1.875rem);
     cursor: pointer;
     &:hover{
         background: #6A8AFF;

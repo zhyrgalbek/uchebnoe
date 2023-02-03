@@ -101,7 +101,7 @@ const MenuBlock = styled(Popper)`
 
 const DropdownContainer = styled('div')`
     position: relative;
-    width: clamp(13.75rem, 12.5rem + 6.25vw, 20rem);
+    width: clamp(15.9375rem, 4.910714285714285rem + 22.61904761904762vw, 21.875rem);
     margin-right: 30px;
     @media screen and (max-width: 780px){
         width: 100%;

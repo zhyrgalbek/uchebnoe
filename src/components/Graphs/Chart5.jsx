@@ -12,8 +12,8 @@ const options = {
         show: true,
         position: 'top',
         offsetX: '40px',
-        tooltipHoverFormatter: function (val, opts) {
-            return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+        markers:{
+            radius: 15,
         }
     },
     chart: {

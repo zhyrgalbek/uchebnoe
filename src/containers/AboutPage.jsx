@@ -61,8 +61,7 @@ export const AboutPage = () => {
               </div>
               <h3 className="second__title__text">Featured title</h3>
               <p className="about__us__text">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+                Повышение навыков цифровой грамотности и кибергигиены{" "}
               </p>
             </div>
             <div className="feature col">
@@ -71,8 +70,7 @@ export const AboutPage = () => {
               </div>
               <h3 className="second__title__text">50M montly enrichments</h3>
               <p className="about__us__text">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+                Содействие вовлечению в общественные дела{" "}
               </p>
             </div>
             <div className="feature col">
@@ -81,8 +79,7 @@ export const AboutPage = () => {
               </div>
               <h3 className="second__title__text">400k User</h3>
               <p className="about__us__text">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.{" "}
+                Усиление образования и обучение цифровому предпринимательству{" "}
               </p>
             </div>
           </div>
@@ -94,22 +91,16 @@ export const AboutPage = () => {
             <div className="box pe-0 pe-md-5 ">
               <h2 className="pb-2">Наша миссия</h2>
               <p className="pb-3">
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum.In the first place we have
-                granted to God, and by this our present charter confirmed for us
-                and our heirs forever that the English Church shall be free, and
-                shall have her rights entire, and her liberties inviolate; and
-                we will that it be thus observed; which is apparent from
+                Статистическая тепловая карта разработана в рамках проекта «DigiКоnush - Построение прозрачного будущего для сельских сообществ через цифровизацию».
               </p>
               <p>
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-                The point of using Lorem Ipsum.In the first place we have
-                granted to God, and by this our present charter confirmed for us
-                and our heirs forever that the English Church shall be free, and
-                shall have her rights entire, and her liberties inviolate; and
-                we will that it be thus observed; which is apparent from
+                Проект Европейского Союза «DigiКоnush - Построение прозрачного будущего для сельских сообществ через цифровизацию» реализуется Эстонским Центром Международного Развития совместно с Центром гражданских инициатив «Лидер».
+              </p>
+              <p>
+                По сравнению со своими сверстниками в городских районах, сельская молодежь и женщины, как правило, находятся в невыгодном положении из-за множества факторов, в том числе цифрового разрыва, низкой доступности государственных услуг и отсутствия перспектив качественного образования и достойного труда.
+              </p>
+              <p>
+                Деятельность проекта направлена на продвижение использования цифровых технологий, вовлечение молодежи, женщин, органов местного самоуправления, организаций гражданского общества, сельского бизнеса в процесс цифровой трансформации, а также повышение потенциала образовательных организаций.
               </p>
             </div>
             <div className="box">
