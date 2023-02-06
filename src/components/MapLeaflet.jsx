@@ -1,10 +1,11 @@
-import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer } from 'react-leaflet'
+import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON } from 'react-leaflet'
 import states from '../utils/Constants/json/states2.json'
 import statesJson from '../utils/Constants/json/statesJson.json'
 import styled from 'styled-components'
 import { useEffect, useRef } from 'react'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
+console.log(states)
 
 function getCoordinates(name, states) {
     const arr = states.features;
@@ -61,9 +62,13 @@ export const MapLeaflet = () => {
         })
     }, [])
     console.log(statesJson)
+    const countryStyle = {
+        fillColor: 'red',
+    }
     return <>
         <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
             <MyComponent />
+            <GeoJSON data={states} attribution={countryStyle} />
             <Marker position={marker}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
@@ -128,11 +133,11 @@ export const MapLeaflet = () => {
                     </LayerGroup>
                 </LayersControl.Overlay>
             </LayersControl>
-            {
+            {/* {
                 statesJson.map(elem => {
                     return <Polygon key={elem.name} pathOptions={{ color: elem.color, fillColor: 'transparent' }} positions={elem.latlngs} />
                 })
-            }
+            } */}
             <SetViewOnClick animateRef={animateRef} />
         </Map >
     </>

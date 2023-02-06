@@ -70,7 +70,7 @@ export const TopFilter = () => {
             {/* <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения" /> */}
         </Mobile>
         <Desctop>
-            <Stack direction="row" flexWrap="wrap" justifyContent="flex-start" alignItems="flex-start">
+            <Stack direction="row" flexWrap="wrap" justifyContent="flex-start">
                 <FilterButton icon={all} icon2={allblue}>Все учреждения</FilterButton>
                 <FilterButton icon2={children} icon={childrenswhite}>Дошкольное образование</FilterButton>
                 <FilterButton icon2={general_education} icon={general_educationwhite}>Общеобразовательные</FilterButton>

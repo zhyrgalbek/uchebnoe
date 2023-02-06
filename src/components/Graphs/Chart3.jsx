@@ -9,7 +9,15 @@ var options = {
         enabled: false
     },
     legend: {
-        show: false
+        show: true,
+        position: 'top',
+        offsetX: '40px',
+        markers: {
+            radius: 15,
+            fillColors:
+            ['#61B8FF', '#3763FF'
+        ]
+        }
     },
     chart: {
         toolbar: {
@@ -36,7 +44,7 @@ var options = {
     xaxis: {
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
     },
-    colors: ['#61B8FF', '#3763FF', '#FD9588'
+    colors: ['#61B8FF', '#3763FF'
     ],
 
 };

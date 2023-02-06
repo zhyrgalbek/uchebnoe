@@ -12,8 +12,10 @@ const options = {
         show: true,
         position: 'top',
         offsetX: '40px',
-        markers:{
+        markers: {
             radius: 15,
+            fillColors:
+                ['#3763FF', '#FD9588']
         }
     },
     chart: {
@@ -52,6 +54,7 @@ const options = {
     yaxis: {
         title: false,
         max: 400,
+        tickAmount: 4,
     },
     fill: {
         colors: ['#3763FF', '#FD9588'],

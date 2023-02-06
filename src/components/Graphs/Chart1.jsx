@@ -9,7 +9,15 @@ const options = {
         enabled: true
     },
     legend: {
-        show: false
+        show: true,
+        position: 'top',
+        offsetX: '40px',
+        markers: {
+            radius: 15,
+            fillColors:
+            ['#61B8FF', '#3763FF'
+        ]
+        }
     },
     chart: {
         toolbar: {

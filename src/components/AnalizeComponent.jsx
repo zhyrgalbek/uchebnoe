@@ -126,9 +126,6 @@ export default function AnalizeCompoent() {
         <Grid
           container
           direction="row"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          alignContent="start"
           spacing={2}
         >
           <Grid item xs={12} md={4}>
@@ -140,14 +137,14 @@ export default function AnalizeCompoent() {
               </Box>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Stack direction="row">
-              <Paper sx={{ width: '100%', display: 'flex', height: '100%', padding: '53px 0' }}>
-                <Box sx={{ width: "50%", display: "flex", direction: "row" }}>
+          <Grid item xs={12} md={4} >
+            <Stack direction="row" sx={{ height: '100%' }} >
+              <Paper sx={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                <Box sx={{ width: "50%", display: "flex", alignItems: 'center' }}>
                   <Chart2 strokeWidth="0" size="85%" />
                 </Box>
-                <Box sx={{ width: "50%", display: "flex", direction: "row" }}>
-                  <Chart2 strokeWidth="3" size="82" />
+                <Box sx={{ width: "50%", display: "flex", alignItems: 'center' }}>
+                  <Chart2 strokeWidth="3" size="80%" scale="1.05" />
                 </Box>
               </Paper>
             </Stack>
@@ -173,7 +170,7 @@ export default function AnalizeCompoent() {
           <Grid item xs={12} md={4}>
             <Paper sx={{ width: '100%', padding: '10px' }}>
               <P>Статистика</P>
-              <ChartHeader>Демография</ChartHeader>
+              <ChartHeader>Динамика</ChartHeader>
               <Chart4 />
             </Paper>
           </Grid>

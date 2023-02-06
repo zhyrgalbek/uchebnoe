@@ -84,13 +84,13 @@ export const StaticPage = () => {
             </h1>
           </div>
           <div className="second_texts">
-            <h2 className="second__title__text">Тепловая карта Кыргызстана</h2>
             <h3 className="third__title__text">
               Классификация учебных заведений
             </h3>
           </div>
           <TopFilter />
           <div className="map__page">
+            <h2 className="second__title__text text-center">Тепловая карта Кыргызстана</h2>
             <Paper sx={{ width: '100%', height: '100%' }}>
               <MapLeaflet />
             </Paper>

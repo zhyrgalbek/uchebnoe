@@ -56,9 +56,8 @@ const Header = () => {
             <div className="d-flex col-md-6 col-12 ms-auto">
               <li className="nav-item w-25">
                 <a
-                  className={`nav-link btn ${
-                    location.pathname === "/about" ? active : noActive
-                  }`}
+                  className={`nav-link btn ${location.pathname === "/about" ? active : noActive
+                    }`}
                   aria-current="page"
                   href="#"
                   onClick={(e) => onClickNav(e, "/about")}
@@ -68,9 +67,8 @@ const Header = () => {
               </li>
               <li className="nav-item mx-0 mx-lg-4 ms-4 w-75">
                 <a
-                  className={`nav-link btn ${
-                    location.pathname === "/" ? active : noActive
-                  }`}
+                  className={`nav-link btn ${location.pathname === "/" ? active : noActive
+                    }`}
                   href="#"
                   onClick={(e) => onClickNav(e, "/")}
                 >
@@ -82,28 +80,26 @@ const Header = () => {
           </ul>
           <ul class="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a
-                  className={`nav-link btn ${
-                    location.pathname === "/about" ? active : noActive
+              <a
+                className={`nav-link btn ${location.pathname === "/about" ? active : noActive
                   }`}
-                  aria-current="page"
-                  href="#"
-                  onClick={(e) => onClickNav(e, "/about")}
-                >
-                  О нас
-                </a>
+                aria-current="page"
+                href="#"
+                onClick={(e) => onClickNav(e, "/about")}
+              >
+                О нас
+              </a>
             </li>
             <li class="nav-item mx-4">
-            <a
-                  className={`nav-link btn ${
-                    location.pathname === "/" ? active : noActive
+              <a
+                className={`nav-link btn ${location.pathname === "/" ? active : noActive
                   }`}
-                  href="#"
-                  onClick={(e) => onClickNav(e, "/")}
-                >
-                  {" "}
-                  Статистические данные
-                </a>
+                href="#"
+                onClick={(e) => onClickNav(e, "/")}
+              >
+                {" "}
+                Статистические данные
+              </a>
             </li>
             <li class="nav-item ms-4 my-auto">
               <a class="nav-link btn btn-outline-primary btn-sm py-0" href="#">

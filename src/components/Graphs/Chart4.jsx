@@ -9,7 +9,19 @@ var options = {
         enabled: false
     },
     legend: {
-        show: true
+        show: true,
+        position: 'top',
+        offsetX: '40px',
+        markers:{
+            radius: 15,
+            fillColors: [
+                'rgba(181, 197, 255, 1)',
+                'rgba(143, 167, 255, 1)',
+                'rgba(106, 138, 255, 1)',
+                '#6A8AFF',
+                'rgba(66, 106, 255, 1)',
+            ],
+        }
     },
     xaxis: {
         categories: [2017, 2018, 2019, 2020, 2021, 2022],
@@ -73,7 +85,8 @@ var options = {
         bar: {
             borderRadius: 5,
             borderRadiusWhenStacked: "last",
-            borderRadiusApplication: "end"
+            borderRadiusApplication: "end",
+            columnWidth: "40%"
         }
     },
     stroke: {
@@ -86,11 +99,13 @@ var options = {
             "rgba(143, 167, 255, 0)",
             "rgba(143, 167, 255, 0)",
         ],
-        width: 8,
+        width: 2,
         radius: 200,
     },
     yaxis: {
         max: 400,
+        tickAmount: 4,
+        
     }
 };
 
