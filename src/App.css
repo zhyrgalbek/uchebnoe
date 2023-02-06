@@ -84,15 +84,12 @@
 
 .title__text {
   font-weight: 500;
-  font-size: clamp(1rem, 0.75rem + 1.3333333333333333vw, 2.25rem);
+  font-size: clamp(1rem, 0.75rem + 1.3333333333333333vw, 1.25rem);
   line-height: 130%;
   /* or 47px */
   text-transform: uppercase;
 }
 
-.title__text>h1 {
-  /* margin-bottom: 50px; */
-}
 
 .devider {
   margin-top: 12px;
@@ -339,7 +336,7 @@ footer .text__found {
 }
 
 .about_header {
-  font-size: 24px !important;
+  font-size: 20px !important;
 }
 
 .about_text {
