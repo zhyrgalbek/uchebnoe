@@ -52,23 +52,44 @@ function MyComponent() {
     return null
 }
 
+
+const color = ['#FDCA7B', '#AFD791', '#FCF58D', '#6CC49A', '#58C6C7', '#FBF48C', '#FAC97C', '#51C2C0', '#51C2C0', 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0)']
+
 const marker = [42.857254, 74.600725];
 
 export const MapLeaflet = () => {
     const animateRef = useRef(true)
-    useEffect(() => {
-        fetch('http://map.edu.gov.kg/api/organizations/?district__region=&district=&emergency_type=&organization_type=').then(response => {
-            console.log(response)
-        })
-    }, [])
-    console.log(statesJson)
-    const countryStyle = {
-        fillColor: 'red',
+    const onEachFeature = (country, layer) => {
+        // console.log(countryName)
+        // layer.bindPopup(country.id)
+        // layer.bindPopup(country.id)
+        // layer.on({
+        //     click: (event) => {
+        //         console.log(event)
+        //     }
+        // })
+    }
+    const onMouseOver = () => {
+        console.log('h')
     }
     return <>
         <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
             <MyComponent />
-            <GeoJSON data={states} attribution={countryStyle} />
+            {
+                states.features.map(((elem, index) => {
+                    const countryStyle = {
+                        fillColor: 'transparent',
+                        color: 'black'
+                    }
+                    if (color[index]) {
+                        countryStyle.color = color[index]
+                    }
+                    return <GeoJSON data={elem} pathOptions={countryStyle} onEachFeature={onEachFeature}>
+                        {/* <Tooltip>{elem.id}</Tooltip> */}
+                        {/* <Popup>{elem.id}</Popup> */}
+                    </GeoJSON>
+                }))
+            }
             <Marker position={marker}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
