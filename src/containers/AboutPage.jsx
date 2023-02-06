@@ -15,8 +15,8 @@ export const AboutPage = () => {
     <>
       <main className="devider">
         <div className="container">
-          <div className="title__text">
-            <h1>О проекте </h1>
+          <div className="my-4">
+            <h1 className="title__text">О проекте </h1>
           </div>
           <div className="container">
             <div className="row py-0 border rounded-3 border-primary blue">
@@ -56,28 +56,28 @@ export const AboutPage = () => {
         <div className="container">
           <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient fs-2 mb-4">
+              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
                 <img src={flag} />
               </div>
-              <h3 className="second__title__text">Featured title</h3>
+              <h3 className="second__title__text">Цифровая грамотность</h3>
               <p className="about__us__text">
                 Повышение навыков цифровой грамотности и кибергигиены{" "}
               </p>
             </div>
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient fs-2 mb-4">
-                <img src={doc} />
+              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
+                <img src={collaborate} />
               </div>
-              <h3 className="second__title__text">50M montly enrichments</h3>
+              <h3 className="second__title__text">Общественное участие</h3>
               <p className="about__us__text">
                 Содействие вовлечению в общественные дела{" "}
               </p>
             </div>
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient fs-2 mb-4">
-                <img src={collaborate} />
+              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
+                <img src={doc}/>
               </div>
-              <h3 className="second__title__text">400k User</h3>
+              <h3 className="second__title__text">Цифровизация</h3>
               <p className="about__us__text">
                 Усиление образования и обучение цифровому предпринимательству{" "}
               </p>
@@ -89,7 +89,7 @@ export const AboutPage = () => {
         <div className="container">
           <div className="row row-cols-1 row-cols-md-2 d-flex align-items-center">
             <div className="box pe-0 pe-md-5 ">
-              <h2 className="pb-2">Наша миссия</h2>
+              <h2 className="pb-2 title__text">Наша миссия</h2>
               <p className="pb-3">
                 Статистическая тепловая карта разработана в рамках проекта «DigiКоnush - Построение прозрачного будущего для сельских сообществ через цифровизацию».
               </p>
@@ -110,11 +110,9 @@ export const AboutPage = () => {
                     <img src={comand} />
                   </div>
                   <div>
-                    <h3 className="fs-2 about_header">Команда</h3>
+                    <h3 className="about_header">Команда</h3>
                     <p className="about_text">
-                      It is a long established fact that a reader will be
-                      distracted by the readable content of a page when looking
-                      at its layout.{" "}
+                    Наша команда обладает высокими профессиональными навыками и мощным духом совместных усилий."{" "}
                     </p>
                   </div>
                 </div>
@@ -123,7 +121,7 @@ export const AboutPage = () => {
                     <img src={people} />
                   </div>
                   <div>
-                    <h3 className="fs-2 about_header">Совет</h3>
+                    <h3 className="about_header">Совет</h3>
                     <p className="about_text">
                       It is a long established fact that a reader will be
                       distracted by the readable content of a page when looking
@@ -136,7 +134,7 @@ export const AboutPage = () => {
                     <img src={gmail} />
                   </div>
                   <div>
-                    <h3 className="fs-2 about_header">Пресс-служба</h3>
+                    <h3 className="about_header">Пресс-служба</h3>
                     <p className="about_text">
                       It is a long established fact that a reader will be
                       distracted by the readable content of a page when looking
