@@ -9,10 +9,10 @@ var options = {
         enabled: false
     },
     legend: {
-        show: false
+        show: true
     },
     xaxis: {
-        categories: [1, 2, 3, 4, 5, 6],
+        categories: [2017, 2018, 2019, 2020, 2021, 2022],
     },
     chart: {
         height: 240,
@@ -86,7 +86,7 @@ var options = {
             "rgba(143, 167, 255, 0)",
             "rgba(143, 167, 255, 0)",
         ],
-        width: 3,
+        width: 8,
         radius: 200,
     },
     yaxis: {
@@ -95,5 +95,5 @@ var options = {
 };
 
 export const Chart4 = () => {
-    return <Chart options={options} series={options.series} height="290" type="line" />
+    return <Chart options={options} series={options.series} height="240" type="line" />
 }

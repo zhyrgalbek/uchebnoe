@@ -2,8 +2,8 @@ import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLa
 import states from '../utils/Constants/json/states2.json'
 import statesJson from '../utils/Constants/json/statesJson.json'
 import styled from 'styled-components'
-import { useRef } from 'react'
-const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse()
+import { useEffect, useRef } from 'react'
+const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
 
 function getCoordinates(name, states) {
@@ -55,6 +55,11 @@ const marker = [42.857254, 74.600725];
 
 export const MapLeaflet = () => {
     const animateRef = useRef(true)
+    useEffect(() => {
+        fetch('http://map.edu.gov.kg/api/organizations/?district__region=&district=&emergency_type=&organization_type=').then(response => {
+            console.log(response)
+        })
+    }, [])
     console.log(statesJson)
     return <>
         <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>

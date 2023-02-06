@@ -12,7 +12,7 @@ import { Box } from "@mui/system";
 import Chart from "react-apexcharts";
 import styled, { css } from "styled-components";
 import { IconCounter } from "./ui/IconCounter";
-import { Grid, Stack } from "@mui/material";
+import { Grid, Paper, Stack } from "@mui/material";
 import child from "../assets/chart/child.svg";
 import average from "../assets/FilterMap/average.svg";
 import general_education from "../assets/FilterMap/general_education.svg";
@@ -125,46 +125,57 @@ export default function AnalizeCompoent() {
         <ChartHeader>Общая статистика по области:</ChartHeader>
         <Grid
           container
-          alignItems="center"
-          justifyContent="center"
-          just
-          spaing="0"
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          alignContent="start"
+          spacing={2}
         >
           <Grid item xs={12} md={4}>
-            <Box>
-              <Stack direction="row">
-                <Chart1 />
-              </Stack>
-            </Box>
+            <Paper sx={{ width: '100%', padding: '10px' }}>
+              <Box>
+                <Stack direction="row">
+                  <Chart1 />
+                </Stack>
+              </Box>
+            </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
             <Stack direction="row">
-              <Box sx={{ width: "50%", display: "flex", direction: "row" }}>
-                <Chart2 strokeWidth="0" size="85%" />
-              </Box>
-              <Box sx={{ width: "50%", display: "flex", direction: "row" }}>
-                <Chart2 strokeWidth="3" size="82" />
-              </Box>
+              <Paper sx={{ width: '100%', display: 'flex', height: '100%', padding: '53px 0' }}>
+                <Box sx={{ width: "50%", display: "flex", direction: "row" }}>
+                  <Chart2 strokeWidth="0" size="85%" />
+                </Box>
+                <Box sx={{ width: "50%", display: "flex", direction: "row" }}>
+                  <Chart2 strokeWidth="3" size="82" />
+                </Box>
+              </Paper>
             </Stack>
           </Grid>
           <Grid item xs={12} md={4}>
             <Stack direction="row">
-              <Chart3 />
+              <Paper sx={{ width: '100%', padding: '10px' }}>
+                <Chart3 />
+              </Paper>
             </Stack>
           </Grid>
         </Grid>
       </Box>
       <Box sx={{ marginBottom: "45px" }}>
-        <Grid container justifyContent="flex-start" spacing={6}>
+        <Grid container justifyContent="flex-start" spacing={2}>
           <Grid item xs={12} md={4}>
-            <P>Статистика</P>
-            <ChartHeader>Демография</ChartHeader>
-            <Chart5 />
+            <Paper sx={{ width: '100%', padding: '10px' }}>
+              <P>Статистика</P>
+              <ChartHeader>Демография</ChartHeader>
+              <Chart5 />
+            </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
-            <P>Статистика</P>
-            <ChartHeader>Демография</ChartHeader>
-            <Chart4 />
+            <Paper sx={{ width: '100%', padding: '10px' }}>
+              <P>Статистика</P>
+              <ChartHeader>Демография</ChartHeader>
+              <Chart4 />
+            </Paper>
           </Grid>
         </Grid>
       </Box>

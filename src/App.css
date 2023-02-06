@@ -91,7 +91,7 @@
 }
 
 .title__text>h1 {
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 .devider {
@@ -99,15 +99,17 @@
   margin-bottom: 50px;
 }
 
-.second__title__text {
-  margin-bottom: 24px;
-}
 
 .second_texts .second__title__text {
   margin-top: 35px;
   font-weight: 600;
   font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.5rem);
   line-height: 130%;
+}
+
+.second__title__text {
+  font-size: 16px !important;
+  margin-bottom: 24px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -126,6 +128,10 @@
   font-size: clamp(1rem, 0.95rem + 0.26666666666666666vw, 1.25rem);
   line-height: 130%;
   margin-bottom: 30px;
+}
+
+.third__title__text {
+  font-size: 16px !important;
 }
 
 .btn-icon {
@@ -156,6 +162,12 @@
   margin-top: 40px;
   margin-bottom: 40px;
   height: 600px;
+}
+
+@media screen and (max-width: 780px) {
+  .map__page {
+    height: 400px;
+  }
 }
 
 .border-primary {
@@ -258,7 +270,8 @@ footer .text__found {
   color: #292D32;
   margin-bottom: 46px;
 }
-.w__button__md__custom{
+
+.w__button__md__custom {
   width: 54px;
   height: 24px;
 }
@@ -330,6 +343,10 @@ footer .text__found {
 .about_text {
   font-size: 16px !important;
   color: #777777;
+}
+
+.header__zag {
+  font-size: 18px;
 }
 
 @media screen and (max-width: 992px) {

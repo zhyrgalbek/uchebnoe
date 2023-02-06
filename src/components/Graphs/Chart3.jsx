@@ -50,5 +50,5 @@ const series = [
 ];
 
 export const Chart3 = () => {
-    return <Chart options={options} series={series} type="area" height="290" width="100%" style={{ flexGrow: 1 }} />
+    return <Chart options={options} series={series} type="area" height="240" width="100%" style={{ flexGrow: 1 }} />
 }

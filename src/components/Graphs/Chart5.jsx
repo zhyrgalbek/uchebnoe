@@ -51,6 +51,7 @@ const options = {
     },
     yaxis: {
         title: false,
+        max: 400,
     },
     fill: {
         colors: ['#3763FF', '#FD9588'],
@@ -67,16 +68,16 @@ const options = {
 
 const series = [
     {
-        name: 'Revenue',
+        name: 'Мужчины',
         data: [248, 280, 348, 250, 350]
     },
     {
-        name: 'Net Profit',
+        name: 'Женщины',
         data: [110, 130, 150, 120, 250]
     },
 ]
 
 
 export const Chart5 = () => {
-    return <Chart options={options} series={series} type="bar" height="290" width="100%" style={{ flexGrow: 1 }} />
+    return <Chart options={options} series={series} type="bar" height="240" width="100%" style={{ flexGrow: 1 }} />
 }

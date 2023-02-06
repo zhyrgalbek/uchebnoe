@@ -33,6 +33,7 @@ import AnalizeCompoent from "../components/AnalizeComponent";
 import SchoolComponent from "../components/SchoolComponent";
 import { ButtonFilter } from "../components/ButtonFilter";
 import { TopFilter } from "../components/TopFilter";
+import { Paper } from "@mui/material";
 // import schoolImage from '../assets/empty-classNameroom_elementary-school-middle-school-high-school.webp'
 
 const data = [
@@ -78,7 +79,7 @@ export const StaticPage = () => {
       <main className="devider">
         <div className="container">
           <div className="title__text">
-            <h1>
+            <h1 className="header__zag">
               Статистические данные по учебным заведениям кыргызской республики
             </h1>
           </div>
@@ -90,7 +91,9 @@ export const StaticPage = () => {
           </div>
           <TopFilter />
           <div className="map__page">
-            <MapLeaflet />
+            <Paper sx={{ width: '100%', height: '100%' }}>
+              <MapLeaflet />
+            </Paper>
           </div>
         </div>
       </main>
