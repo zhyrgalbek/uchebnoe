@@ -87,8 +87,8 @@ const Header = () => {
               </li>
             </div>
           </ul>
-          <ul class="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+          <ul className="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <a
                 className={`nav-link btn ${location.pathname === "/about" ? active : noActive
                   }`}
@@ -99,7 +99,7 @@ const Header = () => {
                 О нас
               </a>
             </li>
-            <li class="nav-item mx-4">
+            <li className="nav-item mx-4">
               <a
                 className={`nav-link btn ${location.pathname === "/" ? active : noActive
                   }`}
@@ -110,17 +110,17 @@ const Header = () => {
                 Статистические данные
               </a>
             </li>
-            <li class="nav-item ms-4 my-auto">
-              <a class={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 1 && transActive}`}
+            <li className="nav-item ms-4 my-auto">
+              <a className={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 1 && transActive}`}
                 href="#"
                 onClick={onClickTranslate}
               >
                 Кырг
               </a>
             </li>
-            <li class="nav-item ms-4 my-auto">
+            <li className="nav-item ms-4 my-auto">
               <a
-                class={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 0 && transActive}`}
+                className={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 0 && transActive}`}
                 aria-current="page"
                 href="#"
                 onClick={onClickTranslate}

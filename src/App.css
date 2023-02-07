@@ -7,6 +7,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 /* @import "../node_modules/hamburgers/dist/hamburgers.min.css";/ */
 /* @import '../node_modules/leaflet/dist/leaflet.css'; */
+/* @import url('../node_modules/materialize-css/dist/css/materialize.min.css'); */
 @import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 
 .leaflet-container {
@@ -223,10 +224,15 @@ footer .text__found {
 
   color: #292D32;
 }
+.numbers_fonts_weight{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+}
 
 .icon__info__custom {
-  width: 80px;
-  height: 34px;
+  width: 72.75px;
+  height: 42px;
 }
 
 .btn-primary {

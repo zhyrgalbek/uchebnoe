@@ -15,8 +15,8 @@ const options = {
         markers: {
             radius: 15,
             fillColors:
-            ['#61B8FF', '#3763FF'
-        ]
+                ['#61B8FF', '#3763FF'
+                ]
         }
     },
     chart: {
