@@ -1,6 +1,15 @@
 import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON } from 'react-leaflet'
 import states from '../utils/Constants/json/states2.json'
 import statesJson from '../utils/Constants/json/statesJson.json'
+import statesBatken from '../utils/Constants/json/statesBatken.json'
+import statesChuy from '../utils/Constants/json/statesChuy.json'
+import statesDjalal from '../utils/Constants/json/statesDjalal.json'
+import statesKol from '../utils/Constants/json/statesKol.json'
+import statesNarin from '../utils/Constants/json/statesNarin.json'
+import statesOsh from '../utils/Constants/json/statesOsh.json'
+import statesTalas from '../utils/Constants/json/statesTalas.json'
+
+
 import styled from 'styled-components'
 import { useEffect, useRef } from 'react'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
@@ -63,14 +72,21 @@ export const MapLeaflet = () => {
         // console.log(countryName)
         // layer.bindPopup(country.id)
         // layer.bindPopup(country.id)
-        // layer.on({
-        //     click: (event) => {
-        //         console.log(event)
-        //     }
-        // })
+        layer.on({
+            click: (event) => {
+                console.log(event)
+            },
+            mouseover: (event) => {
+                console.log(event)
+            }
+        })
     }
     const onMouseOver = () => {
         console.log('h')
+    }
+    const rayonStyle = {
+        fillColor: 'transparent',
+        color: 'transparent',
     }
     return <>
         <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
@@ -90,6 +106,13 @@ export const MapLeaflet = () => {
                     </GeoJSON>
                 }))
             }
+            <GeoJSON data={statesBatken} pathOptions={rayonStyle} />
+            <GeoJSON data={statesChuy} pathOptions={rayonStyle} />
+            <GeoJSON data={statesDjalal} pathOptions={rayonStyle} />
+            <GeoJSON data={statesKol} pathOptions={rayonStyle} />
+            <GeoJSON data={statesNarin} pathOptions={rayonStyle} />
+            <GeoJSON data={statesOsh} pathOptions={rayonStyle} />
+            <GeoJSON data={statesTalas} pathOptions={rayonStyle} />
             <Marker position={marker}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
