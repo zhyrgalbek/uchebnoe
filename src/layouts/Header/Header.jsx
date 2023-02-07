@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import logo from "../../assets/IconCounter/logo.png";
+import { mapActions } from "../../store/slices/mapSlices";
 
 const Header = () => {
+  const { translation } = useSelector(store => store.translate)
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const onClickTranslate = (e) => {
+    e.preventDefault();
+    dispatch(mapActions.setTranslation())
+  }
   const onClickNav = (e, id) => {
     e.preventDefault();
     navigate(`${id}`);
   };
   const active = "btn-primary text-white";
   const noActive = "btn-outline-primary";
+  const transActive = 'active btn-primary text-white';
   return (
     <nav className="navbar container mt-3 navbar-expand-lg navbar-light ">
       <div className="container-fluid">
@@ -102,17 +111,21 @@ const Header = () => {
               </a>
             </li>
             <li class="nav-item ms-4 my-auto">
-              <a class="nav-link btn btn-outline-primary btn-sm py-0" href="#">
+              <a class={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 1 && transActive}`}
+                href="#"
+                onClick={onClickTranslate}
+              >
                 Кырг
               </a>
             </li>
             <li class="nav-item ms-4 my-auto">
               <a
-                class="nav-link active btn btn-primary text-white btn-sm py-0"
+                class={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 0 && transActive}`}
                 aria-current="page"
                 href="#"
+                onClick={onClickTranslate}
               >
-                Рус
+                Руc
               </a>
             </li>
           </ul>
