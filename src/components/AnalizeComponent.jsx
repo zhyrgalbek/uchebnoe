@@ -141,7 +141,7 @@ export default function AnalizeCompoent() {
             <Stack direction="row" sx={{ height: '100%' }} >
               <Paper sx={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                 <Box sx={{ width: "50%", display: "flex", alignItems: 'center' }}>
-                  <Chart2 strokeWidth="0" size="85%" />
+                  <Chart2 strokeWidth="0" size="85%" scale="1" />
                 </Box>
                 <Box sx={{ width: "50%", display: "flex", alignItems: 'center' }}>
                   <Chart2 strokeWidth="3" size="80%" scale="1.05" />

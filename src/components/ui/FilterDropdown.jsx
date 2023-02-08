@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import styled, { css } from "styled-components"
 import frame from '../../assets/Filter/Frame.svg'
 
-export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, ...props }) => {
+export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, ...props }) => {
     const [choiseText, setChoiseText] = useState(text);
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -64,10 +64,11 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, ...prop
                                 aria-labelledby="composition-button"
                                 onKeyDown={handleListKeyDown}
                             >
-                                <MenuItem onClick={(e) => handleClose(e, text)}>no</MenuItem>
-                                <MenuItem onClick={(e) => handleClose(e, 'profile')}>Profile</MenuItem>
-                                <MenuItem onClick={(e) => handleClose(e, 'My acoount')}>My account</MenuItem>
-                                <MenuItem onClick={(e) => handleClose(e, 'Logout')}>Logout</MenuItem>
+                                {
+                                    items?.map((elem) => {
+                                        return <MenuItem onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
+                                    })
+                                }
                             </MenuList>
                         </ClickAwayListener>
                     </Paper>

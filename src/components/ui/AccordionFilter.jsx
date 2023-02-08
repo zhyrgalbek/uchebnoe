@@ -10,7 +10,7 @@ export const AccordionFilter = ({ children, header, ...props }) => {
         >
             {header}
         </AccordionSummary>
-        <AccordionDetails>  
+        <AccordionDetails>
             {children}
         </AccordionDetails>
     </AccordionContainer>

@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import logo from "../../assets/IconCounter/logo.png";
+import { mapActions } from "../../store/slices/mapSlices";
 
 const Header = () => {
+  const { translation } = useSelector(store => store.translate)
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const onClickTranslate = (e) => {
+    e.preventDefault();
+    dispatch(mapActions.setTranslation())
+  }
   const onClickNav = (e, id) => {
     e.preventDefault();
     navigate(`${id}`);
   };
   const active = "btn-primary text-white";
   const noActive = "btn-outline-primary";
+  const transActive = 'active btn-primary text-white';
   return (
     <nav className="navbar container mt-3 navbar-expand-lg navbar-light ">
       <div className="container-fluid">
@@ -78,8 +87,8 @@ const Header = () => {
               </li>
             </div>
           </ul>
-          <ul class="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+          <ul className="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <a
                 className={`nav-link btn ${location.pathname === "/about" ? active : noActive
                   }`}
@@ -90,7 +99,7 @@ const Header = () => {
                 О нас
               </a>
             </li>
-            <li class="nav-item mx-4">
+            <li className="nav-item mx-4">
               <a
                 className={`nav-link btn ${location.pathname === "/" ? active : noActive
                   }`}
@@ -101,18 +110,22 @@ const Header = () => {
                 Статистические данные
               </a>
             </li>
-            <li class="nav-item ms-4 my-auto">
-              <a class="nav-link btn btn-outline-primary btn-sm py-0" href="#">
+            <li className="nav-item ms-4 my-auto">
+              <a className={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 1 && transActive}`}
+                href="#"
+                onClick={onClickTranslate}
+              >
                 Кырг
               </a>
             </li>
-            <li class="nav-item ms-4 my-auto">
+            <li className="nav-item ms-4 my-auto">
               <a
-                class="nav-link active btn btn-primary text-white btn-sm py-0"
+                className={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 0 && transActive}`}
                 aria-current="page"
                 href="#"
+                onClick={onClickTranslate}
               >
-                Рус
+                Руc
               </a>
             </li>
           </ul>
