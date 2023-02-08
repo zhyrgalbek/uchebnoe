@@ -63,7 +63,7 @@ export const FaqComponentRus = () => {
           </h2>
           <div
             id="panel"
-            class="accordion-collapse collapse show"
+            class="accordion-collapse collapse"
             aria-labelledby="panelsStayOpen-headingOne"
           >
             <div class="accordion-body p-0">

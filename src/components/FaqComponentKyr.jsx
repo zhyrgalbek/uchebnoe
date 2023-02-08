@@ -63,7 +63,7 @@ export const FaqComponentKyr = () => {
           </h2>
           <div
             id="panelsStayOpen-collapseTwo"
-            class="accordion-collapse collapse show"
+            class="accordion-collapse collapse"
             aria-labelledby="panelsStayOpen-headingTwo"
           >
             <div class="accordion-body text__accordion__body p-0">
