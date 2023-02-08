@@ -43,6 +43,10 @@ const filterText = [
                 btn_header: 'Класс, курс (в зависимости от учреждения)',
                 btn_text: 'Государственный'
             },
+            {
+                btn_header: '',
+                btn_text: 'Найти'
+            },
         ]
     },
     {
@@ -76,8 +80,17 @@ const filterText = [
                 btn_header: 'Класс, курс (мекемеге жараша)',
                 btn_text: 'Мамлекеттик'
             },
+            {
+                btn_header: '',
+                btn_text: 'Издөө'
+            },
         ]
     }
+]
+
+const colorText = [
+    ['до 20% - много свободных мест', 'до 40% - достаточно мест', 'до 60% - заполнен наполовину', 'до 80% - места ограничены', 'до 100% - почти заполнен'],
+    ['20% чейин - көптөгөн бош орундар', '40% чейин - жетиштүү орундар', '60% чейин - жарымы толтурулган', '80% чейин - орундар чектелген', '100% чейин - дээрлик толук']
 ]
 
 
@@ -89,12 +102,12 @@ export const Filter = ({ header }) => {
         setOpenState(prev => !prev)
     }
     const colorChoise = [
-        <Item><SpanColor color="#6A8AFF" />Все уровни</Item>,
-        <Item><SpanColor color="#51FF00" />до 20% - много свободных мест</Item>,
-        <Item><SpanColor color="#A9FF00" />до 40% - достаточно мест</Item>,
-        <Item><SpanColor color="#FFF800" />до 60% - заполнен наполовину</Item>,
-        <Item><SpanColor color="#FFCD02" />до 80% - места ограничены</Item>,
-        <Item><SpanColor color="#FF0600" />до 100% - почти заполнен</Item>,
+        <Item><SpanColor color="#6A8AFF" />{filterText[translation].btns[5].btn_text}</Item>,
+        <Item><SpanColor color="#51FF00" />{colorText[translation][0]}</Item>,
+        <Item><SpanColor color="#A9FF00" />{colorText[translation][1]}</Item>,
+        <Item><SpanColor color="#FFF800" />{colorText[translation][2]}</Item>,
+        <Item><SpanColor color="#FFCD02" />{colorText[translation][3]}</Item>,
+        <Item><SpanColor color="#FF0600" />{colorText[translation][4]}</Item>,
     ]
     return <FilterContainer>
         <FilterHeader header={header}>{filterText[translation].header}</FilterHeader>
@@ -128,15 +141,15 @@ export const Filter = ({ header }) => {
         </Mobile>
         <Desctop header={header}>
             <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
-                <FilterDropdown header="Область" text="Выберите область" items={oblast} />
-                <FilterDropdown header="Регион, район" text="Выберите район" />
-                <FilterDropdown header="Административный округ (аймак)" text="Выберите округ" />
-                <FilterDropdown header="Тип учреждения" text="Выберите тип" />
-                <FilterDropdown header="Вид учреждения" text="Выберите вид учреждения" />
-                <FilterDropdown header="Цветовая шкала заполненности" text={colorChoise[0]} items={colorChoise} />
-                <FilterDropdown header="Класс, курс (в зависимости от учреждения)" text="Государственный" />
+                <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={oblast} />
+                <FilterDropdown header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} />
+                <FilterDropdown header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} />
+                <FilterDropdown header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} />
+                <FilterDropdown header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} />
+                <FilterDropdown header={filterText[translation].btns[5].btn_header} text={colorChoise[0]} items={colorChoise} />
+                <FilterDropdown header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} />
             </Stack>
-            <FilterSubmit icon={search}>Найти</FilterSubmit>
+            <FilterSubmit icon={search}>{filterText[translation].btns[7].btn_text}</FilterSubmit>
         </Desctop>
     </FilterContainer>
 }

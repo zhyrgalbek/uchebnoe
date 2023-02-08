@@ -1,5 +1,5 @@
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components"
 import frame from '../../assets/Filter/Frame.svg'
 
@@ -7,6 +7,9 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
     const [choiseText, setChoiseText] = useState(text);
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
+    useEffect(() => {
+        setChoiseText(text)
+    }, [text])
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
