@@ -207,7 +207,7 @@ function Footer() {
               Веб-сайт создан при содействии и финансовой поддержке Европейского
               Союза и партнеров:
             </p>
-            <div className="row d-flex justify-content-around text-black">
+            <div className="container row d-flex justify-content-between text-black">
               <div className="col-3 px-0 bg-white border-rounded rounded-2 pt-0 py-auto">
                 <div className="row p-2">
                   <div className="col text-center my-auto py-auto">

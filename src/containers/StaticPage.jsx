@@ -13,27 +13,26 @@ import { FaqComponentKyr } from "../components/FaqComponentKyr";
 
 const staticText = [
   {
-    header: 'Статистические данные по учебным заведениям кыргызской республики',
-    first_title: 'Классификация учебных заведений',
-    second_title: 'Тепловая карта Кыргызстана'
+    header: "Статистические данные по учебным заведениям кыргызской республики",
+    first_title: "Классификация учебных заведений",
+    second_title: "Тепловая карта Кыргызстана",
   },
   {
-    header: 'Кыргыз Республикасынын билим берүү мекемелери боюнча статистикалык маалыматтар',
-    first_title: 'Билим берүү мекемелеринин классификациясы',
-    second_title: 'Кыргызстандын жылуулук картасы'
+    header:
+      "Кыргыз Республикасынын билим берүү мекемелери боюнча статистикалык маалыматтар",
+    first_title: "Билим берүү мекемелеринин классификациясы",
+    second_title: "Кыргызстандын жылуулук картасы",
   },
-]
+];
 
 export const StaticPage = () => {
-  const { translation } = useSelector(store => store.translate)
+  const { translation } = useSelector((store) => store.translate);
   return (
     <>
       <main className="devider">
         <div className="container">
           <div className="title__text">
-            <h1 className="header__zag">
-              {staticText[translation].header}
-            </h1>
+            <h1 className="header__zag">{staticText[translation].header}</h1>
           </div>
           <div className="second_texts">
             <h3 className="third__title__text">
@@ -66,10 +65,90 @@ export const StaticPage = () => {
           <AnalizeCompoent />
         </div>
       </section>
-      <section className="container px-0 rounded rounded-5">
-        <FaqComponentRus />
-        <FaqComponentKyr />
+      <section className="container px-0">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item ">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button
+                class="accordion-button bg-primary text-white d-block text-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
+                Часто задаваемые вопросы
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingOne"
+            >
+              <div class="accordion-body p-0">
+                {" "}
+                <FaqComponentRus />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item ">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button
+                class="accordion-button bg-primary text-white d-block text-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseTwo"
+              >
+                Көп берилүүчү суроолор
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              class="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingTwo"
+            >
+              <div class="accordion-body p-0">
+                {" "}
+                <FaqComponentKyr />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* <section className="container px-0 rounded rounded-5"><div
+        class="accordion accordion-flush rounded border-primary__custom"
+        id="accordionFlushExample"
+      >
+        <div class="accordion-item rounded-top">
+          <h2 class="accordion-header" id="flush-headingfaq">
+            <button
+              class="accordion-button rounded-top collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapsefaq"
+              aria-expanded="true"
+              aria-controls="flush-collapsefaq"
+            >
+              Часто задаваемые вопросы
+            </button>
+          </h2>
+          <div
+            id="flush-collapsefaq"
+            class="accordion-collapse collapse show"
+            aria-labelledby="flush-headingfaq"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              
+            </div>
+          </div>
+        </div>
+      </div></section> */}
     </>
   );
 };
