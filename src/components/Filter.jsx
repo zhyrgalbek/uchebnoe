@@ -206,7 +206,7 @@ const FilterHeader = styled('h2')`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 130%;
     color: #000;
     margin-bottom: 30px;
