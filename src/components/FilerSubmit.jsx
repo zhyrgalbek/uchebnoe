@@ -6,7 +6,7 @@ export const FilterSubmit = ({ icon, children, variant, active, info, ...props }
             variant === 'like' && info
         }
         {
-            variant !== 'more' && variant !== 'like' && icon && <Img src={icon} alt="#" />
+            variant !== 'more' && variant === 'like' && icon && <Img src={icon} alt="#" />
         }
         <Span>
             {children}
@@ -53,6 +53,9 @@ const Submit = styled('button')`
         transition: 0.2s ease;
      `}
     ${props => props.variant === 'more' && css`
+        width: 100%;
+    `}
+    ${props => props.variant === 'desctop' && css`
         width: 100%;
     `}
     ${props => props.variant === 'more' && props.active && css`

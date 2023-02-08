@@ -47,6 +47,10 @@ const filterText = [
                 btn_header: '',
                 btn_text: 'Найти'
             },
+            {
+                btn_header: 'Открыть фильтр',
+                btn_text: 'Закрыть фильтр'
+            },
         ]
     },
     {
@@ -84,6 +88,10 @@ const filterText = [
                 btn_header: '',
                 btn_text: 'Издөө'
             },
+            {
+                btn_header: 'Чыпканы ачуу',
+                btn_text: 'Чыпканы жабуу'
+            },
         ]
     }
 ]
@@ -112,7 +120,7 @@ export const Filter = ({ header }) => {
     return <FilterContainer>
         <FilterHeader header={header}>{filterText[translation].header}</FilterHeader>
         <Mobile header={header}>
-            <AccordionFilter onClick={onChangeFilter} header={<FilterSubmit icon={open} active={openState}>{!openState ? 'Открыть фильтр' : 'Закрыть фильтр'}</FilterSubmit>}>
+            <AccordionFilter onClick={onChangeFilter} header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
                 <Box sx={{ padding: '0 20px' }}>
                     <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} />
                 </Box>
@@ -132,24 +140,26 @@ export const Filter = ({ header }) => {
                     <FilterDropdown header={filterText[translation].btns[5].btn_header} text={colorChoise[0]} items={colorChoise} />
                 </Box>
                 <Box sx={{ padding: '0 20px' }}>
-                    <FilterDropdown header="Класс, курс (в зависимости от учреждения)" text="Государственный" />
+                    <FilterDropdown header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} />
                 </Box>
                 <Box sx={{ padding: '0 20px', paddingBottom: '20px' }}>
-                    <FilterSubmit icon={search}>Найти</FilterSubmit>
+                    <FilterSubmit icon={search}>{filterText[translation].btns[7].btn_text}</FilterSubmit>
                 </Box>
             </AccordionFilter>
         </Mobile>
         <Desctop header={header}>
-            <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
-                <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={oblast} />
-                <FilterDropdown header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} />
-                <FilterDropdown header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} />
-                <FilterDropdown header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} />
-                <FilterDropdown header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} />
-                <FilterDropdown header={filterText[translation].btns[5].btn_header} text={colorChoise[0]} items={colorChoise} />
-                <FilterDropdown header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} />
-            </Stack>
-            <FilterSubmit icon={search}>{filterText[translation].btns[7].btn_text}</FilterSubmit>
+            <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit variant="" icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
+                <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
+                    <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={oblast} />
+                    <FilterDropdown header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} />
+                    <FilterDropdown header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} />
+                    <FilterDropdown header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} />
+                    <FilterDropdown header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} />
+                    <FilterDropdown header={filterText[translation].btns[5].btn_header} text={colorChoise[0]} items={colorChoise} />
+                    <FilterDropdown header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} />
+                </Stack>
+                <FilterSubmit icon={search}>{filterText[translation].btns[7].btn_text}</FilterSubmit>
+            </AccordionFilter>
         </Desctop>
     </FilterContainer>
 }
