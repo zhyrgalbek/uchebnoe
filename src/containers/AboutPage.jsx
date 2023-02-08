@@ -11,9 +11,9 @@ import comand from "../assets/about/comand.svg";
 // import BakcgroundImage from "../assets/about/top_image_about_us.jpg";
 // import BakcgroundImage from "../assets/about/img1.jpg";
 // import BakcgroundImage from "../assets/about/img2.jpg";
-// import BakcgroundImage from "../assets/about/img3.JPG";
+import BakcgroundImage from "../assets/about/img3.JPG";
 // import BakcgroundImage from "../assets/about/img4.JPG";
-import BakcgroundImage from "../assets/about/img5.jpg";
+// import BakcgroundImage from "../assets/about/img5.jpg";
 
 import { useLocation, useNavigate } from "react-router";
 
@@ -68,7 +68,7 @@ export const AboutPage = () => {
           </div>
           <div className="container">
             <div className="row py-0 border rounded-3 border-primary blue">
-              <div className="col-12 col-lg-7 px-5 py-5 my-auto">
+              <div className="col-12 col-lg-7 px-5 py-xl-5 py-4 my-auto">
                 <p className="pt-0 mt-0 title__text mb-4">
                   {AboutText[translation].aboutUsHeader}
                 </p>
@@ -88,7 +88,7 @@ export const AboutPage = () => {
               <div className="col-5 px-0 mx-0 rounded-0">
                 <img
                   src={BakcgroundImage}
-                  className="img-thumbnail h-100 border-0 p-0 ms-auto rounded-2 d-none d-md-block"
+                  className="img-thumbnail w-100 h-100 border-0 p-0 m-0 ms-auto rounded-2 d-none d-md-block"
                 />
               </div>
             </div>
