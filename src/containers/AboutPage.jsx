@@ -8,7 +8,13 @@ import collaborate from "../assets/about/collaborate.svg";
 import gmail from "../assets/about/gmail.svg";
 import people from "../assets/about/people.svg";
 import comand from "../assets/about/comand.svg";
-import BakcgroundImage from "../assets/about/top_image_about_us.jpg";
+// import BakcgroundImage from "../assets/about/top_image_about_us.jpg";
+// import BakcgroundImage from "../assets/about/img1.jpg";
+// import BakcgroundImage from "../assets/about/img2.jpg";
+// import BakcgroundImage from "../assets/about/img3.JPG";
+// import BakcgroundImage from "../assets/about/img4.JPG";
+import BakcgroundImage from "../assets/about/img5.jpg";
+
 import { useLocation, useNavigate } from "react-router";
 
 import { Box, Stack } from "@mui/system";
@@ -138,7 +144,7 @@ export const AboutPage = () => {
                     <h3 className="about_header">Команда</h3>
                     <p className="about_text">
                       Наша команда обладает высокими профессиональными навыками
-                      и мощным духом совместных усилий."{" "}
+                      для достижения общей цели."{" "}
                     </p>
                   </div>
                 </div>

@@ -234,7 +234,7 @@ footer .text__found {
   border-color: #6A8AFF !important;
 }
 
-#headingThree>.accordion-button::after {
+#headingThree>.accordion__custom__faq::after {
   margin-left: 12px !important;
 }
 
@@ -242,7 +242,7 @@ footer .text__found {
   --bs-accordion-btn-bg: #6A8AFF !important;
 }
 
-#headingThree>.accordion-button:not(.collapsed) {
+#headingThree>.accordion__custom__faq:not(.collapsed) {
   color: #ffffff !important;
   background-color: #6A8AFF !important;
 }
@@ -310,15 +310,15 @@ footer .text__found {
   margin-right: 10px;
 }
 
-.accordion-button::after {
+.accordion__custom__faq::after {
   background-image: url("assets/Filter/Framewhite.svg")
 }
 
-.accordion-button:not(.collapsed)::after {
+.accordion__custom__faq:not(.collapsed)::after {
   background-image: url("assets/Filter/Framewhite.svg");
 }
 
-.accordion-button:focus {
+.accordion__custom__faq:focus {
   box-shadow: none !important;
 }
 
