@@ -53,8 +53,8 @@ const data = [
 ]
 
 const buttonText = [
-    ['Все учреждения', 'Дошкольное образование', 'Общеобразовательные', 'Начально-профессиональные', 'Средне-профессиональные', 'Высшее профессиональное', 'Другие учреждения'],
-    ['Бардык мекемелер', 'Мектепке чейинки билим берүү', 'Жалпы билим', 'Башталгыч-профессионал', 'Орто-кесипкөй', 'Жогорку-кесипкөй', 'Башка мекемелер']
+    ['Все учреждения', 'Дошкольное образ.', 'Общеобраз.', 'Начально-проф.', 'Средне-проф.', 'Высшее проф.', 'Др. учреждения'],
+    ['Бардык мекемелер', 'Бала бакча', 'Жалпы б-м', 'Башталгыч-проф.', 'Орто-кесипкөй', 'Жогорку-кесипкөй', 'Башка мекемелер']
 ]
 
 
@@ -82,7 +82,7 @@ export const TopFilter = () => {
             {/* <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения" /> */}
         </Mobile>
         <Desctop>
-            <Stack direction="row" flexWrap="wrap" justifyContent="flex-start">
+            <Stack direction="row" flexWrap="nowrap" justifyContent="flex-start">
                 <FilterButton icon={all} icon2={allblue} onClick={(e) => onClickBtn(e, 0)} primary={filterActive === 0}>{buttonText[translation][0]}</FilterButton>
                 <FilterButton icon2={children} icon={childrenswhite} onClick={(e) => onClickBtn(e, 1)} primary={filterActive === 1}>{buttonText[translation][1]}</FilterButton>
                 <FilterButton icon2={general_education} icon={general_educationwhite} onClick={(e) => onClickBtn(e, 2)} primary={filterActive === 2}>{buttonText[translation][2]}</FilterButton>

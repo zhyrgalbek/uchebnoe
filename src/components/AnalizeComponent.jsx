@@ -13,29 +13,48 @@ import { Chart2 } from "./Graphs/Chart2";
 import { Chart3 } from "./Graphs/Chart3";
 import { Chart4 } from "./Graphs/Chart4";
 import { Chart5 } from "./Graphs/Chart5";
+import { useSelector } from "react-redux";
 
-const options = {
-  chart: {
-    id: "basic-bar",
-  },
-  xaxis: {
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-  },
-};
-const series = [
+
+const analizeText = [
   {
-    name: "series-1",
-    data: [30, 40, 45, 50, 49, 60, 70, 91],
+    header: 'Чуйская область',
+    items: [
+      {
+        item_header: 'Количество учебных заведений:',
+      },
+      {
+        item_header: 'Уровень заполненности учебных заведений в районе по шкале:',
+      },
+      {
+        item_header: 'Общая статистика по области:',
+      },
+    ]
   },
-];
+  {
+    header: 'Чуй облусу',
+    items: [
+      {
+        item_header: 'Билим берүү мекемелеринин саны:',
+      },
+      {
+        item_header: 'Райондогу билим берүү мекемелеринин орун толтуруу деңгээли масштаб боюнча:',
+      },
+      {
+        item_header: 'Облус боюнча жалпы статистика:',
+      },
+    ]
+  },
+]
 
 export default function AnalizeCompoent() {
+  const { translation } = useSelector(store => store.translate)
   return (
     <AnalizeContainer>
-      <AnalizeHeader>Чуйская область</AnalizeHeader>
+      <AnalizeHeader>{analizeText[translation].header}</AnalizeHeader>
       <Box sx={{ marginBottom: "45px" }}>
         <Stack>
-          <ChartHeader>Количество учебных заведений:</ChartHeader>
+          <ChartHeader>{analizeText[translation].items[0].item_header}</ChartHeader>
           <Stack direction="row" justifyContent="flex-start" flexWrap="wrap">
             <IconCounter icon={child}>25</IconCounter>
             <IconCounter icon={general_education}>20</IconCounter>
@@ -49,14 +68,14 @@ export default function AnalizeCompoent() {
       <Box sx={{ marginBottom: "45px" }}>
         <Stack>
           <ChartHeader>
-            Уровень заполненности учебных заведений в районе по шкале:
+            {analizeText[translation].items[1].item_header}
           </ChartHeader>
           <ChartHeader primary>89%</ChartHeader>
           <GraphickLine></GraphickLine>
         </Stack>
       </Box>
       <Box sx={{ marginBottom: "45px" }}>
-        <ChartHeader>Общая статистика по области:</ChartHeader>
+        <ChartHeader>{analizeText[translation].items[2].item_header}</ChartHeader>
         <Grid
           container
           direction="row"

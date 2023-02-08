@@ -9,11 +9,7 @@ const mapSlices = createSlice({
     initialState,
     reducers: {
         setTranslation(state, action) {
-            if (state.translation == 0) {
-                state.translation = 1;
-            } else {
-                state.translation = 0;
-            }
+            state.translation = action.payload
         }
     }
 })

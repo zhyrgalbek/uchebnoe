@@ -57,7 +57,7 @@
   position: relative;
 }
 
-.leaflet-touch .leaflet-bar a > span {
+.leaflet-touch .leaflet-bar a>span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -177,11 +177,9 @@
 }
 
 .map__page iframe {
-  height: clamp(
-    22.5rem,
-    16.32142857142857rem + 24.714285714285715vw,
-    44.125rem
-  );
+  height: clamp(22.5rem,
+      16.32142857142857rem + 24.714285714285715vw,
+      44.125rem);
 }
 
 footer {
@@ -208,8 +206,24 @@ footer .text__found {
 
 .contact__text {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 130%;
+}
+
+.list-group-item {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 130%;
+}
+
+.list-group-item-text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
 }
 
 .charts__texts {
@@ -222,6 +236,7 @@ footer .text__found {
 
   color: #292d32;
 }
+
 .numbers_fonts_weight {
   font-weight: 400;
   font-size: 14px;
@@ -238,15 +253,15 @@ footer .text__found {
   border-color: #6a8aff !important;
 }
 
-#headingThree > .accordion__custom__faq::after {
+#headingThree>.accordion__custom__faq::after {
   margin-left: 12px !important;
 }
 
-#acc_bg__custom > .accordion {
+#acc_bg__custom>.accordion {
   --bs-accordion-btn-bg: #6a8aff !important;
 }
 
-#headingThree > .accordion__custom__faq:not(.collapsed) {
+#headingThree>.accordion__custom__faq:not(.collapsed) {
   color: #ffffff !important;
   background-color: #6a8aff !important;
 }
@@ -346,6 +361,7 @@ footer .text__found {
     width: 100% !important;
   }
 }
+
 .accordion-button:focus {
   border-color: none !important;
   box-shadow: none !important;
@@ -359,11 +375,12 @@ footer .text__found {
   /* border-top-right-radius: 5px !important;  */
 }
 
-.accordion-button{
+.accordion-button {
   /* border-top-left-radius: 5px !important;  */
   /* border-top-right-radius: 5px !important;  */
 }
-.border-primary__custom{
+
+.border-primary__custom {
   border: 1px solid #dae2ff;
 }
 
@@ -380,6 +397,7 @@ footer .text__found {
   /* */
   /* */
 }
+
 /* .licei {
   padding-right: 128px;
 

@@ -68,7 +68,7 @@ export const StaticPage = () => {
       </section>
       <section className="container px-0 rounded rounded-5">
         <FaqComponentRus />
-        <FaqComponentKyr />
+        {/* <FaqComponentKyr /> */}
       </section>
     </>
   );

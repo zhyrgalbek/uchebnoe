@@ -74,19 +74,23 @@ export const MapLeaflet = () => {
     const onEachFeature = (country, layer) => {
         layer.on({
             click: (event) => {
-                console.log(country.id)
+                // console.log(country.id)
             },
             mouseover: (event) => {
                 layer.bindPopup(country.id)
-                event.target.setStyle({
-                    fillColor: 'red'
-                })
+                if (event.target.setStyle()) {
+                    event.target.setStyle({
+                        fillColor: 'red'
+                    })
+                }
             },
             mouseout: (event) => {
-                // rayonStyle.color = 'transparent'
+                // rayonStyle.color = 'transparent')
+                // if (event.target.tagName !== 'img') {
                 event.target.setStyle({
                     fillColor: 'transparent'
                 })
+                // }
             }
         })
     }
