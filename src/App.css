@@ -362,6 +362,13 @@ footer .text__found {
   }
 }
 
+.accordion-button:not(.collapsed)::after {
+  background-image: url("/src/assets/Filter/Framewhite.svg") !important;
+}
+.accordion-button::after {
+  background-image: url("/src/assets/Filter/Frame.svg") !important;
+}
+
 .accordion-button:focus {
   border-color: none !important;
   box-shadow: none !important;
@@ -371,8 +378,6 @@ footer .text__found {
   color: #fff;
   background-color: #6a8aff !important;
   box-shadow: none !important;
-  /* border-top-left-radius: 5px !important;  */
-  /* border-top-right-radius: 5px !important;  */
 }
 
 .border-primary__custom {
