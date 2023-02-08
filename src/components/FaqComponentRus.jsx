@@ -51,18 +51,18 @@ export const FaqComponentRus = () => {
         <div class="accordion-item ">
           <h2 class="accordion-header" id="panelsStayOpen-headingOne">
             <button
-              class="accordion-button bg-primary text-white d-block text-center"
+              class="accordion-button text__button__custom bg-primary text-white d-block text-center"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#panelsStayOpen-collapseOne"
-              aria-expanded="false"
-              aria-controls="panelsStayOpen-collapseOne"
+              data-bs-target="#panel"
+              aria-expanded="true"
+              aria-controls="panel"
             >
               Часто задаваемые вопросы
             </button>
           </h2>
           <div
-            id="panelsStayOpen-collapseOne"
+            id="panel"
             class="accordion-collapse collapse show"
             aria-labelledby="panelsStayOpen-headingOne"
           >
@@ -74,7 +74,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item rounded-top">
                   <h2 class="accordion-header" id="flush-headingOne">
                     <button
-                      class="accordion-button rounded-top collapsed"
+                      class="accordion-button text__button__custom rounded-top collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseOne"
@@ -90,7 +90,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingOne"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Регистрация ребенка в системе «Электронная запись в школу»
                       возможна при условии исполнения ребенку полных 6 лет на начало
                       учебного года.
@@ -100,7 +100,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingTwo">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseTwo"
@@ -116,7 +116,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingTwo"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Регистрация ребенка в системе «Электронная запись в школу»
                       возможна при условии исполнения ребенку полных 6 лет на начало
                       учебного года.
@@ -126,7 +126,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingThree">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseThree"
@@ -143,7 +143,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingThree"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Регистрация ребенка в системе «Электронная запись в школу»
                       возможна при условии исполнения ребенку полных 6 лет на начало
                       учебного года.
@@ -153,7 +153,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingFour">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseFour"
@@ -169,20 +169,15 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingFour"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
-                      Placeholder content for this accordion, which is intended to
-                      demonstrate the <code>.accordion-flush</code> class. This is the
-                      third item's accordion body. Nothing more exciting happening here
-                      in terms of content, but just filling up the space to make it
-                      look, at least at first glance, a bit more representative of how
-                      this would look in a real-world application.
+                    <div class="accordion-body text__accordion__body">
+                    Где и как узнать, за какой школой закреплен мой адрес проживания?
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingFive">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseFive"
@@ -198,7 +193,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingFive"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Система не предусматривает прием детей в специализированные школы
                       и классы, интернаты, музыкальные школы.
                     </div>
@@ -207,7 +202,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingSix">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseSix"
@@ -223,7 +218,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingSix"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Вы можете выбрать для своего ребенка только одну школу по
                       микроучастку либо вне микроучастка.
                     </div>
@@ -232,7 +227,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingSeven">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseSeven"
@@ -249,7 +244,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingSeven"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Зарегистрировать ребенка заранее в текущем году, чтобы пойти в
                       следующем году в школу нельзя. То есть, год регистрации и год
                       поступления в школу должны совпадать.
@@ -259,7 +254,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingEight">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseEight"
@@ -275,7 +270,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingEight"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Система не предусматривает прием детей в специализированные школы
                       и классы, интернаты, музыкальные школы.
                     </div>
@@ -284,7 +279,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingNine">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseNine"
@@ -301,7 +296,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingNine"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Граждане другой страны, проживающие на территории г. Бишкек тоже
                       могут регистрировать своих детей, используя Инструкцию для
                       родителей.
@@ -311,7 +306,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingTen">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseTen"
@@ -328,7 +323,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-headingTen"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <iframe
                         class="ql-video"
                         frameborder="0"
@@ -341,7 +336,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading11">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse11"
@@ -357,7 +352,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-heading11"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Если у Вас нет одного документа на момент подачи заявления в
                       системе, Вам нужно взять/получить не хватающий документ и
                       продолжить регистрацию. Поскольку система не примет Вашу заявку
@@ -373,7 +368,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading12">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse12"
@@ -390,7 +385,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-heading12"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Если вы до 15 августа передумали, то можно заново поменять заявку
                       через личный кабинет родителя, выбрать желаемую школу. Но если Вы
                       передумали после 15 августа Вам необходимо узнать издан ли приказ
@@ -404,7 +399,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading13">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse13"
@@ -421,7 +416,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-heading13"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <iframe
                         class="ql-video"
                         frameborder="0"
@@ -519,7 +514,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading14">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse14"
@@ -536,7 +531,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-heading14"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <p>
                         У вас отсутствует адрес регистрации. Вам необходимо обратиться в
                         ближайший ЦОН для уточнения адреса. В случае, если Вы являетесь
@@ -573,7 +568,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading15">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse15"
@@ -589,7 +584,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-heading15"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <p>Райондук борборлор</p>
                       <ol>
                         <li>
@@ -1279,7 +1274,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading16">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse16"
@@ -1295,7 +1290,7 @@ export const FaqComponentRus = () => {
                     aria-labelledby="flush-heading16"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <p>
                         При утере пароля от «Личного кабинета родителя», Вам необходимо
                         пройти по ссылке «Забыли пароль», далее следовать указанным
@@ -1313,7 +1308,7 @@ export const FaqComponentRus = () => {
                 <div class="accordion-item rounded rounded-bottom">
                   <h2 class="accordion-header" id="flush-heading17">
                     <button
-                      class="accordion-button  rounded-bottom collapsed"
+                      class="accordion-button text__button__custom  rounded-bottom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse17"

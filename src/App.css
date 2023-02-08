@@ -375,13 +375,15 @@ footer .text__found {
   /* border-top-right-radius: 5px !important;  */
 }
 
-.accordion-button {
-  /* border-top-left-radius: 5px !important;  */
-  /* border-top-right-radius: 5px !important;  */
-}
-
 .border-primary__custom {
   border: 1px solid #dae2ff;
+}
+.text__accordion__body{
+  font-size: 14px;
+}
+.text__button__custom{
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .accordion-button:not(.collapsed)::after {

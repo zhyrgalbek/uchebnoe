@@ -51,7 +51,7 @@ export const FaqComponentKyr = () => {
         <div class="accordion-item ">
           <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
             <button
-              class="accordion-button bg-primary text-white d-block text-center"
+              class="accordion-button text__button__custom bg-primary text-white d-block text-center"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseTwo"
@@ -66,7 +66,7 @@ export const FaqComponentKyr = () => {
             class="accordion-collapse collapse show"
             aria-labelledby="panelsStayOpen-headingTwo"
           >
-            <div class="accordion-body p-0">
+            <div class="accordion-body text__accordion__body p-0">
               <div
                 class="accordion accordion-flush rounded border-primary__custom"
                 id="accordionFlushExample"
@@ -74,7 +74,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item rounded-top">
                   <h2 class="accordion-header" id="flush-headingOne">
                     <button
-                      class="accordion-button rounded-top collapsed"
+                      class="accordion-button text__button__custom rounded-top collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseOne"
@@ -90,7 +90,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingOne"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Баланы “Мектепке электрондук кабыл алуу” системасында каттоо,
                       эгерде бала окуу жылынын башында 6 жашка толсо, мүмкүн.
                     </div>
@@ -99,7 +99,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingTwo">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseTwo"
@@ -115,7 +115,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingTwo"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Баланы “Мектепке электрондук кабыл алуу” системасында каттоо,
                       эгерде бала окуу жылынын башында 6 жашка толсо, мүмкүн.
                     </div>
@@ -124,7 +124,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingThree">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseThree"
@@ -140,7 +140,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingThree"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Баланы “Мектепке электрондук кабыл алуу” системасында каттоо,
                       эгерде бала окуу жылынын башында 6 жашка толсо, мүмкүн.
                     </div>
@@ -149,7 +149,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingFour">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseFour"
@@ -166,7 +166,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingFour"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Менин жашаган дарегиме кайсы мектеп дайындалганын кайдан жана
                       кантип билсем болот?
                     </div>
@@ -175,7 +175,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingFive">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseFive"
@@ -191,7 +191,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingFive"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Бул системада балдарды адистештирилген мектептерге жана
                       класстарга, мектеп-интернаттарга, музыкалык мектептерге кабыл алуу
                       каралган эмес.
@@ -201,7 +201,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingSix">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseSix"
@@ -217,7 +217,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingSix"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Балаңызга кичи райондун ичинде же кичи райондун сыртында бир гана
                       мектеп тандай аласыз.
                     </div>
@@ -226,7 +226,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingSeven">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseSeven"
@@ -242,7 +242,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingSeven"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Кийинки жылы мектепке баруу үчүн быйылкы жылы баланы алдын ала
                       каттоого мүмкүн эмес. Башкача айтканда, катталган жылы менен окуу
                       жайга кабыл алынган жылы дал келиши керек.
@@ -252,7 +252,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingEight">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseEight"
@@ -268,7 +268,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingEight"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Бул системада балдарды адистештирилген мектептерге жана
                       класстарга, мектеп-интернаттарга, музыкалык мектептерге кабыл алуу
                       каралган эмес.
@@ -278,7 +278,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingNine">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseNine"
@@ -295,7 +295,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingNine"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Бишкектин аймагында жашаган башка өлкөнүн жарандары да Ата-энелер
                       үчүн нускама аркылуу балдарын каттоодон өткөрө алышат.
                     </div>
@@ -304,7 +304,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingTen">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapseTen"
@@ -321,7 +321,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-headingTen"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <iframe
                         class="ql-video"
                         frameborder="0"
@@ -334,7 +334,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading11">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse11"
@@ -351,7 +351,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading11"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Системада арыз берген учурда бир документ жок болсо, жетишпеген
                       документти алып/алып, каттоону улантуу керек. 3 негизги
                       документтин бири жок болсо (баланын туулгандыгы тууралуу
@@ -367,7 +367,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading12">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse12"
@@ -384,7 +384,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading12"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       Эгерде сиз 15-августка чейин оюңуздан кайтсаңыз, анда сиз
                       ата-эненин жеке кабинети аркылуу арызды кайра өзгөртө аласыз,
                       каалаган мектепти тандаңыз. Бирок эгер сиз 15-августтан кийин
@@ -400,7 +400,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading13">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse13"
@@ -417,7 +417,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading13"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <iframe
                         class="ql-video"
                         frameborder="0"
@@ -507,7 +507,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading14">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse14"
@@ -524,7 +524,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading14"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <p>
                         Сиздин каттоо дарегиңиз табылган жок. Даректи тактоо үчүн
                         жакынкы калкты тейлөө борборуна кайрылуу керек. Эгерде сиз үйдүн
@@ -558,7 +558,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading15">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse15"
@@ -574,7 +574,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading15"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <p>Райондук борборлор</p>
                       <ol>
                         <li>
@@ -1264,7 +1264,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-heading16">
                     <button
-                      class="accordion-button collapsed"
+                      class="accordion-button text__button__custom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse16"
@@ -1280,7 +1280,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading16"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body">
+                    <div class="accordion-body text__accordion__body">
                       <p>
                         Эгер сиз "Ата-эненин жеке кабинетинен" сырсөзүңүздү жоготуп
                         алсаңыз, "Паролуңузду унутуп калдыңыз" шилтемеси боюнча өтүшүңүз
@@ -1298,7 +1298,7 @@ export const FaqComponentKyr = () => {
                 <div class="accordion-item rounded rounded-bottom">
                   <h2 class="accordion-header" id="flush-heading17">
                     <button
-                      class="accordion-button  rounded-bottom collapsed"
+                      class="accordion-button text__button__custom  rounded-bottom collapsed"
                       type="button"
                       data-bs-toggle="collapse"
                       data-bs-target="#flush-collapse17"
@@ -1314,7 +1314,7 @@ export const FaqComponentKyr = () => {
                     aria-labelledby="flush-heading17"
                     data-bs-parent="#accordionFlushExample"
                   >
-                    <div class="accordion-body  rounded-bottom">
+                    <div class="accordion-body text__accordion__body  rounded-bottom">
                       <p>
                         Тиркемени жокко чыгаруу үчүн "Ата-эненин жеке кабинетине"
                         өтүңүз, "Арыздар" бөлүмүн тандаңыз / өтүнмө ачылгандан кийин
