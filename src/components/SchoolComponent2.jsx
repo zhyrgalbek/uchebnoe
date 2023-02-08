@@ -9,13 +9,12 @@ import count from '../assets/IconCounter/count.svg'
 import share from '../assets/IconCounter/share.svg'
 import like from '../assets/IconCounter/like.svg'
 import people_twice from "../assets/IconCounter/people_twice.svg";
-import SchoolIcon from '../assets/shcoolIcon.svg'
-import image from '../assets/image.svg'
 import { AccordionFilter } from "./ui/AccordionFilter"
 import { Box, Stack } from "@mui/material"
 import { useState } from "react"
 import { FilterSubmit } from "./FilerSubmit"
 import { IconCounter } from "./ui/IconCounter"
+import { Grid } from "@mui/material";
 
 export const SchoolComponent2 = () => {
     const [openMore, setOpenMore] = useState(false);
@@ -70,46 +69,48 @@ export const SchoolComponent2 = () => {
                         <img src={people_twice} alt="" />
                         150
                     </div>
-                    <BoxCard>
-                        <AccordionFilter onClick={onClickMore} header={<FilterSubmit variant="more" icon={togglewhite} icon2={toggle} active={openMore}>Подробнее</FilterSubmit>}>
-                            <BoxCard>
-                                <Stack direction="column" spacing={2}>
-                                    <Th>Местоположение:</Th>
-                                    <Td>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</Td>
-                                </Stack>
-                            </BoxCard>
-                            <BoxCard>
-                                <Stack direction="column" spacing={2}>
-                                    <Th>Время работы:</Th>
-                                    <Td>9:00 - 17:30</Td>
-                                </Stack>
-                            </BoxCard>
-                            <BoxCard>
-                                <Stack direction="column" spacing={2}>
-                                    <Th>ФИО Директора/Руководителя</Th>
-                                    <Td>Баланчаев Баланча Баланчаевич</Td>
-                                </Stack>
-                            </BoxCard>
-                            <BoxCard>
-                                <Stack direction="column" spacing={2}>
-                                    <Th>Количество преподавателей:</Th>
-                                    <Td><IconCounter icon={count}>40</IconCounter></Td>
-                                </Stack>
-                            </BoxCard>
-                            <BoxCard>
-                                <Stack direction="column" spacing={2}>
-                                    <Th>Наличие столовой:</Th>
-                                    <Td>Имеется</Td>
-                                </Stack>
-                            </BoxCard>
-                            <BoxCard>
-                                <Stack direction="column" spacing={2}>
-                                    <Th>Наличие спортивного зала:</Th>
-                                    <Td>Имеется</Td>
-                                </Stack>
-                            </BoxCard>
-                        </AccordionFilter>
-                    </BoxCard>
+                    <Grid container xs={12} lg={10} sx={{ margin: '0' }}>
+                        <BoxCard>
+                            <AccordionFilter onClick={onClickMore} none header={<FilterSubmit variant="more" icon={togglewhite} icon2={toggle} active={openMore}>Подробнее</FilterSubmit>}>
+                                <BoxCard>
+                                    <Stack direction="column" spacing={2}>
+                                        <Th>Местоположение:</Th>
+                                        <Td>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</Td>
+                                    </Stack>
+                                </BoxCard>
+                                <BoxCard>
+                                    <Stack direction="column" spacing={2}>
+                                        <Th>Время работы:</Th>
+                                        <Td>9:00 - 17:30</Td>
+                                    </Stack>
+                                </BoxCard>
+                                <BoxCard>
+                                    <Stack direction="column" spacing={2}>
+                                        <Th>ФИО Директора/Руководителя</Th>
+                                        <Td>Баланчаев Баланча Баланчаевич</Td>
+                                    </Stack>
+                                </BoxCard>
+                                <BoxCard>
+                                    <Stack direction="column" spacing={2}>
+                                        <Th>Количество преподавателей:</Th>
+                                        <Td><IconCounter icon={count}>40</IconCounter></Td>
+                                    </Stack>
+                                </BoxCard>
+                                <BoxCard>
+                                    <Stack direction="column" spacing={2}>
+                                        <Th>Наличие столовой:</Th>
+                                        <Td>Имеется</Td>
+                                    </Stack>
+                                </BoxCard>
+                                <BoxCard>
+                                    <Stack direction="column" spacing={2}>
+                                        <Th>Наличие спортивного зала:</Th>
+                                        <Td>Имеется</Td>
+                                    </Stack>
+                                </BoxCard>
+                            </AccordionFilter>
+                        </BoxCard>
+                    </Grid>
                 </div>
                 <div className="col">
                     <img

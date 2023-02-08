@@ -1,15 +1,4 @@
 import { Box } from "@mui/system";
-// import {
-//     Chart as ChartJS,
-//     CategoryScale,
-//     LinearScale,
-//     BarElement,
-//     Title,
-//     Tooltip,
-//     Legend,
-// } from 'chart.js';
-// import { Bar } from 'react-chartjs-2';
-import Chart from "react-apexcharts";
 import styled, { css } from "styled-components";
 import { IconCounter } from "./ui/IconCounter";
 import { Grid, Paper, Stack } from "@mui/material";
@@ -24,61 +13,6 @@ import { Chart2 } from "./Graphs/Chart2";
 import { Chart3 } from "./Graphs/Chart3";
 import { Chart4 } from "./Graphs/Chart4";
 import { Chart5 } from "./Graphs/Chart5";
-// import faker from 'faker';
-
-// ChartJS.register(
-//     CategoryScale,
-//     LinearScale,
-//     BarElement,
-//     Title,
-//     Tooltip,
-//     Legend
-// );
-
-// export const options = {
-//     elements: {
-//         bar: {
-//             // border
-//         }
-//     },
-//     layout: {
-//         padding: 0
-//     },
-//     responsive: true,
-//     plugins: {
-//         legend: {
-//             display: true,
-//             position: 'bottom',
-//             rotation: 30,
-//         },
-//         title: {
-//             display: true,
-//             text: 'Статистика демография',
-//         },
-//     },
-// };
-
-// const labels = ['2019', '2020', '2021', '2022'];
-
-// export const data = {
-//     labels,
-//     datasets: [
-//         {
-//             label: 'Мужчины',
-//             data: { [2019]: 300, [2020]: 400, [2021]: 500, [2022]: 300 },
-//             backgroundColor: '#3763FF',
-//             barThickness: 22,
-//             maxBarThickness: 15,
-//         },
-//         {
-//             label: 'Женщины',
-//             data: { [2019]: 230, [2020]: 250, [2021]: 350, [2022]: 50 },
-//             backgroundColor: '#FD9588',
-//             barThickness: 22,
-//             maxBarThickness: 15,
-//         },
-//     ],
-// };
 
 const options = {
   chart: {

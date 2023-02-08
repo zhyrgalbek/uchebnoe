@@ -1,7 +1,3 @@
-import { Grid } from "@mui/material";
-import styled from "styled-components";
-import { FilterSubmit } from "../components/FilerSubmit";
-// import BakcgroundImage from "../assets/about/HelpMin.jpg";
 import flag from "../assets/about/flag.svg";
 import doc from "../assets/about/doc.svg";
 import collaborate from "../assets/about/collaborate.svg";

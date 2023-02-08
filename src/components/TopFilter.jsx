@@ -17,6 +17,7 @@ import higher from '../assets/FilterMap/higher.svg'
 import higherwhite from '../assets/FilterMap/higherwhite.svg'
 import other from '../assets/FilterMap/other.svg'
 import otherwhite from '../assets/FilterMap/otherwhite.svg'
+import { useSelector } from "react-redux";
 
 const data = [
     {
@@ -51,8 +52,14 @@ const data = [
     },
 ]
 
+const buttonText = [
+    ['Все учреждения', 'Дошкольное образование', 'Общеобразовательные', 'Начально-профессиональные', 'Средне-профессиональные', 'Высшее профессиональное', 'Другие учреждения'],
+    ['Бардык мекемелер', 'Мектепке чейинки билим берүү', 'Жалпы билим', 'Башталгыч-профессионал', 'Орто-кесипкөй', 'Жогорку-кесипкөй', 'Башка мекемелер']
+]
+
 
 export const TopFilter = () => {
+    const { translation } = useSelector(store => store.translate)
     const [accordionOpen, setAccordionOpen] = useState(false);
     const [filterActive, setFilterActive] = useState(0)
     const onChangeAccordion = () => {
@@ -64,25 +71,25 @@ export const TopFilter = () => {
     }
     return <>
         <Mobile>
-            <AccordionFilter onClick={onChangeAccordion} header={<FilterButton mobile icon={all} icon2={allblue} toggle active={accordionOpen} primary={filterActive === 0} onClick={(e) => onClickBtn(e, 0)}>Все учреждения</FilterButton>}>
-                <FilterButton mobile icon2={children} icon={childrenswhite} primary={filterActive === 1} onClick={(e) => onClickBtn(e, 1)}>Дошкольное образование</FilterButton>
-                <FilterButton mobile icon2={general_education} icon={general_educationwhite} primary={filterActive === 2} onClick={(e) => onClickBtn(e, 2)}>Общеобразовательные</FilterButton>
-                <FilterButton mobile icon2={Group} icon={Groupwhite} primary={filterActive === 3} onClick={(e) => onClickBtn(e, 3)}>Начально-профессиональные</FilterButton>
-                <FilterButton mobile icon2={average} icon={averagewhite} primary={filterActive === 4} onClick={(e) => onClickBtn(e, 4)}>Средне-профессиональные</FilterButton>
-                <FilterButton mobile icon2={higher} icon={higherwhite} primary={filterActive === 5} onClick={(e) => onClickBtn(e, 5)}>Высшее профессиональное</FilterButton>
-                <FilterButton mobile icon2={other} icon={otherwhite} primary={filterActive === 6} onClick={(e) => onClickBtn(e, 6)}>Другие учреждения</FilterButton>
+            <AccordionFilter onClick={onChangeAccordion} header={<FilterButton mobile icon={all} icon2={allblue} toggle active={accordionOpen} primary={filterActive === 0} onClick={(e) => onClickBtn(e, 0)}>{buttonText[translation][0]}</FilterButton>}>
+                <FilterButton mobile icon2={children} icon={childrenswhite} primary={filterActive === 1} onClick={(e) => onClickBtn(e, 1)}>{buttonText[translation][1]}</FilterButton>
+                <FilterButton mobile icon2={general_education} icon={general_educationwhite} primary={filterActive === 2} onClick={(e) => onClickBtn(e, 2)}>{buttonText[translation][2]}</FilterButton>
+                <FilterButton mobile icon2={Group} icon={Groupwhite} primary={filterActive === 3} onClick={(e) => onClickBtn(e, 3)}>{buttonText[translation][3]}</FilterButton>
+                <FilterButton mobile icon2={average} icon={averagewhite} primary={filterActive === 4} onClick={(e) => onClickBtn(e, 4)}>{buttonText[translation][4]}</FilterButton>
+                <FilterButton mobile icon2={higher} icon={higherwhite} primary={filterActive === 5} onClick={(e) => onClickBtn(e, 5)}>{buttonText[translation][5]}</FilterButton>
+                <FilterButton mobile icon2={other} icon={otherwhite} primary={filterActive === 6} onClick={(e) => onClickBtn(e, 6)}>{buttonText[translation][6]}</FilterButton>
             </AccordionFilter>
             {/* <FilterDropdown arr={data} icon={all} icon2={allblue} mobile text="Все учреждения" /> */}
         </Mobile>
         <Desctop>
             <Stack direction="row" flexWrap="wrap" justifyContent="flex-start">
-                <FilterButton icon={all} icon2={allblue} onClick={(e) => onClickBtn(e, 0)} primary={filterActive === 0}>Все учреждения</FilterButton>
-                <FilterButton icon2={children} icon={childrenswhite} onClick={(e) => onClickBtn(e, 1)} primary={filterActive === 1}>Дошкольное образование</FilterButton>
-                <FilterButton icon2={general_education} icon={general_educationwhite} onClick={(e) => onClickBtn(e, 2)} primary={filterActive === 2}>Общеобразовательные</FilterButton>
-                <FilterButton icon2={Group} icon={Groupwhite} onClick={(e) => onClickBtn(e, 3)} primary={filterActive === 3}>Начально-профессиональные</FilterButton>
-                <FilterButton icon2={average} icon={averagewhite} onClick={(e) => onClickBtn(e, 4)} primary={filterActive === 4}>Средне-профессиональные</FilterButton>
-                <FilterButton icon2={higher} icon={higherwhite} onClick={(e) => onClickBtn(e, 5)} primary={filterActive === 5}>Высшее профессиональное</FilterButton>
-                <FilterButton icon2={other} icon={otherwhite} onClick={(e) => onClickBtn(e, 6)} primary={filterActive === 6}>Другие учреждения</FilterButton>
+                <FilterButton icon={all} icon2={allblue} onClick={(e) => onClickBtn(e, 0)} primary={filterActive === 0}>{buttonText[translation][0]}</FilterButton>
+                <FilterButton icon2={children} icon={childrenswhite} onClick={(e) => onClickBtn(e, 1)} primary={filterActive === 1}>{buttonText[translation][1]}</FilterButton>
+                <FilterButton icon2={general_education} icon={general_educationwhite} onClick={(e) => onClickBtn(e, 2)} primary={filterActive === 2}>{buttonText[translation][2]}</FilterButton>
+                <FilterButton icon2={Group} icon={Groupwhite} onClick={(e) => onClickBtn(e, 3)} primary={filterActive === 3}>{buttonText[translation][3]}</FilterButton>
+                <FilterButton icon2={average} icon={averagewhite} onClick={(e) => onClickBtn(e, 4)} primary={filterActive === 4}>{buttonText[translation][4]}</FilterButton>
+                <FilterButton icon2={higher} icon={higherwhite} onClick={(e) => onClickBtn(e, 5)} primary={filterActive === 5}>{buttonText[translation][5]}</FilterButton>
+                <FilterButton icon2={other} icon={otherwhite} onClick={(e) => onClickBtn(e, 6)} primary={filterActive === 6}>{buttonText[translation][6]}</FilterButton>
             </Stack>
         </Desctop>
     </>
