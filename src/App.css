@@ -68,6 +68,9 @@
   font-family: "Inter";
   font-style: normal;
 }
+.text-width-logo{
+  width: 15rem;
+}
 
 .logo__text {
   font-weight: 500;
@@ -157,6 +160,15 @@
 .bg-primary {
   background-color: #6a8aff !important;
 }
+
+.btn-primary:hover {
+  background-color: #4470F3 !important;
+}
+
+.btn-primary:focus {
+  background-color: #3763FF !important;
+}
+
 
 .map__page {
   margin-top: 20px;

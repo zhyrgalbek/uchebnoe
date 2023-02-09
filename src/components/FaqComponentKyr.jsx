@@ -51,7 +51,7 @@ export const FaqComponentKyr = () => {
         <div class="accordion-item ">
           <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
             <button
-              class="accordion-button text__button__custom bg-primary text-white d-block text-center"
+              class="btn btn-primary w-100 text__button__custom bg-primary text-white d-block text-center"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseTwo"
