@@ -11,6 +11,7 @@ import store from './store/index.js';
 import { Provider } from 'react-redux';
 // Chart.defaults.elements.bar.width = 10;
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
@@ -21,4 +22,7 @@ root.render(
     </BrowserRouter>
   </Provider>
 );
+
+
+  
 
