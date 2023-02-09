@@ -224,5 +224,5 @@ const FilterHeader = styled('h2')`
 
 const FilterContainer = styled('div')`
     /* border: 1px solid red; */
-    margin-bottom: 69px;
+    margin-bottom: 40px;
 `

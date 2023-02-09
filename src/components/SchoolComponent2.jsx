@@ -156,7 +156,7 @@ export const SchoolComponent2 = () => {
                                 <Td className="mt-1">Баланчаев Баланча Баланчаевич</Td>
                             </Stack>
                         </BoxCard>
-                        <div className="box d-flex align-items-center mb-1 my-md-4">
+                        <div className="box d-flex align-items-center mb-1 my-md-2">
                             <p className="mb-0 d-flex charts__texts align-items-center pb-0">
                                 {SchoolText[translation].items[1].item_header}
                                 <div className="numbers_fonts_weight mx-3 icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
@@ -169,7 +169,7 @@ export const SchoolComponent2 = () => {
                             <img src={man} alt="" />
                             150
                         </div>
-                        <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
+                        <div className="box d-flex align-items-center mb-1 mt-4 my-md-2">
                             <p className="mb-0 d-flex charts__texts align-items-center pb-0">
                                 {SchoolText[translation].items[2].item_header}
                                 <div className="mx-3 numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
@@ -178,7 +178,7 @@ export const SchoolComponent2 = () => {
                                 </div>
                             </p>
                         </div>
-                        <div className=" numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-flex d-md-none mb-3 justify-content-center align-items-center">
+                        <div className=" numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-flex d-md-none mb-2 justify-content-center align-items-center">
                             <img src={man} alt="" />
                             150
                         </div>
@@ -270,7 +270,7 @@ export const SchoolComponent2 = () => {
 };
 
 const BoxCard = styled(Box)`
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 const Td = styled("div")`
