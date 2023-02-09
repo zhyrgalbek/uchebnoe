@@ -107,6 +107,8 @@
   font-size: 13px !important;
   /* margin-bottom: 24px; */
   /* margin-left: 30px; */
+  font-weight: 600;
+  color: #777777;
   text-transform: uppercase;
 }
 
@@ -365,6 +367,7 @@ footer .text__found {
 .accordion-button:not(.collapsed)::after {
   background-image: url("/src/assets/Filter/Framewhite.svg") !important;
 }
+
 .accordion-button::after {
   background-image: url("/src/assets/Filter/Frame.svg") !important;
 }
@@ -383,10 +386,12 @@ footer .text__found {
 .border-primary__custom {
   border: 1px solid #dae2ff;
 }
-.text__accordion__body{
+
+.text__accordion__body {
   font-size: 14px;
 }
-.text__button__custom{
+
+.text__button__custom {
   font-weight: 600;
   font-size: 16px;
 }

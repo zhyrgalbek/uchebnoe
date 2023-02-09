@@ -74,25 +74,33 @@ export const MapLeaflet = () => {
     const onEachFeature = (country, layer) => {
         layer.on({
             click: (event) => {
-                // console.log(country.id)
+                console.log(country.id)
+                console.log(statesNarin)
             },
             mouseover: (event) => {
-                layer.bindPopup(country.id)
-                if (event.target.setStyle()) {
-                    event.target.setStyle({
-                        fillColor: 'red'
-                    })
-                }
+                event.target.setStyle({
+                    fillColor: 'red'
+                })
             },
             mouseout: (event) => {
-                // rayonStyle.color = 'transparent')
-                // if (event.target.tagName !== 'img') {
                 event.target.setStyle({
                     fillColor: 'transparent'
                 })
-                // }
             }
         })
+    }
+    const onMouseEvent = (event, type) => {
+        switch (type) {
+            case 'over':
+                // Set the style of the Leaflet DOM element:
+                event.target.setStyle({ fillColor: 'red' })
+                break
+            case 'out':
+                event.target.setStyle({ fillColor: 'transparent' })
+                break
+            default:
+                break
+        }
     }
     const rayonStyle = {
         fillColor: 'transparent',
@@ -110,19 +118,20 @@ export const MapLeaflet = () => {
                     if (color[index]) {
                         countryStyle.color = color[index]
                     }
-                    return <GeoJSON key={elem.id} data={elem} pathOptions={countryStyle} onEachFeature={onEachFeature}>
-                        {/* <Tooltip>{elem.id}</Tooltip> */}
-                        {/* <Popup>{elem.id}</Popup> */}
+                    return <GeoJSON key={elem.id} data={elem} pathOptions={countryStyle} eventHandlers={{
+                        mouseover: (event, type) => onMouseEvent(event, 'over'),
+                        mouseout: (event, type) => onMouseEvent(event, 'out'),
+                    }}>
                     </GeoJSON>
                 }))
             }
-            <GeoJSON data={statesBatken} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
-            <GeoJSON data={statesChuy} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
-            <GeoJSON data={statesDjalal} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
-            <GeoJSON data={statesKol} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
-            <GeoJSON data={statesNarin} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
-            <GeoJSON data={statesOsh} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
-            <GeoJSON data={statesTalas} pathOptions={rayonStyle} onEachFeature={onEachFeature} />
+            {/* <GeoJSON data={statesBatken} pathOptions={rayonStyle} />
+            <GeoJSON data={statesChuy} pathOptions={rayonStyle} />
+            <GeoJSON data={statesDjalal} pathOptions={rayonStyle} />
+            <GeoJSON data={statesKol} pathOptions={rayonStyle} />
+            <GeoJSON data={statesNarin} pathOptions={rayonStyle} />
+            <GeoJSON data={statesOsh} pathOptions={rayonStyle} />
+            <GeoJSON data={statesTalas} pathOptions={rayonStyle} /> */}
             <Marker position={marker}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
@@ -134,7 +143,7 @@ export const MapLeaflet = () => {
                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                 />
             </LayerGroup>
-            {/* <LayersControl>
+            <LayersControl position="bottomright">
                 <LayersControl.Overlay name="google">
                     <TileLayer
                         url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
@@ -153,7 +162,7 @@ export const MapLeaflet = () => {
                         />
                     </LayerGroup>
                 </LayersControl.Overlay>
-            </LayersControl> */}
+            </LayersControl>
             {/* {
                 statesJson.map(elem => {
                     return <Polygon key={elem.name} pathOptions={{ color: elem.color, fillColor: 'transparent' }} positions={elem.latlngs} />

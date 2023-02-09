@@ -140,10 +140,7 @@ export const SchoolComponent2 = () => {
                                 <img src={man} alt="example image" />
                                 150
                             </div>
-                            <div className="mx-3 numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
-                                <img src={woman} alt="example image" />
-                                35
-                            </div>
+
                         </p>
                     </div>
                     <div className="icon__info__custom numbers_fonts_weight border border-1 border-primary rounded-2 mx-2 d-flex d-md-none  justify-content-center align-items-center">
@@ -153,10 +150,6 @@ export const SchoolComponent2 = () => {
                     <div className="box d-flex align-items-center mb-1 mt-4 my-md-4">
                         <p className="mb-0 d-flex charts__texts align-items-center pb-0">
                             {SchoolText[translation].items[2].item_header}
-                            <div className="mx-3 icon__info__custom numbers_fonts_weight border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
-                                <img src={boy} alt="example image" />
-                                41
-                            </div>
                             <div className="mx-3 numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
                                 <img src={girl} alt="example image" />
                                 35
@@ -169,44 +162,24 @@ export const SchoolComponent2 = () => {
                     </div>
                     <Grid container xs={12} lg={10} sx={{ margin: '0' }}>
                         <BoxCard>
-                            <AccordionFilter onClick={onClickMore} none header={<FilterSubmit variant="more" icon={togglewhite} icon2={toggle} active={openMore}>{SchoolText[translation].btns[0]}</FilterSubmit>}>
-                                <BoxCard>
-                                    <Stack direction="column" spacing={2}>
-                                        <Th>{SchoolText[translation].items[3].item_header}:</Th>
-                                        <Td>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</Td>
-                                    </Stack>
-                                </BoxCard>
-                                <BoxCard>
-                                    <Stack direction="column" spacing={2}>
-                                        <Th>{SchoolText[translation].items[4].item_header}</Th>
-                                        <Td>9:00 - 17:30</Td>
-                                    </Stack>
-                                </BoxCard>
-                                <BoxCard>
-                                    <Stack direction="column" spacing={2}>
-                                        <Th>{SchoolText[translation].items[5].item_header}</Th>
-                                        <Td>Баланчаев Баланча Баланчаевич</Td>
-                                    </Stack>
-                                </BoxCard>
-                                <BoxCard>
-                                    <Stack direction="column" spacing={2}>
-                                        <Th>{SchoolText[translation].items[6].item_header}</Th>
-                                        <Td><IconCounter icon={count}>40</IconCounter></Td>
-                                    </Stack>
-                                </BoxCard>
-                                <BoxCard>
-                                    <Stack direction="column" spacing={2}>
-                                        <Th>{SchoolText[translation].items[7].item_header}</Th>
-                                        <Td>{SchoolText[translation].items[7].item_text}</Td>
-                                    </Stack>
-                                </BoxCard>
-                                <BoxCard>
-                                    <Stack direction="column" spacing={2}>
-                                        <Th>{SchoolText[translation].items[8].item_header}</Th>
-                                        <Td>{SchoolText[translation].items[7].item_text}</Td>
-                                    </Stack>
-                                </BoxCard>
-                            </AccordionFilter>
+                            <BoxCard>
+                                <Stack direction="column" spacing={2}>
+                                    <Th>{SchoolText[translation].items[3].item_header}:</Th>
+                                    <Td>Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22</Td>
+                                </Stack>
+                            </BoxCard>
+                            <BoxCard>
+                                <Stack direction="column" spacing={2}>
+                                    <Th>{SchoolText[translation].items[5].item_header}</Th>
+                                    <Td>Баланчаев Баланча Баланчаевич</Td>
+                                </Stack>
+                            </BoxCard>
+                            <BoxCard>
+                                <Stack direction="row" spacing={1} alignItems="center">
+                                    <Th>{SchoolText[translation].items[6].item_header}</Th>
+                                    <Td><IconCounter icon={count}>40</IconCounter></Td>
+                                </Stack>
+                            </BoxCard>
                         </BoxCard>
                     </Grid>
                 </div>

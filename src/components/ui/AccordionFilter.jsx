@@ -32,4 +32,7 @@ const AccordionContainer = styled(Accordion)`
     & .css-1iji0d4{
         padding: 0;
     }
+    & .css-u7qq7e{
+        padding: 0;
+    }
 `
