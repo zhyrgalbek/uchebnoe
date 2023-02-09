@@ -40,7 +40,7 @@ const Header = () => {
       <div className="container-fluid">
         <a className="navbar-brand d-flex my-auto logo__text" href="index.html" onClick={onClickLogo}>
           <img src={logo} width="32" height="30" />
-          <div className="w-50 text-wrap">
+          <div className="text-wrap text-width-logo">
             {headerText[translation].logo}
           </div>
         </a>
@@ -78,7 +78,7 @@ const Header = () => {
                 </a>
               </li>
             </div>
-            <div className="d-flex col-md-6 col-12 ms-auto">
+            <div className="d-flex col-md-12 col-12 ms-auto">
               <li className="nav-item w-25">
                 <a
                   className={`nav-link btn ${location.pathname === "/about" ? active : noActive
@@ -104,7 +104,7 @@ const Header = () => {
             </div>
           </ul>
           <ul className="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item w-auto">
               <a
                 className={`nav-link btn ${location.pathname === "/about" ? active : noActive
                   }`}
@@ -115,7 +115,7 @@ const Header = () => {
                 {headerText[translation].btns[0]}
               </a>
             </li>
-            <li className="nav-item mx-4">
+            <li className="nav-item mx-4 w-auto">
               <a
                 className={`nav-link btn ${location.pathname === "/" ? active : noActive
                   }`}

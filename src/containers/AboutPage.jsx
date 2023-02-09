@@ -61,7 +61,7 @@ export const AboutPage = () => {
           </div>
           <div className="container">
             <div className="row py-0 border rounded-3 border-primary blue">
-              <div className="col-12 col-lg-7 px-4 py-xl-5 py-4 my-auto">
+              <div className="col-12 col-lg-6 px-4 py-xl-5 py-4 my-auto">
                 <p className="pt-0 mt-0 title__text mb-4">
                   {AboutText[translation].aboutUsHeader}
                 </p>
@@ -78,7 +78,7 @@ export const AboutPage = () => {
                   </a>
                 </div>
               </div>
-              <div className="col-5 px-0 mx-0 rounded-0">
+              <div className="col-6 ms-auto px-0 rounded-0">
                 <img
                   src={BakcgroundImage}
                   className="img-thumbnail w-100 h-100 border-0 p-0 m-0 ms-auto rounded-2 d-none d-md-block"
