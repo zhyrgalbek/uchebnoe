@@ -16,6 +16,8 @@ import { FilterSubmit } from "./FilerSubmit"
 import { IconCounter } from "./ui/IconCounter"
 import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
+import ModalComponent from "./ui/ModalComponent"
+import Podelitsya from "./Podelitsya"
 
 
 const SchoolText = [
@@ -115,8 +117,17 @@ const SchoolText = [
 
 export const SchoolComponent2 = () => {
     const { translation } = useSelector(store => store.translate)
+    const [openModal, setOpenModal] = useState(false);
+    const onClickShare = () => {
+        // alert('Hello world')
+        setOpenModal(true)
+    }
+    const handleCloseModal = () => {
+        setOpenModal(false)
+    }
     const [openMore, setOpenMore] = useState(false);
     const onClickMore = () => {
+        alert('Hello world')
         setOpenMore(prev => !prev)
     }
     return <section className="mt-5">
@@ -201,7 +212,7 @@ export const SchoolComponent2 = () => {
                             <FilterSubmit info={<IconCounter like icon={like}>490</IconCounter>} variant="like">{SchoolText[translation].btns[1]}</FilterSubmit>
                         </BoxCard>
                         <BoxCard>
-                            <FilterSubmit icon={share} variant="like">{SchoolText[translation].btns[2]}</FilterSubmit>
+                            <FilterSubmit icon={share} variant="like" onClick={onClickShare}>{SchoolText[translation].btns[2]}</FilterSubmit>
                         </BoxCard>
                     </div>
                     <div className="d-flex d-md-none flex-column mt-4">
@@ -215,6 +226,9 @@ export const SchoolComponent2 = () => {
                 </div>
             </div>
         </div>
+        <ModalComponent handleClose={handleCloseModal} open={openModal}>
+            <Podelitsya />
+        </ModalComponent>
     </section >
 }
 

@@ -47,6 +47,12 @@ const Submit = styled('button')`
     cursor: pointer;
     margin-bottom: 0;
     transition: 0.5s ease;
+    &:hover{
+        background: #4470F3;
+    }
+    &:active{
+        background: #3763FF;
+    }
     ${props => props.active && css`
         background: #3763FF;
         margin-bottom: 20px;
