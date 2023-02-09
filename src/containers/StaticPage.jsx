@@ -9,7 +9,8 @@ import { SchoolComponent2 } from "../components/SchoolComponent2";
 import { useSelector } from "react-redux";
 import { FaqComponentRus } from "../components/FaqComponentRus";
 import { FaqComponentKyr } from "../components/FaqComponentKyr";
-import ChatBot from "../components/ChatBot";
+import ChatBot, { ChatBotButton } from "../components/ChatBot";
+
 // import schoolImage from '../assets/empty-classNameroom_elementary-school-middle-school-high-school.webp'
 
 const staticText = [
@@ -45,7 +46,7 @@ export const StaticPage = () => {
             <h2 className="second__title__text text-center">
               {staticText[translation].second_title}
             </h2>
-            <Paper sx={{ width: "100%", height: "100%" }} elevation={6} >
+            <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
               <MapLeaflet />
             </Paper>
           </div>
@@ -66,14 +67,15 @@ export const StaticPage = () => {
           <AnalizeCompoent />
         </div>
       </section>
-      <section className="container">
+      {/* <section className="container">
         <ChatBot />
-      </section>
+      </section> */}
       <section className="container">
         {
           translation === 0 ? <FaqComponentRus /> : <FaqComponentKyr />
         }
       </section>
+      <ChatBotButton />
     </>
   );
 };

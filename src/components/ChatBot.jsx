@@ -1,6 +1,43 @@
 import { Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
+import chatbot from "../assets/IconCounter/message.svg";
+
+
+export const ChatBotButton = () => {
+    const [openChat, setOpenChat] = useState(false)
+    const onClickChatBtn = () => {
+        setOpenChat(true);
+    }
+    return <ContainerChat>
+        {
+            openChat && <ChatBot />
+        }
+        <ChatBotButtonBlock onClick={onClickChatBtn}>
+            <img
+                src={chatbot}
+                width="40"
+                style={{
+                }}
+            />
+        </ChatBotButtonBlock>
+    </ContainerChat>
+}
+
+const ContainerChat = styled('div')`
+    position: fixed;
+    z-index: 1000;
+    top: 65%;
+    left: 94%;
+    `
+
+const ChatBotButtonBlock = styled('button')`
+    padding: 10px 10px;
+    text-align: center;
+    background-color: #6A8AFF;
+    border: 1px solid #6A8AFF;
+    border-radius: 50px;
+`
 
 
 const data = [
@@ -168,6 +205,9 @@ const ChatBotHeader = styled('div')`
 
 const ChatBotBlock = styled('div')`
     /* border: 1px solid red; */
+    position: absolute;
+    bottom: -30px;
+    right: 0;
     width: 360px;
     border-radius: 6px;
     margin-bottom: 30px;
