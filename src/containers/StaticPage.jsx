@@ -44,7 +44,7 @@ export const StaticPage = () => {
             <h2 className="second__title__text text-center">
               {staticText[translation].second_title}
             </h2>
-            <Paper sx={{ width: "100%", height: "100%" }}>
+            <Paper sx={{ width: "100%", height: "100%" }} elevation={6} >
               <MapLeaflet />
             </Paper>
           </div>
