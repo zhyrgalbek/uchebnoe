@@ -184,7 +184,7 @@ const AnalizeHeader = styled("h3")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 130%;
   color: #292d32;
   margin-bottom: 30px;
@@ -193,7 +193,7 @@ const AnalizeHeader = styled("h3")`
 const AnalizeContainer = styled("div")`
   border: 1px solid #dae2ff;
   border-radius: 6px;
-  padding: 30px;
+  padding: 20px;
   margin: 0;
   margin-bottom: 86px;
   margin-top: 70px;

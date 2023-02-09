@@ -232,10 +232,6 @@ footer .text__found {
   font-weight: 600;
   font-size: 16px;
   line-height: 140%;
-  /* or 22px */
-
-  /* Основной цвет шрифтов */
-
   color: #292d32;
 }
 
@@ -245,7 +241,20 @@ footer .text__found {
   line-height: 140%;
 }
 
+
+
+.font__contacts_data{
+  font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
 .icon__info__custom {
+  border: 1px solid #A2B6FF !important;
   width: 72.75px;
   height: 42px;
 }
@@ -409,6 +418,15 @@ footer .text__found {
   /* */
   /* */
 }
+.profession__text__styled
+{
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 130%;
+  color: #292d32;
+  margin-bottom: 30px;}
 
 /* .licei {
   padding-right: 128px;

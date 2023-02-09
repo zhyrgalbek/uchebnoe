@@ -118,7 +118,7 @@ export const Filter = ({ header }) => {
         <Item><SpanColor color="#FF0600" />{colorText[translation][4]}</Item>,
     ]
     return <FilterContainer>
-        <FilterHeader header={header}>{filterText[translation].header}</FilterHeader>
+        <FilterHeader className="font__contacts_data" header={header}>{filterText[translation].header}</FilterHeader>
         <Mobile header={header}>
             <AccordionFilter onClick={onChangeFilter} header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
                 <Box sx={{ padding: '0 20px' }}>
@@ -209,7 +209,7 @@ const FilterHeader = styled('h2')`
     font-size: 18px;
     line-height: 130%;
     color: #000;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     @media screen and (max-width: 780px){
         display: none;
     }
