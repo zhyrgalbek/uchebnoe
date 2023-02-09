@@ -9,6 +9,7 @@ import { SchoolComponent2 } from "../components/SchoolComponent2";
 import { useSelector } from "react-redux";
 import { FaqComponentRus } from "../components/FaqComponentRus";
 import { FaqComponentKyr } from "../components/FaqComponentKyr";
+import ChatBot from "../components/ChatBot";
 // import schoolImage from '../assets/empty-classNameroom_elementary-school-middle-school-high-school.webp'
 
 const staticText = [
@@ -64,6 +65,9 @@ export const StaticPage = () => {
         <div className="container">
           <AnalizeCompoent />
         </div>
+      </section>
+      <section className="container">
+        <ChatBot />
       </section>
       <section className="container">
         {
