@@ -20,8 +20,8 @@ export const FilterSubmit = ({ icon, children, variant, active, info, ...props }
 const Span = styled('span')`
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 0.875rem
     line-height: 130%;
     color: #fff;
     display: inline-block;
@@ -36,7 +36,7 @@ const Img = styled('img')`
 `
 
 const Submit = styled('button')`
-    border-radius: 6px;
+    border-radius: 3px;
     background: #6A8AFF;
     width: clamp(15.9375rem, 4.910714285714285rem + 22.61904761904762vw, 21.875rem);
     padding: 13px 0;

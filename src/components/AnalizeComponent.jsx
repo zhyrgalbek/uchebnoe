@@ -35,10 +35,10 @@ const analizeText = [
     header: 'Чуй облусу',
     items: [
       {
-        item_header: 'Билим берүү мекемелеринин саны:',
+        item_header: 'Окуу жайлардын саны:',
       },
       {
-        item_header: 'Райондогу билим берүү мекемелеринин орун толтуруу деңгээли масштаб боюнча:',
+        item_header: 'Райондогу окуу жайлардын  орун толтуруу деңгээли шкала менен:',
       },
       {
         item_header: 'Облус боюнча жалпы статистика:',
@@ -138,7 +138,7 @@ const P = styled("p")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 12px;
   color: #5a5a5a;
   margin-left: 0px;
@@ -167,7 +167,7 @@ const ChartHeader = styled("h4")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 140%;
   margin-bottom: 24px;
   color: #292d32;
@@ -184,10 +184,10 @@ const AnalizeHeader = styled("h3")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 130%;
   color: #292d32;
-  margin-bottom: 30px;
+  margin-bottom: 1.25rem;
 `;
 
 const AnalizeContainer = styled("div")`

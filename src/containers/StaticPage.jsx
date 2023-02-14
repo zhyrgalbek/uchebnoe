@@ -1,17 +1,12 @@
 import styled from "styled-components";
 import { MapLeaflet } from "../components/MapLeaflet/MapLeaflet";
 import { Filter } from "../components/Filter";
-import { useState } from "react";
 import AnalizeCompoent from "../components/AnalizeComponent";
 import { TopFilter } from "../components/TopFilter";
 import { Paper } from "@mui/material";
 import { SchoolComponent2 } from "../components/SchoolComponent2";
 import { useSelector } from "react-redux";
-import { FaqComponentRus } from "../components/FaqComponentRus";
-import { FaqComponentKyr } from "../components/FaqComponentKyr";
-import ChatBot, { ChatBotButton } from "../components/ChatBot";
-
-// import schoolImage from '../assets/empty-classNameroom_elementary-school-middle-school-high-school.webp'
+import { FaqComponent } from "../components/FaqComponent/FaqComponent";
 
 const staticText = [
   {
@@ -21,8 +16,8 @@ const staticText = [
   },
   {
     header:
-      "Кыргыз Республикасынын билим берүү мекемелери боюнча статистикалык маалыматтар",
-    first_title: "Билим берүү мекемелеринин классификациясы",
+      "КЫРГЫЗ РЕСПУБЛИКАСЫНЫН окуу жайлары БОЮНЧА СТАТИСТИКАЛЫК МААЛЫМАТТАР",
+    first_title: "Окуу жайлардын классификациясы ",
     second_title: "Кыргызстандын жылуулук картасы",
   },
 ];
@@ -67,15 +62,9 @@ export const StaticPage = () => {
           <AnalizeCompoent />
         </div>
       </section>
-      {/* <section className="container">
-        <ChatBot />
-      </section> */}
       <section className="container">
-        {
-          translation === 0 ? <FaqComponentRus /> : <FaqComponentKyr />
-        }
+        <FaqComponent />
       </section>
-      <ChatBotButton />
     </>
   );
 };

@@ -216,7 +216,7 @@ export const AboutPage = () => {
             </div>
           </div>
         </div>
-        
+
       </section>
     </>
   );

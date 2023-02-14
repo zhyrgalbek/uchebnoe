@@ -1,4 +1,5 @@
 import Chart from 'react-apexcharts';
+import { useSelector } from 'react-redux';
 
 const options = {
     grid: {
@@ -69,18 +70,19 @@ const options = {
     },
 }
 
-const series = [
-    {
-        name: 'Мужчины',
-        data: [248, 280, 348, 250, 350]
-    },
-    {
-        name: 'Женщины',
-        data: [110, 130, 150, 120, 250]
-    },
-]
-
+const text = [['Мужчины', 'Женщины'], ['Эркектер', 'Аялдар']];
 
 export const Chart5 = () => {
+    const { translation } = useSelector(store => store.translate);
+    const series = [
+        {
+            name: text[translation][0],
+            data: [248, 280, 348, 250, 350]
+        },
+        {
+            name: text[translation][1],
+            data: [110, 130, 150, 120, 250]
+        },
+    ]
     return <Chart options={options} series={series} type="bar" height="240" width="100%" style={{ flexGrow: 1 }} />
 }

@@ -69,7 +69,7 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                             >
                                 {
                                     items?.map((elem) => {
-                                        return <MenuItem onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
+                                        return <MenuItem sx={{ fontSize: '1rem' }} onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
                                     })
                                 }
                             </MenuList>
@@ -117,7 +117,7 @@ const DropdownHeader = styled('h3')`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 130%;
     color: #292D32;
     margin-bottom: 5px;
@@ -126,7 +126,7 @@ const Span = styled('span')`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 140%;
     color: #5A5A5A;
 `
@@ -137,13 +137,13 @@ const Img = styled('img')`
     `}
 `
 const FilterDropdownButton = styled('button')`
-    border: 1px solid #3763FF;
-    padding: 12px 10px;
-    border-radius: 6px;
+    border: 1px solid rgba(55, 99, 255, 0.4);
+    padding: 0.75rem 0.625rem;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: #fff;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 1.25rem;
 `

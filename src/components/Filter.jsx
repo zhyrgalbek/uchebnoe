@@ -121,28 +121,28 @@ export const Filter = ({ header }) => {
         <FilterHeader className="font__contacts_data" header={header}>{filterText[translation].header}</FilterHeader>
         <Mobile header={header}>
             <AccordionFilter onClick={onChangeFilter} header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} />
                 </Box>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} />
                 </Box>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} />
                 </Box>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} />
                 </Box>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} />
                 </Box>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[5].btn_header} text={colorChoise[0]} items={colorChoise} />
                 </Box>
-                <Box sx={{ padding: '0 20px' }}>
+                <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} />
                 </Box>
-                <Box sx={{ padding: '0 20px', paddingBottom: '20px' }}>
+                <Box sx={{ padding: '0 1.25rem', paddingBottom: '1.25rem' }}>
                     <FilterSubmit icon={search}>{filterText[translation].btns[7].btn_text}</FilterSubmit>
                 </Box>
             </AccordionFilter>
@@ -167,8 +167,8 @@ export const Filter = ({ header }) => {
 const SpanColor = styled('span')`
     display: inline-block;
     background: ${props => props.color};
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     margin-right: 10px;
 `
 
@@ -176,6 +176,7 @@ const Item = styled('div')`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    font-size: 0.875rem;
 `
 
 const Desctop = styled('div')`
@@ -206,7 +207,7 @@ const FilterHeader = styled('h2')`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 130%;
     color: #000;
     margin-bottom: 20px;

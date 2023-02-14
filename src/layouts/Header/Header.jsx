@@ -7,11 +7,11 @@ import { mapActions } from "../../store/slices/mapSlices";
 const headerText = [
   {
     logo: 'Министерство образования и науки Кыргызской республики',
-    btns: ['О нас', 'Статистические данные']
+    btns: ['О нас', 'Статистические данные', 'очередь в СОШ и ДОО']
   },
   {
     logo: 'Кыргыз Республикасынын Билим берүү жана илим министрлиги',
-    btns: ['Биз жөнүндө', 'Статистикалык маалымат']
+    btns: ['Биз жөнүндө', 'Статистикалык маалымат', 'очередь в СОШ и ДОО']
   },
 ]
 
@@ -19,7 +19,7 @@ const Header = () => {
   const { translation } = useSelector(store => store.translate)
   const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const onClickTranslate = (e, id) => {
     e.preventDefault();
     dispatch(mapActions.setTranslation(id))
@@ -78,10 +78,20 @@ const Header = () => {
                 </a>
               </li>
             </div>
-            <div className="d-flex col-md-12 col-12 ms-auto">
-              <li className="nav-item w-25">
+            <div className="d-flex flex-wrap col-md-12 col-12">
+              <li className="nav-item me-2 mb-2">
                 <a
-                  className={`nav-link btn ${location.pathname === "/about" ? active : noActive
+                  className={`nav-link btn px-2 ${noActive}`}
+                  href="https://mektep.edu.gov.kg/"
+                  target="_blank"
+                >
+                  {" "}
+                  {headerText[translation].btns[2]}
+                </a>
+              </li>
+              <li className="nav-item me-2 mb-2">
+                <a
+                  className={`nav-link btn px-2 ${location.pathname === "/about" ? active : noActive
                     }`}
                   aria-current="page"
                   href="#"
@@ -90,9 +100,9 @@ const Header = () => {
                   {headerText[translation].btns[0]}
                 </a>
               </li>
-              <li className="nav-item mx-0 mx-lg-4 ms-4 w-75">
+              <li className="nav-item mx-0 me-2 mb-2 mx-lg-4">
                 <a
-                  className={`nav-link btn ${location.pathname === "/" ? active : noActive
+                  className={`nav-link px-2 btn ${location.pathname === "/" ? active : noActive
                     }`}
                   href="#"
                   onClick={(e) => onClickNav(e, "/")}
@@ -104,6 +114,16 @@ const Header = () => {
             </div>
           </ul>
           <ul className="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item mx-4 w-auto">
+              <a
+                className={`nav-link btn ${noActive}`}
+                aria-current="page"
+                href="https://mektep.edu.gov.kg/"
+                target="_blank"
+              >
+                {headerText[translation].btns[2]}
+              </a>
+            </li>
             <li className="nav-item w-auto">
               <a
                 className={`nav-link btn ${location.pathname === "/about" ? active : noActive

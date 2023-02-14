@@ -26,8 +26,8 @@ export const FilterButton = ({ children, icon, icon2, left, mobile, toggle, acti
     const offHover = () => {
         setHover(false)
     }
-    return <Block onMouseOver={onHover} onMouseOut={offHover} left={left} {...props} mobile={mobile} primary={primary}>
-        <Img src={hover || primary ? icon : icon2} alt="#" />
+    return <Block onMouseOver={onHover} onMouseOut={offHover} icon={icon} icon2={icon2} left={left} {...props} mobile={mobile} primary={primary}>
+        {/* <Img src={hover || primary ? icon : icon2} alt="#" /> */}
         <Span>{children}</Span>
         {
             toggle && <Div>
@@ -53,16 +53,17 @@ const Span = styled('span')`
 `
 const Block = styled('button')`
     position: relative;
-    border: 1px solid #6A8AFF;
+    border: 1px solid rgba(55, 99, 255, 0.4);
     /* width: clamp(16.875rem, 16.59059633027523rem + 1.4220183486238533vw, 18.8125rem); */
     /* width: ; */
     padding: 10px 10px;
+    padding-left: 30px;
     text-align: left;
     font-weight: 400;
-    border-radius: 6px;
+    border-radius: 3px;
     font-family: 'Inter';
     font-style: normal;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 140%;
     display: flex;
     align-items: center;
@@ -73,21 +74,25 @@ const Block = styled('button')`
     overflow: hidden;
     transition: .3s;
     cursor: pointer;
-    ${props => props.primary && css`
-        background: #6A8AFF;
-        color: #fff;
-    `}
+    background-image: url(${props => props.icon2});
+    background-repeat: no-repeat;
+    background-position: 6px 50%;
     &:hover{
-        background: #6A8AFF;
+        background-color: #6A8AFF;
         color: #fff;
-        /* font-weight: 300; */
+        background-image: url(${props => props.icon});
     }
+    ${props => props.primary && css`
+        background-color: #6A8AFF;
+        color: #fff;
+        background-image: url(${props => props.icon});
+    `}
     ${props => props.mobile && css`
         width: 100%;
         margin: 0;
         border-radius: 0;
         border: 1px solid transparent;
-        padding: 14px 15px;
+        /* padding: 14px 15px; */
     `}
     .ripple {
         position: absolute;

@@ -1,4 +1,4 @@
-import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON } from 'react-leaflet'
+import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON, useMap, Rectangle } from 'react-leaflet'
 import states from '../../utils/Constants/json/states2.json'
 import statesJson from '../../utils/Constants/json/statesJson.json'
 import statesBatken from '../../utils/Constants/json/statesBatken.json'
@@ -12,9 +12,11 @@ import point from '../../assets/Map/Exclamation_point.svg'
 import krestik from '../../assets/Map/krestik.svg'
 
 import styled, { css } from 'styled-components'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Paper } from '@mui/material'
 import { Stack } from '@mui/system'
+import L from "leaflet"
+import { getIconTest, iconInstitution1, iconInstitution1Green, iconInstitution1GreenWhite, iconInstitution1Red, iconInstitution1Yellow, iconInstitution1YellowWhite, iconInstitution2, iconInstitution2Green, iconInstitution2GreenWhite, iconInstitution2Red, iconInstitution2Yellow, iconInstitution2YellowWhite, iconInstitution3, iconInstitution3Green, iconInstitution3GreenWhite, iconInstitution4, iconInstitution4Green, iconInstitution5, iconInstitution6, iconInstitution7 } from './markers/Icon'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
 console.log(states)
@@ -53,9 +55,9 @@ function MapPlaceholder() {
 }
 
 function MyComponent() {
-    const map = useMapEvents({
+    const mapEvents = useMapEvents({
         click: () => {
-            map.locate()
+            mapEvents.locate()
         },
         locationfound: (location) => {
             console.log('location found:', location)
@@ -64,79 +66,281 @@ function MyComponent() {
     return null
 }
 
+function getReverseArr(arr) {
+    return arr.map(elem => {
+        return elem.reverse()
+    })
+}
+
+const innerBounds = [
+    [49.505, -2.09],
+    [53.505, 2.09],
+]
+const outerBounds = [
+    [50.505, -29.09],
+    [52.505, 29.09],
+]
+
+const redColor = { color: 'red' }
+const whiteColor = { color: 'white' }
 
 const color = ['#FDCA7B', '#AFD791', '#FCF58D', '#6CC49A', '#58C6C7', '#FBF48C', '#FAC97C', '#51C2C0', '#51C2C0', 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0)']
 
-const marker = [42.857254, 74.600725];
+const markers = [
+    [42.868135, 74.633753],
+    [42.852028, 74.526636],
+    [42.882727, 74.539339],
+    [42.867883, 74.631693],
+    [42.839694, 74.602511]
+]
 
-export const MapLeaflet = () => {
-    const animateRef = useRef(true)
-    const onEachFeature = (country, layer) => {
+function SetBoundsRectangles() {
+    const [bounds, setBounds] = useState(outerBounds)
+    const [rayons, setRayons] = useState(null)
+    const [bool, setBool] = useState(false)
+
+    const map = useMap()
+    const innerHandlers = useMemo(
+        () => ({
+            click() {
+                setBounds(innerBounds)
+                map.fitBounds(innerBounds)
+            },
+        }),
+        [map],
+    )
+
+    const onChangeRayons = (country, layer) => {
+        // layer.Tooltip(`<p>${country.id}</p>`);
         layer.on({
             click: (event) => {
-                console.log(country.id)
-                console.log(statesNarin)
+                map.fitBounds(L.geoJson(country).getBounds())
             },
             mouseover: (event) => {
-                event.target.setStyle({
-                    fillColor: 'red'
-                })
+                // event.target.setStyle({
+                //     fillColor: 'red'
+                // })
             },
             mouseout: (event) => {
-                event.target.setStyle({
-                    fillColor: 'transparent'
-                })
+                // event.target.setStyle({
+                //     fillColor: 'transparent'
+                // })
             }
         })
     }
-    const onMouseEvent = (event, type) => {
-        switch (type) {
-            case 'over':
-                // Set the style of the Leaflet DOM element:
-                event.target.setStyle({ fillColor: 'red' })
-                break
-            case 'out':
-                event.target.setStyle({ fillColor: 'transparent' })
-                break
-            default:
-                break
-        }
+
+    useEffect(() => {
+        console.log(rayons)
+    }, [rayons])
+
+    const onEachFeature = (country, layer) => {
+        let boolffff = false;
+        layer.on({
+            click: (event) => {
+                boolffff = true
+                map.fitBounds(L.geoJson(country).getBounds())
+                if (country.id === 'Ыссык-Кульская') {
+                    let s = 0;
+                    const link = L.geoJSON(statesKol, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons((prev) => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+                }
+                if (country.id === "Нарынская") {
+                    let s = 0;
+                    const link = L.geoJSON(statesNarin, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons(prev => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+
+                }
+                if (country.id === "Чуйская") {
+                    let s = 0;
+                    const link = L.geoJSON(statesChuy, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons(prev => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+                }
+                if (country.id === "Таласская") {
+                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
+                    let s = 0;
+                    const link = L.geoJSON(statesTalas, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons(prev => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+                }
+                if (country.id === "Джалал-Абадская") {
+                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
+                    let s = 0;
+                    const link = L.geoJSON(statesDjalal, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons(prev => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+                }
+                if (country.id === "Ошская") {
+                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
+                    let s = 0;
+                    const link = L.geoJSON(statesOsh, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons(prev => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+                }
+                if (country.id === "Баткенская") {
+                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
+                    let s = 0;
+                    const link = L.geoJSON(statesBatken, {
+                        style: function (feature) {
+                            s++;
+                            return { color: color[s] }
+                        },
+                        onEachFeature: onChangeRayons
+                    }).addTo(map);
+                    setRayons(prev => {
+                        if (prev) {
+                            map.removeLayer(prev);
+                        }
+                        return link
+                    })
+                }
+                // console.log(district1)
+            },
+            mouseover: (event) => {
+                if (!boolffff) {
+                    event.target.setStyle({
+                        fillColor: 'red'
+                    })
+                }
+            },
+            mouseout: (event) => {
+                if (!boolffff) {
+                    event.target.setStyle({
+                        fillColor: 'transparent'
+                    })
+                }
+            }
+        })
     }
-    const rayonStyle = {
-        fillColor: 'transparent',
-        color: 'transparent',
-    }
-    return <MapBlock>
-        <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
-            <MyComponent />
+
+    // const rayonStyle = {
+    //     fillColor: 'transparent',
+    //     color: 'transparent',
+    // }
+    return (
+        <>
             {
                 states.features.map(((elem, index) => {
                     const countryStyle = {
                         fillColor: 'transparent',
-                        color: 'black'
+                        color: 'black',
                     }
                     if (color[index]) {
                         countryStyle.color = color[index]
                     }
-                    return <GeoJSON key={elem.id} data={elem} pathOptions={countryStyle} eventHandlers={{
-                        mouseover: (event, type) => onMouseEvent(event, 'over'),
-                        mouseout: (event, type) => onMouseEvent(event, 'out'),
-                    }}>
-                    </GeoJSON>
+                    if (elem.id !== 'Кыргызстан') {
+                        return <GeoJSON key={elem.id} markersInheritOptions data={elem} pathOptions={countryStyle} onEachFeature={onEachFeature} >
+                        </GeoJSON>
+                    }
                 }))
             }
-            {/* <GeoJSON data={statesBatken} pathOptions={rayonStyle} />
-            <GeoJSON data={statesChuy} pathOptions={rayonStyle} />
-            <GeoJSON data={statesDjalal} pathOptions={rayonStyle} />
-            <GeoJSON data={statesKol} pathOptions={rayonStyle} />
-            <GeoJSON data={statesNarin} pathOptions={rayonStyle} />
-            <GeoJSON data={statesOsh} pathOptions={rayonStyle} />
-            <GeoJSON data={statesTalas} pathOptions={rayonStyle} /> */}
-            <Marker position={marker}>
+            {
+                markers.map(elem => {
+                    return <Marker icon={iconInstitution3GreenWhite} position={elem} eventHandlers={{
+                        click: (e) => {
+                            console.log(e.latlng)
+                            map.setView(e.latlng, 18)
+                        }
+                    }}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                })
+            }
+        </>
+    )
+}
+
+
+
+
+const marker = [42.857254, 74.600725];
+
+
+
+
+export const MapLeaflet = () => {
+    const animateRef = useRef(true)
+
+    const eventHandlers = () => ({
+        click(event) {
+            console.log(event)
+        },
+    })
+
+    return <MapBlock>
+        <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
+            <MyComponent />
+            <SetBoundsRectangles />
+
+            {/* <Marker icon={iconInstitution3GreenWhite} position={marker}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
                 </Popup>
-            </Marker>
+            </Marker> */}
             <LayerGroup>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -170,133 +374,12 @@ export const MapLeaflet = () => {
             } */}
             <SetViewOnClick animateRef={animateRef} />
         </Map >
-        <InfoBlock>
-            <Paper>
-                <InfoColor>
-                    <Item><SpanColor><Color color="#FF0600" /></SpanColor>100</Item>
-                    <Item><SpanColor><Color color="#FFCD02" /></SpanColor>80</Item>
-                    <Item><SpanColor><Color color="#FFF800" /></SpanColor>60</Item>
-                    <Item><SpanColor><Color color="#A9FF00" /></SpanColor>40</Item>
-                    <Item><SpanColor><Color color="#51FF00" /></SpanColor>20</Item>
-                </InfoColor>
-            </Paper>
-        </InfoBlock>
-        <InfoBlock right>
-            <Paper>
-                <InfoColor>
-                    <Item right><SpanColor radius><Color color="#FF0600" radius /></SpanColor>20%</Item>
-                    <Item right><SpanColor radius><Color color="#FFCD02" radius /></SpanColor>40%</Item>
-                    <Item right><SpanColor radius><Color color="#FFF800" radius /></SpanColor>60%</Item>
-                    <Item right><SpanColor radius><Color color="#A9FF00" radius /></SpanColor>80%</Item>
-                    <Item right><SpanColor radius><Color color="#51FF00" radius /></SpanColor>100%</Item>
-                </InfoColor>
-            </Paper>
-        </InfoBlock>
-        <MapSnackbar>
-            <Paper sx={{ padding: '10px' }}>
-                <Stack direction="row" alignItems="center">
-                    <Img src={point} alt="#" />
-                    <Text>
-                        Цвета иконок меняются в зависимости от заполненности
-                    </Text>
-                    <Img src={krestik} alt="#" krestik />
-                </Stack>
-            </Paper>
-        </MapSnackbar>
     </MapBlock>
 }
 
-const Text = styled('p')`
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-`
-const Img = styled('img')`
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    ${props => props.krestik && css`
-        margin: 0;
-    `}
-`
-const MapSnackbar = styled('div')`
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    background: #fff;
-    border-radius: 6px;
-    z-index: 1000;
-    font-size: 12px;
-    width: 320px;
-`
 
-const Color = styled('span')`
-    display: inline-block;
-    background-color: ${props => props.color};
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    ${props => props.radius && css`
-        border-radius: 50%;
-    `}
-`
 
-const SpanColor = styled('div')`
-    display: inline-block;
-    margin-right: 10px;
-    width: 20px;
-    height: 20px;
-    overflow: hidden;
-    ${props => props.radius && css`
-        padding: 4px;
-        margin-right: 4px;
-    `}
-`
 
-const Item = styled('li')`
-    /* border: 1px solid red; */
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    ${props => props.right && css`
-        margin-bottom: 8px;
-     `}
-    /* margin-top: -1px; */
-    /* margin-bottom: -4px; */
-`
-
-const InfoBlock = styled('div')`
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    /* border: 1px solid red; */
-    z-index: 1000;
-    ${props => props.right && css`
-        bottom: auto;
-        left: auto;
-        right: 10px;
-        top: 100px;
-    `}
-    @media screen and (max-width: 780px){
-        bottom: 10px;
-        left: 10px;
-        ${props => props.right && css`
-            bottom: auto;
-            left: auto;
-            right: 10px;
-            top: 80px;
-        `}
-    }
-`
-
-const InfoColor = styled('ul')`
-    background-color: #fff;
-    border-radius: 16px;
-    padding: 11px;
-    list-style: none;
-`
 
 const MapBlock = styled('div')`
     position: relative;

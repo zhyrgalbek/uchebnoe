@@ -12,7 +12,9 @@ const style = {
     boxShadow: 24,
     overflow: 'hidden',
     borderRadius: '5%',
-    p: 3,
+    p: 4,
+    px: 6
+    // width: '600px',
 };
 
 export default function ModalComponent({ children, open, handleClose }) {

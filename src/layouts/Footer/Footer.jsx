@@ -1,16 +1,11 @@
-import card1 from "../../assets/logo/EU logobox.png";
-import card2 from "../../assets/logo/ESTDEV logobox.png";
-import card3 from "../../assets/logo/Leader logobox.jpg";
-import HeaderButton from "../../components/ui/HeaderButton";
 import { useLocation, useNavigate } from "react-router";
-import { LogoType } from "../../components/LogoType";
 import logo1 from "../../assets/IconCounter/funded_eu.svg";
 import logo2 from "../../assets/IconCounter/funded_estdev.svg";
 import logo3 from "../../assets/IconCounter/funded_leader.svg";
 import logo from "../../assets/logo/logo.svg";
 import { useSelector } from "react-redux";
 
-const data = [
+const data = [[
   {
     text: "Приемная министра",
     contact: "+996(312) 66-24-42",
@@ -39,7 +34,38 @@ const data = [
     text: "Адрес",
     contact: "Кыргызская Республика, г. Бишкек 720040, Тыныстанова у., 257",
   },
-];
+],
+[
+  {
+    text: "Министрдин кабылдамасы",
+    contact: "+996(312) 66-24-42",
+  },
+  {
+    text: "Ишеним телефону",
+    contact: "+996(312) 66-24-42",
+  },
+  {
+    text: "Түз байланыш",
+    contact: "1222",
+  },
+  {
+    text: "Коомдук кабылдама",
+    contact: "+996(312) 62-05-19",
+  },
+  {
+    text: "Факс",
+    contact: "+996(312) 62-15-20",
+  },
+  {
+    text: "Почта дареги",
+    contact: "minedukg@gmail.com",
+  },
+  {
+    text: "Адрес",
+    contact: "Кыргыз Республикасы, Бишкек ш. 720040, Тыныстанова көч., 257",
+  },
+],
+]
 
 const footerText = [
   {
@@ -54,11 +80,11 @@ const footerText = [
   },
   {
     pochta: 'Эгер кандайдыр бир жерден ката тапсаңыз, бизге жазыңыз',
-    companies: ['Веб-сайт Европа Бирлигинин жана өнөктөштөрдүн колдоосу жана каржылык колдоосу менен түзүлгөн:', 'Сайттын мазмуну сөзсүз түрдө алардын көз карашын, программаларын жана долбоорлорун чагылдырбайт.'],
+    companies: ['Веб-сайт Европа Биримдиги менен өнөктөштөрдүн колдоосу жана каржылык колдоосунда түзүлгөн:', 'Сайттын мазмуну алардын көз карашын, программаларын жана долбоорлорун чагылдырышы зарыл эмес.'],
     btns: ['Биз жөнүндө', 'Статистикалык маалымат'],
     list: {
       list_header: 'Биздин байланыштар',
-      items: ['Министрдин кабыл алуусу', 'Ишеним телефону', 'Ишеним телефону', 'коомдук кабылдама', 'Факс', 'Почта дареги', 'Дарек']
+      items: ['Министрдин кабылдамасы', 'Ишеним телефону', 'Түз байланыш', 'Коомдук кабылдама', 'Факс', 'Почта дареги', 'Дарек']
     },
     logo: 'Кыргыз Республикасынын Билим берүү жана илим министрлиги.'
   },
@@ -76,7 +102,7 @@ function Footer() {
   const noActive = "btn-outline-light";
   return (
     <footer className="bg-primary text-white ">
-      <div className="container py-5">
+      <div className="container pt-5 pb-2">
         <div className="row row-cols-1 row-cols-lg-3">
           <div className="d-none d-md-block">
             <div className=" bg-primary border-white text-white card p-5">
@@ -145,8 +171,7 @@ function Footer() {
           <div className="container">
             <div className="d-flex justify-content-around row row-cols-2 mb-2 mb-lg-0">
               <a
-                className={`btn w-auto mx-sm-3 mb-2 hover ${location.pathname === "/about" ? active : noActive
-                  }`}
+                className={`btn w-auto mx-sm-3 mb-2 btn_hover ${location.pathname === "/about" ? active : noActive}`}
                 aria-current="page"
                 href="about_us.html"
                 onClick={(e) => onClickNav(e, "/about")}
@@ -154,8 +179,7 @@ function Footer() {
                 {footerText[translation].btns[0]}
               </a>
               <a
-                className={`btn w-auto mb-2 hover ${location.pathname === "/" ? active : noActive
-                  }`}
+                className={`btn w-auto mb-2 btn_hover ${location.pathname === "/" ? active : noActive}`}
                 href="index.html"
                 onClick={(e) => onClickNav(e, "/")}
               >
@@ -170,58 +194,58 @@ function Footer() {
             </p>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 pb-2">
-                {footerText[translation].list.items[0]}
+                {data[translation][0].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 pb-2">
-                +996(312) 66-24-42
+                {data[translation][0].contact}
               </li>
             </ul>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">
-                {footerText[translation].list.items[1]}
+                {data[translation][1].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 py-2">
-                +996(312) 66-24-42
+                {data[translation][1].contact}
               </li>
             </ul>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">
-                {footerText[translation].list.items[2]}
+                {data[translation][2].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 py-2">
-                1222
+                {data[translation][2].contact}
               </li>
             </ul>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">
-                {footerText[translation].list.items[3]}
+                {data[translation][3].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 py-2">
-                +996(312) 62-05-19
+                {data[translation][3].contact}
               </li>
             </ul>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">
-                {footerText[translation].list.items[4]}
+                {data[translation][4].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 py-2">
-                +996(312) 62-15-20
+                {data[translation][4].contact}
               </li>
             </ul>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">
-                {footerText[translation].list.items[5]}
+                {data[translation][5].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 py-2">
-                minedukg@gmail.com
+                {data[translation][5].contact}
               </li>
             </ul>
             <ul className="list-group list-group-flush list-group-horizontal">
               <li className="list-group-item bg-primary text-white border-0 w-50 p-0 py-2">
-                {footerText[translation].list.items[6]}
+                {data[translation][6].text}
               </li>
               <li className="list-group-item-text bg-primary text-white border-0 w-50 p-0 py-2">
-                Кыргызская Республика, г. Бишкек 720040, Тыныстанова у., 257
+                {data[translation][6].contact}
               </li>
             </ul>
           </div>
@@ -257,7 +281,7 @@ function Footer() {
             </p>
           </div>
         </div>
-        <p className="text-start text-md-center mt-4 ">
+        <p className="text-start text-md-center mt-4 foote_logo">
           © 2023. {footerText[translation].logo}
         </p>
       </div>

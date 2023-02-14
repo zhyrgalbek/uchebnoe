@@ -18,6 +18,8 @@ import higherwhite from '../assets/FilterMap/higherwhite.svg'
 import other from '../assets/FilterMap/other.svg'
 import otherwhite from '../assets/FilterMap/otherwhite.svg'
 import { useSelector } from "react-redux";
+import marker from '../assets/Map/markers/marker1.svg'
+import { IconUmbrella } from './MapLeaflet/markers/Icon';
 
 const data = [
     {
@@ -53,8 +55,8 @@ const data = [
 ]
 
 const buttonText = [
-    ['Все учреждения', 'Дошкольное образ.', 'Общеобраз.', 'Начально-проф.', 'Средне-проф.', 'Высшее проф.', 'Др. учреждения'],
-    ['Бардык мекемелер', 'Бала бакча', 'Жалпы б-м', 'Башталгыч-проф.', 'Орто-кесипкөй', 'Жогорку-кесипкөй', 'Башка мекемелер']
+    ['Все', 'Дошкольные', 'Общеобраз.', 'Начально-проф.', 'Средне-проф.', 'Высшее проф.', 'Другие'],
+    ['Бардыгы', 'Мектепке ч-ки', 'Жалпы билим б-чү', 'Баштапкы кес-к', 'Орто кес-к', 'Жогорку кес-к', 'Башкалар']
 ]
 
 

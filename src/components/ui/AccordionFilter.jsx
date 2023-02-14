@@ -1,7 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material"
 import styled from "styled-components"
 
-export const AccordionFilter = ({ children, header, none, ...props }) => {
+export const AccordionFilter = ({ children, header, none, hidden, ...props }) => {
     return <AccordionContainer sx={{ overflow: 'visible', boxShadow: none && 'none', padding: '0' }}>
         <AccordionSummary
             aria-controls="panel1a-content"

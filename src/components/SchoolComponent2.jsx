@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import man from "../assets/IconCounter/man.svg";
 import woman from "../assets/IconCounter/woman.svg";
 import boy from "../assets/IconCounter/boy.svg";
@@ -10,7 +11,7 @@ import share from "../assets/IconCounter/share.svg";
 import like from "../assets/IconCounter/like.svg";
 // import people_twice from "../assets/IconCounter/people_twice.svg";
 import { AccordionFilter } from "./ui/AccordionFilter";
-import { Box, Stack } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 import { useState } from "react";
 import { FilterSubmit } from "./FilerSubmit";
 import { IconCounter } from "./ui/IconCounter";
@@ -18,6 +19,7 @@ import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import ModalComponent from "./ui/ModalComponent"
 import Podelitsya from "./Podelitsya"
+
 
 const SchoolText = [
     {
@@ -68,8 +70,8 @@ const SchoolText = [
         ],
     },
     {
-        header: "Кесиптик лицей №16",
-        btns: ["Дагы", "Лайк койуу", "Бөлүшүү"],
+        header: "№16 Кесиптик лицей",
+        btns: ["Дагы", "Лайк басуу", "Бөлүшүү"],
         items: [
             {
                 item_header: "Мекеме түрү:",
@@ -80,11 +82,11 @@ const SchoolText = [
                 item_text: "",
             },
             {
-                item_header: "Жеткиликтүү орундардын саны:",
+                item_header: "Бош орундардын саны:",
                 item_text: "",
             },
             {
-                item_header: "Жайгашкан жер:",
+                item_header: "Жайгашкан жери:",
                 item_text:
                     "Чуйская область, Аламудунский район, село Жайылган, ул Аманова 22",
             },
@@ -115,6 +117,8 @@ const SchoolText = [
         ],
     },
 ];
+
+
 
 export const SchoolComponent2 = () => {
     const { translation } = useSelector((store) => store.translate);
@@ -195,7 +199,7 @@ export const SchoolComponent2 = () => {
                                 <BoxCard>
                                     <Stack direction="column" spacing={2}>
                                         <Th className="mb-1">
-                                            {SchoolText[translation].items[3].item_header}:
+                                            {SchoolText[translation].items[3].item_header}
                                         </Th>
                                         <Td className="mt-1">
                                             Чуйская область, Аламудунский район, село Жайылган, ул
@@ -254,7 +258,7 @@ export const SchoolComponent2 = () => {
                                 </FilterSubmit>
                             </BoxCard>
                             <BoxCard>
-                                <FilterSubmit icon={share} variant="like">
+                                <FilterSubmit icon={share} variant="like" onClick={onClickShare}>
                                     {SchoolText[translation].btns[2]}
                                 </FilterSubmit>
                             </BoxCard>
@@ -277,7 +281,7 @@ const Td = styled("div")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 140%;
 `;
 
@@ -285,7 +289,7 @@ const Th = styled("div")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 140%;
   margin-bottom: 10px;
   margin-right: 10px;
