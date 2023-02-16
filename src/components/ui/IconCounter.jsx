@@ -16,13 +16,15 @@ const Number = styled('span')`
 `
 
 const Icon = styled('img')`
-    margin-right: 5px;
+    margin-right: 0.3125rem;
+    width: 1.5rem
+    height: 1.5rem;
 `
 
 const IconCounterBlock = styled('div')` 
     border: 1px solid #A2B6FF;
     border-radius: 6px;
-    padding: 8px 12px;
+    padding: 0.5rem 0.75rem;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +35,7 @@ const IconCounterBlock = styled('div')`
         padding: 0;
         color: #fff;
         font-size: 600;
-        margin-right: 10px;
+        margin-right: 0.625rem;
         margin-bottom: 0;
     `}
 `

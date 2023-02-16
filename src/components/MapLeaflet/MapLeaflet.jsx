@@ -8,6 +8,7 @@ import statesKol from '../../utils/Constants/json/statesKol.json'
 import statesNarin from '../../utils/Constants/json/statesNarin.json'
 import statesOsh from '../../utils/Constants/json/statesOsh.json'
 import statesTalas from '../../utils/Constants/json/statesTalas.json'
+import testJon from '../../utils/Constants/json/testJson.json'
 import point from '../../assets/Map/Exclamation_point.svg'
 import krestik from '../../assets/Map/krestik.svg'
 
@@ -15,11 +16,18 @@ import styled, { css } from 'styled-components'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Paper } from '@mui/material'
 import { Stack } from '@mui/system'
+// import '../../../node_modules/leaflet.markercluster/dist/'
 import L from "leaflet"
+import '@changey/react-leaflet-markercluster/dist/styles.min.css'
+import MarkerClusterGroup from '@changey/react-leaflet-markercluster'
 import { getIconTest, iconInstitution1, iconInstitution1Green, iconInstitution1GreenWhite, iconInstitution1Red, iconInstitution1Yellow, iconInstitution1YellowWhite, iconInstitution2, iconInstitution2Green, iconInstitution2GreenWhite, iconInstitution2Red, iconInstitution2Yellow, iconInstitution2YellowWhite, iconInstitution3, iconInstitution3Green, iconInstitution3GreenWhite, iconInstitution4, iconInstitution4Green, iconInstitution5, iconInstitution6, iconInstitution7 } from './markers/Icon'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
-console.log(states)
+
+const colorMarker = '#58BF56';
+const colorMarker2 = '#56BF94';
+const colorMarker3 = '#58BF56';
+
 
 function getCoordinates(name, states) {
     const arr = states.features;
@@ -103,8 +111,8 @@ function SetBoundsRectangles() {
     const innerHandlers = useMemo(
         () => ({
             click() {
-                setBounds(innerBounds)
-                map.fitBounds(innerBounds)
+                setBounds(innerBounds);
+                map.fitBounds(innerBounds);
             },
         }),
         [map],
@@ -114,7 +122,8 @@ function SetBoundsRectangles() {
         // layer.Tooltip(`<p>${country.id}</p>`);
         layer.on({
             click: (event) => {
-                map.fitBounds(L.geoJson(country).getBounds())
+                map.fitBounds(L.geoJson(country).getBounds());
+                map.setView(event.latlng, 10);
             },
             mouseover: (event) => {
                 // event.target.setStyle({
@@ -128,10 +137,6 @@ function SetBoundsRectangles() {
             }
         })
     }
-
-    useEffect(() => {
-        console.log(rayons)
-    }, [rayons])
 
     const onEachFeature = (country, layer) => {
         let boolffff = false;
@@ -275,6 +280,19 @@ function SetBoundsRectangles() {
         })
     }
 
+    // useEffect(() => {
+    //     var cluster = L.markerClusterGroup();
+    //     var geoJson = L.geoJSON(testJon, {
+    //         style: function () {
+    //             return {
+    //                 color: 'red'
+    //             }
+    //         }
+    //     });
+    //     // cluster.addLayer(geoJson);
+    //     geoJson.addTo(map);
+    // }, [])
+
     // const rayonStyle = {
     //     fillColor: 'transparent',
     //     color: 'transparent',
@@ -296,11 +314,11 @@ function SetBoundsRectangles() {
                     }
                 }))
             }
-            {
+            {/* {
                 markers.map(elem => {
                     return <Marker icon={iconInstitution3GreenWhite} position={elem} eventHandlers={{
                         click: (e) => {
-                            console.log(e.latlng)
+                            // console.log(e.latlng)
                             map.setView(e.latlng, 18)
                         }
                     }}>
@@ -309,7 +327,7 @@ function SetBoundsRectangles() {
                         </Popup>
                     </Marker>
                 })
-            }
+            } */}
         </>
     )
 }
@@ -327,20 +345,14 @@ export const MapLeaflet = () => {
 
     const eventHandlers = () => ({
         click(event) {
-            console.log(event)
+            // console.log(event)
         },
     })
 
-    return <MapBlock>
-        <Map center={position} zoom={7} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
-            <MyComponent />
-            <SetBoundsRectangles />
+    // console.log(testJon.features)
 
-            {/* <Marker icon={iconInstitution3GreenWhite} position={marker}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker> */}
+    return <MapBlock>
+        <Map center={position} zoom={6} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
             <LayerGroup>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -367,14 +379,24 @@ export const MapLeaflet = () => {
                     </LayerGroup>
                 </LayersControl.Overlay>
             </LayersControl>
-            {/* {
-                statesJson.map(elem => {
-                    return <Polygon key={elem.name} pathOptions={{ color: elem.color, fillColor: 'transparent' }} positions={elem.latlngs} />
-                })
-            } */}
             <SetViewOnClick animateRef={animateRef} />
+            <MarkerClusterGroup chunkedLoading>
+                {/* {
+                    testJon.features.map((elem, index) => {
+                        return <GeoJSON key={index} data={elem}></GeoJSON>
+                    })
+                } */}
+                {
+                    testJon?.features.map((elem, index) => {
+                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
+                        return <Marker icon={iconInstitution3GreenWhite} key={index} position={arr} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            <MyComponent />
+            <SetBoundsRectangles />
         </Map >
-    </MapBlock>
+    </MapBlock >
 }
 
 

@@ -18,7 +18,7 @@ html {
 
 @media screen and (max-width: 780px) {
   html {
-    font-size: 13px;
+    font-size: 12px;
   }
 }
 
@@ -636,6 +636,12 @@ footer .text__found {
   transform: translateZ(0);
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
+}
+
+@media screen and (max-width: 780px) {
+  .loader {
+    top: -20px;
+  }
 }
 
 .loader:before,

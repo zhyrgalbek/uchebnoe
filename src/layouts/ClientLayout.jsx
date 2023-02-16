@@ -11,7 +11,6 @@ export const ClientLayout = () => {
     <>
       <Header />
       <Outlet />
-      
       <ChatBotButton />
       <Footer />
     </>

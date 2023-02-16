@@ -77,15 +77,19 @@ const Block = styled('button')`
     background-image: url(${props => props.icon2});
     background-repeat: no-repeat;
     background-position: 6px 50%;
+    box-shadow: 1px 1px 4px 1px rgba(55, 99, 255, 0.4);
     &:hover{
         background-color: #6A8AFF;
         color: #fff;
         background-image: url(${props => props.icon});
+        /* border: 1px solid rgba(55, 99, 255, 0.4); */
+        border: 1px solid #6A8AFF;
     }
     ${props => props.primary && css`
         background-color: #6A8AFF;
         color: #fff;
         background-image: url(${props => props.icon});
+        border: 1px solid #6A8AFF;
     `}
     ${props => props.mobile && css`
         width: 100%;

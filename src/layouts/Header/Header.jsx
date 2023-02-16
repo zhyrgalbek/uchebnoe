@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import logo from "../../assets/IconCounter/logo.png";
+import { FilterButton } from "../../components/FilterButton";
 import { mapActions } from "../../store/slices/mapSlices";
+import HeaderButton from "../../components/ui/HeaderButton";
 
 const headerText = [
   {
@@ -78,17 +80,7 @@ const Header = () => {
                 </a>
               </li>
             </div>
-            <div className="d-flex flex-wrap col-md-12 col-12">
-              <li className="nav-item me-2 mb-2">
-                <a
-                  className={`nav-link btn px-2 ${noActive}`}
-                  href="https://mektep.edu.gov.kg/"
-                  target="_blank"
-                >
-                  {" "}
-                  {headerText[translation].btns[2]}
-                </a>
-              </li>
+            <div className="d-flex flex-wrap justify-content-end col-md-12 col-12">
               <li className="nav-item me-2 mb-2">
                 <a
                   className={`nav-link btn px-2 ${location.pathname === "/about" ? active : noActive
@@ -111,20 +103,20 @@ const Header = () => {
                   {headerText[translation].btns[1]}
                 </a>
               </li>
+              <li className="nav-item mb-2">
+                <a
+                  className={`nav-link btn px-2 ${noActive}`}
+                  href="https://mektep.edu.gov.kg/"
+                  target="_blank"
+                >
+                  {" "}
+                  {headerText[translation].btns[2]}
+                </a>
+              </li>
             </div>
           </ul>
-          <ul className="d-none d-lg-flex navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item mx-4 w-auto">
-              <a
-                className={`nav-link btn ${noActive}`}
-                aria-current="page"
-                href="https://mektep.edu.gov.kg/"
-                target="_blank"
-              >
-                {headerText[translation].btns[2]}
-              </a>
-            </li>
-            <li className="nav-item w-auto">
+          <ul className="d-none d-lg-flex align-items-center navbar-nav ms-auto mb-2 mb-lg-0">
+            {/* <li className="nav-item w-auto">
               <a
                 className={`nav-link btn ${location.pathname === "/about" ? active : noActive
                   }`}
@@ -134,8 +126,9 @@ const Header = () => {
               >
                 {headerText[translation].btns[0]}
               </a>
-            </li>
-            <li className="nav-item mx-4 w-auto">
+            </li> */}
+            <HeaderButton href="#" onClick={(e) => onClickNav(e, "/about")} active={location.pathname === "/about"}>О нас</HeaderButton>
+            {/* <li className="nav-item mx-4 w-auto">
               <a
                 className={`nav-link btn ${location.pathname === "/" ? active : noActive
                   }`}
@@ -145,16 +138,32 @@ const Header = () => {
                 {" "}
                 {headerText[translation].btns[1]}
               </a>
-            </li>
-            <li className="nav-item ms-4 my-auto">
+            </li> */}
+            <HeaderButton href="#" onClick={(e) => onClickNav(e, "/")} active={location.pathname === "/"}>{headerText[translation].btns[1]}</HeaderButton>
+            {/* <li className="nav-item w-auto">
+              <a
+                className={`nav-link btn ${noActive}`}
+                aria-current="page"
+                href="https://mektep.edu.gov.kg/"
+                target="_blank"
+              >
+                {headerText[translation].btns[2]}
+              </a>
+            </li> */}
+            <HeaderButton href="https://mektep.edu.gov.kg/" target="_blank">{headerText[translation].btns[2]}</HeaderButton>
+            {/* <li className="nav-item ms-4 my-auto">
               <a className={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 1 && transActive}`}
                 href="#"
                 onClick={(e) => onClickTranslate(e, 1)}
               >
                 Кырг
               </a>
-            </li>
+            </li> */}
             <li className="nav-item ms-4 my-auto">
+              <HeaderButton secondary href='#' active={translation === 1} onClick={(e) => onClickTranslate(e, 1)} >Кырг</HeaderButton>
+            </li>
+            <HeaderButton secondary href='#' active={translation === 0} onClick={(e) => onClickTranslate(e, 0)} >Руc</HeaderButton>
+            {/* <li className="nav-item ms-4 my-auto">
               <a
                 className={`nav-link btn btn-outline-primary btn-sm py-0 ${translation === 0 && transActive}`}
                 aria-current="page"
@@ -163,11 +172,11 @@ const Header = () => {
               >
                 Руc
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
-    </nav>
+    </nav >
   );
 };
 

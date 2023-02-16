@@ -21,7 +21,7 @@ const Span = styled('span')`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 0.875rem
+    font-size: 0.875rem;
     line-height: 130%;
     color: #fff;
     display: inline-block;
@@ -39,7 +39,7 @@ const Submit = styled('button')`
     border-radius: 3px;
     background: #6A8AFF;
     width: clamp(15.9375rem, 4.910714285714285rem + 22.61904761904762vw, 21.875rem);
-    padding: 13px 0;
+    padding: 0.8125rem 0;
     border: 1px solid #6A8AFF;
     display: flex;
     align-items: center;
@@ -47,6 +47,7 @@ const Submit = styled('button')`
     cursor: pointer;
     margin-bottom: 0;
     transition: 0.5s ease;
+    box-shadow: 1px 1px 4px 1px rgba(106, 138, 255, 0.8);
     &:hover{
         background: #4470F3;
     }

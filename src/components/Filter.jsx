@@ -120,9 +120,9 @@ export const Filter = ({ header }) => {
     return <FilterContainer>
         <FilterHeader className="font__contacts_data" header={header}>{filterText[translation].header}</FilterHeader>
         <Mobile header={header}>
-            <AccordionFilter onClick={onChangeFilter} header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
+            <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
                 <Box sx={{ padding: '0 1.25rem' }}>
-                    <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} />
+                    <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={oblast} />
                 </Box>
                 <Box sx={{ padding: '0 1.25rem' }}>
                     <FilterDropdown header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} />
@@ -148,7 +148,7 @@ export const Filter = ({ header }) => {
             </AccordionFilter>
         </Mobile>
         <Desctop header={header}>
-            <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit variant="" icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
+            <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[8].btn_header : filterText[translation].btns[8].btn_text}</FilterSubmit>}>
                 <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
                     <FilterDropdown header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={oblast} />
                     <FilterDropdown header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} />
@@ -177,6 +177,8 @@ const Item = styled('div')`
     justify-content: flex-start;
     align-items: center;
     font-size: 0.875rem;
+    line-height: 140%;
+    /* border: 1px solid red; */
 `
 
 const Desctop = styled('div')`

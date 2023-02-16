@@ -160,20 +160,28 @@ export const SchoolComponent2 = () => {
                                 <Td className="mt-1">Баланчаев Баланча Баланчаевич</Td>
                             </Stack>
                         </BoxCard>
-                        <div className="box d-flex align-items-center mb-1 my-md-2">
-                            <p className="mb-0 d-flex charts__texts align-items-center pb-0">
-                                {SchoolText[translation].items[1].item_header}
-                                <div className="numbers_fonts_weight mx-3 icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
+                        {/* <div className="box d-flex align-items-center mb-1 my-md-2"> */}
+                        {/* <p className="mb-0 d-flex charts__texts align-items-center pb-0"> */}
+                        {/* {SchoolText[translation].items[1].item_header} */}
+                        {/* <div className="numbers_fonts_weight mx-3 icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
                                     <img src={man} alt="example image" />
                                     150
-                                </div>
-                            </p>
-                        </div>
-                        <div className="icon__info__custom numbers_fonts_weight border border-1 border-primary rounded-2 mx-2 d-flex d-md-none  justify-content-center align-items-center">
+                                </div> */}
+                        {/* </p> */}
+                        {/* </div> */}
+                        {/* <div className="icon__info__custom numbers_fonts_weight border border-1 border-primary rounded-2 mx-2 d-flex d-md-none  justify-content-center align-items-center">
                             <img src={man} alt="" />
                             150
-                        </div>
-                        <div className="box d-flex align-items-center mb-1 mt-4 my-md-2">
+                        </div> */}
+                        <BoxCard>
+                            <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
+                                <Th>{SchoolText[translation].items[1].item_header}</Th>
+                                <Td>
+                                    <IconCounter icon={man}>40</IconCounter>
+                                </Td>
+                            </Stack>
+                        </BoxCard>
+                        {/* <div className="box d-flex align-items-center mb-1 mt-4 my-md-2">
                             <p className="mb-0 d-flex charts__texts align-items-center pb-0">
                                 {SchoolText[translation].items[2].item_header}
                                 <div className="mx-3 numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-none d-md-flex  justify-content-center align-items-center">
@@ -185,7 +193,15 @@ export const SchoolComponent2 = () => {
                         <div className=" numbers_fonts_weight icon__info__custom border border-1 border-primary rounded-2 mx-2 d-flex d-md-none mb-2 justify-content-center align-items-center">
                             <img src={man} alt="" />
                             150
-                        </div>
+                        </div> */}
+                        <BoxCard>
+                            <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
+                                <Th>{SchoolText[translation].items[2].item_header}</Th>
+                                <Td>
+                                    <IconCounter icon={man}>150</IconCounter>
+                                </Td>
+                            </Stack>
+                        </BoxCard>
                         <Grid container xs={12} lg={10} sx={{ margin: "0" }}>
                             <BoxCard>
                                 <BoxCard>

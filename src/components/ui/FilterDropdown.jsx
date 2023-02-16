@@ -59,17 +59,18 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                             placement === 'bottom-start' ? 'left top' : 'left bottom',
                     }}
                 >
-                    <Paper>
+                    <Paper >
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList
                                 autoFocusItem={open}
                                 id="composition-menu"
                                 aria-labelledby="composition-button"
                                 onKeyDown={handleListKeyDown}
+                            // sx={{ margin: '0', padding: '0' }}
                             >
                                 {
                                     items?.map((elem) => {
-                                        return <MenuItem sx={{ fontSize: '1rem' }} onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
+                                        return <MenuItem sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%' }} onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
                                     })
                                 }
                             </MenuList>
