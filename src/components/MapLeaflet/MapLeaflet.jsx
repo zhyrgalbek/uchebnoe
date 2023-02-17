@@ -11,6 +11,7 @@ import statesTalas from '../../utils/Constants/json/statesTalas.json'
 import testJon from '../../utils/Constants/json/testJson.json'
 import point from '../../assets/Map/Exclamation_point.svg'
 import krestik from '../../assets/Map/krestik.svg'
+import clusterIcon from '../../assets/Map/markers/clusterIcon.svg'
 
 import styled, { css } from 'styled-components'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -106,17 +107,14 @@ function SetBoundsRectangles() {
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
     const [bool, setBool] = useState(false)
+    const [newTestJson, setNewTestJson] = useState([])
+
 
     const map = useMap()
-    const innerHandlers = useMemo(
-        () => ({
-            click() {
-                setBounds(innerBounds);
-                map.fitBounds(innerBounds);
-            },
-        }),
-        [map],
-    )
+    const innerHandlers = (event) => {
+        map.setView(event.latlng, 17);
+    }
+
 
     const onChangeRayons = (country, layer) => {
         // layer.Tooltip(`<p>${country.id}</p>`);
@@ -297,6 +295,76 @@ function SetBoundsRectangles() {
     //     fillColor: 'transparent',
     //     color: 'transparent',
     // }
+    const createClusterCustomIconGreen = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'marker-cluster-custom green',
+            iconUrl: clusterIcon,
+            iconSize: [25, 25]
+        });
+    }
+    const createClusterCustomIconYellow = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'marker-cluster-custom yellow',
+            iconUrl: clusterIcon,
+            iconSize: [25, 25]
+        });
+    }
+    const createClusterCustomIconYellowWhite = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'marker-cluster-custom yellowWhite',
+            iconUrl: clusterIcon,
+            iconSize: [25, 25]
+        });
+    }
+    const createClusterCustomIconRed = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'marker-cluster-custom red',
+            iconUrl: clusterIcon,
+            iconSize: [25, 25]
+        });
+    }
+    const createClusterCustomIconGreenWhite = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'marker-cluster-custom greenWhite',
+            iconUrl: clusterIcon,
+            iconSize: [25, 25]
+        });
+    }
+
+    useEffect(() => {
+        setNewTestJson((prev) => {
+            const one = [];
+            const two = [];
+            const three = [];
+            const foure = [];
+            const five = [];
+            testJon?.features.forEach((elem, index) => {
+                if (index % 2 === 0) {
+                    one.push({ ...elem, id: 2 })
+                    return
+                } else if (index % 3 === 0) {
+                    two.push({ ...elem, id: 3 })
+                    return
+                } else if (index % 5 === 0) {
+                    three.push({ ...elem, id: 5 })
+                    return
+                } else if (index % 7 === 0) {
+                    foure.push({ ...elem, id: 7 })
+                    return
+                } else {
+                    five.push({ ...elem, id: 5 })
+                    return
+                }
+            })
+            return [[...one], [...two], [...three], [...foure], [...five]]
+        })
+    }, [])
+    console.log(newTestJson)
     return (
         <>
             {
@@ -314,20 +382,48 @@ function SetBoundsRectangles() {
                     }
                 }))
             }
-            {/* {
-                markers.map(elem => {
-                    return <Marker icon={iconInstitution3GreenWhite} position={elem} eventHandlers={{
-                        click: (e) => {
-                            // console.log(e.latlng)
-                            map.setView(e.latlng, 18)
-                        }
-                    }}>
-                        <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                    </Marker>
-                })
-            } */}
+            {/* <MarkerClusterGroup> */}
+            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
+                {
+                    newTestJson[0]?.map((elem, index) => {
+                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
+                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Green} key={index} position={arr} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellow}>
+                {
+                    newTestJson[1]?.map((elem, index) => {
+                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
+                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Yellow} key={index} position={arr} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellowWhite}>
+                {
+                    newTestJson[2]?.map((elem, index) => {
+                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
+                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1YellowWhite} key={index} position={arr} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreenWhite}>
+                {
+                    newTestJson[3]?.map((elem, index) => {
+                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
+                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1GreenWhite} key={index} position={arr} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            <MarkerClusterGroup iconCreateFunction={createClusterCustomIconRed}>
+                {
+                    newTestJson[4]?.map((elem, index) => {
+                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
+                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Red} key={index} position={arr} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            {/* </MarkerClusterGroup> */}
         </>
     )
 }
@@ -340,16 +436,18 @@ const marker = [42.857254, 74.600725];
 
 
 
+
+
 export const MapLeaflet = () => {
     const animateRef = useRef(true)
-
     const eventHandlers = () => ({
         click(event) {
             // console.log(event)
         },
     })
 
-    // console.log(testJon.features)
+
+    // console.log(newTestJson)
 
     return <MapBlock>
         <Map center={position} zoom={6} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
@@ -380,19 +478,7 @@ export const MapLeaflet = () => {
                 </LayersControl.Overlay>
             </LayersControl>
             <SetViewOnClick animateRef={animateRef} />
-            <MarkerClusterGroup chunkedLoading>
-                {/* {
-                    testJon.features.map((elem, index) => {
-                        return <GeoJSON key={index} data={elem}></GeoJSON>
-                    })
-                } */}
-                {
-                    testJon?.features.map((elem, index) => {
-                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
-                        return <Marker icon={iconInstitution3GreenWhite} key={index} position={arr} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>
+
             <MyComponent />
             <SetBoundsRectangles />
         </Map >

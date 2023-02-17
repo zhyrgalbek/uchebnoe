@@ -20,6 +20,7 @@ import otherwhite from '../assets/FilterMap/otherwhite.svg'
 import { useSelector } from "react-redux";
 import marker from '../assets/Map/markers/marker1.svg'
 import { IconUmbrella } from './MapLeaflet/markers/Icon';
+import clusterIcon from '../assets/Map/markers/clusterIcon.svg'
 
 const data = [
     {
@@ -85,6 +86,7 @@ export const TopFilter = () => {
         </Mobile>
         <Desctop>
             <Stack direction="row" flexWrap="nowrap" justifyContent="flex-start">
+                <img src={clusterIcon} alt="#" />
                 <FilterButton icon={all} icon2={allblue} onClick={(e) => onClickBtn(e, 0)} primary={filterActive === 0}>{buttonText[translation][0]}</FilterButton>
                 <FilterButton icon2={children} icon={childrenswhite} onClick={(e) => onClickBtn(e, 1)} primary={filterActive === 1}>{buttonText[translation][1]}</FilterButton>
                 <FilterButton icon2={general_education} icon={general_educationwhite} onClick={(e) => onClickBtn(e, 2)} primary={filterActive === 2}>{buttonText[translation][2]}</FilterButton>

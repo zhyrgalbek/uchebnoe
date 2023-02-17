@@ -70,7 +70,7 @@ export const getIconTest = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
@@ -83,7 +83,7 @@ export const iconInstitution1 = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
@@ -95,7 +95,7 @@ export const iconInstitution1Green = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
@@ -107,7 +107,7 @@ export const iconInstitution1GreenWhite = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
@@ -119,7 +119,7 @@ export const iconInstitution1Yellow = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
@@ -131,7 +131,7 @@ export const iconInstitution1YellowWhite = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
@@ -143,7 +143,7 @@ export const iconInstitution1Red = new L.Icon({
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null,
-    iconSize: new L.Point(60, 75),
+    iconSize: new L.Point(40, 55),
     className: 'leaflet-div-icon'
 });
 
