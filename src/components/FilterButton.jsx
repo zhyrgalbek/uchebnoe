@@ -1,8 +1,10 @@
-import { Button } from "bootstrap";
+// import { Button } from "bootstrap";
+import { Button } from "@mui/material";
 import { useState } from "react";
 import styled, { css } from "styled-components"
 import frame from '../assets/Filter/Frame.svg'
 import framewhite from '../assets/Filter/Framewhite.svg'
+import { getIcons } from "./TopFIlter/getIcons";
 
 function createRipple(e) {
     let btn = e.target;
@@ -18,23 +20,48 @@ function createRipple(e) {
 }
 
 
-export const FilterButton = ({ children, icon, icon2, left, mobile, toggle, active, primary, ...props }) => {
+export const FilterButton = ({ children, icon, left, mobile, toggle, active, primary, ...props }) => {
     const [hover, setHover] = useState(false);
     const onHover = () => {
-        setHover(true)
+        setHover(false)
     }
     const offHover = () => {
         setHover(false)
     }
-    return <Block onMouseOver={onHover} onMouseOut={offHover} icon={icon} icon2={icon2} left={left} {...props} mobile={mobile} primary={primary}>
-        {/* <Img src={hover || primary ? icon : icon2} alt="#" /> */}
-        <Span>{children}</Span>
-        {
-            toggle && <Div>
-                <Img src={hover || primary ? framewhite : frame} active={active} />
-            </Div>
-        }
-    </Block>
+    return <>
+        <Block onMouseOver={onHover} onMouseOut={offHover} left={left} {...props} mobile={mobile} primary={primary}>
+            {/* <Button variant="contained" onMouseOver={onHover} onMouseOut={offHover} left={left} {...props} mobile={mobile} primary={primary}
+            sx={{
+                border: '1px solid rgba(55, 99, 255, 0.4)',
+                color: '#000',
+                fontFamily: 'Inter',
+                fontWeight: '400',
+                fontStyle: 'normal',
+                fontSize: '0.875rem',
+                lineHeight: '140%',
+                mr: '10px',
+                textTransform: 'capitalize',
+                p: '10px',
+                backgroundColor: primary ? '#6A8AFF' : '#fff',
+                color: primary ? '#fff' : '#000',
+                "&:hover": {
+                    backgroundColor: primary ? '#6A8AFF' : '#fff',
+                    color: primary ? '#fff' : '#000',
+                    // border: '1px solid #6A8AFF'
+                }
+            }}
+        > */}
+            {getIcons(icon, hover, primary)}
+            <Span>{children}</Span>
+            {
+                toggle && <Div>
+                    {/* {getIcons('other', hover, primary)} */}
+                    <Img src={hover || primary ? framewhite : frame} active={active} />
+                </Div>
+            }
+            {/* </Button> */}
+        </Block>
+    </>
 }
 
 const Div = styled('div')`
@@ -44,8 +71,9 @@ const Div = styled('div')`
     justify-content: flex-end;
 `
 const Img = styled('img')`
+    transition: 0.2s ease;
     ${props => props.active && css`
-        transform: rotateX(180deg);
+        transform: rotate(180deg);
     `}
 `
 const Span = styled('span')`
@@ -57,7 +85,7 @@ const Block = styled('button')`
     /* width: clamp(16.875rem, 16.59059633027523rem + 1.4220183486238533vw, 18.8125rem); */
     /* width: ; */
     padding: 10px 10px;
-    padding-left: 30px;
+    /* padding-left: 30px; */
     text-align: left;
     font-weight: 400;
     border-radius: 3px;
@@ -74,21 +102,17 @@ const Block = styled('button')`
     overflow: hidden;
     transition: .3s;
     cursor: pointer;
-    background-image: url(${props => props.icon2});
-    background-repeat: no-repeat;
     background-position: 6px 50%;
     box-shadow: 1px 1px 4px 1px rgba(55, 99, 255, 0.4);
     &:hover{
         background-color: #6A8AFF;
         color: #fff;
-        background-image: url(${props => props.icon});
         /* border: 1px solid rgba(55, 99, 255, 0.4); */
         border: 1px solid #6A8AFF;
     }
     ${props => props.primary && css`
         background-color: #6A8AFF;
         color: #fff;
-        background-image: url(${props => props.icon});
         border: 1px solid #6A8AFF;
     `}
     ${props => props.mobile && css`
@@ -96,6 +120,7 @@ const Block = styled('button')`
         margin: 0;
         border-radius: 0;
         border: 1px solid transparent;
+        box-shadow: none;
         /* padding: 14px 15px; */
     `}
     .ripple {

@@ -15,13 +15,17 @@ import clusterIcon from '../../assets/Map/markers/clusterIcon.svg'
 
 import styled, { css } from 'styled-components'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Paper } from '@mui/material'
+import { Box, Paper } from '@mui/material'
 import { Stack } from '@mui/system'
 // import '../../../node_modules/leaflet.markercluster/dist/'
 import L from "leaflet"
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster'
-import { getIconTest, iconInstitution1, iconInstitution1Green, iconInstitution1GreenWhite, iconInstitution1Red, iconInstitution1Yellow, iconInstitution1YellowWhite, iconInstitution2, iconInstitution2Green, iconInstitution2GreenWhite, iconInstitution2Red, iconInstitution2Yellow, iconInstitution2YellowWhite, iconInstitution3, iconInstitution3Green, iconInstitution3GreenWhite, iconInstitution4, iconInstitution4Green, iconInstitution5, iconInstitution6, iconInstitution7 } from './markers/Icon'
+import { FilterSubmit } from '../FilerSubmit'
+import { fetch_api } from '../../hooks/fetch_api'
+import { useDispatch, useSelector } from 'react-redux'
+import { getIcon } from './markers/getIcon'
+import { mapActions } from '../../store/slices/mapSlices'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
 
@@ -104,15 +108,20 @@ const markers = [
 ]
 
 function SetBoundsRectangles() {
+    const { institutions } = useSelector(store => store.translate)
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
     const [bool, setBool] = useState(false)
     const [newTestJson, setNewTestJson] = useState([])
+    const dispatch = useDispatch();
 
+    console.log(institutions);
 
-    const map = useMap()
-    const innerHandlers = (event) => {
+    const map = useMap();
+    const innerHandlers = (event, institution) => {
         map.setView(event.latlng, 17);
+        dispatch(mapActions.setInstitution(institution));
+        // console.log(institution)
     }
 
 
@@ -361,10 +370,10 @@ function SetBoundsRectangles() {
                     return
                 }
             })
-            return [[...one], [...two], [...three], [...foure], [...five]]
+            return [[...one], [...two], [...three], [...foure], [...five]];
         })
     }, [])
-    console.log(newTestJson)
+    // console.log(newTestJson)
     return (
         <>
             {
@@ -382,8 +391,18 @@ function SetBoundsRectangles() {
                     }
                 }))
             }
-            {/* <MarkerClusterGroup> */}
-            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
+            <MarkerClusterGroup>
+                {
+                    // institution_type_id
+                    // capacity_percentage
+                    institutions.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>
+            {/* <MarkerClusterGroup chunkedLoading> */}
+            {/* <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
                 {
                     newTestJson[0]?.map((elem, index) => {
                         const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
@@ -422,7 +441,7 @@ function SetBoundsRectangles() {
                         return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Red} key={index} position={arr} ></Marker>
                     })
                 }
-            </MarkerClusterGroup>
+            </MarkerClusterGroup> */}
             {/* </MarkerClusterGroup> */}
         </>
     )
@@ -446,43 +465,52 @@ export const MapLeaflet = () => {
         },
     })
 
-
-    // console.log(newTestJson)
-
-    return <MapBlock>
-        <Map center={position} zoom={6} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
-            <LayerGroup>
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                />
-            </LayerGroup>
-            <LayersControl position="bottomright">
-                <LayersControl.Overlay name="google">
-                    <TileLayer
-                        url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-                        maxZoom="20"
-                        subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
-                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                    />
-                </LayersControl.Overlay>
-                <LayersControl.Overlay name="Hybrid">
+    return <>
+        {/* <Stack direction="row" justifyContent="flex-end" sx={{ marginBottom: '20px' }}>
+            <Box sx={{ width: 'auto' }}>
+                <FilterSubmit variant="desctop">Назад</FilterSubmit>
+            </Box>
+        </Stack> */}
+        <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
+            <MapBlock>
+                <Map center={position} zoom={6} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
                     <LayerGroup>
                         <TileLayer
-                            url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                            maxZoom="20"
-                            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                         />
+                        <TileLayer
+                            url="https://geoserver.24mycrm.com/monmap/wms?service=WMS&version=1.1.0&request=GetMap&layers=monmap%3At2&bbox=69.288734216%2C39.187748699%2C80.291156242%2C43.260223321&width=768&height=330&srs=EPSG%3A4326&styles=&format=application%2Fopenlayers3"
+                        // attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                        />
                     </LayerGroup>
-                </LayersControl.Overlay>
-            </LayersControl>
-            <SetViewOnClick animateRef={animateRef} />
-
-            <MyComponent />
-            <SetBoundsRectangles />
-        </Map >
-    </MapBlock >
+                    <LayersControl position="bottomright">
+                        <LayersControl.Overlay name="google">
+                            <TileLayer
+                                url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                                maxZoom="20"
+                                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                            />
+                        </LayersControl.Overlay>
+                        <LayersControl.Overlay name="Hybrid">
+                            <LayerGroup>
+                                <TileLayer
+                                    url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                                    maxZoom="20"
+                                    subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                                    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                />
+                            </LayerGroup>
+                        </LayersControl.Overlay>
+                    </LayersControl>
+                    <SetViewOnClick animateRef={animateRef} />
+                    <MyComponent />
+                    <SetBoundsRectangles />
+                </Map >
+            </MapBlock >
+        </Paper>
+    </>
 }
 
 

@@ -173,43 +173,45 @@ export const AboutPage = () => {
               <p>{AboutText[translation].misson[4]}</p>
             </div>
             <div className="box">
-              <div className="row g-5 row-cols-1 row-cols-lg-1">
-                <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
-                  <div className="mx-auto my-auto icon-square d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                    <img src={comand} />
+              <div className="container px-4">
+                <div className="row g-5 row-cols-1 row-cols-lg-1">
+                  <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
+                    <div className="mx-auto my-auto icon-square d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                      <img src={comand} />
+                    </div>
+                    <div>
+                      <h3 className="about_header">Команда</h3>
+                      <p className="about_text">
+                        Наша команда обладает высокими профессиональными навыками
+                        для достижения общей цели.{" "}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="about_header">Команда</h3>
-                    <p className="about_text">
-                      Наша команда обладает высокими профессиональными навыками
-                      для достижения общей цели."{" "}
-                    </p>
+                  <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
+                    <div className="mx-auto my-auto icon-square  d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                      <img src={people} />
+                    </div>
+                    <div>
+                      <h3 className="about_header">Совет</h3>
+                      <p className="about_text">
+                        It is a long established fact that a reader will be
+                        distracted by the readable content of a page when looking
+                        at its layout.{" "}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
-                  <div className="mx-auto my-auto icon-square  d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                    <img src={people} />
-                  </div>
-                  <div>
-                    <h3 className="about_header">Совет</h3>
-                    <p className="about_text">
-                      It is a long established fact that a reader will be
-                      distracted by the readable content of a page when looking
-                      at its layout.{" "}
-                    </p>
-                  </div>
-                </div>
-                <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
-                  <div className="mx-auto my-auto icon-square d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                    <img src={gmail} />
-                  </div>
-                  <div>
-                    <h3 className="about_header">Пресс-служба</h3>
-                    <p className="about_text">
-                      It is a long established fact that a reader will be
-                      distracted by the readable content of a page when looking
-                      at its layout.{" "}
-                    </p>
+                  <div className="p-3 col bg__abouts__us__features d-flex align-items-start">
+                    <div className="mx-auto my-auto icon-square d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                      <img src={gmail} />
+                    </div>
+                    <div>
+                      <h3 className="about_header">Пресс-служба</h3>
+                      <p className="about_text">
+                        It is a long established fact that a reader will be
+                        distracted by the readable content of a page when looking
+                        at its layout.{" "}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

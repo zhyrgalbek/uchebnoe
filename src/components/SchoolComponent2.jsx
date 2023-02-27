@@ -121,7 +121,7 @@ const SchoolText = [
 
 
 export const SchoolComponent2 = () => {
-    const { translation } = useSelector((store) => store.translate);
+    const { translation, institution, types } = useSelector((store) => store.translate);
     const [openModal, setOpenModal] = useState(false);
     const onClickShare = () => {
         // alert('Hello world')
@@ -135,29 +135,38 @@ export const SchoolComponent2 = () => {
         alert('Hello world')
         setOpenMore((prev) => !prev);
     };
+    let institution_type = types.find(elem => +elem.id === +institution.institution_type_id)
+    console.log(institution)
     return (
         <section className="mt-5">
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-2 px-2 pt-4 border rounded blue">
                     <div className="col licei">
                         <p className="pt-0 mt-0 mb-4 profession__text__styled">
-                            {SchoolText[translation].header}
+                            {/* {SchoolText[translation].header} */}
+                            {
+                                institution.name
+                            }
                         </p>
-                        <img
-                            src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"
-                            className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none"
-                            alt=""
-                        />
+                        <Box sx={{ mb: '10px' }}>
+                            <img
+                                src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"
+                                className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none"
+                                alt=""
+                            />
+                        </Box>
                         <p className="charts__texts mb-1 margin__bottom__custom">
                             {SchoolText[translation].items[0].item_header}
                         </p>
-                        <p>{SchoolText[translation].items[0].item_text}</p>
+                        {/* <p>{SchoolText[translation].items[0].item_text}</p> */}
+                        <p>{institution_type?.name}</p>
                         <BoxCard>
                             <Stack direction="column" spacing={2}>
                                 <Th className="mb-1">
                                     {SchoolText[translation].items[5].item_header}
                                 </Th>
-                                <Td className="mt-1">Баланчаев Баланча Баланчаевич</Td>
+                                {/* <Td className="mt-1">Баланчаев Баланча Баланчаевич</Td> */}
+                                <Td>{institution?.contact_person}</Td>
                             </Stack>
                         </BoxCard>
                         {/* <div className="box d-flex align-items-center mb-1 my-md-2"> */}
@@ -177,7 +186,8 @@ export const SchoolComponent2 = () => {
                             <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
                                 <Th>{SchoolText[translation].items[1].item_header}</Th>
                                 <Td>
-                                    <IconCounter icon={man}>40</IconCounter>
+                                    {/* <IconCounter icon={man}>40</IconCounter> */}
+                                    <IconCounter icon={man}>{institution.total_capacity}</IconCounter>
                                 </Td>
                             </Stack>
                         </BoxCard>
@@ -198,12 +208,12 @@ export const SchoolComponent2 = () => {
                             <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
                                 <Th>{SchoolText[translation].items[2].item_header}</Th>
                                 <Td>
-                                    <IconCounter icon={man}>150</IconCounter>
+                                    <IconCounter icon={man}>{institution.total_capacity - institution.actual_quantity}</IconCounter>
                                 </Td>
                             </Stack>
                         </BoxCard>
-                        <Grid container xs={12} lg={10} sx={{ margin: "0" }}>
-                            <BoxCard>
+                        <Grid container >
+                            <Grid item xs={12} lg={10} sx={{ margin: "0" }}>
                                 <BoxCard>
                                     <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
                                         <Th>{SchoolText[translation].items[6].item_header}</Th>
@@ -212,18 +222,23 @@ export const SchoolComponent2 = () => {
                                         </Td>
                                     </Stack>
                                 </BoxCard>
+                            </Grid>
+                            <Grid item xs={12} lg={10} sx={{ margin: "0" }}>
                                 <BoxCard>
                                     <Stack direction="column" spacing={2}>
                                         <Th className="mb-1">
                                             {SchoolText[translation].items[3].item_header}
                                         </Th>
-                                        <Td className="mt-1">
+                                        {/* <Td className="mt-1">
                                             Чуйская область, Аламудунский район, село Жайылган, ул
                                             Аманова 22
+                                        </Td> */}
+                                        <Td className="mt-1">
+                                            {institution.address}
                                         </Td>
                                     </Stack>
                                 </BoxCard>
-                            </BoxCard>
+                            </Grid>
                         </Grid>
                     </div>
                     <div className="col">
@@ -236,9 +251,13 @@ export const SchoolComponent2 = () => {
                             <p className="mb-1 mt-4 font__contacts_data">
                                 {SchoolText[translation].items[9].item_header}
                             </p>
-                            <p className="mt-1 hhRoRZ">
+                            {/* <p className="mt-1 hhRoRZ">
                                 +996 312 00 80 00, +996 700 00 80 00 (WhatsApp), почта{" "}
                                 <a href="mailto: litsey16@bk.ru">litsey16@bk.ru</a>
+                            </p> */}
+                            <p className="mt-1 hhRoRZ">
+                                {`${institution.telephone}, ${institution.fax} (WhatsApp), почта `}
+                                <a href={`mailto: ${institution.email}`}>{institution.email}</a>
                             </p>
                         </div>
                         <div className="d-none d-md-flex flex-column col-12 col-md-9 col-lg-7">
@@ -255,7 +274,7 @@ export const SchoolComponent2 = () => {
                                 </FilterSubmit>
                             </BoxCard>
                             <BoxCard>
-                                <FilterSubmit icon={share} variant="like" onClick={onClickShare}>
+                                <FilterSubmit iconLeft={share} variant="like" onClick={onClickShare}>
                                     {SchoolText[translation].btns[2]}
                                 </FilterSubmit>
                             </BoxCard>
@@ -274,7 +293,7 @@ export const SchoolComponent2 = () => {
                                 </FilterSubmit>
                             </BoxCard>
                             <BoxCard>
-                                <FilterSubmit icon={share} variant="like" onClick={onClickShare}>
+                                <FilterSubmit iconLeft={share} variant="like" onClick={onClickShare}>
                                     {SchoolText[translation].btns[2]}
                                 </FilterSubmit>
                             </BoxCard>

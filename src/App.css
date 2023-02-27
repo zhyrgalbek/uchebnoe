@@ -217,7 +217,7 @@ html {
 .leaflet-div-icon {
   background-color: transparent;
   border: none;
-  opacity: 0.7 !important;
+  /* opacity: 0.7 !important; */
   /* border: 1px solid red; */
   /* width: 10px; */
   /* height: 10px; */
@@ -235,28 +235,33 @@ html {
   background-color: #58BF56;
   color: #fff;
   padding: 20px;
-  box-shadow: 0px 0px 10px 5px #25d36586;
-  opacity: 0.8 !important;
+  /* opacity: 0.8 !important; */
+  transition: 0.2s ease;
 }
 
 .green {
   background-color: #279279;
+  box-shadow: 0px 0px 10px 2px #279279;
 }
 
 .greenWhite {
   background-color: #56BF94;
+  box-shadow: 0px 0px 10px 2px #56BF94;
 }
 
 .yellow {
   background-color: #FFCC4A;
+  box-shadow: 0px 0px 10px 2px #FFCC4A;
 }
 
 .yellowWhite {
   background-color: #FF9D29;
+  box-shadow: 0px 0px 10px 2px #FF9D29;
 }
 
 .red {
   background-color: #FF504C;
+  box-shadow: 0px 0px 5px 1px #FF504C;
 }
 
 * {
@@ -595,6 +600,10 @@ footer .text__found {
   color: #fff;
   background-color: #6a8aff !important;
   box-shadow: none !important;
+}
+
+.css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root.Mui-expanded {
+  min-height: 45px;
 }
 
 .border-primary__custom {

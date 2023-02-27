@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MapLeaflet } from "../components/MapLeaflet/MapLeaflet";
 import { Filter } from "../components/Filter";
 import AnalizeCompoent from "../components/AnalizeComponent";
-import { TopFilter } from "../components/TopFilter";
+import { TopFilter } from "../components/TopFIlter/TopFilter";
 import { Paper } from "@mui/material";
 import { SchoolComponent2 } from "../components/SchoolComponent2";
 import { useSelector } from "react-redux";
@@ -41,9 +41,7 @@ export const StaticPage = () => {
             <h2 className="second__title__text text-center">
               {staticText[translation].second_title}
             </h2>
-            <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
-              <MapLeaflet />
-            </Paper>
+            <MapLeaflet />
           </div>
         </div>
       </main>

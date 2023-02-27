@@ -1,0 +1,1 @@
+export const url = 'https://check.edu.gov.kg/api.php';

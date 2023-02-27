@@ -3,19 +3,21 @@ import { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components"
 import frame from '../../assets/Filter/Frame.svg'
 
-export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, ...props }) => {
-    const [choiseText, setChoiseText] = useState(text);
+export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, type, onClick, ...props }) => {
+    // const [choiseText, setChoiseText] = useState(text);
+    const menuRef = useRef();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
-    useEffect(() => {
-        setChoiseText(text)
-    }, [text])
+    // useEffect(() => {
+    //     setChoiseText(text)
+    // }, [text]);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-    const handleClose = (event, text) => {
-        if (text) {
-            setChoiseText(text)
+    const handleClose = (event, elem, value) => {
+        if (elem) {
+            onClick({ type, text: elem, value });
+            // setChoiseText(elem);
         }
         if (
             anchorRef.current &&
@@ -23,7 +25,6 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
         ) {
             return;
         }
-
         setOpen(false);
     };
     function handleListKeyDown(event) {
@@ -34,12 +35,13 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
             setOpen(false);
         }
     }
+
     return <DropdownContainer>
         <DropdownHeader>{header}</DropdownHeader>
         <FilterDropdownButton onClick={handleToggle} ref={anchorRef} aria-controls={open ? 'composition-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
             aria-haspopup="true">
-            <Span>{choiseText}</Span>
+            <Span>{text}</Span>
             <Img src={frame} alt="#" active={open} />
         </FilterDropdownButton>
         <MenuBlock
@@ -49,7 +51,7 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
             placement="bottom-start"
             transition
             disablePortal
-            sx={{ zIndex: '100' }}
+            sx={{ zIndex: '1000', width: '345px' }}
         >
             {({ TransitionProps, placement }) => (
                 <Grow
@@ -59,18 +61,36 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                             placement === 'bottom-start' ? 'left top' : 'left bottom',
                     }}
                 >
-                    <Paper >
+                    <Paper
+                        // elevation={0} 
+                        sx={{
+                            // border: '1px solid rgba(55, 99, 255, 0.4)',
+                            // borderTopLeftRadius: placement === 'bottom-start' ? '0' : '6px',
+                            // borderTopRightRadius: placement === 'bottom-start' ? '0' : '6px',
+                            // borderBottomLeftRadius: placement === 'bottom-start' ? '6px' : '0',
+                            // borderBottomRightRadius: placement === 'bottom-start' ? '6px' : '0',
+                            // borderTopColor: placement === 'bottom-start' ? '#fff' : 'rgba(55, 99, 255, 0.4)',
+                            // borderBottomColor: placement === 'bottom-start' ? 'rgba(55, 99, 255, 0.4)' : '#fff',
+                            // marginTop: placement === 'bottom-start' ? '-2px' : '0',
+                            // marginBottom: placement === 'bottom-start' ? '0' : '-2px',
+                            // paddingTop: placement === 'bottom-start' ? '0' : '10px',
+                            // paddingBottom: placement === 'bottom-start' ? '10px' : '0',
+                        }}
+                    >
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList
                                 autoFocusItem={open}
                                 id="composition-menu"
                                 aria-labelledby="composition-button"
                                 onKeyDown={handleListKeyDown}
-                            // sx={{ margin: '0', padding: '0' }}
+                                sx={{ margin: '0', padding: '0', pb: '10px', pt: '10px', minHeight: '100px', maxHeight: '345px', overflowX: 'hidden' }}
                             >
                                 {
                                     items?.map((elem) => {
-                                        return <MenuItem sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%' }} onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
+                                        if (elem.name) {
+                                            return <MenuItem key={elem.id} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%', display: 'flex', flexWrap: 'wrap' }} onClick={(e) => handleClose(e, elem.name, elem.id)}>{elem.name}</MenuItem>
+                                        }
+                                        return <MenuItem key={Math.random().toString()} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%' }} onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
                                     })
                                 }
                             </MenuList>
@@ -79,12 +99,12 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                 </Grow>
             )}
         </MenuBlock>
-    </DropdownContainer>
+    </DropdownContainer >
 }
 
 const MenuBlock = styled(Popper)`
     min-width: 100%;
-    & div{
+    & > div{
         /* margin-top: -6px; */
         /* margin-left: -1px; */
         /* box-shadow: none; */
@@ -140,6 +160,7 @@ const Img = styled('img')`
 const FilterDropdownButton = styled('button')`
     border: 1px solid rgba(55, 99, 255, 0.4);
     padding: 0.75rem 0.625rem;
+    padding: 0.5625rem;
     border-radius: 3px;
     display: flex;
     align-items: center;

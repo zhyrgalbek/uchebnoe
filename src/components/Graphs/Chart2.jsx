@@ -80,5 +80,5 @@ export const Chart2 = ({ strokeWidth, size, scale }) => {
             floating: false,
         },
     })
-    return <Chart options={options} series={options.series} type={options.chart.type} width="100%" style={{}} />
+    return <Chart options={options} series={options.series} type={options.chart.type} width="100%" height="190" style={{}} />
 }
