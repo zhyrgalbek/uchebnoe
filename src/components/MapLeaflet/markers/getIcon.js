@@ -5,19 +5,19 @@ function getColor(percent) {
         return '#279279';
     }
     let percentInt = parseInt(percent);
-    if (percentInt >= 0 && percentInt < 20) {
+    if (percentInt >= 0 && percentInt < 50) {
         return '#279279'
     }
-    if (percentInt >= 20 && percentInt < 40) {
+    if (percentInt >= 50 && percentInt < 75) {
         return '#56BF94';
     }
-    if (percentInt >= 40 && percentInt < 60) {
+    if (percentInt >= 75 && percentInt < 100) {
         return '#FFCC4A';
     }
-    if (percentInt >= 60 && percentInt < 80) {
+    if (percentInt >= 100 && percentInt < 125) {
         return '#FF9D29';
     }
-    if (percentInt >= 80 && percentInt < 100) {
+    if (percentInt >= 125) {
         return '#FF504C';
     }
     return '#279279';

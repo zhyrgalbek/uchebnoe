@@ -11,7 +11,7 @@ import { AccordionFilter } from "./ui/AccordionFilter"
 import { useDispatch, useSelector } from "react-redux";
 import states from '../utils/Constants/json/states2.json'
 import { useEffect } from "react"
-import { getAreas, getFilter, getFilterInstitutions, getSectors, getViews } from "../store/slices/mapSlices"
+import { getAreas, getFilter, getFilterInstitutions, getSectors, getViews, mapActions } from "../store/slices/mapSlices"
 const oblast = ["Нарынская", "Чуйская", "Ыссык-Кульская", "Таласская", "Джалал-Абадская", "Ошская", "Баткенская", "г.Бишкек", "г.Ош"];
 const rayons = []
 
@@ -57,14 +57,61 @@ export const Filter = ({ header }) => {
             value: ''
         }
     ]);
-    console.log(filterValue)
+    console.log(areas)
     const onClickSeach = () => {
         const obj = {};
-        filterValue.forEach(elem => {
-            obj[elem.type] = elem.value;
-        });
-        console.log(obj)
-        dispatch(getFilterInstitutions(obj))
+        if (filterValue[0].value !== '') {
+            let arr = areas.map(elem => {
+                return elem.id;
+            })
+            obj.oblast = `area_ids=[${arr}]`;
+        }
+        if (filterValue[1].value !== '') {
+            obj.oblast = `area_id=${filterValue[1].value}`;
+        }
+        if (filterValue[2].value !== '') {
+            obj.oblast = `area_aimak_id=${filterValue[2].value}`;
+        }
+        filterValue.forEach((elem, index) => {
+            if (index > 2) {
+                obj[elem.type] = elem.value;
+            }
+        })
+        dispatch(getFilterInstitutions(obj));
+    }
+    const onResetFilter = () => {
+        setFilterValue(prev => {
+            return prev.map(elem => {
+                return { ...elem, value: '' }
+            })
+        })
+        setFilterText(prev => {
+            return prev.map(elem => {
+                return {
+                    ...elem, btns: elem.btns.map((el, index) => {
+                        if (el.type === 'region') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
+                        if (el.type === 'areas') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
+                        if (el.type === 'county') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
+                        if (el.type === 'type') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
+                        if (el.type === 'view') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
+                        if (el.type === 'sector') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
+                        return el;
+                    })
+                }
+            })
+        })
     }
     const onChangeValue = (type, value) => {
         let idx = 0;
@@ -234,10 +281,15 @@ export const Filter = ({ header }) => {
     const onChangeFilterText = ({ type, text, value }) => {
         setFilterText(prev => {
             return prev.map(elem => {
+                let idx = null;
                 return {
                     ...elem, btns: elem.btns.map((el, index) => {
                         if (el.type === type) {
+                            idx = index;
                             return { ...el, btn_text: text };
+                        }
+                        if (idx !== null && index > idx) {
+                            return { ...el, btn_text: el.btn_text2 };
                         }
                         return el;
                     })
@@ -245,6 +297,7 @@ export const Filter = ({ header }) => {
             })
         })
         onChangeValue(type, value);
+        dispatch(mapActions.setMarker(false))
     }
     const dispatch = useDispatch();
     useEffect(() => {
@@ -312,7 +365,7 @@ export const Filter = ({ header }) => {
             </Stack>
             <Stack direction="row" spacing={3}>
                 <FilterSubmit iconLeft={search} onClick={onClickSeach}>{filterText[translation].btns[8].btn_text}</FilterSubmit>
-                <FilterSubmit iconLeft={clean}>{filterText[translation].btns[10].btn_text}</FilterSubmit>
+                <FilterSubmit iconLeft={clean} onClick={onResetFilter}>{filterText[translation].btns[10].btn_text}</FilterSubmit>
             </Stack>
             {/* </AccordionFilter> */}
         </Desctop>

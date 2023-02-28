@@ -54,10 +54,11 @@ const mapSlices = createSlice({
 export const mapActions = mapSlices.actions;
 export default mapSlices;
 
-export const getFilterInstitutions = ({ region, areas, county, type, view, sector }) => {
+export const getFilterInstitutions = ({ oblast, type, view, sector }) => {
     return async (dispatch) => {
         try {
-            const institutions = await fetch_api({ types: `?action=institutions&area_id=${region}&area_aimak_id=${areas}&area_administrative_id=${county}&institution_type_id=${type}&institution_view_id=${view}&institution_sector_id=${sector}` });
+            const institutions = await fetch_api({ types: `?action=institutions&${oblast}&institution_type_id=${type}&institution_view_id=${view}&institution_sector_id=${sector}` });
+            console.log(institutions)
             dispatch(mapActions.setInstitutions(institutions.data));
         } catch (error) {
             console.log(error)

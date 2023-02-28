@@ -23,7 +23,7 @@ const staticText = [
 ];
 
 export const StaticPage = () => {
-  const { translation } = useSelector((store) => store.translate);
+  const { translation, marker } = useSelector((store) => store.translate);
   return (
     <>
       <main className="devider">
@@ -51,18 +51,20 @@ export const StaticPage = () => {
           <Filter />
         </div>
       </section>
+      {
+        marker && <section className="container">
+          <SchoolComponent2 />
+        </section>
+      }
 
-      <section className="container">
-        <SchoolComponent2 />
-      </section>
-      <section>
+      {/* <section>
         <div className="container">
           <AnalizeCompoent />
         </div>
-      </section>
-      <section className="container">
+      </section> */}
+      {/* <section className="container">
         <FaqComponent />
-      </section>
+      </section> */}
     </>
   );
 };

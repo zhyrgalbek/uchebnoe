@@ -54,8 +54,8 @@ function SetViewOnClick({ animateRef }) {
         map.setView(e.latlng, map.getZoom(), {
             animate: animateRef.current || false,
         })
-    })
-    return null
+    });
+    return null;
 }
 
 function MapPlaceholder() {
@@ -112,21 +112,24 @@ function SetBoundsRectangles({ marker }) {
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
     const [bool, setBool] = useState(false)
-    const [newTestJson, setNewTestJson] = useState([])
+    // const [newTestJson, setNewTestJson] = useState([])
     const dispatch = useDispatch();
 
-    console.log(institutions);
+    // console.log(institutions);
+    // console.log(statesKol)
+
     const map = useMap();
     useEffect(() => {
+        console.log(marker)
         if (marker) {
-            map.setView(marker.latlng, 17);
+            window.scrollTo({ top: 1100, left: 0, behavior: "smooth" });
+            map.setView(marker, 17);
         }
-    }, [marker])
+    }, [marker]);
     const innerHandlers = (event, institution) => {
         // map.setView(event.latlng, 17);
-        dispatch(mapActions.setMarker(event))
+        dispatch(mapActions.setMarker(event.latlng));
         dispatch(mapActions.setInstitution(institution));
-        window.scrollTo({ top: 1100, left: 0, behavior: "smooth" });
         // console.log(institution)
     }
 
@@ -219,7 +222,7 @@ function SetBoundsRectangles({ marker }) {
                         if (prev) {
                             map.removeLayer(prev);
                         }
-                        return link
+                        return link;
                     })
                 }
                 if (country.id === "Джалал-Абадская") {
@@ -350,34 +353,34 @@ function SetBoundsRectangles({ marker }) {
         });
     }
 
-    useEffect(() => {
-        setNewTestJson((prev) => {
-            const one = [];
-            const two = [];
-            const three = [];
-            const foure = [];
-            const five = [];
-            testJon?.features.forEach((elem, index) => {
-                if (index % 2 === 0) {
-                    one.push({ ...elem, id: 2 })
-                    return
-                } else if (index % 3 === 0) {
-                    two.push({ ...elem, id: 3 })
-                    return
-                } else if (index % 5 === 0) {
-                    three.push({ ...elem, id: 5 })
-                    return
-                } else if (index % 7 === 0) {
-                    foure.push({ ...elem, id: 7 })
-                    return
-                } else {
-                    five.push({ ...elem, id: 5 })
-                    return
-                }
-            })
-            return [[...one], [...two], [...three], [...foure], [...five]];
-        })
-    }, [])
+    // useEffect(() => {
+    //     setNewTestJson((prev) => {
+    //         const one = [];
+    //         const two = [];
+    //         const three = [];
+    //         const foure = [];
+    //         const five = [];
+    //         institutions.forEach((elem, index) => {
+    //             if (elem.fullness >= 0 && elem.fullness < 50) {
+    //                 one.push({ ...elem, id: 2 })
+    //                 return
+    //             } else if (elem.fullness >= 50 && elem.fullness < 75) {
+    //                 two.push({ ...elem, id: 3 })
+    //                 return
+    //             } else if (elem.fullness >= 75 && elem.fullness < 100) {
+    //                 three.push({ ...elem, id: 5 })
+    //                 return
+    //             } else if (elem.fullness >= 100 && elem.fullness < 125) {
+    //                 foure.push({ ...elem, id: 7 })
+    //                 return
+    //             } else {
+    //                 five.push({ ...elem, id: 5 })
+    //                 return
+    //             }
+    //         })
+    //         return [[...one], [...two], [...three], [...foure], [...five]];
+    //     })
+    // }, [institutions])
     // console.log(newTestJson)
     return (
         <>
@@ -410,40 +413,40 @@ function SetBoundsRectangles({ marker }) {
             {/* <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
                 {
                     newTestJson[0]?.map((elem, index) => {
-                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
-                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Green} key={index} position={arr} ></Marker>
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
                     })
                 }
             </MarkerClusterGroup>
             <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellow}>
                 {
                     newTestJson[1]?.map((elem, index) => {
-                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
-                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Yellow} key={index} position={arr} ></Marker>
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
                     })
                 }
             </MarkerClusterGroup>
             <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellowWhite}>
                 {
                     newTestJson[2]?.map((elem, index) => {
-                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
-                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1YellowWhite} key={index} position={arr} ></Marker>
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
                     })
                 }
             </MarkerClusterGroup>
             <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreenWhite}>
                 {
                     newTestJson[3]?.map((elem, index) => {
-                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
-                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1GreenWhite} key={index} position={arr} ></Marker>
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
                     })
                 }
             </MarkerClusterGroup>
             <MarkerClusterGroup iconCreateFunction={createClusterCustomIconRed}>
                 {
                     newTestJson[4]?.map((elem, index) => {
-                        const arr = [elem.geometry.coordinates[1], elem.geometry.coordinates[0]]
-                        return <Marker eventHandlers={{ click: innerHandlers }} icon={iconInstitution1Red} key={index} position={arr} ></Marker>
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
                     })
                 }
             </MarkerClusterGroup> */}
@@ -484,10 +487,15 @@ export const MapLeaflet = ({ marker }) => {
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                         />
-                        <TileLayer
-                            url="https://geoserver.24mycrm.com/monmap/wms?service=WMS&version=1.1.0&request=GetMap&layers=monmap%3At2&bbox=69.288734216%2C39.187748699%2C80.291156242%2C43.260223321&width=768&height=330&srs=EPSG%3A4326&styles=&format=application%2Fopenlayers3"
-                        // attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                        />
+                        {/* <WMSTileLayer
+                            url="https://geoserver.24mycrm.com/monmap/wms?"
+                            version='1.0.0'
+                            opacity={0.25}
+                            srs="EPSG:4326"
+                            layers="t2"
+                            gridSet="999"
+                            format="image/png"
+                        /> */}
                     </LayerGroup>
                     <LayersControl position="bottomright">
                         <LayersControl.Overlay name="google">
