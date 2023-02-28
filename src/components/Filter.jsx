@@ -11,7 +11,7 @@ import { AccordionFilter } from "./ui/AccordionFilter"
 import { useDispatch, useSelector } from "react-redux";
 import states from '../utils/Constants/json/states2.json'
 import { useEffect } from "react"
-import { getAreas, getFilter, getSectors, getViews } from "../store/slices/mapSlices"
+import { getAreas, getFilter, getFilterInstitutions, getSectors, getViews } from "../store/slices/mapSlices"
 const oblast = ["Нарынская", "Чуйская", "Ыссык-Кульская", "Таласская", "Джалал-Абадская", "Ошская", "Баткенская", "г.Бишкек", "г.Ош"];
 const rayons = []
 
@@ -39,9 +39,33 @@ export const Filter = ({ header }) => {
         {
             type: 'county',
             value: '',
+        },
+        {
+            type: 'type',
+            value: ''
+        },
+        {
+            type: 'view',
+            value: ''
+        },
+        {
+            type: 'capacity',
+            value: ''
+        },
+        {
+            type: 'sector',
+            value: ''
         }
     ]);
     console.log(filterValue)
+    const onClickSeach = () => {
+        const obj = {};
+        filterValue.forEach(elem => {
+            obj[elem.type] = elem.value;
+        });
+        console.log(obj)
+        dispatch(getFilterInstitutions(obj))
+    }
     const onChangeValue = (type, value) => {
         let idx = 0;
         setFilterValue(prev => {
@@ -55,7 +79,7 @@ export const Filter = ({ header }) => {
                 }
                 return elem;
             })
-        })
+        });
     }
     useEffect(() => {
         dispatch(getFilter({ searchValues: filterValue }))
@@ -206,6 +230,7 @@ export const Filter = ({ header }) => {
             ]
         }
     ]);
+
     const onChangeFilterText = ({ type, text, value }) => {
         setFilterText(prev => {
             return prev.map(elem => {
@@ -276,32 +301,17 @@ export const Filter = ({ header }) => {
         <Desctop header={header}>
             {/* <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[9].btn_header : filterText[translation].btns[9].btn_text}</FilterSubmit>}> */}
             <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
-                {
-                    filterText[translation].btns.map((elem, index, arr) => {
-                        if (index > 6) {
-                            return
-                        }
-                        if (index === 0) {
-                            return <FilterDropdown onClick={onChangeFilterText} type={elem.type} key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={regions} />
-                        }
-                        if (index === 1) {
-                            return <FilterDropdown onClick={onChangeFilterText} type={elem.type} key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={areas} />
-                        }
-                        if (index === 2) {
-                            return <FilterDropdown onClick={onChangeFilterText} type={elem.type} key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={county} />
-                        }
-                        if (index === 3) {
-                            return <FilterDropdown onClick={onChangeFilterText} type={elem.type} key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={types} />
-                        }
-                        if (index === 4) {
-                            return <FilterDropdown onClick={onChangeFilterText} type={elem.type} key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={view} />
-                        }
-                        return <FilterDropdown onClick={onChangeFilterText} type={elem.type} key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={elem?.items} />
-                    })
-                }
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[0].type} header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={regions} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view} />
+                {/* <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} /> */}
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
+                {/* <FilterDropdown onClick={onChangeFilterText} type={elem.type} header={elem.btn_header} text={elem.btn_text} items={elem?.items} /> */}
             </Stack>
             <Stack direction="row" spacing={3}>
-                <FilterSubmit iconLeft={search}>{filterText[translation].btns[8].btn_text}</FilterSubmit>
+                <FilterSubmit iconLeft={search} onClick={onClickSeach}>{filterText[translation].btns[8].btn_text}</FilterSubmit>
                 <FilterSubmit iconLeft={clean}>{filterText[translation].btns[10].btn_text}</FilterSubmit>
             </Stack>
             {/* </AccordionFilter> */}

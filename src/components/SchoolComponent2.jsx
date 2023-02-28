@@ -19,6 +19,7 @@ import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import ModalComponent from "./ui/ModalComponent"
 import Podelitsya from "./Podelitsya"
+import { MapLeaflet } from "./MapLeaflet/MapLeaflet";
 
 
 const SchoolText = [
@@ -121,7 +122,7 @@ const SchoolText = [
 
 
 export const SchoolComponent2 = () => {
-    const { translation, institution, types } = useSelector((store) => store.translate);
+    const { translation, institution, types, marker } = useSelector((store) => store.translate);
     const [openModal, setOpenModal] = useState(false);
     const onClickShare = () => {
         // alert('Hello world')
@@ -242,11 +243,14 @@ export const SchoolComponent2 = () => {
                         </Grid>
                     </div>
                     <div className="col">
-                        <img
+                        <Box sx={{ width: '100%', height: '400px' }}>
+                            <MapLeaflet marker={marker} />
+                        </Box>
+                        {/* <img
                             src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"
                             className="img-thumbnail border-0 pt-0 mt-0 d-none d-md-block"
                             alt=""
-                        />
+                        /> */}
                         <div className="d-md-block d-none">
                             <p className="mb-1 mt-4 font__contacts_data">
                                 {SchoolText[translation].items[9].item_header}
@@ -262,7 +266,7 @@ export const SchoolComponent2 = () => {
                         </div>
                         <div className="d-none d-md-flex flex-column col-12 col-md-9 col-lg-7">
                             <BoxCard>
-                                <FilterSubmit
+                                {/* <FilterSubmit
                                     info={
                                         <IconCounter like icon={like}>
                                             490
@@ -271,7 +275,7 @@ export const SchoolComponent2 = () => {
                                     variant="like"
                                 >
                                     {SchoolText[translation].btns[1]}
-                                </FilterSubmit>
+                                </FilterSubmit> */}
                             </BoxCard>
                             <BoxCard>
                                 <FilterSubmit iconLeft={share} variant="like" onClick={onClickShare}>

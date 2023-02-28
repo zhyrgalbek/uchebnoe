@@ -11,13 +11,17 @@ const initialState = {
     institutions: [],
     sectors: [],
     filter: [],
-    institution: {}
+    institution: {},
+    marker: ''
 }
 
 const mapSlices = createSlice({
     name: 'mapSlices',
     initialState,
     reducers: {
+        setMarker(state, action) {
+            state.marker = action.payload;
+        },
         setTranslation(state, action) {
             state.translation = action.payload;
         },
@@ -50,24 +54,44 @@ const mapSlices = createSlice({
 export const mapActions = mapSlices.actions;
 export default mapSlices;
 
+export const getFilterInstitutions = ({ region, areas, county, type, view, sector }) => {
+    return async (dispatch) => {
+        try {
+            const institutions = await fetch_api({ types: `?action=institutions&area_id=${region}&area_aimak_id=${areas}&area_administrative_id=${county}&institution_type_id=${type}&institution_view_id=${view}&institution_sector_id=${sector}` });
+            dispatch(mapActions.setInstitutions(institutions.data));
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const getFilter = ({ searchValues }) => {
-    let searchParams = ``;
+    let searchParams = `action=areas`;
     let type = '';
     searchValues.forEach((elem, index, arr) => {
         if (elem.value !== '' && elem.type === 'county') {
             return
         }
-        if (elem.value !== '') {
+        if (elem.value !== '' && elem.type === 'region' || elem.value !== '' && elem.type === 'areas') {
             searchParams += `&parent_id=${elem.value}`;
             type = arr[index + 1].type;
+        }
+        if (elem.type === 'type' && elem.value !== '') {
+            searchParams = `action=view&institution_type_id=${elem.value}`;
+            type = arr[index + 1].type;
+        }
+        if (elem.type === 'view' && elem.value !== '') {
+            return
         }
     })
     return async (dispatch) => {
         try {
-            const filter = await fetch_api({ types: `?action=areas${searchParams}` });
-            console.log(filter)
-            console.log(type)
-            dispatch(mapActions.setFilter({ type: type, data: filter.data }))
+            const f = searchValues.find(elem => elem.type === 'view' && elem.value !== '');
+            if (f) {
+                return
+            }
+            const filter = await fetch_api({ types: `?${searchParams}` });
+            dispatch(mapActions.setFilter({ type: type, data: filter.data }));
         } catch (error) {
             console.log(error);
         }

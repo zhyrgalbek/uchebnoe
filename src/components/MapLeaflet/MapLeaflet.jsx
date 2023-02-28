@@ -107,7 +107,7 @@ const markers = [
     [42.839694, 74.602511]
 ]
 
-function SetBoundsRectangles() {
+function SetBoundsRectangles({ marker }) {
     const { institutions } = useSelector(store => store.translate)
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
@@ -116,14 +116,19 @@ function SetBoundsRectangles() {
     const dispatch = useDispatch();
 
     console.log(institutions);
-
     const map = useMap();
+    useEffect(() => {
+        if (marker) {
+            map.setView(marker.latlng, 17);
+        }
+    }, [marker])
     const innerHandlers = (event, institution) => {
-        map.setView(event.latlng, 17);
+        // map.setView(event.latlng, 17);
+        dispatch(mapActions.setMarker(event))
         dispatch(mapActions.setInstitution(institution));
+        window.scrollTo({ top: 1100, left: 0, behavior: "smooth" });
         // console.log(institution)
     }
-
 
     const onChangeRayons = (country, layer) => {
         // layer.Tooltip(`<p>${country.id}</p>`);
@@ -457,7 +462,7 @@ const marker = [42.857254, 74.600725];
 
 
 
-export const MapLeaflet = () => {
+export const MapLeaflet = ({ marker }) => {
     const animateRef = useRef(true)
     const eventHandlers = () => ({
         click(event) {
@@ -506,7 +511,7 @@ export const MapLeaflet = () => {
                     </LayersControl>
                     <SetViewOnClick animateRef={animateRef} />
                     <MyComponent />
-                    <SetBoundsRectangles />
+                    <SetBoundsRectangles marker={marker} />
                 </Map >
             </MapBlock >
         </Paper>
