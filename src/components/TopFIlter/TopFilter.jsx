@@ -4,7 +4,7 @@ import { AccordionFilter } from '../ui/AccordionFilter';
 import { Stack } from "@mui/system";
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getInstitutions, getTypes } from '../../store/slices/mapSlices';
+import { getFilterInstitutions, getInstitutions, getTypes, mapActions } from '../../store/slices/mapSlices';
 import { getIcons } from './getIcons';
 import { getIcon } from '../MapLeaflet/markers/getIcon';
 
@@ -31,22 +31,33 @@ const buttonText = [
 // другие 5, 7, 8,9,18,19,20,21,23
 
 export const TopFilter = () => {
-    const { translation, types } = useSelector(store => store.translate)
+    const { translation, types, requestFilter, areas } = useSelector(store => store.translate)
     const [accordionOpen, setAccordionOpen] = useState(false);
     const [filterActive, setFilterActive] = useState(0)
+    const [one, setOne] = useState(false);
     const dispatch = useDispatch()
     // console.log(types)
     const onChangeAccordion = () => {
         setAccordionOpen(prev => !prev)
     }
     // console.log(types)
+    useEffect(() => {
+        if (!one) {
+            setOne(true);
+            return;
+        }
+        // console.log(requestFilter[requestFilter.length - 1])
+        dispatch(getFilterInstitutions(requestFilter, areas));
+    }, [requestFilter[requestFilter.length - 1]])
     const onClickBtn = (e, index, id) => {
         e.preventDefault();
-        setFilterActive(index)
-        dispatch(getInstitutions({ id }))
+        setFilterActive(index);
+        dispatch(mapActions.setRequestFilter({ type: 'typeId', value: id, text: '' }));
+        dispatch(mapActions.setMarker(false));
     }
     useEffect(() => {
         dispatch(getTypes())
+        dispatch(getInstitutions('all'))
     }, [])
     return <>
         <Mobile>

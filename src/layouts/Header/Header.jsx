@@ -13,7 +13,7 @@ const headerText = [
   },
   {
     logo: 'Кыргыз Республикасынын Билим берүү жана илим министрлиги',
-    btns: ['Биз жөнүндө', 'Статистикалык маалымат', 'Очередь в СОШ и ДОО']
+    btns: ['Биз жөнүндө', 'Статистикалык маалымат', 'ОББМ жана МЧББУ кезеги']
   },
 ]
 
@@ -127,7 +127,7 @@ const Header = () => {
                 {headerText[translation].btns[0]}
               </a>
             </li> */}
-            <HeaderButton href="#" onClick={(e) => onClickNav(e, "/about")} active={location.pathname === "/about"}>О нас</HeaderButton>
+            <HeaderButton href="#" onClick={(e) => onClickNav(e, "/about")} active={location.pathname === "/about"}>{headerText[translation].btns[0]}</HeaderButton>
             {/* <li className="nav-item mx-4 w-auto">
               <a
                 className={`nav-link btn ${location.pathname === "/" ? active : noActive

@@ -1,20 +1,20 @@
 import { Paper } from '@mui/material'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export default function InfoBlock() {
     return (
-        <InfoBlock>
+        <InfoContainer>
             <Paper>
                 <InfoColor>
-                    <Item><SpanColor><Color color="#FF0600" /></SpanColor>100</Item>
-                    <Item><SpanColor><Color color="#FFCD02" /></SpanColor>80</Item>
-                    <Item><SpanColor><Color color="#FFF800" /></SpanColor>60</Item>
-                    <Item><SpanColor><Color color="#A9FF00" /></SpanColor>40</Item>
-                    <Item><SpanColor><Color color="#51FF00" /></SpanColor>20</Item>
+                    <Item><SpanColor><Color color="#2b83ba" /></SpanColor>50</Item>
+                    <Item><SpanColor><Color color="#abdda4" /></SpanColor>75</Item>
+                    <Item><SpanColor><Color color="#ffffbf" /></SpanColor>100</Item>
+                    <Item><SpanColor><Color color="#fdae61" /></SpanColor>125</Item>
+                    <Item><SpanColor><Color color="#d7191c" /></SpanColor>150</Item>
                 </InfoColor>
             </Paper>
-        </InfoBlock>
+        </InfoContainer>
     )
 }
 
@@ -55,7 +55,7 @@ const Item = styled('li')`
     /* margin-bottom: -4px; */
 `
 
-const InfoBlock = styled('div')`
+const InfoContainer = styled('div')`
     position: absolute;
     bottom: 20px;
     left: 20px;

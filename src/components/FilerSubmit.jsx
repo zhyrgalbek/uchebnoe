@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 
-export const FilterSubmit = ({ iconLeft, iconRight, children, variant, active, info, bgNone, ...props }) => {
-    return <Submit {...props} variant={variant} active={active} bgNone={bgNone}>
+export const FilterSubmit = ({ iconLeft, iconRight, children, variant, active, info, bgNone, map, ...props }) => {
+    return <Submit {...props} variant={variant} active={active} bgNone={bgNone} map={map}>
         {
             variant === 'like' && info
         }
@@ -89,6 +89,9 @@ const Submit = styled('button')`
     `}
     ${props => props.variant === 'like' && css`
         width: 280px;
+    `}
+    ${props => props.map && css`
+        padding: 5px 10px;
     `}
     @media screen and (max-width: 780px){
         width: 100%;

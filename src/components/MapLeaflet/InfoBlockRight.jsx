@@ -1,20 +1,20 @@
 import { Paper } from '@mui/material'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export default function InfoBlock({ text }) {
+export default function InfoBlockRight({ text }) {
     return (
-        <InfoBlock right>
+        <InfoContainer right>
             <Paper>
                 <InfoColor>
-                    <Item right><SpanColor radius><Color color="#FF0600" radius /></SpanColor>20%</Item>
-                    <Item right><SpanColor radius><Color color="#FFCD02" radius /></SpanColor>40%</Item>
-                    <Item right><SpanColor radius><Color color="#FFF800" radius /></SpanColor>60%</Item>
-                    <Item right><SpanColor radius><Color color="#A9FF00" radius /></SpanColor>80%</Item>
-                    <Item right><SpanColor radius><Color color="#51FF00" radius /></SpanColor>100%</Item>
+                    <Item right><SpanColor radius><Color color="#FF0600" radius /></SpanColor>150%</Item>
+                    <Item right><SpanColor radius><Color color="#FFCD02" radius /></SpanColor>125%</Item>
+                    <Item right><SpanColor radius><Color color="#FFF800" radius /></SpanColor>100%</Item>
+                    <Item right><SpanColor radius><Color color="#A9FF00" radius /></SpanColor>75%</Item>
+                    <Item right><SpanColor radius><Color color="#51FF00" radius /></SpanColor>50%</Item>
                 </InfoColor>
             </Paper>
-        </InfoBlock>
+        </InfoContainer>
     )
 }
 
@@ -55,7 +55,7 @@ const Item = styled('li')`
     /* margin-bottom: -4px; */
 `
 
-const InfoBlock = styled('div')`
+const InfoContainer = styled('div')`
     position: absolute;
     bottom: 20px;
     left: 20px;

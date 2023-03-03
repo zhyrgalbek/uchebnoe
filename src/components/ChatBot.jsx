@@ -252,7 +252,7 @@ const ChatBot = ({ handleClose }) => {
         <ChatBotBlock>
             {/* <Paper sx={{ width: '350px', borderRadius: '6px', overflow: 'hidden', marginBottom: '30px' }}> */}
             <ChatBotHeader>
-                <ChatBotHeaderText><HeaderSpan>чат-бот</HeaderSpan><Img src={krestik} onClick={handleClose} /></ChatBotHeaderText>
+                <ChatBotHeaderText><HeaderSpan>Чат-бот</HeaderSpan><Img src={krestik} onClick={handleClose} /></ChatBotHeaderText>
             </ChatBotHeader>
             <ChatBotWindow className="chat-window" ref={windowref} id="chatWindow">
                 {messages.map((message) => {

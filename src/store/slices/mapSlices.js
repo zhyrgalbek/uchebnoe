@@ -12,13 +12,91 @@ const initialState = {
     sectors: [],
     filter: [],
     institution: {},
-    marker: ''
+    marker: '',
+    coordinate: {
+        type: '',
+        value: ''
+    },
+    requestFilter: [
+        {
+            type: 'region',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'areas',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'county',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'type',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'view',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'capacity',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'sector',
+            value: '',
+            text: ''
+        },
+        {
+            type: 'typeId',
+            value: 'all',
+            text: ''
+        }
+    ],
+    status: ''
 }
 
 const mapSlices = createSlice({
     name: 'mapSlices',
     initialState,
     reducers: {
+        setRequestFilterReset(state) {
+            state.requestFilter = state.requestFilter.map((elem) => {
+                if (elem.type === 'typeId') {
+                    return elem;
+                }
+                return { ...elem, value: '', text: '' }
+            })
+        },
+        setRequestFilter(state, action) {
+            let { type, value, text } = action.payload;
+            let idx = null;
+            state.requestFilter = state.requestFilter.map((elem, index) => {
+                if (elem.type === type) {
+                    idx = index;
+                    return { ...elem, value: value, text: text };
+                }
+                if (idx !== null && index > idx) {
+                    if (elem.type === 'typeId') {
+                        return elem;
+                    }
+                    return { ...elem, value: '', text: '' }
+                }
+                return elem;
+            })
+        },
+        setCoordinate(state, action) {
+            state.coordinate = {
+                type: action.payload.type,
+                value: action.payload.text
+            }
+        },
         setMarker(state, action) {
             state.marker = action.payload;
         },
@@ -47,6 +125,9 @@ const mapSlices = createSlice({
         },
         setInstitution(state, action) {
             state.institution = action.payload
+        },
+        setStatus(state, action) {
+            state.status = action.payload;
         }
     }
 })
@@ -54,14 +135,76 @@ const mapSlices = createSlice({
 export const mapActions = mapSlices.actions;
 export default mapSlices;
 
-export const getFilterInstitutions = ({ oblast, type, view, sector }) => {
+export const getFilterInstitutions = (requestFilter, areas) => {
+    // let institution = '&institution_type_id=';
+    let obj = { typeId: '', type: '', view: '', sector: '' };
+    requestFilter.forEach((elem) => {
+        obj[elem.type] = elem.value;
+    })
+    let { typeId, type, view, sector } = obj;
+    let institution_types = `&institution_type_id=${typeId}`;
+    let other = `&institution_type_id=5&institution_type_id=7&institution_type_id=8&institution_type_id=9&institution_type_id=18&institution_type_id=19&institution_type_id=20&institution_type_id=21&institution_type_id=23`
+    if (typeId === 'other') {
+        institution_types = other;
+    }
+    if (typeId === 'all') {
+        institution_types = ``;
+    }
+    if (type !== '') {
+        institution_types = `&institution_type_id=${type}`;
+    }
+    if (view !== '') {
+        institution_types = `&institution_view_id=${view}`;
+    }
+    let requestOblast = ``
+    if (requestFilter[0].value !== '') {
+        let arr = areas.map(elem => {
+            return elem.id;
+        })
+        requestOblast = `area_ids=[${arr}]`;
+    }
+    if (requestFilter[1].value !== '') {
+        requestOblast = `area_id=${requestFilter[1].value}`;
+    }
+    if (requestFilter[2].value !== '') {
+        requestOblast = `area_aimak_id=${requestFilter[2].value}`;
+    }
+    // console.log(institution_types);
+    console.log(requestOblast)
     return async (dispatch) => {
         try {
-            const institutions = await fetch_api({ types: `?action=institutions&${oblast}&institution_type_id=${type}&institution_view_id=${view}&institution_sector_id=${sector}` });
-            console.log(institutions)
+            dispatch(mapActions.setStatus('pending'))
+            const institutions = await fetch_api({ types: `?action=institutions&${requestOblast}${institution_types}&institution_sector_id=${sector}` });
+            // console.log(institutions)
             dispatch(mapActions.setInstitutions(institutions.data));
+            setTimeout(() => {
+                dispatch(mapActions.setStatus('access'))
+            }, 5000)
         } catch (error) {
             console.log(error)
+        }
+    }
+}
+
+// другие 5, 7, 8,9,18,19,20,21,23
+export const getInstitutions = ({ id }) => {
+    let searchParams = '?action=institutions';
+    let other = `&institution_type_id=5&institution_type_id=7&institution_type_id=8&institution_type_id=9&institution_type_id=18&institution_type_id=19&institution_type_id=20&institution_type_id=21&institution_type_id=23`
+    let institution = '&institution_type_id=';
+    return async (dispatch) => {
+        try {
+            if (id === 'other') {
+                searchParams = searchParams + other;
+            } else if (id === 'all') {
+                searchParams = searchParams + '';
+            }
+            else {
+                searchParams = searchParams + institution + id;
+            }
+            const institutions = await fetch_api({ types: searchParams });
+            dispatch(mapActions.setInstitutions(institutions.data));
+        } catch (error) {
+            console.log(error);
         }
     }
 }
@@ -93,29 +236,6 @@ export const getFilter = ({ searchValues }) => {
             }
             const filter = await fetch_api({ types: `?${searchParams}` });
             dispatch(mapActions.setFilter({ type: type, data: filter.data }));
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
-// другие 5, 7, 8,9,18,19,20,21,23
-export const getInstitutions = ({ id }) => {
-    let searchParams = '?action=institutions';
-    let other = `&institution_type_id=5&institution_type_id=7&institution_type_id=8&institution_type_id=9&institution_type_id=18&institution_type_id=19&institution_type_id=20&institution_type_id=21&institution_type_id=23`
-    let institution = '&institution_type_id=';
-    return async (dispatch) => {
-        try {
-            if (id === 'other') {
-                searchParams = searchParams + other;
-            } else if (id === 'all') {
-                searchParams = searchParams + '';
-            }
-            else {
-                searchParams = searchParams + institution + id;
-            }
-            const institutions = await fetch_api({ types: searchParams });
-            dispatch(mapActions.setInstitutions(institutions.data));
         } catch (error) {
             console.log(error);
         }

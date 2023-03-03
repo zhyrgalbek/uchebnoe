@@ -11,7 +11,7 @@ import { AccordionFilter } from "./ui/AccordionFilter"
 import { useDispatch, useSelector } from "react-redux";
 import states from '../utils/Constants/json/states2.json'
 import { useEffect } from "react"
-import { getAreas, getFilter, getFilterInstitutions, getSectors, getViews, mapActions } from "../store/slices/mapSlices"
+import { getAreas, getFilter, getFilterInstitutions, getInstitutions, getSectors, getViews, mapActions } from "../store/slices/mapSlices"
 const oblast = ["Нарынская", "Чуйская", "Ыссык-Кульская", "Таласская", "Джалал-Абадская", "Ошская", "Баткенская", "г.Бишкек", "г.Ош"];
 const rayons = []
 
@@ -21,70 +21,38 @@ const colorText = [
 ]
 
 export const Filter = ({ header }) => {
-    const { translation, areas, regions, county, types, view, sectors } = useSelector(store => store.translate);
+    const { translation, areas, regions, county, types, view, sectors, requestFilter } = useSelector(store => store.translate);
     // console.log(types)
     // console.log(view)
     // console.log(regions)
     // console.log()
     const [openState, setOpenState] = useState(false);
-    const [filterValue, setFilterValue] = useState([
-        {
-            type: 'region',
-            value: '',
-        },
-        {
-            type: 'areas',
-            value: '',
-        },
-        {
-            type: 'county',
-            value: '',
-        },
-        {
-            type: 'type',
-            value: ''
-        },
-        {
-            type: 'view',
-            value: ''
-        },
-        {
-            type: 'capacity',
-            value: ''
-        },
-        {
-            type: 'sector',
-            value: ''
-        }
-    ]);
-    console.log(areas)
+    const [statusValue, setStatusValue] = useState(false);
+    const [statusSearch, setStatusSearch] = useState('');
+    // console.log(areas)
     const onClickSeach = () => {
-        const obj = {};
-        if (filterValue[0].value !== '') {
-            let arr = areas.map(elem => {
-                return elem.id;
-            })
-            obj.oblast = `area_ids=[${arr}]`;
-        }
-        if (filterValue[1].value !== '') {
-            obj.oblast = `area_id=${filterValue[1].value}`;
-        }
-        if (filterValue[2].value !== '') {
-            obj.oblast = `area_aimak_id=${filterValue[2].value}`;
-        }
-        filterValue.forEach((elem, index) => {
-            if (index > 2) {
-                obj[elem.type] = elem.value;
-            }
-        })
-        dispatch(getFilterInstitutions(obj));
+        dispatch(getFilterInstitutions(requestFilter, areas));
+        dispatch(mapActions.setMarker(false));
+        const type = (requestFilter[0].text !== '' && requestFilter[1].text) === '' && requestFilter[0].type || requestFilter[1].text !== '' && requestFilter[1].type
+        const text = (requestFilter[0].text !== '' && requestFilter[1].text) === '' && requestFilter[0].text || requestFilter[1].text !== '' && requestFilter[1].text
+        // console.log(type)
+        dispatch(mapActions.setCoordinate({ type, text }));
     }
+    useEffect(() => {
+        if (statusSearch === '') {
+            setStatusSearch(false);
+            return;
+        }
+        if (statusSearch) {
+            dispatch(getFilterInstitutions(requestFilter, areas));
+            setStatusSearch(false);
+        }
+    }, [requestFilter])
+
     const onResetFilter = () => {
-        setFilterValue(prev => {
-            return prev.map(elem => {
-                return { ...elem, value: '' }
-            })
-        })
+        dispatch(mapActions.setRequestFilterReset());
+        setStatusSearch(true);
+        dispatch(mapActions.setCoordinate({ type: '', value: '' }))
         setFilterText(prev => {
             return prev.map(elem => {
                 return {
@@ -113,24 +81,16 @@ export const Filter = ({ header }) => {
             })
         })
     }
-    const onChangeValue = (type, value) => {
-        let idx = 0;
-        setFilterValue(prev => {
-            return prev.map((elem, index) => {
-                if (elem.type === type) {
-                    idx = index;
-                    return { ...elem, value: value };
-                }
-                if (index > idx) {
-                    return { ...elem, value: '' }
-                }
-                return elem;
-            })
-        });
+    const onChangeValue = (type, value, text) => {
+        dispatch(mapActions.setRequestFilter({ type, value, text }))
     }
     useEffect(() => {
-        dispatch(getFilter({ searchValues: filterValue }))
-    }, [filterValue])
+        if (!statusValue) {
+            setStatusValue(true)
+            return;
+        }
+        dispatch(getFilter({ searchValues: requestFilter }))
+    }, [requestFilter[0], requestFilter[1], requestFilter[2], requestFilter[3], requestFilter[4], requestFilter[5]])
     const [filterText, setFilterText] = useState([
         {
             header: 'Фильтр для точечного поиска учреждения',
@@ -158,7 +118,7 @@ export const Filter = ({ header }) => {
                 },
                 {
                     type: 'type',
-                    btn_header: 'Вид учреждения',
+                    btn_header: 'Тип учреждения',
                     btn_text: 'Выберите тип',
                     btn_text2: 'Выберите тип'
                 },
@@ -177,7 +137,7 @@ export const Filter = ({ header }) => {
                 },
                 {
                     type: 'sector',
-                    btn_header: 'форма собственности',
+                    btn_header: 'Форма собственности',
                     btn_text: 'Выберите форму',
                     btn_text2: 'Выберите форму',
                     // items: ['Государственная', 'Муниципиальная', "Частная", "Смешанная форма собственности"]
@@ -249,7 +209,7 @@ export const Filter = ({ header }) => {
                 },
                 {
                     type: 'sector',
-                    btn_header: 'форма собственности',
+                    btn_header: 'Менчиктин түрү',
                     btn_text: 'Форманы танданыз',
                     btn_text2: 'Форманы танданыз',
                     // items: ['Государственная', 'Муниципиальная', "Частная", "Смешанная форма собственности"]
@@ -296,8 +256,7 @@ export const Filter = ({ header }) => {
                 }
             })
         })
-        onChangeValue(type, value);
-        dispatch(mapActions.setMarker(false))
+        onChangeValue(type, value, text);
     }
     const dispatch = useDispatch();
     useEffect(() => {

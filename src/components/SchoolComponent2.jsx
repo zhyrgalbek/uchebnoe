@@ -219,7 +219,10 @@ export const SchoolComponent2 = () => {
                                     <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
                                         <Th>{SchoolText[translation].items[6].item_header}</Th>
                                         <Td>
-                                            <IconCounter icon={count}>40</IconCounter>
+                                            <IconCounter icon={count}>{
+                                                institution.active_staff_count
+                                            }</IconCounter>
+
                                         </Td>
                                     </Stack>
                                 </BoxCard>

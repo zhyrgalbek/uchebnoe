@@ -23,7 +23,7 @@ function createRipple(e) {
 export const FilterButton = ({ children, icon, left, mobile, toggle, active, primary, ...props }) => {
     const [hover, setHover] = useState(false);
     const onHover = () => {
-        setHover(false)
+        setHover(true)
     }
     const offHover = () => {
         setHover(false)

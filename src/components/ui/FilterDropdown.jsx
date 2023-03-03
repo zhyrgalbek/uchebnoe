@@ -51,7 +51,7 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
             placement="bottom-start"
             transition
             disablePortal
-            sx={{ zIndex: '1000', width: '345px' }}
+            sx={{ zIndex: '10000', width: '345px' }}
         >
             {({ TransitionProps, placement }) => (
                 <Grow

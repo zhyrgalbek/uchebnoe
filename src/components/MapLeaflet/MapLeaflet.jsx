@@ -1,6 +1,6 @@
 import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON, useMap, Rectangle } from 'react-leaflet'
 import states from '../../utils/Constants/json/states2.json'
-import statesJson from '../../utils/Constants/json/statesJson.json'
+// import statesJson from '../../utils/Constants/json/statesJson.json'
 import statesBatken from '../../utils/Constants/json/statesBatken.json'
 import statesChuy from '../../utils/Constants/json/statesChuy.json'
 import statesDjalal from '../../utils/Constants/json/statesDjalal.json'
@@ -8,9 +8,10 @@ import statesKol from '../../utils/Constants/json/statesKol.json'
 import statesNarin from '../../utils/Constants/json/statesNarin.json'
 import statesOsh from '../../utils/Constants/json/statesOsh.json'
 import statesTalas from '../../utils/Constants/json/statesTalas.json'
-import testJon from '../../utils/Constants/json/testJson.json'
-import point from '../../assets/Map/Exclamation_point.svg'
-import krestik from '../../assets/Map/krestik.svg'
+import statesBishkek from '../../utils/Constants/json/statesBishkek.json'
+// import testJon from '../../utils/Constants/json/testJson.json'
+// import point from '../../assets/Map/Exclamation_point.svg'
+// import krestik from '../../assets/Map/krestik.svg'
 import clusterIcon from '../../assets/Map/markers/clusterIcon.svg'
 
 import styled, { css } from 'styled-components'
@@ -22,16 +23,21 @@ import L from "leaflet"
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster'
 import { FilterSubmit } from '../FilerSubmit'
-import { fetch_api } from '../../hooks/fetch_api'
+// import { fetch_api } from '../../hooks/fetch_api'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIcon } from './markers/getIcon'
 import { mapActions } from '../../store/slices/mapSlices'
+import InfoBlock from './InfoBlock';
+import InfoBlockRight from './InfoBlockRight'
+// import PrevBtn from './PrevBtn'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
 
-const colorMarker = '#58BF56';
-const colorMarker2 = '#56BF94';
-const colorMarker3 = '#58BF56';
+// const colorMarker = '#58BF56';
+// const colorMarker2 = '#56BF94';
+// const colorMarker3 = '#58BF56';
+
+const regions = [states, statesBatken, statesChuy, statesDjalal, statesKol, statesNarin, statesTalas, statesOsh, statesBishkek];
 
 
 function getCoordinates(name, states) {
@@ -104,14 +110,15 @@ const markers = [
     [42.852028, 74.526636],
     [42.882727, 74.539339],
     [42.867883, 74.631693],
-    [42.839694, 74.602511]
+    [42.839694, 74.602511],
 ]
 
-function SetBoundsRectangles({ marker }) {
-    const { institutions } = useSelector(store => store.translate)
+function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
+    const { institutions, coordinate } = useSelector(store => store.translate)
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
     const [bool, setBool] = useState(false)
+
     // const [newTestJson, setNewTestJson] = useState([])
     const dispatch = useDispatch();
 
@@ -120,12 +127,21 @@ function SetBoundsRectangles({ marker }) {
 
     const map = useMap();
     useEffect(() => {
-        console.log(marker)
+        if (!prevBtn && rayons) {
+            map.removeLayer(rayons);
+            map.fitBounds(L.geoJson(states).getBounds());
+        }
+    }, [prevBtn])
+    useEffect(() => {
         if (marker) {
             window.scrollTo({ top: 1100, left: 0, behavior: "smooth" });
             map.setView(marker, 17);
         }
     }, [marker]);
+    useEffect(() => {
+        // map.setView([41.67174733694543, 74.47980721084369], 6);
+    }, [institutions])
+
     const innerHandlers = (event, institution) => {
         // map.setView(event.latlng, 17);
         dispatch(mapActions.setMarker(event.latlng));
@@ -133,23 +149,194 @@ function SetBoundsRectangles({ marker }) {
         // console.log(institution)
     }
 
+    const paintAreas = (country) => {
+        let s = 0;
+        map.fitBounds(L.geoJson(country).getBounds())
+        const link = L.geoJSON(country, {
+            style: function (feature) {
+                s++;
+                return { color: color[4] }
+            },
+            // onEachFeature: onChangeRayons
+        }).addTo(map);
+        setRayons((prev) => {
+            if (prev) {
+                map.removeLayer(prev);
+            }
+            return link;
+        })
+    }
+
+    const paintRegions = (country, boolffff) => {
+        boolffff = true
+        setPrevBtn(true)
+        map.fitBounds(L.geoJson(country).getBounds())
+        if (country.id === 'г.Бишкек') {
+            let s = 0;
+            const link = L.geoJSON(statesBishkek, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons((prev) => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link;
+            })
+        }
+        if (country.id === 'Ыссык-Кульская') {
+            let s = 0;
+            const link = L.geoJSON(statesKol, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons((prev) => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link;
+            })
+        }
+        if (country.id === "Нарынская") {
+            let s = 0;
+            const link = L.geoJSON(statesNarin, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons(prev => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link
+            })
+
+        }
+        if (country.id === "Чуйская") {
+            let s = 0;
+            const link = L.geoJSON(statesChuy, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons(prev => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link
+            })
+        }
+        if (country.id === "Таласская") {
+            // setDistrict(L.geoJSON(statesNarin).addTo(map))
+            let s = 0;
+            const link = L.geoJSON(statesTalas, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons(prev => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link;
+            })
+        }
+        if (country.id === "Джалал-Абадская") {
+            // setDistrict(L.geoJSON(statesNarin).addTo(map))
+            let s = 0;
+            const link = L.geoJSON(statesDjalal, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons(prev => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link
+            })
+        }
+        if (country.id === "Ошская") {
+            // setDistrict(L.geoJSON(statesNarin).addTo(map))
+            let s = 0;
+            const link = L.geoJSON(statesOsh, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons(prev => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link
+            })
+        }
+        if (country.id === "Баткенская") {
+            // setDistrict(L.geoJSON(statesNarin).addTo(map))
+            let s = 0;
+            const link = L.geoJSON(statesBatken, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons(prev => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link
+            })
+        }
+    }
+
+    useEffect(() => {
+        if (coordinate.type === 'areas' && !marker) {
+            regions.forEach((elem, index) => {
+                if (index > 0) {
+                    elem.features.forEach((el) => {
+                        if (el.id === coordinate.value && !marker) {
+                            paintAreas(el)
+                        }
+                    })
+                }
+            })
+        }
+        if (coordinate.type === 'region' && !marker) {
+            regions[0].features.forEach(elem => {
+                if (elem.id === coordinate.value && !marker) {
+                    let boolffff = false;
+                    paintRegions(elem, boolffff)
+                }
+            })
+        }
+        if (coordinate.type === '' && !marker && rayons) {
+            map.removeLayer(rayons);
+            map.fitBounds(L.geoJson(states).getBounds());
+        }
+    }, [coordinate, marker])
+
     const onChangeRayons = (country, layer) => {
-        // layer.Tooltip(`<p>${country.id}</p>`);
         layer.on({
             click: (event) => {
-                map.fitBounds(L.geoJson(country).getBounds());
-                map.setView(event.latlng, 10);
+                paintAreas(country)
             },
-            mouseover: (event) => {
-                // event.target.setStyle({
-                //     fillColor: 'red'
-                // })
-            },
-            mouseout: (event) => {
-                // event.target.setStyle({
-                //     fillColor: 'transparent'
-                // })
-            }
         })
     }
 
@@ -157,141 +344,9 @@ function SetBoundsRectangles({ marker }) {
         let boolffff = false;
         layer.on({
             click: (event) => {
-                boolffff = true
-                map.fitBounds(L.geoJson(country).getBounds())
-                if (country.id === 'Ыссык-Кульская') {
-                    let s = 0;
-                    const link = L.geoJSON(statesKol, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons((prev) => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link
-                    })
-                }
-                if (country.id === "Нарынская") {
-                    let s = 0;
-                    const link = L.geoJSON(statesNarin, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons(prev => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link
-                    })
-
-                }
-                if (country.id === "Чуйская") {
-                    let s = 0;
-                    const link = L.geoJSON(statesChuy, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons(prev => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link
-                    })
-                }
-                if (country.id === "Таласская") {
-                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
-                    let s = 0;
-                    const link = L.geoJSON(statesTalas, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons(prev => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link;
-                    })
-                }
-                if (country.id === "Джалал-Абадская") {
-                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
-                    let s = 0;
-                    const link = L.geoJSON(statesDjalal, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons(prev => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link
-                    })
-                }
-                if (country.id === "Ошская") {
-                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
-                    let s = 0;
-                    const link = L.geoJSON(statesOsh, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons(prev => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link
-                    })
-                }
-                if (country.id === "Баткенская") {
-                    // setDistrict(L.geoJSON(statesNarin).addTo(map))
-                    let s = 0;
-                    const link = L.geoJSON(statesBatken, {
-                        style: function (feature) {
-                            s++;
-                            return { color: color[s] }
-                        },
-                        onEachFeature: onChangeRayons
-                    }).addTo(map);
-                    setRayons(prev => {
-                        if (prev) {
-                            map.removeLayer(prev);
-                        }
-                        return link
-                    })
-                }
-                // console.log(district1)
-            },
-            mouseover: (event) => {
-                if (!boolffff) {
-                    event.target.setStyle({
-                        fillColor: 'red'
-                    })
-                }
-            },
-            mouseout: (event) => {
-                if (!boolffff) {
-                    event.target.setStyle({
-                        fillColor: 'transparent'
-                    })
-                }
+                paintRegions(country, boolffff)
             }
+            // console.log(district1)
         })
     }
 
@@ -458,7 +513,7 @@ function SetBoundsRectangles({ marker }) {
 
 
 
-const marker = [42.857254, 74.600725];
+// const marker = [42.857254, 74.600725];
 
 
 
@@ -466,68 +521,112 @@ const marker = [42.857254, 74.600725];
 
 
 export const MapLeaflet = ({ marker }) => {
+    const { institutions, status } = useSelector(store => store.translate)
+    const [prevBtn, setPrevBtn] = useState(false)
+    const [zoom, setZoom] = useState(6)
     const animateRef = useRef(true)
     const eventHandlers = () => ({
         click(event) {
             // console.log(event)
         },
     })
+    const onClickPrevBtn = () => {
+        setPrevBtn(false)
+    }
 
     return <>
-        {/* <Stack direction="row" justifyContent="flex-end" sx={{ marginBottom: '20px' }}>
-            <Box sx={{ width: 'auto' }}>
-                <FilterSubmit variant="desctop">Назад</FilterSubmit>
-            </Box>
-        </Stack> */}
+        {
+            prevBtn && !marker && <Stack direction="row" justifyContent="flex-end" sx={{ marginBottom: '20px', position: 'absolute', top: '-10px', right: '0' }}>
+                <Box sx={{ width: 'auto' }}>
+                    <FilterSubmit variant="desctop" map onClick={onClickPrevBtn}>Назад</FilterSubmit>
+                </Box>
+            </Stack>
+        }
         <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
             <MapBlock>
-                <Map center={position} zoom={6} placeholder={<MapPlaceholder />} scrollWheelZoom={false}>
+                <Map center={position} zoom={zoom} placeholder={<MapPlaceholder />} scrollWheelZoom={true}>
                     <LayerGroup>
                         <TileLayer
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            // maxZoom="20"
+                            attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors"
                         />
-                        {/* <WMSTileLayer
-                            url="https://geoserver.24mycrm.com/monmap/wms?"
-                            version='1.0.0'
-                            opacity={0.25}
-                            srs="EPSG:4326"
-                            layers="t2"
-                            gridSet="999"
-                            format="image/png"
-                        /> */}
-                    </LayerGroup>
-                    <LayersControl position="bottomright">
-                        <LayersControl.Overlay name="google">
-                            <TileLayer
-                                url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                        {
+                            marker && <TileLayer
+                                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
                                 maxZoom="20"
                                 subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
                                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                             />
-                        </LayersControl.Overlay>
-                        <LayersControl.Overlay name="Hybrid">
-                            <LayerGroup>
+                        }
+                    </LayerGroup>
+                    {
+                        !marker && <LayersControl position="bottomright">
+                            <LayersControl.Overlay name="google">
                                 <TileLayer
-                                    url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                                    url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
                                     maxZoom="20"
                                     subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
                                     attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                                 />
-                            </LayerGroup>
-                        </LayersControl.Overlay>
-                    </LayersControl>
+                            </LayersControl.Overlay>
+                            <LayersControl.Overlay name="Hybrid">
+                                <LayerGroup>
+                                    <TileLayer
+                                        url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                                        maxZoom="20"
+                                        subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                    />
+                                </LayerGroup>
+                            </LayersControl.Overlay>
+                            <LayersControl.Overlay name="тепловая карта">
+                                <LayerGroup>
+                                    <WMSTileLayer
+                                        url="https://geoserver.24mycrm.com/monmap/wms?"
+                                        version='1.0.0'
+                                        opacity={0.8}
+                                        transparent={true}
+                                        srs="EPSG:4326"
+                                        layers="monmap:t2monmap"
+                                        gridSet="999"
+                                        format="image/png"
+                                    />
+                                </LayerGroup>
+                            </LayersControl.Overlay>
+                        </LayersControl>
+                    }
                     <SetViewOnClick animateRef={animateRef} />
                     <MyComponent />
-                    <SetBoundsRectangles marker={marker} />
+                    <SetBoundsRectangles marker={marker} setPrevBtn={setPrevBtn} prevBtn={prevBtn} />
+                    {
+                        !marker && <InfoBlock />
+                    }
+                    <InfoBlockRight />
+                    {/* <PrevBtn /> */}
+                    {
+                        status === 'pending' && <Preloader>
+                            <span className="map_loader"></span>
+                        </Preloader>
+                    }
                 </Map >
             </MapBlock >
         </Paper>
     </>
 }
 
-
-
+const Preloader = styled('div')`
+    position: absolute;
+    background: #263038;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
 
 
 const MapBlock = styled('div')`

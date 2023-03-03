@@ -42,6 +42,7 @@ export const StaticPage = () => {
               {staticText[translation].second_title}
             </h2>
             <MapLeaflet />
+            
           </div>
         </div>
       </main>
