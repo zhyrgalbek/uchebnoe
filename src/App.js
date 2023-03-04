@@ -3,8 +3,10 @@ import Router from "./routes/Router";
 import { useEffect } from "react";
 import togglewhite from "./assets/Filter/Framewhite.svg";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { status } = useSelector(store => store.translate)
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -25,6 +27,7 @@ function App() {
         >
           <img src={togglewhite} width='40' style={{ transform: 'rotate(180deg)', filter: 'invert(52%) sepia(24%) saturate(4842%) hue-rotate(208deg) brightness(103%) contrast(103%)', Loss: '2.8' }} />
         </Button>
+        
       </div>
     </>
   );

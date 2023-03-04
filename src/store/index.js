@@ -3,7 +3,7 @@ import mapSlices from "./slices/mapSlices";
 
 const store = configureStore({
     reducer: {
-        translate: mapSlices.reducer
+        translate: mapSlices.reducer,
     }
 })
 

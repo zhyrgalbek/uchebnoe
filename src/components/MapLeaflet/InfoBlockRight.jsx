@@ -7,11 +7,11 @@ export default function InfoBlockRight({ text }) {
         <InfoContainer right>
             <Paper>
                 <InfoColor>
-                    <Item right><SpanColor radius><Color color="#FF0600" radius /></SpanColor>150%</Item>
-                    <Item right><SpanColor radius><Color color="#FFCD02" radius /></SpanColor>125%</Item>
-                    <Item right><SpanColor radius><Color color="#FFF800" radius /></SpanColor>100%</Item>
-                    <Item right><SpanColor radius><Color color="#A9FF00" radius /></SpanColor>75%</Item>
-                    <Item right><SpanColor radius><Color color="#51FF00" radius /></SpanColor>50%</Item>
+                    <Item right><SpanColor radius="true"><Color color="#279279" radius="true" /></SpanColor>50%</Item>
+                    <Item right><SpanColor radius="true"><Color color="#56BF94" radius="true" /></SpanColor>75%</Item>
+                    <Item right><SpanColor radius="true"><Color color="#FFCC4A" radius="true" /></SpanColor>100%</Item>
+                    <Item right><SpanColor radius="true"><Color color="#FF9D29" radius="true" /></SpanColor>125%</Item>
+                    <Item right><SpanColor radius="true"><Color color="#FF504C" radius="true" /></SpanColor>150%</Item>
                 </InfoColor>
             </Paper>
         </InfoContainer>

@@ -6,7 +6,7 @@ import { FilterDropdown } from "./ui/FilterDropdown"
 import search from '../assets/Filter/search.svg'
 import open from '../assets/Filter/open.svg'
 import clean from '../assets/Filter/filter-slash.svg'
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { AccordionFilter } from "./ui/AccordionFilter"
 import { useDispatch, useSelector } from "react-redux";
 import states from '../utils/Constants/json/states2.json'
@@ -16,8 +16,8 @@ const oblast = ["Нарынская", "Чуйская", "Ыссык-Кульск
 const rayons = []
 
 const colorText = [
-    ['до 20% - много свободных мест', 'до 40% - достаточно мест', 'до 60% - заполнен наполовину', 'до 80% - места ограничены', 'до 100% - почти заполнен'],
-    ['20% чейин - көптөгөн бош орундар', '40% чейин - жетиштүү орундар', '60% чейин - жарымы толтурулган', '80% чейин - орундар чектелген', '100% чейин - дээрлик толук']
+    ['до 50% - много свободных мест', 'до 75% - достаточно мест', 'до 100% - заполнен наполовину', 'до 125% - места ограничены', 'до 150% - почти заполнен'],
+    ['50% чейин - көптөгөн бош орундар', '75% чейин - жетиштүү орундар', '100% чейин - жарымы толтурулган', '125% чейин - орундар чектелген', '150% чейин - дээрлик толук']
 ]
 
 export const Filter = ({ header }) => {
@@ -29,7 +29,7 @@ export const Filter = ({ header }) => {
     const [openState, setOpenState] = useState(false);
     const [statusValue, setStatusValue] = useState(false);
     const [statusSearch, setStatusSearch] = useState('');
-    // console.log(areas)
+    // console.log(requestFilter)
     const onClickSeach = () => {
         dispatch(getFilterInstitutions(requestFilter, areas));
         dispatch(mapActions.setMarker(false));
@@ -46,7 +46,9 @@ export const Filter = ({ header }) => {
         if (statusSearch) {
             dispatch(getFilterInstitutions(requestFilter, areas));
             setStatusSearch(false);
+            return;
         }
+        console.log('hfef')
     }, [requestFilter])
 
     const onResetFilter = () => {
@@ -75,6 +77,9 @@ export const Filter = ({ header }) => {
                         if (el.type === 'sector') {
                             return { ...el, btn_text: el.btn_text2 };
                         }
+                        if (el.type === 'capacity') {
+                            return { ...el, btn_text: el.btn_text2 };
+                        }
                         return el;
                     })
                 }
@@ -90,7 +95,7 @@ export const Filter = ({ header }) => {
             return;
         }
         dispatch(getFilter({ searchValues: requestFilter }))
-    }, [requestFilter[0], requestFilter[1], requestFilter[2], requestFilter[3], requestFilter[4], requestFilter[5]])
+    }, [requestFilter[0], requestFilter[1], requestFilter[2], requestFilter[3], requestFilter[4], requestFilter[5]]);
     const [filterText, setFilterText] = useState([
         {
             header: 'Фильтр для точечного поиска учреждения',
@@ -256,6 +261,10 @@ export const Filter = ({ header }) => {
                 }
             })
         })
+        if (type === 'capacity') {
+            onChangeValue(type, value);
+            return;
+        }
         onChangeValue(type, value, text);
     }
     const dispatch = useDispatch();
@@ -282,7 +291,11 @@ export const Filter = ({ header }) => {
                 return {
                     ...elem, btns: elem.btns.map((el, index) => {
                         if (index === 5) {
-                            return { ...el, items: colorChoise }
+                            return {
+                                ...el, items: colorChoise.map((elem, index) => {
+                                    return { name: elem, id: index }
+                                })
+                            }
                         }
                         return el
                     })
@@ -295,7 +308,7 @@ export const Filter = ({ header }) => {
         <FilterHeader className="font__contacts_data" header={header}>{filterText[translation].header}</FilterHeader>
         <Mobile header={header}>
             <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit iconLeft={open} active={openState}>{!openState ? filterText[translation].btns[9].btn_header : filterText[translation].btns[9].btn_text}</FilterSubmit>}>
-                {
+                {/* {
                     filterText[translation].btns.map((elem, index) => {
                         if (index > 6) {
                             return
@@ -304,9 +317,16 @@ export const Filter = ({ header }) => {
                             <FilterDropdown key={Math.random().toLocaleString()} header={elem.btn_header} text={elem.btn_text} items={elem.items && elem.items} />
                         </Box>
                     })
-                }
+                } */}
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[0].type} header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={regions} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
                 <Box>
-                    <FilterSubmit iconLeft={search}>{filterText[translation].btns[8].btn_text}</FilterSubmit>
+                    <FilterSubmit iconLeft={search} onClick={onClickSeach}>{filterText[translation].btns[8].btn_text}</FilterSubmit>
                 </Box>
             </AccordionFilter>
         </Mobile>
@@ -318,7 +338,7 @@ export const Filter = ({ header }) => {
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view} />
-                {/* <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} /> */}
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
                 {/* <FilterDropdown onClick={onChangeFilterText} type={elem.type} header={elem.btn_header} text={elem.btn_text} items={elem?.items} /> */}
             </Stack>

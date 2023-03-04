@@ -114,7 +114,7 @@ const markers = [
 ]
 
 function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
-    const { institutions, coordinate } = useSelector(store => store.translate)
+    const { institutions, coordinate, status } = useSelector(store => store.translate)
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
     const [bool, setBool] = useState(false)
@@ -144,7 +144,12 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
 
     const innerHandlers = (event, institution) => {
         // map.setView(event.latlng, 17);
-        dispatch(mapActions.setMarker(event.latlng));
+        // console.log(event.latlng)
+        let markerCoordinate = {
+            lat: event.latlng.lat,
+            lng: event.latlng.lng
+        }
+        dispatch(mapActions.setMarker(markerCoordinate));
         dispatch(mapActions.setInstitution(institution));
         // console.log(institution)
     }
@@ -437,6 +442,11 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
     //     })
     // }, [institutions])
     // console.log(newTestJson)
+    const markers = institutions.map((elem, index) => {
+        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+    })
+
     return (
         <>
             {
@@ -458,10 +468,7 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
                 {
                     // institution_type_id
                     // capacity_percentage
-                    institutions.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
+                    status === 'access' && markers
                 }
             </MarkerClusterGroup>
             {/* <MarkerClusterGroup chunkedLoading> */}
@@ -606,7 +613,8 @@ export const MapLeaflet = ({ marker }) => {
                     {/* <PrevBtn /> */}
                     {
                         status === 'pending' && <Preloader>
-                            <span className="map_loader"></span>
+                            {/* <span className="map_loader"></span> */}
+                            <span className="map2_loader"></span>
                         </Preloader>
                     }
                 </Map >
@@ -617,7 +625,8 @@ export const MapLeaflet = ({ marker }) => {
 
 const Preloader = styled('div')`
     position: absolute;
-    background: #263038;
+    /* background: #263038; */
+    background: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
     right: 0;

@@ -54,10 +54,16 @@ const initialState = {
             text: ''
         },
         {
+            type: 'fullness',
+            fromValue: '',
+            toValue: '',
+            text: ''
+        },
+        {
             type: 'typeId',
             value: 'all',
             text: ''
-        }
+        },
     ],
     status: ''
 }
@@ -71,6 +77,9 @@ const mapSlices = createSlice({
                 if (elem.type === 'typeId') {
                     return elem;
                 }
+                if (elem.type === 'fullness') {
+                    return { ...elem, fromValue: '', toValue: '', text: '' }
+                }
                 return { ...elem, value: '', text: '' }
             })
         },
@@ -78,6 +87,24 @@ const mapSlices = createSlice({
             let { type, value, text } = action.payload;
             let idx = null;
             state.requestFilter = state.requestFilter.map((elem, index) => {
+                if (type === 'capacity' && elem.type === 'fullness') {
+                    if (value === 0) {
+                        return { ...elem, fromValue: '', toValue: '' }
+                    }
+                    if (value === 1) {
+                        return { ...elem, fromValue: '0', toValue: '75' }
+                    }
+                    if (value === 2) {
+                        return { ...elem, fromValue: '50', toValue: '100' }
+                    }
+                    if (value === 3) {
+                        return { ...elem, fromValue: '75', toValue: '125' }
+                    }
+                    if (value === 4) {
+                        return { ...elem, fromValue: '100', toValue: '1000' }
+                    }
+                    return elem
+                }
                 if (elem.type === type) {
                     idx = index;
                     return { ...elem, value: value, text: text };
@@ -137,11 +164,16 @@ export default mapSlices;
 
 export const getFilterInstitutions = (requestFilter, areas) => {
     // let institution = '&institution_type_id=';
-    let obj = { typeId: '', type: '', view: '', sector: '' };
+    let obj = { typeId: '', type: '', view: '', sector: '', fullness: { from: '', to: '' } };
     requestFilter.forEach((elem) => {
+        if (elem.type === 'fullness') {
+            obj[elem.type].from = elem.fromValue;
+            obj[elem.type].to = elem.toValue;
+            return;
+        }
         obj[elem.type] = elem.value;
     })
-    let { typeId, type, view, sector } = obj;
+    let { typeId, type, view, sector, fullness } = obj;
     let institution_types = `&institution_type_id=${typeId}`;
     let other = `&institution_type_id=5&institution_type_id=7&institution_type_id=8&institution_type_id=9&institution_type_id=18&institution_type_id=19&institution_type_id=20&institution_type_id=21&institution_type_id=23`
     if (typeId === 'other') {
@@ -174,12 +206,12 @@ export const getFilterInstitutions = (requestFilter, areas) => {
     return async (dispatch) => {
         try {
             dispatch(mapActions.setStatus('pending'))
-            const institutions = await fetch_api({ types: `?action=institutions&${requestOblast}${institution_types}&institution_sector_id=${sector}` });
+            const institutions = await fetch_api({ types: `?action=institutions&${requestOblast}${institution_types}&institution_sector_id=${sector}&occupancy_from=${fullness.from}&occupancy_to=${fullness.to}` });
             // console.log(institutions)
             dispatch(mapActions.setInstitutions(institutions.data));
             setTimeout(() => {
-                dispatch(mapActions.setStatus('access'))
-            }, 5000)
+                dispatch(mapActions.setStatus('access'));
+            }, 2000)
         } catch (error) {
             console.log(error)
         }

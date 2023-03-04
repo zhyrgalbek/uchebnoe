@@ -57,7 +57,8 @@ export const TopFilter = () => {
     }
     useEffect(() => {
         dispatch(getTypes())
-        dispatch(getInstitutions('all'))
+        // dispatch(getInstitutions('all'))
+        // dispatch(getFilterInstitutions(requestFilter, areas))
     }, [])
     return <>
         <Mobile>
