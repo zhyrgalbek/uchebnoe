@@ -27,8 +27,12 @@ import { FilterSubmit } from '../FilerSubmit'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIcon } from './markers/getIcon'
 import { mapActions } from '../../store/slices/mapSlices'
+import { institutionInfoActions } from '../../store/slices/institutionInfoSlices'
 import InfoBlock from './InfoBlock';
 import InfoBlockRight from './InfoBlockRight'
+import React from 'react'
+import { analizeSlicesActions } from '../../store/slices/analizeSlices'
+import { refSlicesActions } from '../../store/slices/refSlices'
 // import PrevBtn from './PrevBtn'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
@@ -113,13 +117,17 @@ const markers = [
     [42.839694, 74.602511],
 ]
 
-function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
-    const { institutions, coordinate, status } = useSelector(store => store.translate)
+function SetBoundsRectangles({ marker, setPrevBtn, prevBtn, bottomMap }) {
+    // const { institutions, coordinate, status } = useSelector(store => store.translate)
+    const { institutions, status } = useSelector(store => store.institutionsStore)
+    const { institution } = useSelector(store => store.institutionInfoStore)
+    const { coordinate } = useSelector(store => store.mapSlicesStore)
+    // const { mapInfo } = useSelector(store => store.refSlicesStore)
+    const { occupancyInstitutes } = useSelector(store => store.analizeSlicesStore)
+    const { mapInfo } = useSelector(store => store.refSlicesStore)
     const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
     const [bool, setBool] = useState(false)
-
-    // const [newTestJson, setNewTestJson] = useState([])
     const dispatch = useDispatch();
 
     // console.log(institutions);
@@ -131,10 +139,14 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
             map.removeLayer(rayons);
             map.fitBounds(L.geoJson(states).getBounds());
         }
+        if (!marker) {
+            map.fitBounds(L.geoJson(states).getBounds());
+        }
     }, [prevBtn])
     useEffect(() => {
         if (marker) {
-            window.scrollTo({ top: 1100, left: 0, behavior: "smooth" });
+            window.scrollTo({ top: 1200, left: 0, behavior: "smooth" });
+            // bottomMap.scrollIntoView({ block: "center", behavior: "smooth" });
             map.setView(marker, 17);
         }
     }, [marker]);
@@ -149,8 +161,8 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
             lat: event.latlng.lat,
             lng: event.latlng.lng
         }
-        dispatch(mapActions.setMarker(markerCoordinate));
-        dispatch(mapActions.setInstitution(institution));
+        dispatch(institutionInfoActions.setMarker(markerCoordinate));
+        dispatch(institutionInfoActions.setInstitution(institution));
         // console.log(institution)
     }
 
@@ -177,6 +189,22 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
         setPrevBtn(true)
         map.fitBounds(L.geoJson(country).getBounds())
         if (country.id === 'г.Бишкек') {
+            let s = 0;
+            const link = L.geoJSON(statesBishkek, {
+                style: function (feature) {
+                    s++;
+                    return { color: color[s] }
+                },
+                onEachFeature: onChangeRayons
+            }).addTo(map);
+            setRayons((prev) => {
+                if (prev) {
+                    map.removeLayer(prev);
+                }
+                return link;
+            })
+        }
+        if (country.id === 'г.Ош') {
             let s = 0;
             const link = L.geoJSON(statesBishkek, {
                 style: function (feature) {
@@ -412,40 +440,25 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
             iconSize: [25, 25]
         });
     }
+    const createClusterCustomIconGrey = function (cluster) {
+        return L.divIcon({
+            html: `<span>${cluster.getChildCount()}</span>`,
+            className: 'marker-cluster-custom grey',
+            iconUrl: clusterIcon,
+            iconSize: [25, 25]
+        });
+    }
+    console.log(institution)
 
-    // useEffect(() => {
-    //     setNewTestJson((prev) => {
-    //         const one = [];
-    //         const two = [];
-    //         const three = [];
-    //         const foure = [];
-    //         const five = [];
-    //         institutions.forEach((elem, index) => {
-    //             if (elem.fullness >= 0 && elem.fullness < 50) {
-    //                 one.push({ ...elem, id: 2 })
-    //                 return
-    //             } else if (elem.fullness >= 50 && elem.fullness < 75) {
-    //                 two.push({ ...elem, id: 3 })
-    //                 return
-    //             } else if (elem.fullness >= 75 && elem.fullness < 100) {
-    //                 three.push({ ...elem, id: 5 })
-    //                 return
-    //             } else if (elem.fullness >= 100 && elem.fullness < 125) {
-    //                 foure.push({ ...elem, id: 7 })
-    //                 return
-    //             } else {
-    //                 five.push({ ...elem, id: 5 })
-    //                 return
-    //             }
-    //         })
-    //         return [[...one], [...two], [...three], [...foure], [...five]];
-    //     })
-    // }, [institutions])
-    // console.log(newTestJson)
-    const markers = institutions.map((elem, index) => {
-        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-    })
+    useEffect(() => {
+        dispatch(analizeSlicesActions.setOccupancyInstitutes({ institutions }))
+    }, [institutions])
+    // const markers = institutions.map((elem, index) => {
+    //     const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+    //     return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+    // })
+
+    // console.log('Hello world')
 
     return (
         <>
@@ -464,54 +477,63 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
                     }
                 }))
             }
-            <MarkerClusterGroup>
+            {/* <MarkerClusterGroup>
                 {
                     // institution_type_id
                     // capacity_percentage
-                    status === 'access' && markers
-                }
-            </MarkerClusterGroup>
-            {/* <MarkerClusterGroup chunkedLoading> */}
-            {/* <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
-                {
-                    newTestJson[0]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>
-            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellow}>
-                {
-                    newTestJson[1]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>
-            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellowWhite}>
-                {
-                    newTestJson[2]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>
-            <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreenWhite}>
-                {
-                    newTestJson[3]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>
-            <MarkerClusterGroup iconCreateFunction={createClusterCustomIconRed}>
-                {
-                    newTestJson[4]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
+                    status === 'fulfilled' && markers
                 }
             </MarkerClusterGroup> */}
+            {/* <MarkerClusterGroup chunkedLoading> */}
+            {marker && <Marker icon={getIcon(institution.institution_type_id, institution.capacity_percentage)} position={[institution.latitude, institution.longitude]} ></Marker>}
+            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
+                {
+                    occupancyInstitutes[0]?.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>}
+            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreenWhite}>
+                {
+                    occupancyInstitutes[1]?.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>}
+            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellow}>
+                {
+                    occupancyInstitutes[2]?.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>}
+            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellowWhite}>
+                {
+                    occupancyInstitutes[3]?.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>}
+            {status === 'fulfilled' && !marker && <MarkerClusterGroup iconCreateFunction={createClusterCustomIconRed}>
+                {
+                    occupancyInstitutes[4]?.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>}
+            {status === 'fulfilled' && !marker && <MarkerClusterGroup iconCreateFunction={createClusterCustomIconGrey}>
+                {
+                    occupancyInstitutes[5]?.map((elem, index) => {
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, 5);
+                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                    })
+                }
+            </MarkerClusterGroup>}
             {/* </MarkerClusterGroup> */}
         </>
     )
@@ -527,11 +549,15 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn }) {
 
 
 
-export const MapLeaflet = ({ marker }) => {
-    const { institutions, status } = useSelector(store => store.translate)
+export const MapLeaflet = ({ marker, onclickSetTopMap, bottomMap }) => {
+    // const { institutions, status } = useSelector(store => store.translate)
+    const { institutions, status } = useSelector(store => store.institutionsStore)
     const [prevBtn, setPrevBtn] = useState(false)
-    const [zoom, setZoom] = useState(6)
+    const [zoom, setZoom] = useState(7.1)
+
+    const dispatch = useDispatch()
     const animateRef = useRef(true)
+
     const eventHandlers = () => ({
         click(event) {
             // console.log(event)
@@ -549,7 +575,7 @@ export const MapLeaflet = ({ marker }) => {
                 </Box>
             </Stack>
         }
-        <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
+        <Paper sx={{ width: "100%", height: "100%" }} id="mapleafletInfo" elevation={6}>
             <MapBlock>
                 <Map center={position} zoom={zoom} placeholder={<MapPlaceholder />} scrollWheelZoom={true}>
                     <LayerGroup>
@@ -557,6 +583,16 @@ export const MapLeaflet = ({ marker }) => {
                             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                             // maxZoom="20"
                             attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors"
+                        />
+                        <WMSTileLayer
+                            url="https://geoserver.24mycrm.com/monmap/wms?&tiled=true"
+                            version='1.0.0'
+                            opacity={0.3}
+                            transparent={true}
+                            srs="EPSG:4326"
+                            layers="monmap:t2monmap"
+                            gridSet="999"
+                            format="image/png"
                         />
                         {
                             marker && <TileLayer
@@ -567,7 +603,7 @@ export const MapLeaflet = ({ marker }) => {
                             />
                         }
                     </LayerGroup>
-                    {
+                    {/* {
                         !marker && <LayersControl position="bottomright">
                             <LayersControl.Overlay name="google">
                                 <TileLayer
@@ -590,9 +626,9 @@ export const MapLeaflet = ({ marker }) => {
                             <LayersControl.Overlay name="тепловая карта">
                                 <LayerGroup>
                                     <WMSTileLayer
-                                        url="https://geoserver.24mycrm.com/monmap/wms?"
+                                        url="https://geoserver.24mycrm.com/monmap/wms?&tiled=true"
                                         version='1.0.0'
-                                        opacity={0.8}
+                                        opacity={0.3}
                                         transparent={true}
                                         srs="EPSG:4326"
                                         layers="monmap:t2monmap"
@@ -602,14 +638,13 @@ export const MapLeaflet = ({ marker }) => {
                                 </LayerGroup>
                             </LayersControl.Overlay>
                         </LayersControl>
-                    }
+                    } */}
                     <SetViewOnClick animateRef={animateRef} />
                     <MyComponent />
-                    <SetBoundsRectangles marker={marker} setPrevBtn={setPrevBtn} prevBtn={prevBtn} />
+                    <SetBoundsRectangles marker={marker} setPrevBtn={setPrevBtn} prevBtn={prevBtn} bottomMap={bottomMap} />
                     {
                         !marker && <InfoBlock />
                     }
-                    <InfoBlockRight />
                     {/* <PrevBtn /> */}
                     {
                         status === 'pending' && <Preloader>
@@ -622,6 +657,8 @@ export const MapLeaflet = ({ marker }) => {
         </Paper>
     </>
 }
+
+export const MemoizedMapLeaflet = React.memo(MapLeaflet);
 
 const Preloader = styled('div')`
     position: absolute;

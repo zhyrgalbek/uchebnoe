@@ -78,7 +78,7 @@ const AboutText = [
 ];
 
 export const AboutPage = () => {
-  const { translation } = useSelector((store) => store.translate);
+  const { translation } = useSelector((store) => store.translationStore);
   const navigate = useNavigate();
   const onClickNav = (e) => {
     e.preventDefault();
@@ -132,35 +132,41 @@ export const AboutPage = () => {
         <div className="container">
           <div className="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
-                <img src={flag} />
+              <div className="d-flex justify-content-center">
+                <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
+                  <img src={flag} />
+                </div>
               </div>
-              <h3 className="second__title__text">
+              <h3 className="second__title__text d-flex justify-content-center">
                 {AboutText[translation].icon1.header}
               </h3>
-              <p className="about__us__text">
+              <p className="about__us__text d-flex justify-content-center">
                 {AboutText[translation].icon1.text}
               </p>
             </div>
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
-                <img src={collaborate} />
+              <div className="d-flex justify-content-center">
+                <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
+                  <img src={collaborate} />
+                </div>
               </div>
-              <h3 className="second__title__text">
+              <h3 className="second__title__text d-flex justify-content-center">
                 {AboutText[translation].icon2.header}
               </h3>
-              <p className="about__us__text">
+              <p className="about__us__text d-flex justify-content-center">
                 {AboutText[translation].icon2.text}
               </p>
             </div>
             <div className="feature col">
-              <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
-                <img src={doc} />
+              <div className="d-flex justify-content-center">
+                <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary p-3 rounded-pill bg-gradient mb-4">
+                  <img src={doc} />
+                </div>
               </div>
-              <h3 className="second__title__text">
+              <h3 className="second__title__text d-flex justify-content-center">
                 {AboutText[translation].icon3.header}
               </h3>
-              <p className="about__us__text">
+              <p className="about__us__text d-flex justify-content-center">
                 {AboutText[translation].icon3.text}
               </p>
             </div>

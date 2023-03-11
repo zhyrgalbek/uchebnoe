@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 function App() {
-  const { status } = useSelector(store => store.translate)
+  // const { status } = useSelector(store => store.translate)
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -27,7 +27,6 @@ function App() {
         >
           <img src={togglewhite} width='40' style={{ transform: 'rotate(180deg)', filter: 'invert(52%) sepia(24%) saturate(4842%) hue-rotate(208deg) brightness(103%) contrast(103%)', Loss: '2.8' }} />
         </Button>
-        
       </div>
     </>
   );
@@ -48,7 +47,7 @@ const Button = styled('button')`
   border-radius: 50px;
   @media screen and (max-width: 780px){
     left: auto;
-    right: 14px;
+    right: 20px;
   }
 `
 

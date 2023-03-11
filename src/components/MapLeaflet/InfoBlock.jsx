@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components'
 
 export default function InfoBlock() {
     return (
-        <InfoContainer>
+        <InfoContainer right>
             <Paper>
                 <InfoColor>
-                    <Item><SpanColor><Color color="#2b83ba" /></SpanColor>50</Item>
-                    <Item><SpanColor><Color color="#abdda4" /></SpanColor>75</Item>
-                    <Item><SpanColor><Color color="#ffffbf" /></SpanColor>100</Item>
-                    <Item><SpanColor><Color color="#fdae61" /></SpanColor>125</Item>
-                    <Item><SpanColor><Color color="#d7191c" /></SpanColor>150</Item>
+                    <Item><SpanColor><Color color="#2b83ba" /></SpanColor>50%</Item>
+                    <Item><SpanColor><Color color="#abdda4" /></SpanColor>75%</Item>
+                    <Item><SpanColor><Color color="#ffffbf" /></SpanColor>100%</Item>
+                    <Item><SpanColor><Color color="#fdae61" /></SpanColor>125%</Item>
+                    <Item><SpanColor><Color color="#d7191c" /></SpanColor>150%</Item>
                 </InfoColor>
             </Paper>
         </InfoContainer>
@@ -57,24 +57,24 @@ const Item = styled('li')`
 
 const InfoContainer = styled('div')`
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    top: 190px;
+    right: 20px;
     /* border: 1px solid red; */
     z-index: 1000;
     ${props => props.right && css`
-        bottom: auto;
-        left: auto;
+        top: auto;
         right: 10px;
-        top: 100px;
+        left: auto;
+        bottom: 50px;
     `}
     @media screen and (max-width: 780px){
         bottom: 10px;
         left: 10px;
         ${props => props.right && css`
-            bottom: auto;
+            top: auto;
             left: auto;
             right: 10px;
-            top: 80px;
+            bottom: 80px;
         `}
     }
 `

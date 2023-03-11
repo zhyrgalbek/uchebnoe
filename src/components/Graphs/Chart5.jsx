@@ -73,7 +73,8 @@ const options = {
 const text = [['Мужчины', 'Женщины'], ['Эркектер', 'Аялдар']];
 
 export const Chart5 = () => {
-    const { translation } = useSelector(store => store.translate);
+    // const { translation } = useSelector(store => store.translate);
+    const { translation } = useSelector(store => store.translationStore)
     const series = [
         {
             name: text[translation][0],

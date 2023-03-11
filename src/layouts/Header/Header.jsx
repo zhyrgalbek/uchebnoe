@@ -5,6 +5,7 @@ import logo from "../../assets/IconCounter/logo.png";
 import { FilterButton } from "../../components/FilterButton";
 import { mapActions } from "../../store/slices/mapSlices";
 import HeaderButton from "../../components/ui/HeaderButton";
+import { translationActions } from "../../store/slices/translationSlices";
 
 const headerText = [
   {
@@ -18,13 +19,13 @@ const headerText = [
 ]
 
 const Header = () => {
-  const { translation } = useSelector(store => store.translate)
+  const { translation } = useSelector(store => store.translationStore)
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onClickTranslate = (e, id) => {
     e.preventDefault();
-    dispatch(mapActions.setTranslation(id))
+    dispatch(translationActions.setTranslation(id))
   }
   const onClickNav = (e, id) => {
     e.preventDefault();

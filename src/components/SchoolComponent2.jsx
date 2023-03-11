@@ -16,10 +16,13 @@ import { useState } from "react";
 import { FilterSubmit } from "./FilerSubmit";
 import { IconCounter } from "./ui/IconCounter";
 import { Grid } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalComponent from "./ui/ModalComponent"
 import Podelitsya from "./Podelitsya"
-import { MapLeaflet } from "./MapLeaflet/MapLeaflet";
+import { MapLeaflet, MemoizedMapLeaflet } from "./MapLeaflet/MapLeaflet";
+import { useRef } from "react";
+import { refSlicesActions } from "../store/slices/refSlices";
+import { useEffect } from "react";
 
 
 const SchoolText = [
@@ -121,25 +124,32 @@ const SchoolText = [
 
 
 
-export const SchoolComponent2 = () => {
-    const { translation, institution, types, marker } = useSelector((store) => store.translate);
+export const SchoolComponent2 = ({ onclicksetBottomMap }) => {
+    const { translation } = useSelector(store => store.translationStore)
+    const { institution, marker } = useSelector(store => store.institutionInfoStore)
+    const { types } = useSelector(store => store.staticDatasStore)
     const [openModal, setOpenModal] = useState(false);
+    // const mapRef = useRef()
+
+    useEffect(() => {
+        // onclicksetBottomMap(mapRef.current)
+    }, [])
+
     const onClickShare = () => {
-        // alert('Hello world')
         setOpenModal(true)
     }
+
     const handleCloseModal = () => {
         setOpenModal(false)
     }
     const [openMore, setOpenMore] = useState(false);
     const onClickMore = () => {
-        alert('Hello world')
         setOpenMore((prev) => !prev);
     };
     let institution_type = types.find(elem => +elem.id === +institution.institution_type_id)
     console.log(institution)
     return (
-        <section className="mt-5">
+        <section className="mt-5" >
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-2 px-2 pt-4 border rounded blue">
                     <div className="col licei">
@@ -149,12 +159,10 @@ export const SchoolComponent2 = () => {
                                 institution.name
                             }
                         </p>
-                        <Box sx={{ mb: '10px' }}>
-                            <img
-                                src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"
-                                className="img-thumbnail border-0 pt-0 mt-0 d-block d-md-none"
-                                alt=""
-                            />
+                        {/* mobile  */}
+                        <Box className="d-md-none d-block" sx={{ width: '100%', height: '400px', mb: '20px' }}>
+                            {/* <MapLeaflet marker={marker} /> */}
+                            <MemoizedMapLeaflet marker={marker} />
                         </Box>
                         <p className="charts__texts mb-1 margin__bottom__custom">
                             {SchoolText[translation].items[0].item_header}
@@ -164,7 +172,7 @@ export const SchoolComponent2 = () => {
                         <BoxCard>
                             <Stack direction="column" spacing={2}>
                                 <Th className="mb-1">
-                                    {SchoolText[translation].items[5].item_header}
+                                    {SchoolText[translation].items[5].item_header}:
                                 </Th>
                                 {/* <Td className="mt-1">Баланчаев Баланча Баланчаевич</Td> */}
                                 <Td>{institution?.contact_person}</Td>
@@ -241,13 +249,25 @@ export const SchoolComponent2 = () => {
                                             {institution.address}
                                         </Td>
                                     </Stack>
+
                                 </BoxCard>
                             </Grid>
                         </Grid>
+                        <div className="d-md-none d-block">
+                            <p className="mb-1 mt-4 font__contacts_data">
+                                {SchoolText[translation].items[9].item_header}
+                            </p>
+                            <p className="mt-1 hhRoRZ">
+                                {`${institution.telephone}, ${institution.fax} (WhatsApp), почта `}
+                                <a href={`mailto: ${institution.email}`}>{institution.email}</a>
+                            </p>
+                        </div>
                     </div>
+                    {/* desktop */}
                     <div className="col">
-                        <Box sx={{ width: '100%', height: '400px' }}>
-                            <MapLeaflet marker={marker} />
+                        <Box className="d-md-block d-none" sx={{ width: '100%', height: '400px' }}>
+                            {/* <MapLeaflet marker={marker} /> */}
+                            <MemoizedMapLeaflet marker={marker} />
                         </Box>
                         {/* <img
                             src="https://www.brookings.edu/wp-content/uploads/2020/05/empty-classroom_elementary-school-middle-school-high-school.jpg"

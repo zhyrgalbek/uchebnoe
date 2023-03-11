@@ -88,7 +88,7 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                                 {
                                     items?.map((elem) => {
                                         if (elem.name) {
-                                            return <MenuItem key={elem.id} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%', display: 'flex', flexWrap: 'wrap' }} onClick={(e) => handleClose(e, elem.name, elem.id)}>{elem.name}</MenuItem>
+                                            return <MenuItem key={Math.random().toString()} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%', display: 'flex', flexWrap: 'wrap' }} onClick={(e) => handleClose(e, elem.name, elem.id)}>{elem.name}</MenuItem>
                                         }
                                         return <MenuItem key={Math.random().toString()} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%' }} onClick={(e) => handleClose(e, elem)}>{elem}</MenuItem>
                                     })

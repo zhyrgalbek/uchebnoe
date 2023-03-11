@@ -36,7 +36,7 @@ const ContainerChat = styled('div')`
     @media screen and (max-width: 780px){
         /* top: 65%; */
         left: auto;
-        right: 10px;
+        right: 18px;
     }
 `
 
@@ -76,7 +76,7 @@ const data = [
 
 const ChatList = ({ data, onClick }) => {
     return <>
-        <p style={{ fontSize: '0.8rem', marginBottom: '8px' }}>
+        <p style={{ fontSize: '1rem', marginBottom: '8px' }}>
             Выберите пункты
         </p>
         <ChatListBlock>
@@ -96,7 +96,7 @@ const ChatListItem = styled('li')`
     color: #fff;
     background: #408591;
     margin-bottom: 4px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 300;
     line-height: 1rem;
     cursor: pointer;
@@ -292,7 +292,7 @@ const ChatBotForm = styled('form')`
     background: #fff;
     padding: 10px;
     display: flex;
-    font-size: 0.8rem;
+    font-size: 1rem;
     & > input{
         border: none;
         padding: 10px;
@@ -315,7 +315,7 @@ const Span = styled('span')`
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding: 10px;
     ${props => props.variant === 'client' && css`
         border-top-right-radius: 0;

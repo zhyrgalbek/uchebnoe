@@ -11,7 +11,13 @@ import { AccordionFilter } from "./ui/AccordionFilter"
 import { useDispatch, useSelector } from "react-redux";
 import states from '../utils/Constants/json/states2.json'
 import { useEffect } from "react"
-import { getAreas, getFilter, getFilterInstitutions, getInstitutions, getSectors, getViews, mapActions } from "../store/slices/mapSlices"
+import { mapActions } from "../store/slices/mapSlices"
+import { getInstitutions } from "../store/slices/institutionsSlices"
+import { getRequestFilter } from '../utils/helpers/helpers.js'
+import { institutionInfoActions } from "../store/slices/institutionInfoSlices"
+import { requestActions } from "../store/slices/requestSlices"
+import { filterAreasActions, getFilterView } from "../store/slices/filterAreasSlices"
+import { getAreas, getViews, getSectors } from "../store/slices/staticDatasSlices"
 const oblast = ["Нарынская", "Чуйская", "Ыссык-Кульская", "Таласская", "Джалал-Абадская", "Ошская", "Баткенская", "г.Бишкек", "г.Ош"];
 const rayons = []
 
@@ -21,22 +27,24 @@ const colorText = [
 ]
 
 export const Filter = ({ header }) => {
-    const { translation, areas, regions, county, types, view, sectors, requestFilter } = useSelector(store => store.translate);
-    // console.log(types)
-    // console.log(view)
-    // console.log(regions)
-    // console.log()
+    const { translation } = useSelector(store => store.translationStore);
+    const { areas, regions, county, types, view, sectors } = useSelector(store => store.staticDatasStore);
+    const { requestFilter, activeFilterType } = useSelector(store => store.requestSlicesStore);
+    const { areas2, county2, view2, view2Error } = useSelector(store => store.filterAreasStore);
+    const { mapInfo2 } = useSelector(store => store.refSlicesStore)
     const [openState, setOpenState] = useState(false);
     const [statusValue, setStatusValue] = useState(false);
     const [statusSearch, setStatusSearch] = useState('');
-    // console.log(requestFilter)
+    const dispatch = useDispatch();
     const onClickSeach = () => {
-        dispatch(getFilterInstitutions(requestFilter, areas));
-        dispatch(mapActions.setMarker(false));
+        // dispatch(requestActions.setRequestFilter({ type, value, text }));
+        dispatch(getInstitutions(getRequestFilter(requestFilter, areas2, activeFilterType)));
+        dispatch(institutionInfoActions.setMarker(false));
         const type = (requestFilter[0].text !== '' && requestFilter[1].text) === '' && requestFilter[0].type || requestFilter[1].text !== '' && requestFilter[1].type
         const text = (requestFilter[0].text !== '' && requestFilter[1].text) === '' && requestFilter[0].text || requestFilter[1].text !== '' && requestFilter[1].text
-        // console.log(type)
         dispatch(mapActions.setCoordinate({ type, text }));
+        mapInfo2.scrollIntoView({ block: "center", behavior: "smooth" });
+        // console.log(mapInfo2)
     }
     useEffect(() => {
         if (statusSearch === '') {
@@ -44,17 +52,17 @@ export const Filter = ({ header }) => {
             return;
         }
         if (statusSearch) {
-            dispatch(getFilterInstitutions(requestFilter, areas));
+            dispatch(getInstitutions(getRequestFilter(requestFilter, areas2)));
             setStatusSearch(false);
             return;
         }
-        console.log('hfef')
     }, [requestFilter])
-
     const onResetFilter = () => {
-        dispatch(mapActions.setRequestFilterReset());
+        dispatch(requestActions.setActiveFilterType('typeId'));
+        dispatch(requestActions.setRequestFilterReset());
+        dispatch(filterAreasActions.setFilterAreasReset());
         setStatusSearch(true);
-        dispatch(mapActions.setCoordinate({ type: '', value: '' }))
+        dispatch(mapActions.setCoordinate({ type: '', value: '' }));
         setFilterText(prev => {
             return prev.map(elem => {
                 return {
@@ -87,15 +95,20 @@ export const Filter = ({ header }) => {
         })
     }
     const onChangeValue = (type, value, text) => {
-        dispatch(mapActions.setRequestFilter({ type, value, text }))
-    }
-    useEffect(() => {
-        if (!statusValue) {
-            setStatusValue(true)
-            return;
+        if (type === 'type' || type === 'view') {
+            dispatch(requestActions.setActiveFilterType(type));
+            dispatch(getFilterView({ type_id: value, type }))
         }
-        dispatch(getFilter({ searchValues: requestFilter }))
-    }, [requestFilter[0], requestFilter[1], requestFilter[2], requestFilter[3], requestFilter[4], requestFilter[5]]);
+        dispatch(requestActions.setRequestFilter({ type, value, text }))
+        dispatch(filterAreasActions.setFilterAreas({ type, id: value, areas, county, view }));
+    }
+    // useEffect(() => {
+    //     if (!statusValue) {
+    //         setStatusValue(true)
+    //         return;
+    //     }
+    //     dispatch(getFilter({ searchValues: requestFilter }))
+    // }, [requestFilter[0], requestFilter[1], requestFilter[2], requestFilter[3], requestFilter[4], requestFilter[5]]);
     const [filterText, setFilterText] = useState([
         {
             header: 'Фильтр для точечного поиска учреждения',
@@ -267,7 +280,33 @@ export const Filter = ({ header }) => {
         }
         onChangeValue(type, value, text);
     }
-    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (activeFilterType === 'typeId') {
+            const id = requestFilter.find(elem => elem.type === activeFilterType)
+            const newElem = types.find(elem => elem.id === id.value)
+            if (!newElem) {
+                setFilterText(prev => {
+                    return prev.map(elem => {
+                        return {
+                            ...elem, btns: elem.btns.map(el => {
+                                if (el.type === 'type') {
+                                    return { ...el, btn_text: el.btn_text2 }
+                                }
+                                if (el.type === 'view') {
+                                    return { ...el, btn_text: el.btn_text2 }
+                                }
+                                return el
+                            })
+                        }
+                    })
+                })
+                return;
+            }
+            onChangeFilterText({ type: 'type', text: newElem.name, value: newElem.id });
+        }
+    }, [requestFilter[requestFilter.length - 1]])
+
     useEffect(() => {
         dispatch(getAreas());
         dispatch(getViews());
@@ -319,12 +358,15 @@ export const Filter = ({ header }) => {
                     })
                 } */}
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[0].type} header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={regions} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas2.length !== 0 ? areas2 : areas} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county2.length !== 0 ? county2 : county} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view2Error !== '' ? view2 : view} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
+                <Box sx={{ mb: '10px' }}>
+                    <FilterSubmit iconLeft={clean} onClick={onResetFilter}>{filterText[translation].btns[10].btn_text}</FilterSubmit>
+                </Box>
                 <Box>
                     <FilterSubmit iconLeft={search} onClick={onClickSeach}>{filterText[translation].btns[8].btn_text}</FilterSubmit>
                 </Box>
@@ -334,10 +376,10 @@ export const Filter = ({ header }) => {
             {/* <AccordionFilter onClick={onChangeFilter} none header={<FilterSubmit icon={open} active={openState}>{!openState ? filterText[translation].btns[9].btn_header : filterText[translation].btns[9].btn_text}</FilterSubmit>}> */}
             <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[0].type} header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={regions} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas2.length !== 0 ? areas2 : areas} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county2.length !== 0 ? county2 : county} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view2Error !== '' ? view2 : view} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
                 {/* <FilterDropdown onClick={onChangeFilterText} type={elem.type} header={elem.btn_header} text={elem.btn_text} items={elem?.items} /> */}

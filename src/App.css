@@ -240,28 +240,33 @@ html {
 }
 
 .green {
-  background-color: #279279;
-  box-shadow: 0px 0px 10px 2px #279279;
+  background-color: rgb(43, 131, 186);
+  box-shadow: 0px 0px 0px 4px rgba(43, 131, 186, 0.4);
 }
 
 .greenWhite {
-  background-color: #56BF94;
-  box-shadow: 0px 0px 10px 2px #56BF94;
+  background-color: rgb(171, 221, 164);
+  box-shadow: 0px 0px 0px 4px rgba(171, 221, 164, 0.4);
 }
 
 .yellow {
-  background-color: #FFCC4A;
-  box-shadow: 0px 0px 10px 2px #FFCC4A;
+  background-color: rgba(255, 204, 74, 1);
+  box-shadow: 0px 0px 0px 4px rgba(255, 204, 74, 0.4);
 }
 
 .yellowWhite {
-  background-color: #FF9D29;
-  box-shadow: 0px 0px 10px 2px #FF9D29;
+  background-color: rgb(253, 174, 97);
+  box-shadow: 0px 0px 0px 4px rgba(253, 174, 97, 0.4);
 }
 
 .red {
-  background-color: #FF504C;
-  box-shadow: 0px 0px 5px 1px #FF504C;
+  background-color: rgb(215, 25, 28);
+  box-shadow: 0px 0px 0px 4px rgba(215, 25, 28, 0.4);
+}
+
+.grey {
+  background-color: rgb(182, 182, 182);
+  box-shadow: 0px 0px 0px 4px rgba(182, 182, 182, 0.4);
 }
 
 * {

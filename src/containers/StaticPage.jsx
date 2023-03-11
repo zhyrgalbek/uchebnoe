@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MapLeaflet } from "../components/MapLeaflet/MapLeaflet";
+import { MapLeaflet, MemoizedMapLeaflet } from "../components/MapLeaflet/MapLeaflet";
 import { Filter } from "../components/Filter";
 import AnalizeCompoent from "../components/AnalizeComponent";
 import { TopFilter } from "../components/TopFIlter/TopFilter";
@@ -7,6 +7,8 @@ import { Paper } from "@mui/material";
 import { SchoolComponent2 } from "../components/SchoolComponent2";
 import { useSelector } from "react-redux";
 import { FaqComponent } from "../components/FaqComponent/FaqComponent";
+import { useState } from "react";
+import { useRef } from "react";
 
 const staticText = [
   {
@@ -23,7 +25,18 @@ const staticText = [
 ];
 
 export const StaticPage = () => {
-  const { translation, marker } = useSelector((store) => store.translate);
+  const { translation } = useSelector((store) => store.translationStore);
+  const { marker } = useSelector((store) => store.institutionInfoStore);
+  const [topMap, setTopMap] = useState(false);
+  const [bottomMap, setBottomMap] = useState(false);
+  const onclickSetTopMap = (a) => {
+    setTopMap(a)
+  }
+  const onclicksetBottomMap = (a) => {
+    setBottomMap(a)
+  }
+  console.log(topMap)
+  console.log(bottomMap)
   return (
     <>
       <main className="devider">
@@ -41,8 +54,7 @@ export const StaticPage = () => {
             <h2 className="second__title__text text-center">
               {staticText[translation].second_title}
             </h2>
-            <MapLeaflet />
-            
+            <MemoizedMapLeaflet onclickSetTopMap={onclickSetTopMap} bottomMap={bottomMap} />
           </div>
         </div>
       </main>
@@ -54,15 +66,15 @@ export const StaticPage = () => {
       </section>
       {
         marker && <section className="container">
-          <SchoolComponent2 />
+          <SchoolComponent2 onclicksetBottomMap={onclicksetBottomMap} />
         </section>
       }
 
-      {/* <section>
-        <div className="container">
-          <AnalizeCompoent />
-        </div>
-      </section> */}
+      {/* <section> */}
+      <div className="container">
+        <AnalizeCompoent />
+      </div>
+      {/* </section> */}
       {/* <section className="container">
         <FaqComponent />
       </section> */}

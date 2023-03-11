@@ -61,7 +61,7 @@ const data = [[
     contact: "minedukg@gmail.com",
   },
   {
-    text: "Адрес",
+    text: "дареги",
     contact: "Кыргыз Республикасы, Бишкек ш. 720040, Тыныстанова көч., 257",
   },
 ],
@@ -91,7 +91,7 @@ const footerText = [
 ]
 
 function Footer() {
-  const { translation } = useSelector(store => store.translate)
+  const { translation } = useSelector(store => store.translationStore)
   const location = useLocation();
   const navigate = useNavigate();
   const onClickNav = (e, id) => {

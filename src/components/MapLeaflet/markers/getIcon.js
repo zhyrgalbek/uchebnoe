@@ -1,34 +1,36 @@
 import L from 'leaflet'
 
-function getColor(percent) {
-    if (!percent) {
-        return '#279279';
+function getColor(percent, id, index) {
+    if (id === '1' || id === '2') {
+        if (+index === 5) {
+            return 'rgb(182, 182, 182)';
+        }
+        let percentInt = parseInt(percent);
+        if (percentInt >= 0 && percentInt <= 62) {
+            return 'rgb(43,131,186)';
+        }
+        if (percentInt >= 63 && percentInt <= 87) {
+            return 'rgb(171,221,164)';
+        }
+        if (percentInt >= 88 && percentInt <= 112) {
+            return '#FFCC4A';
+        }
+        if (percentInt >= 113 && percentInt <= 137) {
+            return 'rgb(253,174,97)';
+        }
+        if (percentInt >= 138) {
+            return 'rgb(215,25,28)';
+        }
     }
-    let percentInt = parseInt(percent);
-    if (percentInt >= 0 && percentInt < 50) {
-        return '#279279'
-    }
-    if (percentInt >= 50 && percentInt < 75) {
-        return '#56BF94';
-    }
-    if (percentInt >= 75 && percentInt < 100) {
-        return '#FFCC4A';
-    }
-    if (percentInt >= 100 && percentInt < 125) {
-        return '#FF9D29';
-    }
-    if (percentInt >= 125) {
-        return '#FF504C';
-    }
-    return '#279279';
+    return 'rgb(182, 182, 182)';
 }
 
 
-export function getIcon(id, percent) {
+export function getIcon(id, percent, index) {
     if (id === '1') {
         return new L.divIcon({
             html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="15" cy="15" r="14.5" fill="${getColor(percent)}" stroke="white"/>
+                <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>
                 <path d="M20.5321 20.467V16.4412C20.5261 15.8369 20.2802 15.2597 19.8487 14.8366C19.4172 14.4135 18.8353 14.1791 18.231 14.185H14.9305C14.5798 14.1838 14.2333 14.2624 13.9174 14.4149C13.6014 14.5673 13.3243 14.7896 13.107 15.065" stroke="white" stroke-miterlimit="10"/>
                 <path d="M15.3385 17.2775C15.2684 16.6906 14.9856 16.1497 14.5435 15.7573C14.1014 15.3649 13.5308 15.1483 12.9397 15.1483H11.0323C10.3917 15.1483 9.77734 15.4028 9.32435 15.8558C8.87137 16.3088 8.61688 16.9232 8.61688 17.5638V20.467" stroke="white" stroke-miterlimit="10"/>
                 <path d="M8.64307 17.2775C8.71312 16.6906 8.99598 16.1497 9.43807 15.7573C9.88015 15.3649 10.4508 15.1483 11.0419 15.1483H12.9492C13.5898 15.1483 14.2042 15.4028 14.6572 15.8558C15.1102 16.3088 15.3647 16.9232 15.3647 17.5638V20.467" stroke="white" stroke-miterlimit="10"/>
@@ -49,7 +51,7 @@ export function getIcon(id, percent) {
     if (id === '2') {
         return new L.divIcon({
             html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent)}" stroke="white"/>
+            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>
             <path d="M9.66671 14.3333H9.00004C8.63337 14.3333 8.33337 14.0333 8.33337 13.6667V11.4533C8.33337 11.2067 8.52004 10.9267 8.75338 10.8333L14.7534 8.43334C14.8867 8.38001 15.1134 8.38001 15.2467 8.43334L21.2467 10.8333C21.48 10.9267 21.6667 11.2067 21.6667 11.4533V13.6667C21.6667 14.0333 21.3667 14.3333 21 14.3333H20.3334" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M21.6667 21.6667H8.33337V20.1667C8.33337 19.8917 8.63337 19.6667 9.00004 19.6667H21C21.3667 19.6667 21.6667 19.8917 21.6667 20.1667V21.6667Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M9.66663 19.6667V14.3333" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,7 +81,7 @@ export function getIcon(id, percent) {
     if (id === '3') {
         return new L.divIcon({
             html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent)}" stroke="white"/>
+            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>
             <path d="M12.7185 22.5907L20.0852 22.5907" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12.6082 22.5971H9.15208C8.38582 22.5971 8 22.266 8 21.6085V16.2289C8 15.5714 8.38582 15.2404 9.15208 15.2404H11.4562C12.2225 15.2404 12.6082 15.5714 12.6082 16.2289V17.0795" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M20.0914 22.5844L12.6145 22.5971L12.6083 13.1159C12.6083 12.6907 12.8201 12.2972 13.1628 12.0624L15.6551 10.368C16.0726 10.0824 16.6209 10.0824 17.0383 10.368L19.5307 12.0624C19.8796 12.2972 20.0852 12.6907 20.0852 13.1159L20.0914 22.5844Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -104,7 +106,7 @@ export function getIcon(id, percent) {
     if (id === '4') {
         return new L.divIcon({
             html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent)}" stroke="white"/>
+            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>
             <path d="M11.4 20.7839H8.07181C7.33393 20.7839 6.9624 20.4651 6.9624 19.8319V14.6516C6.9624 14.0184 7.33393 13.6996 8.07181 13.6996H10.2906C11.0285 13.6996 11.4 14.0184 11.4 14.6516V15.4707" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M11.5061 20.7778L18.6 20.7778" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M18.606 20.7717L11.406 20.7839L11.4 11.6539C11.4 11.2444 11.604 10.8655 11.934 10.6394L14.334 9.00776C14.736 8.73276 15.264 8.73276 15.666 9.00776L18.066 10.6394C18.402 10.8655 18.6 11.2444 18.6 11.6539L18.606 20.7717Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -132,7 +134,7 @@ export function getIcon(id, percent) {
     if (id === '6') {
         return new L.divIcon({
             html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent)}" stroke="white"/>
+            <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>
             <path d="M15.2467 8.43337L21.2467 10.8334C21.48 10.9267 21.6667 11.2067 21.6667 11.4534V13.6667C21.6667 14.0334 21.3667 14.3334 21 14.3334H9.00004C8.63337 14.3334 8.33337 14.0334 8.33337 13.6667V11.4534C8.33337 11.2067 8.52004 10.9267 8.75338 10.8334L14.7534 8.43337C14.8867 8.38004 15.1134 8.38004 15.2467 8.43337Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M21.6667 21.6667H8.33337V19.6667C8.33337 19.3 8.63337 19 9.00004 19H21C21.3667 19 21.6667 19.3 21.6667 19.6667V21.6667Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M9.66663 19V14.3333" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -155,7 +157,7 @@ export function getIcon(id, percent) {
     }
     return new L.divIcon({
         html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="15" r="14.5" fill="${getColor(percent)}" stroke="white"/>
+        <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>
         <path d="M9.66671 14.3333H9.00004C8.63337 14.3333 8.33337 14.0333 8.33337 13.6667V11.4533C8.33337 11.2067 8.52004 10.9267 8.75338 10.8333L14.7534 8.43334C14.8867 8.38001 15.1134 8.38001 15.2467 8.43334L21.2467 10.8333C21.48 10.9267 21.6667 11.2067 21.6667 11.4533V13.6667C21.6667 14.0333 21.3667 14.3333 21 14.3333H20.3334" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M21.6667 21.6667H8.33337V20.1667C8.33337 19.8917 8.63337 19.6667 9.00004 19.6667H21C21.3667 19.6667 21.6667 19.8917 21.6667 20.1667V21.6667Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M9.66663 19.6667V14.3333" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
