@@ -1,19 +1,49 @@
 import "./App.css";
 import Router from "./routes/Router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import togglewhite from "./assets/Filter/Framewhite.svg";
+import toggle from "./assets/Filter/Frame.svg";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 function App() {
-  // const { status } = useSelector(store => store.translate)
+  const { status, messages } = useSelector(store => store.institutionsStore);
+  const [color, setColor] = useState(false);
+  const notify = ({ text, variant }) => {
+    return toast[variant](text);
+  }
+
+  // console.log(statusInstitution)
+
   useEffect(() => {
     // 👇️ scroll to top on page load
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    if (status === 'rejected') {
+      if (messages !== '') {
+        notify({ text: messages, variant: 'error' })
+        return;
+      }
+      notify({ text: 'На сервере ошибки!', variant: 'error' })
+    }
+    if (status === 'fulfilled') {
+      notify({ text: 'Данные получены успешно!', variant: 'success' })
+    }
+  }, [status])
+
+  const onScrollFunc = (e) => {
+    console.log(window.pageYOffset)
+  }
+
   return (
     <>
-      <div className="App">
+      <div className="App" onScroll={onScrollFunc}>
         <Router />
       </div>
       <div>
@@ -21,12 +51,10 @@ function App() {
           onClick={() => {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           }}
-          style={{
-
-          }}
         >
-          <img src={togglewhite} width='40' style={{ transform: 'rotate(180deg)', filter: 'invert(52%) sepia(24%) saturate(4842%) hue-rotate(208deg) brightness(103%) contrast(103%)', Loss: '2.8' }} />
+          <img src={!color ? toggle : togglewhite} width='40' style={{ transform: 'rotate(180deg)', }} />
         </Button>
+        <ToastContainer />
       </div>
     </>
   );
@@ -42,7 +70,7 @@ const Button = styled('button')`
   top: 90%;
   left: 93.8%;
   text-align: center;
-  background-color: transparent;
+  background-color: #fff;
   border: 1px solid #a2b6ff;
   border-radius: 50px;
   @media screen and (max-width: 780px){

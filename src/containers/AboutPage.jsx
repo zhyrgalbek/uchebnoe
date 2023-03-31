@@ -181,9 +181,9 @@ export const AboutPage = () => {
                 {AboutText[translation].misson[0]}
               </h2>
               <p className="pb-3">{AboutText[translation].misson[1]}</p>
-              <p>{AboutText[translation].misson[2]}</p>
-              <p>{AboutText[translation].misson[3]}</p>
-              <p>{AboutText[translation].misson[4]}</p>
+              <p >{AboutText[translation].misson[2]}</p>
+              <p >{AboutText[translation].misson[3]}</p>
+              <p >{AboutText[translation].misson[4]}</p>
             </div>
             <div className="box">
               <div className="container px-4">

@@ -1,10 +1,12 @@
 import { ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from "@mui/material";
 import { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled, { css } from "styled-components"
 import frame from '../../assets/Filter/Frame.svg'
 
 export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, type, onClick, ...props }) => {
     // const [choiseText, setChoiseText] = useState(text);
+    const { translation } = useSelector(store => store.translationStore);
     const menuRef = useRef();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
@@ -87,6 +89,14 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                             >
                                 {
                                     items?.map((elem) => {
+                                        if (type === 'type' || type === 'view' || type === 'sector') {
+                                            if (translation === 0) {
+                                                return <MenuItem key={Math.random().toString()} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%', display: 'flex', flexWrap: 'wrap' }} onClick={(e) => handleClose(e, elem.name, elem.id)}>{elem.name}</MenuItem>
+                                            }
+                                            if (translation === 1) {
+                                                return <MenuItem key={Math.random().toString()} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%', display: 'flex', flexWrap: 'wrap' }} onClick={(e) => handleClose(e, elem.kyrgyzName, elem.id)}>{elem.kyrgyzName}</MenuItem>
+                                            }
+                                        }
                                         if (elem.name) {
                                             return <MenuItem key={Math.random().toString()} sx={{ fontSize: '0.875rem', fontFamily: 'Inter', lineHeight: '140%', display: 'flex', flexWrap: 'wrap' }} onClick={(e) => handleClose(e, elem.name, elem.id)}>{elem.name}</MenuItem>
                                         }

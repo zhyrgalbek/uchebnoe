@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { requestActions } from '../../store/slices/requestSlices';
 import { institutionInfoActions } from '../../store/slices/institutionInfoSlices';
 import { getTypes } from '../../store/slices/staticDatasSlices';
-import { getInstitutions } from '../../store/slices/institutionsSlices';
+import { getInstitutions, institutionsActions } from '../../store/slices/institutionsSlices';
 import { getRequestFilter } from '../../utils/helpers/helpers';
+import React from 'react';
 
 const buttonText = [
     [
@@ -44,7 +45,7 @@ export const TopFilter = () => {
     const [one, setOne] = useState(false)
     const dispatch = useDispatch()
     const onChangeAccordion = () => {
-        setAccordionOpen(prev => !prev)
+        setAccordionOpen(prev => !prev);
     }
     // console.log(requestFilter)
     useEffect(() => {
@@ -69,6 +70,7 @@ export const TopFilter = () => {
             return;
         }
         const arr = areas2.length !== 0 ? areas2 : areas;
+        dispatch(institutionsActions.setVisualInstitutions(getRequestFilter(requestFilter, arr, activeFilterType)))
         dispatch(getInstitutions(getRequestFilter(requestFilter, arr, activeFilterType)))
     }, [requestFilter[requestFilter.length - 1]])
     const onClickBtn = (e, index, id) => {
@@ -109,10 +111,13 @@ export const TopFilter = () => {
                         return <FilterButton key={elem.id} icon={elem.icon} onClick={(e) => onClickBtn(e, index, elem.id)} primary={filterActive === index}>{elem.name}</FilterButton>
                     })
                 }
+                {/* <SeachInstitution /> */}
             </Stack>
         </Desctop>
     </>
 }
+
+export const TopFilterMemoized = React.memo(TopFilter)
 
 const Desctop = styled('div')`
     display: block;

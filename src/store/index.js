@@ -8,6 +8,7 @@ import requestSlices from "./slices/requestSlices";
 import institutionsSlices from "./slices/institutionsSlices";
 import refSlices from "./slices/refSlices";
 import analizeSlices from "./slices/analizeSlices";
+import searchSlices from "./slices/searchSlices";
 
 const store = configureStore({
     reducer: {
@@ -19,8 +20,13 @@ const store = configureStore({
         requestSlicesStore: requestSlices.reducer,
         institutionsStore: institutionsSlices.reducer,
         refSlicesStore: refSlices.reducer,
-        analizeSlicesStore: analizeSlices.reducer
-    }
+        analizeSlicesStore: analizeSlices.reducer,
+        searchSliceStore: searchSlices.reducer
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 })
 
 

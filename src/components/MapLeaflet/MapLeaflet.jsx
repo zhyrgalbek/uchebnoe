@@ -1,6 +1,5 @@
-import { LayerGroup, LayersControl, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON, useMap, Rectangle } from 'react-leaflet'
+import { LayerGroup, MapContainer, Marker, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON, useMap, Rectangle } from 'react-leaflet'
 import states from '../../utils/Constants/json/states2.json'
-// import statesJson from '../../utils/Constants/json/statesJson.json'
 import statesBatken from '../../utils/Constants/json/statesBatken.json'
 import statesChuy from '../../utils/Constants/json/statesChuy.json'
 import statesDjalal from '../../utils/Constants/json/statesDjalal.json'
@@ -9,37 +8,30 @@ import statesNarin from '../../utils/Constants/json/statesNarin.json'
 import statesOsh from '../../utils/Constants/json/statesOsh.json'
 import statesTalas from '../../utils/Constants/json/statesTalas.json'
 import statesBishkek from '../../utils/Constants/json/statesBishkek.json'
-// import testJon from '../../utils/Constants/json/testJson.json'
-// import point from '../../assets/Map/Exclamation_point.svg'
-// import krestik from '../../assets/Map/krestik.svg'
 import clusterIcon from '../../assets/Map/markers/clusterIcon.svg'
 
-import styled, { css } from 'styled-components'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Box, Paper } from '@mui/material'
+import styled from 'styled-components'
+import { useEffect, useRef, useState } from 'react'
+import { Box, IconButton, Paper } from '@mui/material'
 import { Stack } from '@mui/system'
-// import '../../../node_modules/leaflet.markercluster/dist/'
 import L from "leaflet"
 import '@changey/react-leaflet-markercluster/dist/styles.min.css'
 import MarkerClusterGroup from '@changey/react-leaflet-markercluster'
 import { FilterSubmit } from '../FilerSubmit'
-// import { fetch_api } from '../../hooks/fetch_api'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIcon } from './markers/getIcon'
-import { mapActions } from '../../store/slices/mapSlices'
 import { institutionInfoActions } from '../../store/slices/institutionInfoSlices'
 import InfoBlock from './InfoBlock';
-import InfoBlockRight from './InfoBlockRight'
 import React from 'react'
 import { analizeSlicesActions } from '../../store/slices/analizeSlices'
-import { refSlicesActions } from '../../store/slices/refSlices'
-// import PrevBtn from './PrevBtn'
+
+import 'react-toastify/dist/ReactToastify.css';
+import GeoLocation, { getIconImHere } from './GeoLocation'
+import { useCallback } from 'react'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
 
-// const colorMarker = '#58BF56';
-// const colorMarker2 = '#56BF94';
-// const colorMarker3 = '#58BF56';
+
 
 const regions = [states, statesBatken, statesChuy, statesDjalal, statesKol, statesNarin, statesTalas, statesOsh, statesBishkek];
 
@@ -83,56 +75,24 @@ function MyComponent() {
             mapEvents.locate()
         },
         locationfound: (location) => {
-            console.log('location found:', location)
+            // console.log('location found:', location)
         },
     })
     return null
 }
 
-function getReverseArr(arr) {
-    return arr.map(elem => {
-        return elem.reverse()
-    })
-}
 
-const innerBounds = [
-    [49.505, -2.09],
-    [53.505, 2.09],
-]
-const outerBounds = [
-    [50.505, -29.09],
-    [52.505, 29.09],
-]
-
-const redColor = { color: 'red' }
-const whiteColor = { color: 'white' }
 
 const color = ['#FDCA7B', '#AFD791', '#FCF58D', '#6CC49A', '#58C6C7', '#FBF48C', '#FAC97C', '#51C2C0', '#51C2C0', 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0)']
 
-const markers = [
-    [42.868135, 74.633753],
-    [42.852028, 74.526636],
-    [42.882727, 74.539339],
-    [42.867883, 74.631693],
-    [42.839694, 74.602511],
-]
-
-function SetBoundsRectangles({ marker, setPrevBtn, prevBtn, bottomMap }) {
-    // const { institutions, coordinate, status } = useSelector(store => store.translate)
+function SetBoundsRectangles({ marker, setPrevBtn, prevBtn, bottomMap, coords, onSetCoords }) {
     const { institutions, status } = useSelector(store => store.institutionsStore)
     const { institution } = useSelector(store => store.institutionInfoStore)
     const { coordinate } = useSelector(store => store.mapSlicesStore)
-    // const { mapInfo } = useSelector(store => store.refSlicesStore)
     const { occupancyInstitutes } = useSelector(store => store.analizeSlicesStore)
-    const { mapInfo } = useSelector(store => store.refSlicesStore)
-    const [bounds, setBounds] = useState(outerBounds)
     const [rayons, setRayons] = useState(null)
-    const [bool, setBool] = useState(false)
     const dispatch = useDispatch();
-
-    // console.log(institutions);
-    // console.log(statesKol)
-
+    // console.log('Hello world')
     const map = useMap();
     useEffect(() => {
         if (!prevBtn && rayons) {
@@ -143,28 +103,30 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn, bottomMap }) {
             map.fitBounds(L.geoJson(states).getBounds());
         }
     }, [prevBtn])
+
+    useEffect(() => {
+        map.addEventListener('click', (e) => {
+            console.log(e)
+        })
+    }, [])
+
     useEffect(() => {
         if (marker) {
-            window.scrollTo({ top: 1200, left: 0, behavior: "smooth" });
-            // bottomMap.scrollIntoView({ block: "center", behavior: "smooth" });
+            // window.scrollTo({ top: 1200, left: 0, behavior: "smooth" });
+            // bottomMap.current.scrollIntoView({ block: "start", behavior: "smooth" });
             map.setView(marker, 17);
         }
     }, [marker]);
-    useEffect(() => {
-        // map.setView([41.67174733694543, 74.47980721084369], 6);
-    }, [institutions])
 
-    const innerHandlers = (event, institution) => {
-        // map.setView(event.latlng, 17);
-        // console.log(event.latlng)
+    const innerHandlers = useCallback((event, institution) => {
         let markerCoordinate = {
             lat: event.latlng.lat,
             lng: event.latlng.lng
         }
+        dispatch(institutionInfoActions.setStatus('pending'));
         dispatch(institutionInfoActions.setMarker(markerCoordinate));
         dispatch(institutionInfoActions.setInstitution(institution));
-        // console.log(institution)
-    }
+    }, [])
 
     const paintAreas = (country) => {
         let s = 0;
@@ -383,82 +345,64 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn, bottomMap }) {
         })
     }
 
-    // useEffect(() => {
-    //     var cluster = L.markerClusterGroup();
-    //     var geoJson = L.geoJSON(testJon, {
-    //         style: function () {
-    //             return {
-    //                 color: 'red'
-    //             }
-    //         }
-    //     });
-    //     // cluster.addLayer(geoJson);
-    //     geoJson.addTo(map);
-    // }, [])
-
-    // const rayonStyle = {
-    //     fillColor: 'transparent',
-    //     color: 'transparent',
-    // }
-    const createClusterCustomIconGreen = function (cluster) {
+    const createClusterCustomIconGreen = useCallback(function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
             className: 'marker-cluster-custom green',
             iconUrl: clusterIcon,
             iconSize: [25, 25]
         });
-    }
-    const createClusterCustomIconYellow = function (cluster) {
+    }, [])
+    const createClusterCustomIconYellow = useCallback(function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
             className: 'marker-cluster-custom yellow',
             iconUrl: clusterIcon,
             iconSize: [25, 25]
         });
-    }
-    const createClusterCustomIconYellowWhite = function (cluster) {
+    }, [])
+    const createClusterCustomIconYellowWhite = useCallback(function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
             className: 'marker-cluster-custom yellowWhite',
             iconUrl: clusterIcon,
             iconSize: [25, 25]
         });
-    }
-    const createClusterCustomIconRed = function (cluster) {
+    }, [])
+    const createClusterCustomIconRed = useCallback(function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
             className: 'marker-cluster-custom red',
             iconUrl: clusterIcon,
             iconSize: [25, 25]
         });
-    }
-    const createClusterCustomIconGreenWhite = function (cluster) {
+    }, [])
+    const createClusterCustomIconGreenWhite = useCallback(function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
             className: 'marker-cluster-custom greenWhite',
             iconUrl: clusterIcon,
             iconSize: [25, 25]
         });
-    }
-    const createClusterCustomIconGrey = function (cluster) {
+    }, [])
+    const createClusterCustomIconGrey = useCallback(function (cluster) {
         return L.divIcon({
             html: `<span>${cluster.getChildCount()}</span>`,
             className: 'marker-cluster-custom grey',
             iconUrl: clusterIcon,
             iconSize: [25, 25]
         });
-    }
-    console.log(institution)
+    }, [])
 
     useEffect(() => {
         dispatch(analizeSlicesActions.setOccupancyInstitutes({ institutions }))
     }, [institutions])
-    // const markers = institutions.map((elem, index) => {
-    //     const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-    //     return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-    // })
 
-    // console.log('Hello world')
+
+    const onClickGeoLocation = () => {
+        map.setView([coords.latitude, coords.longitude], 17);
+    }
+
 
     return (
         <>
@@ -477,92 +421,97 @@ function SetBoundsRectangles({ marker, setPrevBtn, prevBtn, bottomMap }) {
                     }
                 }))
             }
-            {/* <MarkerClusterGroup>
-                {
-                    // institution_type_id
-                    // capacity_percentage
-                    status === 'fulfilled' && markers
-                }
-            </MarkerClusterGroup> */}
             {/* <MarkerClusterGroup chunkedLoading> */}
-            {marker && <Marker icon={getIcon(institution.institution_type_id, institution.capacity_percentage)} position={[institution.latitude, institution.longitude]} ></Marker>}
-            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
+            {
+                coords && <IconButton>
+                    <Marker autoPan={true} icon={getIconImHere()} position={[coords.latitude, coords.longitude]} className="markerClassCustom">
+                        <Popup className="customPopup">Ваше местоположение</Popup>
+                    </Marker>
+                </IconButton>
+            }
+            {marker && !bottomMap && <Marker icon={getIcon(institution.institution_type_id, institution.capacity_percentage)} position={[institution.latitude, institution.longitude]} ></Marker>}
+            {status === 'fulfilled' && bottomMap && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreen}>
                 {
                     occupancyInstitutes[0]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
+                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, index);
                         return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
                     })
                 }
             </MarkerClusterGroup>}
-            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreenWhite}>
-                {
-                    occupancyInstitutes[1]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>}
-            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellow}>
-                {
-                    occupancyInstitutes[2]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>}
-            {status === 'fulfilled' && !marker && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellowWhite}>
-                {
-                    occupancyInstitutes[3]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>}
-            {status === 'fulfilled' && !marker && <MarkerClusterGroup iconCreateFunction={createClusterCustomIconRed}>
-                {
-                    occupancyInstitutes[4]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>}
-            {status === 'fulfilled' && !marker && <MarkerClusterGroup iconCreateFunction={createClusterCustomIconGrey}>
-                {
-                    occupancyInstitutes[5]?.map((elem, index) => {
-                        const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, 5);
-                        return <Marker eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
-                    })
-                }
-            </MarkerClusterGroup>}
+            {
+                status === 'fulfilled' && bottomMap && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconGreenWhite}>
+                    {
+                        occupancyInstitutes[1]?.map((elem, index) => {
+                            const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, index);
+                            return <Marker riseOnHover={true} eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                        })
+                    }
+                </MarkerClusterGroup>
+            }
+            {
+                status === 'fulfilled' && bottomMap && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellow}>
+                    {
+                        occupancyInstitutes[2]?.map((elem, index) => {
+                            const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, index);
+                            return <Marker riseOnHover={true} eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                        })
+                    }
+                </MarkerClusterGroup>
+            }
+            {
+                status === 'fulfilled' && bottomMap && <MarkerClusterGroup chunkedLoading iconCreateFunction={createClusterCustomIconYellowWhite}>
+                    {
+                        occupancyInstitutes[3]?.map((elem, index) => {
+                            const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, index);
+                            return <Marker riseOnHover={true} eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                        })
+                    }
+                </MarkerClusterGroup>
+            }
+            {
+                status === 'fulfilled' && bottomMap && <MarkerClusterGroup iconCreateFunction={createClusterCustomIconRed}>
+                    {
+                        occupancyInstitutes[4]?.map((elem, index) => {
+                            const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, index);
+                            return <Marker riseOnHover={true} eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                        })
+                    }
+                </MarkerClusterGroup>
+            }
+            {
+                status === 'fulfilled' && bottomMap && <MarkerClusterGroup iconCreateFunction={createClusterCustomIconGrey}>
+                    {
+                        occupancyInstitutes[5]?.map((elem, index) => {
+                            const markerIcon = getIcon(elem.institution_type_id, elem.capacity_percentage, 5);
+                            return <Marker riseOnHover={true} eventHandlers={{ click: (e) => innerHandlers(e, elem) }} icon={markerIcon} key={elem.id} position={[elem.latitude, elem.longitude]} ></Marker>
+                        })
+                    }
+                </MarkerClusterGroup>
+            }
             {/* </MarkerClusterGroup> */}
+            <GeoLocation onSetCoords={onSetCoords} onClickGeoLocation={onClickGeoLocation} />
         </>
     )
 }
-
-
-
-
-// const marker = [42.857254, 74.600725];
+const SetBoundsRectanglesMemoized = React.memo(SetBoundsRectangles);
 
 
 
 
 
 
-export const MapLeaflet = ({ marker, onclickSetTopMap, bottomMap }) => {
-    // const { institutions, status } = useSelector(store => store.translate)
-    const { institutions, status } = useSelector(store => store.institutionsStore)
+export const MapLeaflet = ({ marker, bottomMap }) => {
+    const { status } = useSelector(store => store.institutionsStore)
     const [prevBtn, setPrevBtn] = useState(false)
+    const [coords, setCoords] = useState();
     const [zoom, setZoom] = useState(7.1)
 
-    const dispatch = useDispatch()
     const animateRef = useRef(true)
 
-    const eventHandlers = () => ({
-        click(event) {
-            // console.log(event)
-        },
-    })
+    const onSetCoords = ({ coords }) => {
+        setCoords(coords)
+    }
+
     const onClickPrevBtn = () => {
         setPrevBtn(false)
     }
@@ -575,15 +524,26 @@ export const MapLeaflet = ({ marker, onclickSetTopMap, bottomMap }) => {
                 </Box>
             </Stack>
         }
-        <Paper sx={{ width: "100%", height: "100%" }} id="mapleafletInfo" elevation={6}>
+        <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
             <MapBlock>
                 <Map center={position} zoom={zoom} placeholder={<MapPlaceholder />} scrollWheelZoom={true}>
                     <LayerGroup>
-                        <TileLayer
+                        {/* <TileLayer
                             url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                             // maxZoom="20"
                             attribution="&copy; <a href=&quot;https://www.openstreetmap.org/copyright&quot;>OpenStreetMap</a> contributors"
+                        /> */}
+                        <TileLayer
+                            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=99425f3c-24bb-4e1e-94fc-c257d13c34a5"
+                            maxZoom="20"
+                            attribution="&copy; <a href=&quot;https://stadiamaps.com/&quot;>Stadia Maps</a>, &copy; <a href=&quot;https://openmaptiles.org/&quot;>OpenMapTiles</a> &copy; <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors"
                         />
+                        {/* <TileLayer
+                            url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                            maxZoom="20"
+                            subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                        /> */}
                         <WMSTileLayer
                             url="https://geoserver.24mycrm.com/monmap/wms?&tiled=true"
                             version='1.0.0'
@@ -595,7 +555,7 @@ export const MapLeaflet = ({ marker, onclickSetTopMap, bottomMap }) => {
                             format="image/png"
                         />
                         {
-                            marker && <TileLayer
+                            !bottomMap && <TileLayer
                                 url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
                                 maxZoom="20"
                                 subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
@@ -641,11 +601,10 @@ export const MapLeaflet = ({ marker, onclickSetTopMap, bottomMap }) => {
                     } */}
                     <SetViewOnClick animateRef={animateRef} />
                     <MyComponent />
-                    <SetBoundsRectangles marker={marker} setPrevBtn={setPrevBtn} prevBtn={prevBtn} bottomMap={bottomMap} />
+                    <SetBoundsRectanglesMemoized onSetCoords={onSetCoords} marker={marker} coords={coords} setPrevBtn={setPrevBtn} prevBtn={prevBtn} bottomMap={bottomMap} />
                     {
-                        !marker && <InfoBlock />
+                        bottomMap && <InfoBlock />
                     }
-                    {/* <PrevBtn /> */}
                     {
                         status === 'pending' && <Preloader>
                             {/* <span className="map_loader"></span> */}

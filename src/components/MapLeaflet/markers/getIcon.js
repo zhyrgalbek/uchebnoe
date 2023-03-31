@@ -1,7 +1,7 @@
 import L from 'leaflet'
 
 function getColor(percent, id, index) {
-    if (id === '1' || id === '2') {
+    if (id === '1' || id === '2' || id === '23') {
         if (+index === 5) {
             return 'rgb(182, 182, 182)';
         }
@@ -27,7 +27,7 @@ function getColor(percent, id, index) {
 
 
 export function getIcon(id, percent, index) {
-    if (id === '1') {
+    if (id === '1' || id === '23') {
         return new L.divIcon({
             html: `<svg width="40" height="40" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="15" cy="15" r="14.5" fill="${getColor(percent, id, index)}" stroke="white"/>

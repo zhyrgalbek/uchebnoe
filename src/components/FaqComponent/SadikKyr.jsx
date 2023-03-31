@@ -71,7 +71,7 @@ export const SadikKyr = () => {
                                 Паспорт
                             </li>
                             <li>
-                                мүлктүн ээсинин паспорту;
+                                Мүлктүн ээсинин паспорту;
                             </li>
                             <li>
                                 Кыймылсыз мүлктүн техникалык паспорту.
@@ -107,8 +107,7 @@ export const SadikKyr = () => {
                         <p className="third__title_text">
                             Ошондой эле, кагазга өтүү учурунда жазылган арыздар жаңы системага кирбей турганын билдиребиз.
                             https://mektep.edu.gov.kg/.
-                            Ата-энелер жаңы система аркылуу кайра кайрылышы керек
-                            <a
+                            Ата-энелер жаңы система аркылуу кайра кайрылышы керек <a
                                 href="https://mektep.edu.gov.kg/"
                                 rel="noopener noreferrer"
                                 target="_blank"
@@ -290,10 +289,10 @@ export const SadikKyr = () => {
                         </p>
                         <p className="third__title_text">
                             Ошондой эле, кагазга өтүү учурунда жазылган билдирүүлөр киргизилбей тургандыгын билдиребиз
-                            жаңы система https://mektep.edu.gov.kg/.
+                            жаңы система <a href="mailto:https://mektep.edu.gov.kg/" target="_blank">https://mektep.edu.gov.kg/</a>.
                         </p>
                         <p className="third__title_text">
-                            Ата-энелер https://mektep.edu.gov.kg/ жаңы системасы аркылуу кайра кайрылуусу керек.
+                            Ата-энелер <a href="mailto:https://mektep.edu.gov.kg/" target="_blank">https://mektep.edu.gov.kg/</a> жаңы системасы аркылуу кайра кайрылуусу керек.
                         </p>
                     </div>
                 </div>
@@ -1120,10 +1119,11 @@ export const SadikKyr = () => {
                         <p className="third__title_text">
                             <b>МААНИЛҮҮ!!!</b>
                         </p>
+                        <p>Тиркемени өткөрүп бергенден кийин, тиркемени калыбына келтирүү мүмкүн эмес!!!</p>
                         <iframe
                             class="ql-video"
                             frameborder="0"
-                            allowfullscreen="true"
+                            // allowfullscreen="true"
                             src="https://www.youtube.com/embed/7oIKylz9BRg?showinfo=0"
                         ></iframe>
                     </div>

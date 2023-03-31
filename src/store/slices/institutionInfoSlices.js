@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     marker: '',
     institution: {},
+    status: ''
 }
 
 const institutionInfoSlices = createSlice({
@@ -13,9 +14,14 @@ const institutionInfoSlices = createSlice({
             state.marker = action.payload;
         },
         setInstitution(state, action) {
+            console.log(action.payload)
             state.institution = action.payload
         },
-    }
+        setStatus(state, action) {
+            state.status = action.payload
+        }
+    },
+
 })
 
 export const institutionInfoActions = institutionInfoSlices.actions

@@ -1,10 +1,55 @@
-// import { Paper } from "@mui/material";
+// import { Paper } from "@mui/material";]
+import { Box } from "@mui/system";
 import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import chatbot from "../assets/IconCounter/message.svg";
 import chatbotWhite from "../assets/IconCounter/messageWhite.svg";
 import krestik from '../assets/Map/krestik.svg';
 
+
+const chatbotText = [
+    [
+        {
+            text: 'Здраствуйте, чем я могу вам помочь?',
+        },
+        {
+            text: 'была ли это информация полезной?'
+        },
+        {
+            text: 'Рады были Вам помочь! Спасибо за обращение!'
+        },
+        {
+            text: 'Если вы не получили ответ на свой вопрос, напишите нам на почту check.edu.gov.kg.@gmail.com'
+        },
+        {
+            text: 'Введите ваше сообщение'
+        },
+        {
+            text: 'Выберите пункты'
+        }
+    ],
+    [
+        {
+            text: 'Саламатсызбы, сизге кантип жардам берсем болот?'
+        },
+        {
+            text: 'бул маалымат пайдалуу болдубу?'
+        },
+        {
+            text: 'Биз сизге жардам бергенибизге кубанычтабыз! Пикириңиз үчүн рахмат!'
+        },
+        {
+            text: 'Сурооңузга жооп ала элек болсоңуз, бизге check.edu.gov.kg.@gmail.com дарегине кат жазыңыз.'
+        },
+        {
+            text: 'Кабарыңызды киргизиңиз'
+        },
+        {
+            text: 'Элементтерди тандаңыз'
+        }
+    ]
+]
 
 export const Question = ({ onClick }) => {
     return <h3 onClick={onClick}>Вы нашли ответ на свой вопрос?</h3>
@@ -60,28 +105,55 @@ const ChatBotButtonBlock = styled('button')`
 
 
 const data = [
-    { id: 1, vopros: 'С какого возраста можно зарегистрировать ребенка?', text: 'Регистрация ребенка в системе «Электронная запись в школу» возможна при условии исполнения ребенку полных 6 лет на начало учебного года.' },
-    { id: 2, vopros: 'Если моему ребенку 5,5 лет могу ли зарегистрировать ребенка?', text: 'Регистрация ребенка в системе «Электронная запись в школу» возможна при условии исполнения ребенку полных 6 лет на начало учебного года.' },
-    {
-        id: 3, vopros: 'А если моему ребенку исполнилось уже 8-9 лет, можем ли мы пойти в школу?', text: 'Регистрация ребенка в системе «Электронная запись в школу» возможна при условии исполнения ребенку полных 6 лет на начало учебного года.'
-    },
-    {
-        id: 4, vopros: 'А в какие школы я не могу отдать своего ребенка?', text: 'Система не предусматривает прием детей в специализированные школы и классы, интернаты, музыкальные школы.'
-    },
-    {
-        id: 5, vopros: 'Могу ли я выбрать сразу две школы?', text: 'Вы можете выбрать для своего ребенка только одну школу по микроучастку либо вне микроучастка.'
-    },
+    [
+
+        { id: 2, vopros: 'Если моему ребенку 5,5 лет могу ли зарегистрировать ребенка?', text: 'Регистрация ребенка в системе «Электронная запись в школу» возможна при условии исполнения ребенку полных 6 лет на начало учебного года.' },
+        {
+            id: 3, vopros: 'А если моему ребенку исполнилось уже 8-9 лет, можем ли мы пойти в школу?', text: 'Регистрация ребенка в системе «Электронная запись в школу» возможна при условии исполнения ребенку полных 6 лет на начало учебного года.'
+        },
+        {
+            id: 4, vopros: 'Где и как узнать, за какой школой закреплен мой адрес проживания?', text: `Перейдите по данному адресу, чтобы узнать в какую школу вы относитесь. mektep.edu.gov.kg/organization-check c помощью данной услуги Вы можете узнать в какую школу вы относитесь, указав ПИН отца/матери и нажав на кнопку «Проверить».`
+        },
+        {
+            id: 5, vopros: ' Могу ли я зарегистрировать своего ребенка в этом году, но пойти в школу в следующем году?', text: 'НЕТ, регистрировать ребенка заранее нельзя.'
+        },
+        {
+            id: 6, vopros: ' Если нет свидетельства о рождении ребенка, что делать?', text: 'Если нет свидетельства о рождении ребенка или паспорта родителя, на момент подачи заявления в систему, необходимо:Обратиться в ЦОН и получить документ; Обратится в Комиссию по делам детей при местной государственной администрации.'
+        },
+
+    ],
+    [
+
+        { id: 2, vopros: 'Балам 5,5 жашта болсо, баламды каттасам болобу?', text: 'Баланы “Мектепке электрондук кабыл алуу” системасында каттоо, эгерде бала окуу жылынын башында 6 жашка толсо, мүмкүн.' },
+        {
+            id: 3, vopros: 'Анан балам 8-9 жашта болсо мектепке барсак болобу?', text: 'Баланы “Мектепке электрондук кабыл алуу” системасында каттоо, эгерде бала окуу жылынын башында 6 жашка толсо, мүмкүн.'
+        },
+        {
+            id: 4, vopros: 'Менин жашаган дарегиме кайсы мектеп дайындалганын кайдан жана кантип билсем болот?', text: 'Кайсы мектепке таандык экениңизди билүү үчүн бул дарекке өтүңүз https://mektep.edu.gov.kg/organization-check Бул кызматтын жардамы менен атаңыздын/апаңыздын ПИН-кодун киргизип, “Текшерүү” баскычын басуу менен кайсы мектепке таандык экениңизди биле аласыз.'
+        },
+        {
+            id: 5, vopros: 'Баламды быйыл каттатып, кийинки жылы мектепке барсам болобу?', text: 'ЖОК, баланы алдын ала каттоого болбойт.'
+        },
+        {
+            id: 6, vopros: 'Эгерде баланын туулгандыгы тууралуу күбөлүгү жок болсо, эмне кылуу керек?', text: 'Эгерде баланын туулгандыгы тууралуу күбөлүгү же ата-энесинин паспорту жок болсо, системага арыз берген учурда: КТБга кайрылуу жана документти алуу; Жергиликтүү мамлекеттик администрациянын алдындагы балдар иштери боюнча комиссияга кайрылууга.'
+        },
+    ]
 ]
 
-
 const ChatList = ({ data, onClick }) => {
+    const { translation } = useSelector(store => store.translationStore)
     return <>
-        <p style={{ fontSize: '1rem', marginBottom: '8px' }}>
-            Выберите пункты
-        </p>
+        <Box sx={{
+            fontSize: '0.8rem', marginBottom: '8px',
+            '@media screen and (max-width: 568px)': {
+                fontSize: '1rem'
+            }
+        }}>
+            {chatbotText[translation][5].text}
+        </Box>
         <ChatListBlock>
             {
-                data.map(elem => {
+                data[translation].map(elem => {
                     return <ChatListItem key={elem.id} onClick={() => onClick(elem.text)}>{elem.vopros}</ChatListItem>
                 })
             }
@@ -96,10 +168,13 @@ const ChatListItem = styled('li')`
     color: #fff;
     background: #408591;
     margin-bottom: 4px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 300;
     line-height: 1rem;
     cursor: pointer;
+    @media (max-width: 568px){
+        font-size: 1rem;
+    }
 `
 const ChatListBlock = styled('ul')`
     /* border: 1px solid red; */
@@ -128,6 +203,7 @@ function proverka(text, prev) {
 }
 
 const ChatBot = ({ handleClose }) => {
+    const { translation } = useSelector(store => store.translationStore)
     const [input, setInput] = useState("");
     const [btn, setBtn] = useState(false);
     const windowref = useRef();
@@ -152,7 +228,7 @@ const ChatBot = ({ handleClose }) => {
                 setTimeout(() => {
                     setMessages((prev) => {
                         let arr = prev.filter(elem => elem.variant !== 'loader');
-                        arr = [...arr, { id: Date.now(), text: 'была ли это информация полезной?', variant: 'voprosbot' }]
+                        arr = [...arr, { id: Date.now(), text: chatbotText[translation][1].text, variant: 'voprosbot' }]
                         return arr;
                     });
                 }, 3000)
@@ -171,7 +247,7 @@ const ChatBot = ({ handleClose }) => {
                 setTimeout(function () {
                     setMessages((prev) => {
                         let arr = prev.filter(elem => elem.variant !== 'loader');
-                        arr = [...arr, { id: Date.now(), text: "Здраствуйте чем я могу вам помочь?", variant: 'admin' }]
+                        arr = [...arr, { id: Date.now(), text: chatbotText[translation][0].text, variant: 'admin' }]
                         return arr;
                     });
                 }, 1000);
@@ -204,7 +280,7 @@ const ChatBot = ({ handleClose }) => {
             var time = setTimeout(function () {
                 setMessages((prev) => {
                     let arr = prev.filter(elem => elem.variant !== 'loader');
-                    arr = [...arr, { id: Date.now(), text: 'Рады были Вам помочь! Спасибо за обращение!', variant: 'vopros' }]
+                    arr = [...arr, { id: Date.now(), text: chatbotText[translation][2].text, variant: 'vopros' }]
                     return arr;
                 });
             }, 1000);
@@ -220,7 +296,7 @@ const ChatBot = ({ handleClose }) => {
             var time = setTimeout(function () {
                 setMessages((prev) => {
                     let arr = prev.filter(elem => elem.variant !== 'loader');
-                    arr = [...arr, { id: Date.now(), text: 'Если вы не получили ответ на свой вопрос, напишите нам на почту supportaddrees@email.com', variant: 'vopros' }]
+                    arr = [...arr, { id: Date.now(), text: chatbotText[translation][3].text, variant: 'vopros' }]
                     return arr;
                 });
             }, 1000);
@@ -269,7 +345,7 @@ const ChatBot = ({ handleClose }) => {
                     type="text"
                     value={input}
                     onChange={handleChange}
-                    placeholder="Введите ваше сообщение"
+                    placeholder={chatbotText[translation][4].text}
                 />
                 <button type="submit">отправить</button>
             </ChatBotForm>
@@ -292,7 +368,7 @@ const ChatBotForm = styled('form')`
     background: #fff;
     padding: 10px;
     display: flex;
-    font-size: 1rem;
+    font-size: 0.8rem;
     & > input{
         border: none;
         padding: 10px;
@@ -306,8 +382,11 @@ const ChatBotForm = styled('form')`
         color: #fff;
         border-radius: 6px;
     }
+    @media (max-width: 568px){
+        font-size: 1rem;
+    }
 `
-const Span = styled('span')`
+const Span = styled('p')`
     display: inline-block;
     position: relative;
     background: #dae1e7;
@@ -315,7 +394,8 @@ const Span = styled('span')`
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    margin: 0;
     padding: 10px;
     ${props => props.variant === 'client' && css`
         border-top-right-radius: 0;
@@ -323,6 +403,9 @@ const Span = styled('span')`
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
     `}
+    @media (max-width: 568px){
+        font-size: 1rem;
+    }
 `
 const ChatBotText = styled('div')`
     /* border: 1px solid red; */
@@ -379,4 +462,8 @@ const ChatBotBlock = styled('div')`
     /* padding: 5px; */
     overflow: hidden;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    @media (max-width: 568px){
+        right: none;
+        width: 90vw;
+    }
 `

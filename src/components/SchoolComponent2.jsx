@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import man from "../assets/IconCounter/man.svg";
 import woman from "../assets/IconCounter/woman.svg";
@@ -71,6 +71,10 @@ const SchoolText = [
                 item_header: "Контактные данные:",
                 item_text: "",
             },
+            {
+                item_header: "Вместимость первого класса",
+                item_text: "",
+            },
         ],
     },
     {
@@ -118,27 +122,25 @@ const SchoolText = [
                 item_header: "Байланыш маалыматтары:",
                 item_text: "",
             },
+            {
+                item_header: "Биринчи класска орундар",
+                item_text: "",
+            },
         ],
     },
 ];
 
 
 
-export const SchoolComponent2 = ({ onclicksetBottomMap }) => {
+export const SchoolComponent2 = () => {
     const { translation } = useSelector(store => store.translationStore)
     const { institution, marker } = useSelector(store => store.institutionInfoStore)
     const { types } = useSelector(store => store.staticDatasStore)
     const [openModal, setOpenModal] = useState(false);
-    // const mapRef = useRef()
-
-    useEffect(() => {
-        // onclicksetBottomMap(mapRef.current)
-    }, [])
-
+    // console.log(institution)
     const onClickShare = () => {
         setOpenModal(true)
     }
-
     const handleCloseModal = () => {
         setOpenModal(false)
     }
@@ -147,9 +149,8 @@ export const SchoolComponent2 = ({ onclicksetBottomMap }) => {
         setOpenMore((prev) => !prev);
     };
     let institution_type = types.find(elem => +elem.id === +institution.institution_type_id)
-    console.log(institution)
     return (
-        <section className="mt-5" >
+        <SchoolContainer marker className="mt-5">
             <div className="container">
                 <div className="row row-cols-1 row-cols-md-2 px-2 pt-4 border rounded blue">
                     <div className="col licei">
@@ -221,6 +222,16 @@ export const SchoolComponent2 = ({ onclicksetBottomMap }) => {
                                 </Td>
                             </Stack>
                         </BoxCard>
+                        {
+                            institution.first_class_capacity && <BoxCard>
+                                <Stack direction="row" flexWrap="wrap" spacing={1} alignItems="center">
+                                    <Th>{SchoolText[translation].items[10].item_header}</Th>
+                                    <Td>
+                                        <IconCounter icon={man}>{institution.first_class_capacity}</IconCounter>
+                                    </Td>
+                                </Stack>
+                            </BoxCard>
+                        }
                         <Grid container >
                             <Grid item xs={12} lg={10} sx={{ margin: "0" }}>
                                 <BoxCard>
@@ -331,9 +342,16 @@ export const SchoolComponent2 = ({ onclicksetBottomMap }) => {
             <ModalComponent handleClose={handleCloseModal} open={openModal}>
                 <Podelitsya />
             </ModalComponent>
-        </section>
+        </SchoolContainer>
     );
 };
+
+const SchoolContainer = styled('section')`
+    display: none;
+    ${props => props.marker && css`
+        display: block;
+    `}
+`
 
 const BoxCard = styled(Box)`
   margin-bottom: 15px;

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetch_api } from "../../hooks/fetch_api";
+import { institution_types, institution_view, instituion_sectors } from "../../utils/Constants/Constants";
 
 const initialState = {
     types: [],
@@ -38,7 +39,14 @@ export const getSectors = () => {
     return async (dispatch) => {
         try {
             const sectors = await fetch_api({ types: '?action=sectors' });
-            dispatch(staticDatasActions.setSectors(sectors.data));
+            const newData = sectors.data.map(elem => {
+                let el = instituion_sectors.find(item => +item.id === +elem.id)
+                if (el) {
+                    return { ...elem, kyrgyzName: el.name }
+                }
+                return elem;
+            })
+            dispatch(staticDatasActions.setSectors(newData));
         } catch (error) {
             console.log(error);
         }
@@ -49,7 +57,14 @@ export const getTypes = () => {
     return async (dispatch) => {
         try {
             const types = await fetch_api({ types: '?action=types' });
-            dispatch(staticDatasActions.setTypes(types.data));
+            const newData = types.data.map(elem => {
+                const id = institution_types.find(el => +el.id === +elem.id);
+                if (id) {
+                    return { ...elem, kyrgyzName: id.name }
+                }
+                return elem;
+            })
+            dispatch(staticDatasActions.setTypes(newData));
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +75,22 @@ export const getViews = () => {
     return async (dispatch) => {
         try {
             const views = await fetch_api({ types: '?action=view' });
-            dispatch(staticDatasActions.setViews(views.data));
+            const ids = [];
+            let newData = views.data.filter((item, index, arr) => {
+                const el = ids.find(elem => elem.id === item.id)
+                if (!el) {
+                    ids.push(item);
+                    return item;
+                }
+            });
+            const newData2 = newData.map(elem => {
+                const el = institution_view.find(item => item.id === elem.id)
+                if (el) {
+                    return { ...elem, kyrgyzName: el.name }
+                }
+                return elem;
+            })
+            dispatch(staticDatasActions.setViews(newData2));
         } catch (error) {
             console.log(error);
         }

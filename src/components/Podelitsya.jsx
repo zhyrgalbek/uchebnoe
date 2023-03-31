@@ -99,13 +99,13 @@ function Podelitsya() {
                 <SimpleSlider>
                     <div className="">
                         <div className="text-center p-1 pt-4 rounded-pill fs-2 mb-1">
-                            <a href="#" className='icon-socset whatsapp'><i className='icon-whatsapp'></i></a>
+                            <a href="https://wa.me/" className='icon-socset whatsapp' target="newframe"><i className='icon-whatsapp'></i></a>
                         </div>
                         <p className="text-center podelitsya_text">WhatsApp</p>
                     </div>
                     <div className="">
                         <div className=" text-center p-1 pt-4 rounded-pill fs-2 mb-1">
-                            <a href="#" className='icon-socset facebook'><i className='icon-facebook'></i></a>
+                            <a href="https://www.facebook.com/" className='icon-socset facebook' target="newframe"><i className='icon-facebook'></i></a>
                         </div>
                         <p className="text-center podelitsya_text">Facebook</p>
                     </div>

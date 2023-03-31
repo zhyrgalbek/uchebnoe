@@ -61,7 +61,7 @@ const data = [[
     contact: "minedukg@gmail.com",
   },
   {
-    text: "дареги",
+    text: "Дареги",
     contact: "Кыргыз Республикасы, Бишкек ш. 720040, Тыныстанова көч., 257",
   },
 ],
@@ -111,9 +111,9 @@ function Footer() {
               </p>
               <a
                 className="text-white text-decoration-none"
-                href="mailto:supportaddress@email.com"
+                href="mailto:check.edu.gov.kg@gmail.com"
               >
-                supportaddress@email.com
+                check.edu.gov.kg@gmail.com
               </a>
             </div>
             <div className="">
@@ -150,7 +150,7 @@ function Footer() {
           </div>
           <div className="mb-4 d-block d-md-none">
             <a
-              className="navbar-brand d-flex mb-3  text-wrap"
+              className="navbar-brand d-flex mb-3 text-wrap"
               href="index.html"
             >
               <img src={logo} width="32" height="30" />
@@ -163,9 +163,9 @@ function Footer() {
             </p>
             <a
               className="pt-0 text-white text-decoration-none"
-              href="mailto:supportaddress@email.com"
+              href="mailto:check.edu.gov.kg@gmail.com"
             >
-              supportaddress@email.com
+              check.edu.gov.kg@gmail.com
             </a>
           </div>
           <div className="container">

@@ -6,6 +6,8 @@ import { FilterButton } from "../../components/FilterButton";
 import { mapActions } from "../../store/slices/mapSlices";
 import HeaderButton from "../../components/ui/HeaderButton";
 import { translationActions } from "../../store/slices/translationSlices";
+import styled from "styled-components";
+import { Box, Container } from "@mui/system";
 
 const headerText = [
   {
@@ -40,12 +42,14 @@ const Header = () => {
   const transActive = 'active btn-primary text-white';
   return (
     <nav className="navbar container mt-3 navbar-expand-lg navbar-light ">
-      <div className="container-fluid">
+      <div className="container align-items-end">
+        {/* <Container> */}
         <a className="navbar-brand d-flex my-auto logo__text" href="index.html" onClick={onClickLogo}>
           <img src={logo} width="32" height="30" />
           <div className="text-wrap text-width-logo">
             {headerText[translation].logo}
           </div>
+          <Beta>(Beta версия)</Beta>
         </a>
         <button
           className="navbar-toggler"
@@ -177,8 +181,16 @@ const Header = () => {
           </ul>
         </div>
       </div>
+      {/* </Container> */}
     </nav >
   );
 };
 
 export default Header;
+
+const Beta = styled('div')`
+  /* border: 1px solid red; */
+  margin-left: -15px;
+  padding-top: 14px;
+  color: #6A8AFF;
+`

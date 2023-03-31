@@ -12,7 +12,7 @@ import { SadikKyr } from './SadikKyr';
 import { Stack } from '@mui/system';
 
 const ButtonShkola = ({ header, text, active, flexGrow, ...props }) => {
-    return <Paper sx={{ marginBottom: '0px', overflow: 'hidden', flexGrow: flexGrow }} >
+    return <Paper sx={{ marginBottom: '0px', overflow: 'hidden', flexGrow: flexGrow, cursor: 'pointer' }} >
         <ButtonShkolaBlock {...props} active={active}>
             <Buttonheader>{header}</Buttonheader>
             <ButtonText>{text}</ButtonText>
@@ -43,10 +43,18 @@ const ButtonShkolaBlock = styled('div')`
   `
 
 const buttonData = {
+    header: [
+        {
+            text: 'Часто задаваемые вопросы',
+        },
+        {
+            text: 'Көп берилүүчү суроолор',
+        }
+    ],
     shkola: [
         {
             header: 'Школа',
-            text: 'Ответы на часто задаваемые вопросы при подачи заявки в школу'
+            text: 'Ответы на часто задаваемые вопросы при подаче заявки в школу'
         },
         {
             header: 'Мектеп',
@@ -56,7 +64,7 @@ const buttonData = {
     sadik: [
         {
             header: 'Детский сад',
-            text: 'Ответы на часто задаваемые вопросы при подачи заявки в детский сад'
+            text: 'Ответы на часто задаваемые вопросы при подаче заявки в детский сад'
         },
         {
             header: 'Бала бакча',
@@ -67,9 +75,11 @@ const buttonData = {
 
 
 export const FaqComponent = () => {
-    const { translation } = useSelector(store => store.translate)
+    const { translation } = useSelector(store => store.translationStore)
     const [showFaq, setShowFaq] = useState(0);
     const [accordionOpen, setAccordionOpen] = useState(false);
+    // console.log('Hello world')
+
     const onChangeAccordion = () => {
         setAccordionOpen(prev => !prev)
     }
@@ -78,7 +88,7 @@ export const FaqComponent = () => {
     }
     return (
         <>
-            <AccordionFilter onClick={onChangeAccordion} header={<FilterButton primary active={accordionOpen} mobile toggle>Часто задаваемые вопросы</FilterButton>}>
+            <AccordionFilter onClick={onChangeAccordion} header={<FilterButton primary active={accordionOpen} mobile toggle>{buttonData.header[translation].text}</FilterButton>}>
                 <Grid container spacing={2} sx={{ marginBottom: '10px', px: "20px", py: '20px' }}>
                     <Grid item xs={12} md={4}>
                         <ButtonShkola active={showFaq === 0} onClick={() => onClickBtn(0)} header={buttonData.shkola[translation].header} text={buttonData.shkola[translation].text} />
@@ -102,3 +112,5 @@ export const FaqComponent = () => {
         </>
     );
 };
+
+export const FaqComponentMemoized = React.memo(FaqComponent)

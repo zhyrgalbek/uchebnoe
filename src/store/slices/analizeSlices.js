@@ -5,7 +5,11 @@ const initialState = {
     occupancyCols: [],
     institutionsRegions: [],
     maxKnowledgeInstitutions: [],
-    maxFreeInstitutions: []
+    maxFreeInstitutions: [],
+    generalEducationalQuantity: [],
+    preschoolQuantity: [],
+    generalEducational: [],
+    preschool: []
 }
 
 function maxInstitution(institutions) {
@@ -14,10 +18,11 @@ function maxInstitution(institutions) {
         if (+elem.actual_quantity === 0 || +elem.total_capacity === 0) {
             return;
         }
-        arr.push(+elem.fullness);
+        if (elem.institution_type_id === '2') {
+            arr.push(+elem.fullness);
+        }
     })
     let max = Math.max.apply(null, arr);
-    console.log(max)
     let maxInsti = max ? institutions.filter(elem => +elem.fullness === +max) : []
     let newArr = max ? institutions.filter(elem => +elem.fullness !== +max) : []
     return {
@@ -29,11 +34,10 @@ function maxInstitution(institutions) {
 function maxFreeInstitution(institutions) {
     let arr = [];
     institutions.forEach(elem => {
-        if (+elem.total_capacity !== 0 && +elem.actual_quantity !== 0 && +elem.actual_quantity < +elem.total_capacity) {
+        if (+elem.total_capacity !== 0 && +elem.actual_quantity !== 0 && +elem.actual_quantity < +elem.total_capacity && elem.institution_type_id === '2') {
             arr.push(+elem.total_capacity - +elem.actual_quantity)
         }
     })
-    console.log(arr)
     let max = Math.max.apply(null, arr);
     let minInsti = max ? institutions.filter(elem => +elem.total_capacity - +elem.actual_quantity === max) : []
     let newArr = max ? institutions.filter(elem => +elem.total_capacity - +elem.actual_quantity !== max) : []
@@ -88,7 +92,6 @@ const analizeSlices = createSlice({
                     return { ...elem, total_free: +elem.total_capacity - +elem.actual_quantity }
                 }
             }) : []
-            console.log(newMaxFree)
             state.maxFreeInstitutions = newMaxFree
         },
         setMaxKnowledgeInstitutions(state, action) {
@@ -112,7 +115,6 @@ const analizeSlices = createSlice({
                     arr = newArr;
                 }
             }
-            console.log(maxElems)
             state.maxKnowledgeInstitutions = maxElems;
         },
         setInstitutionsRegions(state, action) {
@@ -125,7 +127,7 @@ const analizeSlices = createSlice({
                 })
                 newRegions.forEach(el => {
                     el.items = institutions.filter(elem => {
-                        let inst = el.regions.find(region_id => region_id.id === elem.area_id)
+                        let inst = el.regions.find(region_id => region_id.id === elem.area_id && elem.institution_type_id === '2')
                         if (inst) {
                             return elem;
                         }
@@ -133,13 +135,20 @@ const analizeSlices = createSlice({
                 })
                 newRegions.forEach(el => {
                     let empoyment = 0;
+                    let s = 0;
+                    let first_capacity = 0;
                     el.items.forEach((elem) => {
                         if (+elem.total_capacity === 0 || +elem.actual_quantity === 0) {
                             return;
                         }
+                        if (elem.first_class_capacity) {
+                            first_capacity += +elem.first_class_capacity
+                        }
+                        s++;
                         empoyment += +elem.fullness;
                     })
-                    el.empoyment = empoyment / el.items.length
+                    el.empoyment = empoyment / s
+                    el.first_capacity = first_capacity
                 })
             }
             if (variant === 'area_id') {
@@ -148,10 +157,10 @@ const analizeSlices = createSlice({
                 })
                 newRegions.forEach(el => {
                     el.items = institutions.filter(elem => {
-                        if (el.regions.length < 2 && elem.area_id === el.id) {
+                        if (el.regions.length < 2 && elem.area_id === el.id && elem.institution_type_id === '2') {
                             return elem;
                         }
-                        let inst = el.regions.find(region_id => region_id.id === elem.area_aimak_id)
+                        let inst = el.regions.find(region_id => region_id.id === elem.area_aimak_id && elem.institution_type_id === '2')
                         if (inst) {
                             return elem;
                         }
@@ -159,40 +168,56 @@ const analizeSlices = createSlice({
                 })
                 newRegions.forEach(el => {
                     let empoyment = 0;
+                    let s = 0;
+                    let first_capacity = 0;
                     el.items.forEach(elem => {
                         if (+elem.total_capacity === 0 || +elem.actual_quantity === 0) {
                             return;
                         }
-                        empoyment += +elem.fullness;
+                        if (elem.institution_type_id === '2') {
+                            if (elem.first_class_capacity) {
+                                first_capacity += +elem.first_class_capacity
+                            }
+                            s++;
+                            empoyment += +elem.fullness;
+                        }
                     })
-                    el.empoyment = empoyment / el.items.length
+                    el.empoyment = empoyment / s
+                    el.first_capacity = first_capacity
                 })
-                console.log(newRegions)
             }
             if (variant === 'county') {
                 county2.forEach(elem => {
                     newRegions.push({ id: elem.id, name: elem.name, regions: elem })
                 })
-                console.log(newRegions)
                 newRegions.forEach(el => {
                     el.items = institutions.filter(elem => {
-                        if (el.regions.length < 2 && elem.area_id === el.id) {
+                        if (el.regions.length < 2 && elem.area_id === el.id && elem.institution_type_id === '2') {
                             return elem;
                         }
-                        if (el.regions.id === elem.area_aimak_id) {
+                        if (el.regions.id === elem.area_aimak_id && elem.institution_type_id === '2') {
                             return elem;
                         }
                     })
                 })
                 newRegions.forEach(el => {
                     let empoyment = 0;
+                    let s = 0;
+                    let first_capacity = 0;
                     el.items.forEach(elem => {
                         if (+elem.total_capacity === 0 || +elem.actual_quantity === 0) {
                             return;
                         }
-                        empoyment += +elem.fullness;
+                        if (elem.institution_type_id === '2') {
+                            if (elem.first_class_capacity) {
+                                first_capacity += +elem.first_class_capacity
+                            }
+                            s++;
+                            empoyment += +elem.fullness;
+                        }
                     })
-                    el.empoyment = +empoyment / +el.items.length
+                    el.empoyment = +empoyment / s
+                    el.first_capacity = first_capacity
                 })
             }
             state.institutionsRegions = newRegions
@@ -201,7 +226,7 @@ const analizeSlices = createSlice({
             let newArr = [[], [], [], [], [], []]
             const { institutions } = action.payload;
             institutions.forEach((elem, index) => {
-                if (elem.institution_type_id === '1' || elem.institution_type_id === '2') {
+                if (elem.institution_type_id === '1' || elem.institution_type_id === '2' || elem.institution_type_id === '23') {
                     if (+elem.total_capacity === 0 || +elem.actual_quantity === 0) {
                         newArr[5].push({ ...elem })
                         return;
@@ -225,7 +250,25 @@ const analizeSlices = createSlice({
                 }
                 return newArr[5].push({ ...elem })
             })
+            let generalEducational = newArr.map(elem => {
+                return elem.filter(el => {
+                    if (el.institution_type_id === '2') {
+                        return el;
+                    }
+                })
+            })
+            let preschool = newArr.map(elem => {
+                return elem.filter(el => {
+                    if (el.institution_type_id === '1' || el.institution_type_id === '23') {
+                        return el;
+                    }
+                })
+            })
             state.occupancyInstitutes = newArr;
+            state.generalEducational = generalEducational
+            state.preschool = preschool
+            state.generalEducationalQuantity = [generalEducational[0].length, generalEducational[1].length, generalEducational[2].length, generalEducational[3].length, generalEducational[4].length]
+            state.preschoolQuantity = [preschool[0].length, preschool[1].length, preschool[2].length, preschool[3].length, preschool[4].length,]
             state.occupancyCols = [newArr[0].length, newArr[1].length, newArr[2].length, newArr[3].length, newArr[4].length]
         }
     }

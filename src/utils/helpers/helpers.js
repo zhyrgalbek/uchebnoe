@@ -1,7 +1,9 @@
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// &institution_type_id=5&institution_type_id=7&institution_type_id=8&institution_type_id=9&institution_type_id=18&institution_type_id=19&institution_type_id=20&institution_type_id=21&institution_type_id=23
 export function getRequestFilter(requestFilter, areas, activeFilterType) {
     let obj = { typeId: '', type: '', view: '', sector: '', fullness: { from: '', to: '' } };
-    console.log(activeFilterType)
+    // console.log(activeFilterType)
     requestFilter.forEach((elem) => {
         if (elem.type === 'fullness') {
             obj[elem.type].from = elem.fromValue;
@@ -12,7 +14,7 @@ export function getRequestFilter(requestFilter, areas, activeFilterType) {
     })
     let { typeId, type, view, sector, fullness } = obj;
     let institution_types = `&institution_type_id=${typeId}`;
-    let other = `&institution_type_id=5&institution_type_id=7&institution_type_id=8&institution_type_id=9&institution_type_id=18&institution_type_id=19&institution_type_id=20&institution_type_id=21&institution_type_id=23`
+    let other = `&noneTypes=%5B1,2%5D`
     if (typeId === 'other' && activeFilterType === 'typeId') {
         institution_types = other;
     }
@@ -44,4 +46,8 @@ export function getRequestFilter(requestFilter, areas, activeFilterType) {
         sector,
         fullness
     }
+}
+
+export function getToastify({ text, variant }) {
+    <ToastContainer />
 }

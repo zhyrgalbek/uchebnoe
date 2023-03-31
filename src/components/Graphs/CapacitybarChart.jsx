@@ -1,43 +1,21 @@
+import { Stack } from '@mui/system';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Chart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { analizeSlicesActions } from '../../store/slices/analizeSlices';
 
-function getParametr({ institutions, areas2, regions, areas, county, county2 }) {
-    return {
-        institutions,
-        areas,
-        regions,
-        county,
-        areas2,
-        county2,
-        variant: getVariant({ areas2, county2 })
-    }
-}
 
-function getVariant({ areas2, county2 }) {
-    if (county2.length !== 0) {
-        return 'county';
-    }
-    if (areas2.length !== 0) {
-        return 'area_id';
-    }
-    return 'area_administrative_id';
-}
 
-export const Chart1 = () => {
-    const { institutions, status } = useSelector(store => store.institutionsStore)
-    const { areas2, county2 } = useSelector(store => store.filterAreasStore)
-    const { regions, areas, county } = useSelector(store => store.staticDatasStore)
+export const CapacitybarChart = () => {
+    const { status } = useSelector(store => store.institutionsStore)
     const { institutionsRegions } = useSelector(store => store.analizeSlicesStore)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (status === 'fulfilled') {
-            dispatch(analizeSlicesActions.setInstitutionsRegions(getParametr({ institutions, areas2, regions, areas, county, county2 })));
-        }
-    }, [institutions, status])
+    // console.log(getParametr({ institutions, areas2, regions }))
+    // console.log(institutionsRegions)
+
     const [options, setOptions] = useState({
         grid: {
             borderColor: 'rgba(218, 226, 255, 1)',
@@ -67,7 +45,7 @@ export const Chart1 = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: '30%',
+                columnWidth: '70%',
                 dataLabels: {
                     position: 'top' // bottom/center/top
                 }
@@ -137,6 +115,7 @@ export const Chart1 = () => {
                 plotOptions: {
                     bar: {
                         columnWidth: '30rem',
+                        horizontal: false,
                         dataLabels: {
                             position: 'top' // bottom/center/top
                         }
@@ -150,7 +129,7 @@ export const Chart1 = () => {
                         colors: ['rgba(41, 45, 50, 1)']
                     },
                     formatter: function (val) {
-                        return val + '%'
+                        return val
                     }
                 },
                 stroke: {
@@ -159,24 +138,25 @@ export const Chart1 = () => {
                     colors: ['transparent']
                 },
                 xaxis: {
-                    categories: institutionsRegions.map(elem => elem.name)
+                    show: false,
+                    categories: institutionsRegions.map((elem, index) => elem.name)
                 },
                 yaxis: {
                     title: true,
                 },
                 fill: {
-                    colors: ['#61B8FF', '#3763FF'],
+                    colors: ['#3763FF', '#61B8FF',],
                     opacity: 1,
                     y: {
                         formatter: function (val) {
-                            return val + '%'
+                            return val
                         }
                     }
                 },
                 tooltip: {
                     y: {
                         formatter: function (val) {
-                            return val + '%'
+                            return val
                         }
                     }
                 }
@@ -198,17 +178,41 @@ export const Chart1 = () => {
     useEffect(() => {
         if (status === 'fulfilled') {
             setSeries([
-                {
-                    name: 'занятость',
-                    data: institutionsRegions.map(elem => elem.empoyment ? +elem.empoyment.toFixed(2) + '%' : 0)
-                },
                 // {
-                //     name: 'вместимость',
-                //     data: institutionsRegions.map(elem => elem.first_capacity ? +elem.first_capacity.toFixed(2) : 0)
+                //     name: 'занятость',
+                //     data: institutionsRegions.map(elem => elem.empoyment ? +elem.empoyment.toFixed(2) + '%' : 0)
                 // },
+                {
+                    name: 'вместимость',
+                    data: institutionsRegions.map(elem => elem.first_capacity ? +elem.first_capacity.toFixed(2) : 0)
+                },
             ])
         }
     }, [institutionsRegions, status])
 
-    return <Chart options={options} series={series} type="bar" height="350" width="100%" style={{ flexGrow: 1 }} />
+    return <>
+        <Chart options={options} series={series} type="bar" height="350" width="100%" style={{ flexGrow: 1 }} />
+    </>
 }
+
+const Text = styled('div')`
+    font-size: 0.9rem;
+`
+
+const Number = styled('span')`
+    display: block;
+    padding-right: 6px;
+    font-size: 0.9rem;
+`
+
+const Item = styled('li')`
+    display: flex;
+    /* padding-bottom: 6px; */
+`
+
+const List = styled('ol')`
+    /* border: 1px solid red; */
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+`

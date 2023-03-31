@@ -217,13 +217,11 @@ html {
 .leaflet-div-icon {
   background-color: transparent;
   border: none;
-  /* opacity: 0.7 !important; */
+}
+
+.customPopup {
   /* border: 1px solid red; */
-  /* width: 10px; */
-  /* height: 10px; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  top: -73px;
 }
 
 .marker-cluster-custom {
@@ -298,6 +296,12 @@ html {
   line-height: 130%;
   /* or 47px */
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 568px) {
+  .title__text {
+    text-align: center;
+  }
 }
 
 .devider {
@@ -475,6 +479,18 @@ footer .text__found {
   height: 42px;
 }
 
+.imhere {
+  border: 1px solid rgb(43, 131, 186);
+  background-color: rgb(43, 131, 186);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* transform: translate(50%); */
+  /* width: 20px; */
+  /* height: 20px; */
+}
+
 .btn-primary {
   background-color: #6a8aff !important;
   border-color: #6a8aff !important;
@@ -508,6 +524,7 @@ footer .text__found {
 
   display: flex;
   align-items: center;
+  text-align: center;
 
   /* Основной цвет шрифтов */
 

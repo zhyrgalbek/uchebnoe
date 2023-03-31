@@ -18,6 +18,8 @@ import { institutionInfoActions } from "../store/slices/institutionInfoSlices"
 import { requestActions } from "../store/slices/requestSlices"
 import { filterAreasActions, getFilterView } from "../store/slices/filterAreasSlices"
 import { getAreas, getViews, getSectors } from "../store/slices/staticDatasSlices"
+import { institutionsActions } from "../store/slices/institutionsSlices"
+import React from "react"
 const oblast = ["Нарынская", "Чуйская", "Ыссык-Кульская", "Таласская", "Джалал-Абадская", "Ошская", "Баткенская", "г.Бишкек", "г.Ош"];
 const rayons = []
 
@@ -26,25 +28,24 @@ const colorText = [
     ['50% чейин - көптөгөн бош орундар', '75% чейин - жетиштүү орундар', '100% чейин - жарымы толтурулган', '125% чейин - орундар чектелген', '150% чейин - дээрлик толук']
 ]
 
-export const Filter = ({ header }) => {
+export const Filter = ({ header, topMap }) => {
     const { translation } = useSelector(store => store.translationStore);
     const { areas, regions, county, types, view, sectors } = useSelector(store => store.staticDatasStore);
     const { requestFilter, activeFilterType } = useSelector(store => store.requestSlicesStore);
-    const { areas2, county2, view2, view2Error } = useSelector(store => store.filterAreasStore);
-    const { mapInfo2 } = useSelector(store => store.refSlicesStore)
+    const { areas2, county2, view2, view2Error, county2Dont } = useSelector(store => store.filterAreasStore);
+    const { visualInstitutions } = useSelector(store => store.institutionsStore)
     const [openState, setOpenState] = useState(false);
     const [statusValue, setStatusValue] = useState(false);
     const [statusSearch, setStatusSearch] = useState('');
     const dispatch = useDispatch();
     const onClickSeach = () => {
-        // dispatch(requestActions.setRequestFilter({ type, value, text }));
+        dispatch(institutionsActions.setVisualInstitutions(getRequestFilter(requestFilter, areas2, activeFilterType)))
         dispatch(getInstitutions(getRequestFilter(requestFilter, areas2, activeFilterType)));
         dispatch(institutionInfoActions.setMarker(false));
         const type = (requestFilter[0].text !== '' && requestFilter[1].text) === '' && requestFilter[0].type || requestFilter[1].text !== '' && requestFilter[1].type
         const text = (requestFilter[0].text !== '' && requestFilter[1].text) === '' && requestFilter[0].text || requestFilter[1].text !== '' && requestFilter[1].text
         dispatch(mapActions.setCoordinate({ type, text }));
-        mapInfo2.scrollIntoView({ block: "center", behavior: "smooth" });
-        // console.log(mapInfo2)
+        topMap.current.scrollIntoView({ block: "end", behavior: "smooth" });
     }
     useEffect(() => {
         if (statusSearch === '') {
@@ -63,6 +64,7 @@ export const Filter = ({ header }) => {
         dispatch(filterAreasActions.setFilterAreasReset());
         setStatusSearch(true);
         dispatch(mapActions.setCoordinate({ type: '', value: '' }));
+        topMap.current.scrollIntoView({ block: "center", behavior: "smooth" });
         setFilterText(prev => {
             return prev.map(elem => {
                 return {
@@ -359,9 +361,9 @@ export const Filter = ({ header }) => {
                 } */}
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[0].type} header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={regions} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas2.length !== 0 ? areas2 : areas} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county2.length !== 0 ? county2 : county} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county2.length !== 0 || county2Dont ? county2 : county} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view2Error !== '' ? view2 : view} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view2Error !== 'dont' ? view2 : view} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
                 <Box sx={{ mb: '10px' }}>
@@ -377,9 +379,9 @@ export const Filter = ({ header }) => {
             <Stack direction="row" justifyContent="flex-start" alignItems="flex-start" flexWrap="wrap">
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[0].type} header={filterText[translation].btns[0].btn_header} text={filterText[translation].btns[0].btn_text} items={regions} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[1].type} header={filterText[translation].btns[1].btn_header} text={filterText[translation].btns[1].btn_text} items={areas2.length !== 0 ? areas2 : areas} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county2.length !== 0 ? county2 : county} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[2].type} header={filterText[translation].btns[2].btn_header} text={filterText[translation].btns[2].btn_text} items={county2.length !== 0 || county2Dont ? county2 : county} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[3].type} header={filterText[translation].btns[3].btn_header} text={filterText[translation].btns[3].btn_text} items={types} />
-                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view2Error !== '' ? view2 : view} />
+                <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[4].type} header={filterText[translation].btns[4].btn_header} text={filterText[translation].btns[4].btn_text} items={view2Error !== 'dont' ? view2 : view} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[5].type} header={filterText[translation].btns[5].btn_header} text={filterText[translation].btns[5].btn_text} items={filterText[translation].btns[5].items} />
                 <FilterDropdown onClick={onChangeFilterText} type={filterText[translation].btns[6].type} header={filterText[translation].btns[6].btn_header} text={filterText[translation].btns[6].btn_text} items={sectors} />
                 {/* <FilterDropdown onClick={onChangeFilterText} type={elem.type} header={elem.btn_header} text={elem.btn_text} items={elem?.items} /> */}
@@ -392,6 +394,8 @@ export const Filter = ({ header }) => {
         </Desctop>
     </FilterContainer>
 }
+
+export const FilterMemoized = React.memo(Filter)
 
 const SpanColor = styled('span')`
     display: inline-block;
