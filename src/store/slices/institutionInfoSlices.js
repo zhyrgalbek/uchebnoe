@@ -14,7 +14,6 @@ const institutionInfoSlices = createSlice({
             state.marker = action.payload;
         },
         setInstitution(state, action) {
-            console.log(action.payload)
             state.institution = action.payload
         },
         setStatus(state, action) {
