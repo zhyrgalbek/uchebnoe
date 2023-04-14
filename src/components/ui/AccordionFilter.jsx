@@ -30,7 +30,6 @@ const AccordionContainer = styled(Accordion)`
     & .css-15v22id-MuiAccordionDetails-root{
         padding: 0;
         padding-bottom: 10px;
-        /* border: 1px solid red; */
     }
     & .css-1iji0d4{
         padding: 0px;

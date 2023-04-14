@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import line from '../assets/podelitsya/line.svg'
 import whatsapp from '../assets/podelitsya/whatsapp.svg'
-// import telegram from '../assets/podelitsya/telegram.svg'
 import instagram from '../assets/podelitsya/instagram.svg'
 import gmail_logo from '../assets/podelitsya/gmail_logo.svg'
 import sms from '../assets/podelitsya/sms.png'
 import copy from '../assets/podelitsya/copy.png'
-// import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import Slider from "react-slick";
 import { Paper } from '@mui/material'
 import styled from 'styled-components'

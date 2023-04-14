@@ -128,7 +128,7 @@ export const ShkolaRus = () => {
               Перейдите по данному адресу, чтобы узнать в какую школу вы относитесь. <br></br>
             </p>
             <p>
-              <a href="https://mektep.edu.gov.kg/organization-check">https://mektep.edu.gov.kg/organization-check</a>
+              <a href="https://mektep.edu.gov.kg/organization-check" target="_blank">https://mektep.edu.gov.kg/organization-check</a>
             </p>
             С помощью данной услуги Вы можете узнать в какую школу вы относитесь, указав ПИН отца/матери и нажав на кнопку «Проверить».
           </div>

@@ -8,7 +8,6 @@ export default HeaderButton;
 
 
 const Button = styled('a')`
-  /* border: 1px solid #6A8AFF; */
   border: 1px solid rgba(55, 99, 255, 0.4);
   text-decoration: none;
   color: #292D32;
@@ -44,11 +43,7 @@ const Button = styled('a')`
   ${props => props.footer && css`
     border: 1px solid #fff;
     color: #fff;
-    /* &:hover{
-      color: #000;
-      background: #fff;
-      font-weight: 600;
-    } */
+   
   `}
   ${props => props.footer && props.primary && css`
       color: #000;

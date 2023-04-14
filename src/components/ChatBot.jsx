@@ -177,7 +177,6 @@ const ChatListItem = styled('li')`
     }
 `
 const ChatListBlock = styled('ul')`
-    /* border: 1px solid red; */
     margin: 0;
     padding: 0;
     list-style: none;
@@ -238,7 +237,6 @@ const ChatBot = ({ handleClose }) => {
 
     useEffect(() => {
         windowref.current.scrollTo(0, windowref.current.scrollHeight)
-        // console.log(windowref.current.scrollHeight)
     }, [messages])
 
     useEffect(() => {
@@ -326,7 +324,6 @@ const ChatBot = ({ handleClose }) => {
 
     return (
         <ChatBotBlock>
-            {/* <Paper sx={{ width: '350px', borderRadius: '6px', overflow: 'hidden', marginBottom: '30px' }}> */}
             <ChatBotHeader>
                 <ChatBotHeaderText><HeaderSpan>Чат-бот</HeaderSpan><Img src={krestik} onClick={handleClose} /></ChatBotHeaderText>
             </ChatBotHeader>
@@ -349,7 +346,6 @@ const ChatBot = ({ handleClose }) => {
                 />
                 <button type="submit">отправить</button>
             </ChatBotForm>
-            {/* </Paper> */}
         </ChatBotBlock>
     );
 };
@@ -408,7 +404,6 @@ const Span = styled('p')`
     }
 `
 const ChatBotText = styled('div')`
-    /* border: 1px solid red; */
     display: flex;
     margin-bottom: 10px;
     overflow-anchor: none;
@@ -431,35 +426,29 @@ const ChatBotWindow = styled('div')`
     overflow: auto;
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
     height: 370px;
 `
 
 const ChatBotHeaderText = styled('h2')`
     font-size: 18px;
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
     width: 100%;
 `
 
 const ChatBotHeader = styled('div')`
-    /* border: 1px solid #6A8AFF; */
     background: #6A8AFF;
     color: #fff;
     padding: 10px;
-    /* margin-left:-1px; */
 `
 
 const ChatBotBlock = styled('div')`
-    /* border: 1px solid red; */
     position: absolute;
     bottom: -30px;
     right: 0;
     width: 350px;
     border-radius: 6px;
     margin-bottom: 30px;
-    /* padding: 5px; */
     overflow: hidden;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
     @media (max-width: 568px){

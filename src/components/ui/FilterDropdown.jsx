@@ -5,21 +5,17 @@ import styled, { css } from "styled-components"
 import frame from '../../assets/Filter/Frame.svg'
 
 export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, type, onClick, ...props }) => {
-    // const [choiseText, setChoiseText] = useState(text);
     const { translation } = useSelector(store => store.translationStore);
     const menuRef = useRef();
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
-    // useEffect(() => {
-    //     setChoiseText(text)
-    // }, [text]);
+
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
     const handleClose = (event, elem, value) => {
         if (elem) {
             onClick({ type, text: elem, value });
-            // setChoiseText(elem);
         }
         if (
             anchorRef.current &&
@@ -53,7 +49,7 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
             placement="bottom-start"
             transition
             disablePortal
-            sx={{ zIndex: '10000', width: '345px' }}
+            sx={{ zIndex: '10000', width: 'clamp(15.9375rem, 4.910714285714285rem + 22.61904761904762vw, 21.875rem)' }}
         >
             {({ TransitionProps, placement }) => (
                 <Grow
@@ -63,22 +59,7 @@ export const FilterDropdown = ({ header, text, icon, icon2, arr, mobile, items, 
                             placement === 'bottom-start' ? 'left top' : 'left bottom',
                     }}
                 >
-                    <Paper
-                        // elevation={0} 
-                        sx={{
-                            // border: '1px solid rgba(55, 99, 255, 0.4)',
-                            // borderTopLeftRadius: placement === 'bottom-start' ? '0' : '6px',
-                            // borderTopRightRadius: placement === 'bottom-start' ? '0' : '6px',
-                            // borderBottomLeftRadius: placement === 'bottom-start' ? '6px' : '0',
-                            // borderBottomRightRadius: placement === 'bottom-start' ? '6px' : '0',
-                            // borderTopColor: placement === 'bottom-start' ? '#fff' : 'rgba(55, 99, 255, 0.4)',
-                            // borderBottomColor: placement === 'bottom-start' ? 'rgba(55, 99, 255, 0.4)' : '#fff',
-                            // marginTop: placement === 'bottom-start' ? '-2px' : '0',
-                            // marginBottom: placement === 'bottom-start' ? '0' : '-2px',
-                            // paddingTop: placement === 'bottom-start' ? '0' : '10px',
-                            // paddingBottom: placement === 'bottom-start' ? '10px' : '0',
-                        }}
-                    >
+                    <Paper>
                         <ClickAwayListener onClickAway={handleClose}>
                             <MenuList
                                 autoFocusItem={open}

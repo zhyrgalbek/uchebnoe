@@ -1,4 +1,4 @@
-import { LayerGroup, MapContainer, Marker, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON, useMap, Rectangle } from 'react-leaflet'
+import { LayerGroup, MapContainer, Marker, Popup, TileLayer, Tooltip, useMapEvent, useMapEvents, WMSTileLayer, GeoJSON, useMap, Rectangle, LayersControl } from 'react-leaflet'
 import states from '../../utils/Constants/json/states2.json'
 import statesBatken from '../../utils/Constants/json/statesBatken.json'
 import statesChuy from '../../utils/Constants/json/statesChuy.json'
@@ -22,12 +22,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getIcon } from './markers/getIcon'
 import { institutionInfoActions } from '../../store/slices/institutionInfoSlices'
 import InfoBlock from './InfoBlock';
+import InfoBlockRight from './InfoBlockRight';
 import React from 'react'
 import { analizeSlicesActions } from '../../store/slices/analizeSlices'
 
 import 'react-toastify/dist/ReactToastify.css';
 import GeoLocation, { getIconImHere } from './GeoLocation'
 import { useCallback } from 'react'
+import RadioMaps from './RadioMaps'
+import PrevBtn from './PrevBtn'
 const kyrgyzstan = getCoordinates('Кыргызстан', states).reverse();
 const position = kyrgyzstan;
 
@@ -518,11 +521,14 @@ export const MapLeaflet = ({ marker, bottomMap }) => {
 
     return <>
         {
-            prevBtn && !marker && <Stack direction="row" justifyContent="flex-end" sx={{ marginBottom: '20px', position: 'absolute', top: '-10px', right: '0' }}>
+            prevBtn && !marker && <DivBtn>
                 <Box sx={{ width: 'auto' }}>
                     <FilterSubmit variant="desctop" map onClick={onClickPrevBtn}>Назад</FilterSubmit>
                 </Box>
-            </Stack>
+            </DivBtn>
+        }
+        {
+            !marker && <PrevBtn />
         }
         <Paper sx={{ width: "100%", height: "100%" }} elevation={6}>
             <MapBlock>
@@ -544,7 +550,7 @@ export const MapLeaflet = ({ marker, bottomMap }) => {
                             subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
                             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                         /> */}
-                        <WMSTileLayer
+                        {/* <WMSTileLayer
                             url="https://geoserver.24mycrm.com/monmap/wms?&tiled=true"
                             version='1.0.0'
                             opacity={0.3}
@@ -553,7 +559,7 @@ export const MapLeaflet = ({ marker, bottomMap }) => {
                             layers="monmap:t2monmap"
                             gridSet="999"
                             format="image/png"
-                        />
+                        /> */}
                         {
                             !bottomMap && <TileLayer
                                 url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
@@ -563,6 +569,38 @@ export const MapLeaflet = ({ marker, bottomMap }) => {
                             />
                         }
                     </LayerGroup>
+                    {
+                        bottomMap && <LayersControl>
+                            <LayersControl.BaseLayer checked name="Школы">
+                                <LayerGroup>
+                                    <WMSTileLayer
+                                        url="https://geoserver.24mycrm.com/monmap/wms?&tiled=true"
+                                        version='1.1.0'
+                                        opacity={0.3}
+                                        transparent={true}
+                                        srs="EPSG:4326"
+                                        layers="monmap:monmap-3"
+                                        gridSet="999"
+                                        format="image/png"
+                                    />
+                                </LayerGroup>
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer name="Садики">
+                                <LayerGroup>
+                                    <WMSTileLayer
+                                        url="https://geoserver.24mycrm.com/monmap/wms?&tiled=true"
+                                        version='1.1.0'
+                                        opacity={0.3}
+                                        transparent={true}
+                                        srs="EPSG:4326"
+                                        layers="monmap:monmap-2"
+                                        gridSet="999"
+                                        format="image/png"
+                                    />
+                                </LayerGroup>
+                            </LayersControl.BaseLayer>
+                        </LayersControl>
+                    }
                     {/* {
                         !marker && <LayersControl position="bottomright">
                             <LayersControl.Overlay name="google">
@@ -599,7 +637,7 @@ export const MapLeaflet = ({ marker, bottomMap }) => {
                             </LayersControl.Overlay>
                         </LayersControl>
                     } */}
-                    <SetViewOnClick animateRef={animateRef} />
+                    {/* <SetViewOnClick animateRef={animateRef} /> */}
                     <MyComponent />
                     <SetBoundsRectanglesMemoized onSetCoords={onSetCoords} marker={marker} coords={coords} setPrevBtn={setPrevBtn} prevBtn={prevBtn} bottomMap={bottomMap} />
                     {
@@ -611,6 +649,7 @@ export const MapLeaflet = ({ marker, bottomMap }) => {
                             <span className="map2_loader"></span>
                         </Preloader>
                     }
+                    {/* <InfoBlockRight /> */}
                 </Map >
             </MapBlock >
         </Paper>
@@ -621,7 +660,6 @@ export const MemoizedMapLeaflet = React.memo(MapLeaflet);
 
 const Preloader = styled('div')`
     position: absolute;
-    /* background: #263038; */
     background: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
@@ -636,18 +674,29 @@ const Preloader = styled('div')`
 
 const MapBlock = styled('div')`
     position: relative;
-    /* border: 1px solid red; */
     width: 100%;
     height: 100%;
 `
 
 const Map = styled(MapContainer)`
-    /* border: 1px solid red; */
     & .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar{
         border: none;
     }
 `
-
+const DivBtn = styled('div')`
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: -12px;
+    right: 0;
+    @media (max-width: 992px){
+        top: 16px;
+    }
+    @media (max-width: 768px){
+        top: 12px;
+    }
+`
 
 
 

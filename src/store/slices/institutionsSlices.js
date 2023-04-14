@@ -4,6 +4,7 @@ import { fetch_api } from "../../hooks/fetch_api";
 const initialState = {
     institutions: [],
     visualInstitutions: [],
+    update_time: '',
     status: '',
     messages: ''
 }
@@ -20,6 +21,9 @@ const institutionsSlices = createSlice({
         },
         setInstitutions(state, action) {
             state.institutions = action.payload;
+        },
+        setUpdated(state, action) {
+            state.update_time = action.payload;
         },
         setStatus(state, action) {
             state.status = action.payload;
@@ -41,6 +45,14 @@ export const getInstitutions = ({ requestOblast, institution_types, sector, full
             if (institutions.error !== '') {
                 throw new Error('Таких учреждений нет!');
             }
+            let arr = [];
+            institutions.data.forEach(elem => {
+                let update = arr.find(el => el === elem.updated_at);
+                if (!update) {
+                    arr.push(elem.updated_at)
+                }
+            })
+            dispatch(institutionsActions.setUpdated(arr[arr.length - 1]));
             dispatch(institutionsActions.setInstitutions(institutions.data));
             setTimeout(() => {
                 dispatch(institutionsActions.setStatus('fulfilled'));

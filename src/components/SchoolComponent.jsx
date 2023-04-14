@@ -114,7 +114,6 @@ export default function SchoolComponent({ imageSchool }) {
 }
 
 const ImgBlock = styled('div')`
-    /* border: 1px solid blue; */
     width: 100%;
     height: 310px;
     border-radius: 6px;

@@ -314,7 +314,6 @@ export default function AnalizeCompoent() {
 export const AnalizeCompoentMemoized = React.memo(AnalizeCompoent)
 
 const P = styled("p")`
-  /* border: 1px solid red; */
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -355,8 +354,6 @@ const ChartHeader = styled("h4")`
   line-height: 140%;
   margin-bottom: 24px;
   color: #292d32;
-  /* margin-left: 18px; */
-  /* margin-bottom: -10px; */
   ${(props) =>
     props.primary &&
     css`

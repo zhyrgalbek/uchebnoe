@@ -14,14 +14,12 @@ export const LogoType = ({ footer }) => {
 }
 
 const Img = styled("img")`
-  /* border: 1px solid red; */
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
 const LogoText = styled("p")`
-  /* border: 1px solid red; */
   text-transform: uppercase;
   width: 250px;
   font-family: "Inter";

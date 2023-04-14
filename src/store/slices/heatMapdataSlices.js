@@ -6,7 +6,6 @@ const initialState = {
     data: null
 }
 
-
 const heatMapdataSlices = createSlice({
     name: 'heatMapdataSlices',
     initialState,

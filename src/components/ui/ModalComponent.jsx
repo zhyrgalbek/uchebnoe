@@ -6,7 +6,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    // width: 400,
     bgcolor: 'background.paper',
     border: 'none',
     boxShadow: 24,
@@ -14,7 +13,6 @@ const style = {
     borderRadius: '5%',
     p: 4,
     px: 6
-    // width: '600px',
 };
 
 export default function ModalComponent({ children, open, handleClose }) {
