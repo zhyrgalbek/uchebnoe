@@ -1,4 +1,4 @@
-export const url = 'https://test-check.edu.gov.kg/api.php';
+export const url = 'https://check.edu.gov.kg/api.php';
 export const heatmap_url = 'https://geoserver.24mycrm.com/monmap/';
 
 export const instituion_sectors = [
